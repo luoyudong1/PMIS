@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kthw.pmis.mapper.common.DeviceModelMapper">
+  <resultMap id="BaseResultMap" type="com.kthw.pmis.entiy.DeviceModel">
+    <result column="device_model_id" jdbcType="NUMERIC" property="deviceModelId" />
+    <result column="device_model_name" jdbcType="VARCHAR" property="deviceModelName" />
+    <result column="enabled" jdbcType="NUMERIC" property="enabled" />
+    <result column="device_model_code" jdbcType="CHAR" property="deviceModelCode" />
+    <result column="device_type_id" jdbcType="NUMERIC" property="deviceTypeId" />
+  </resultMap>
+  <sql id="Base_Column_List">device_model_id,device_model_name,enabled,device_model_code,device_type_id</sql>
+  <sql id="ByMap_Where_Clause">
+    <where>
+      <if test="eqDeviceModelId != null">
+        AND device_model_id = #{eqDeviceModelId,jdbcType=NUMERIC}
+      </if>
+      <if test="eqDeviceModelName != null">
+        AND device_model_name = #{eqDeviceModelName,jdbcType=VARCHAR}
+      </if>
+      <if test="eqEnabled != null">
+        AND enabled = #{eqEnabled,jdbcType=NUMERIC}
+      </if>
+      <if test="eqDeviceModelCode != null">
+        AND device_model_code = #{eqDeviceModelCode,jdbcType=CHAR}
+      </if>
+      <if test="eqDeviceTypeId != null">
+        AND device_type_id = #{eqDeviceTypeId,jdbcType=NUMERIC}
+      </if>
+    </where>
+  </sql>
+  <sql id="ByMap_Set_Clause">
+    <set>
+      <if test="deviceModelId != null">
+        device_model_id = #{deviceModelId,jdbcType=NUMERIC},
+      </if>
+      <if test="deviceModelName != null">
+        device_model_name = #{deviceModelName,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=NUMERIC},
+      </if>
+      <if test="deviceModelCode != null">
+        device_model_code = #{deviceModelCode,jdbcType=CHAR},
+      </if>
+      <if test="deviceTypeId != null">
+        device_type_id = #{deviceTypeId,jdbcType=NUMERIC},
+      </if>
+    </set>
+  </sql>
+  <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_5t_device_model_dict
+    <if test="_parameter != null">
+      <include refid="ByMap_Where_Clause" />
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+  </select>
+  <insert id="insert" parameterType="com.kthw.pmis.entiy.DeviceModel">
+    insert into tbl_5t_device_model_dict (device_model_id, device_model_name, enabled, 
+      device_model_code, device_type_id)
+    values (#{deviceModelId,jdbcType=NUMERIC}, #{deviceModelName,jdbcType=VARCHAR}, #{enabled,jdbcType=NUMERIC}, 
+      #{deviceModelCode,jdbcType=CHAR}, #{deviceTypeId,jdbcType=NUMERIC})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kthw.pmis.entiy.DeviceModel">
+    insert into tbl_5t_device_model_dict
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deviceModelId != null">
+        device_model_id,
+      </if>
+      <if test="deviceModelName != null">
+        device_model_name,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="deviceModelCode != null">
+        device_model_code,
+      </if>
+      <if test="deviceTypeId != null">
+        device_type_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deviceModelId != null">
+        #{deviceModelId,jdbcType=NUMERIC},
+      </if>
+      <if test="deviceModelName != null">
+        #{deviceModelName,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=NUMERIC},
+      </if>
+      <if test="deviceModelCode != null">
+        #{deviceModelCode,jdbcType=CHAR},
+      </if>
+      <if test="deviceTypeId != null">
+        #{deviceTypeId,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByMap" parameterType="java.util.Map">
+    update tbl_5t_device_model_dict
+    <if test="_parameter != null">
+      <include refid="ByMap_Set_Clause" />
+      <include refid="ByMap_Where_Clause" />
+    </if>
+  </update>
+</mapper>

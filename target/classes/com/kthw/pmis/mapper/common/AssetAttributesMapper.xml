@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kthw.pmis.mapper.common.AssetAttributesMapper">
+  <resultMap id="BaseResultMap" type="com.kthw.pmis.entiy.AssetAttributes">
+    <id column="asset_attributes_id" jdbcType="NUMERIC" property="assetAttributesId" />
+    <result column="asset_attributes_name" jdbcType="VARCHAR" property="assetAttributesName" />
+    <result column="depot_id" jdbcType="NUMERIC" property="depotId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    asset_attributes_id, asset_attributes_name, depot_id
+  </sql>
+  <sql id="ByMap_Where_Clause">
+    <where>
+      <if test="eqAssetAttributesId != null">
+        AND asset_attributes_id = #{eqAssetAttributesId,jdbcType=NUMERIC}
+      </if>
+      <if test="eqAssetAttributesName != null">
+        AND asset_attributes_name = #{eqAssetAttributesName,jdbcType=VARCHAR}
+      </if>
+      <if test="eqDepotId != null">
+        AND depot_id = #{eqDepotId,jdbcType=NUMERIC}
+      </if>
+    </where>
+  </sql>
+  <sql id="ByMap_Set_Clause">
+    <set>
+      <if test="assetAttributesName != null">
+        asset_attributes_name = #{assetAttributesName,jdbcType=VARCHAR},
+      </if>
+      <if test="depotId != null">
+        depot_id = #{depotId,jdbcType=NUMERIC},
+      </if>
+    </set>
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_asset_attributes
+    where asset_attributes_id = #{assetAttributesId,jdbcType=NUMERIC}
+  </select>
+  <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_asset_attributes
+    <if test="_parameter != null">
+      <include refid="ByMap_Where_Clause" />
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from tbl_asset_attributes
+    where asset_attributes_id = #{assetAttributesId,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.kthw.pmis.entiy.AssetAttributes">
+    insert into tbl_asset_attributes (asset_attributes_id, asset_attributes_name, 
+      depot_id)
+    values (#{assetAttributesId,jdbcType=NUMERIC}, #{assetAttributesName,jdbcType=VARCHAR}, 
+      #{depotId,jdbcType=NUMERIC})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kthw.pmis.entiy.AssetAttributes">
+    insert into tbl_asset_attributes
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="assetAttributesId != null">
+        asset_attributes_id,
+      </if>
+      <if test="assetAttributesName != null">
+        asset_attributes_name,
+      </if>
+      <if test="depotId != null">
+        depot_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="assetAttributesId != null">
+        #{assetAttributesId,jdbcType=NUMERIC},
+      </if>
+      <if test="assetAttributesName != null">
+        #{assetAttributesName,jdbcType=VARCHAR},
+      </if>
+      <if test="depotId != null">
+        #{depotId,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kthw.pmis.entiy.AssetAttributes">
+    update tbl_asset_attributes
+    <include refid="ByMap_Set_Clause" />
+    where asset_attributes_id = #{assetAttributesId,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kthw.pmis.entiy.AssetAttributes">
+    update tbl_asset_attributes
+    set asset_attributes_name = #{assetAttributesName,jdbcType=VARCHAR},
+      depot_id = #{depotId,jdbcType=NUMERIC}
+    where asset_attributes_id = #{assetAttributesId,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByMap" parameterType="java.util.Map">
+    update tbl_asset_attributes
+    <if test="_parameter != null">
+      <include refid="ByMap_Set_Clause" />
+      <include refid="ByMap_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kthw.pmis.mapper.common.DetectPartsMapper">
+    <resultMap id="BaseResultMap" type="com.kthw.pmis.entiy.dto.DetectPartsDTO">
+        <id column="detect_parts_id" jdbcType="NUMERIC" property="detectPartsId"/>
+        <result column="detect_device_id" jdbcType="NUMERIC" property="detectDeviceId"/>
+        <result column="detect_device_name" jdbcType="VARCHAR" property="detectDeviceName"/>
+        <result column="parts_id" jdbcType="VARCHAR" property="partsId"/>
+        <result column="part_id" jdbcType="VARCHAR" property="partId"/>
+        <result column="parts_special" jdbcType="VARCHAR" property="partsSpecial"/>
+        <result column="parts_code" jdbcType="VARCHAR" property="partsCode"/>
+        <result column="enabled" jdbcType="NUMERIC" property="enabled"/>
+        <result column="if_moved" jdbcType="NUMERIC" property="ifMoved"/>
+        <result column="device_parts_name" jdbcType="VARCHAR"
+                property="devicePartsName"/>
+        <result column="device_model_name" jdbcType="VARCHAR"
+                property="deviceModelName"/>
+        <result column="device_type_name" jdbcType="VARCHAR"
+                property="deviceTypeName"/>
+        <result column="supplier_name" jdbcType="VARCHAR"
+                property="supplierName"/>
+        <result column="unit_price" jdbcType="NUMERIC"
+                property="unitPrice"/>
+        <result column="parts_code" jdbcType="VARCHAR"
+                property="partsCode"/>
+        <result column="factory_parts_code" jdbcType="VARCHAR"
+                property="factoryPartsCode"/>
+        <result column="purchase_price" jdbcType="NUMERIC"
+                property="purchasePrice"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    detect_parts_id, detect_device_id, parts_id, part_id, parts_special, parts_code, 
+    enabled, if_moved
+  </sql>
+    <sql id="ByMap_Where_Clause">
+        <where>
+            <if test="eqDetectPartsId != null">
+                AND detect_parts_id = #{eqDetectPartsId,jdbcType=NUMERIC}
+            </if>
+            <if test="eqDetectDeviceId != null">
+                AND detect_device_id = #{eqDetectDeviceId,jdbcType=NUMERIC}
+            </if>
+            <if test="eqPartsId != null">
+                AND parts_id = #{eqPartsId,jdbcType=NUMERIC}
+            </if>
+            <if test="eqPartId != null">
+                AND part_id = #{eqPartId,jdbcType=VARCHAR}
+            </if>
+            <if test="eqPartsSpecial != null">
+                AND parts_special = #{eqPartsSpecial,jdbcType=VARCHAR}
+            </if>
+            <if test="eqPartsCode != null">
+                AND parts_code = #{eqPartsCode,jdbcType=VARCHAR}
+            </if>
+            <if test="eqEnabled != null">
+                AND enabled = #{eqEnabled,jdbcType=NUMERIC}
+            </if>
+            <if test="eqIfMoved != null">
+                AND if_moved = #{eqIfMoved,jdbcType=NUMERIC}
+            </if>
+        </where>
+    </sql>
+    <sql id="ByMap_Set_Clause">
+        <set>
+            <if test="detectDeviceId != null">
+                detect_device_id = #{detectDeviceId,jdbcType=NUMERIC},
+            </if>
+            <if test="partsId != null">
+                parts_id = #{partsId,jdbcType=NUMERIC},
+            </if>
+            <if test="partId != null">
+                part_id = #{partId,jdbcType=VARCHAR},
+            </if>
+            <if test="partsSpecial != null">
+                parts_special = #{partsSpecial,jdbcType=VARCHAR},
+            </if>
+            <if test="partsCode != null">
+                parts_code = #{partsCode,jdbcType=VARCHAR},
+            </if>
+            <if test="enabled != null">
+                enabled = #{enabled,jdbcType=NUMERIC},
+            </if>
+            <if test="ifMoved != null">
+                if_moved = #{ifMoved,jdbcType=NUMERIC},
+            </if>
+        </set>
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_detect_parts_dic
+        where detect_parts_id = #{detectPartsId,jdbcType=NUMERIC}
+    </select>
+    <select id="getPartsUnstall" parameterType="java.util.Map" resultType="String">
+        select DISTINCT ddd.detect_device_name
+        from tbl_detect_parts_dic dpd
+        left join tbl_detect_device_dict ddd
+        on dpd.detect_device_id=ddd.detect_device_id
+        where dpd.if_moved=1
+        <if test="depotId != null">
+            AND ddd.depot_id = #{depotId,jdbcType=NUMERIC}
+        </if>
+    </select>
+    <select id="selectWithParts" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        dp.*,si.factory_parts_code,si.purchase_price
+        from view_detect_parts_dict dp
+        left join tbl_stock_info si on dp.part_id=si.part_id_seq
+        <where>
+            <if test="eqDetectPartsId != null">
+                AND dp.detect_parts_id = #{eqDetectPartsId,jdbcType=NUMERIC}
+            </if>
+            <if test="eqDetectDeviceId != null">
+                AND dp.detect_device_id = #{eqDetectDeviceId,jdbcType=NUMERIC}
+            </if>
+            <if test="eqPartsId != null">
+                AND dp.parts_id = #{eqPartsId,jdbcType=NUMERIC}
+            </if>
+            <if test="eqPartId != null">
+                AND dp.part_id = #{eqPartId,jdbcType=VARCHAR}
+            </if>
+            <if test="eqPartsSpecial != null">
+                AND dp.parts_special = #{eqPartsSpecial,jdbcType=VARCHAR}
+            </if>
+            <if test="eqPartsCode != null">
+                AND dp.parts_code = #{eqPartsCode,jdbcType=VARCHAR}
+            </if>
+            <if test="eqEnabled != null">
+                AND dp.enabled = #{eqEnabled,jdbcType=NUMERIC}
+            </if>
+            <if test="eqIfMoved != null">
+                AND dp.if_moved = #{eqIfMoved,jdbcType=NUMERIC}
+            </if>
+        </where>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="listDetectParts" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select dp.*,vp.device_parts_name,vp.supplier_name,vp.device_model_name,vp.device_type_name from
+        tbl_detect_parts_dic dp
+        LEFT JOIN view_parts_dict vp on vp.parts_code=dp.parts_id
+        <where>
+            <if test="eqDetectPartsId != null">
+                AND dp.detect_parts_id = #{eqDetectPartsId,jdbcType=NUMERIC}
+            </if>
+            <if test="eqDetectDeviceId != null">
+                AND dp.detect_device_id = #{eqDetectDeviceId,jdbcType=NUMERIC}
+            </if>
+            <if test="eqPartsId != null">
+                AND dp.parts_id = #{eqPartsId,jdbcType=NUMERIC}
+            </if>
+            <if test="eqPartId != null">
+                AND dp.part_id = #{eqPartId,jdbcType=VARCHAR}
+            </if>
+            <if test="eqPartsSpecial != null">
+                AND dp.parts_special = #{eqPartsSpecial,jdbcType=VARCHAR}
+            </if>
+            <if test="eqPartsCode != null">
+                AND dp.parts_code = #{eqPartsCode,jdbcType=VARCHAR}
+            </if>
+            <if test="eqEnabled != null">
+                AND dp.enabled = #{eqEnabled,jdbcType=NUMERIC}
+            </if>
+            <if test="eqIfMoved != null">
+                AND dp.if_moved = #{eqIfMoved,jdbcType=NUMERIC}
+            </if>
+        </where>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+
+    </select>
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_detect_parts_dic
+        <if test="_parameter != null">
+            <include refid="ByMap_Where_Clause"/>
+            <if test="orderByClause != null">
+                order by ${orderByClause}
+            </if>
+        </if>
+    </select>
+    <select id="getMaxDetectId" resultType="java.lang.Integer">
+       SELECT max(detect_parts_id) FROM tbl_detect_parts_dic
+    </select>
+    <delete id="deleteByDetectDeviceId" parameterType="java.lang.Integer">
+    delete from tbl_detect_parts_dic
+    where detect_device_id = #{detectDeviceId,jdbcType=NUMERIC}
+  </delete>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_detect_parts_dic
+    where detect_parts_id = #{detectPartsId,jdbcType=NUMERIC}
+  </delete>
+    <insert id="insert" parameterType="com.kthw.pmis.entiy.DetectParts">
+    insert into tbl_detect_parts_dic (detect_parts_id, detect_device_id, parts_id, 
+      part_id, parts_special, parts_code, 
+      enabled, if_moved)
+    values (#{detectPartsId,jdbcType=NUMERIC}, #{detectDeviceId,jdbcType=NUMERIC}, #{partsId,jdbcType=NUMERIC}, 
+      #{partId,jdbcType=VARCHAR}, #{partsSpecial,jdbcType=VARCHAR}, #{partsCode,jdbcType=VARCHAR}, 
+      #{enabled,jdbcType=NUMERIC}, #{ifMoved,jdbcType=NUMERIC})
+  </insert>
+    <insert id="insertSelective" parameterType="com.kthw.pmis.entiy.DetectParts">
+        insert into tbl_detect_parts_dic
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="detectPartsId != null">
+                detect_parts_id,
+            </if>
+            <if test="detectDeviceId != null">
+                detect_device_id,
+            </if>
+            <if test="partsId != null">
+                parts_id,
+            </if>
+            <if test="partId != null">
+                part_id,
+            </if>
+            <if test="partsSpecial != null">
+                parts_special,
+            </if>
+            <if test="partsCode != null">
+                parts_code,
+            </if>
+            <if test="enabled != null">
+                enabled,
+            </if>
+            <if test="ifMoved != null">
+                if_moved,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="detectPartsId != null">
+                #{detectPartsId,jdbcType=NUMERIC},
+            </if>
+            <if test="detectDeviceId != null">
+                #{detectDeviceId,jdbcType=NUMERIC},
+            </if>
+            <if test="partsId != null">
+                #{partsId,jdbcType=NUMERIC},
+            </if>
+            <if test="partId != null">
+                #{partId,jdbcType=VARCHAR},
+            </if>
+            <if test="partsSpecial != null">
+                #{partsSpecial,jdbcType=VARCHAR},
+            </if>
+            <if test="partsCode != null">
+                #{partsCode,jdbcType=VARCHAR},
+            </if>
+            <if test="enabled != null">
+                #{enabled,jdbcType=NUMERIC},
+            </if>
+            <if test="ifMoved != null">
+                #{ifMoved,jdbcType=NUMERIC},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.kthw.pmis.entiy.DetectParts">
+        update tbl_detect_parts_dic
+        <include refid="ByMap_Set_Clause"/>
+        where detect_parts_id = #{detectPartsId,jdbcType=NUMERIC}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.kthw.pmis.entiy.DetectParts">
+    update tbl_detect_parts_dic
+    set detect_device_id = #{detectDeviceId,jdbcType=NUMERIC},
+      parts_id = #{partsId,jdbcType=NUMERIC},
+      part_id = #{partId,jdbcType=VARCHAR},
+      parts_special = #{partsSpecial,jdbcType=VARCHAR},
+      parts_code = #{partsCode,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=NUMERIC},
+      if_moved = #{ifMoved,jdbcType=NUMERIC}
+    where detect_parts_id = #{detectPartsId,jdbcType=NUMERIC}
+  </update>
+    <update id="updateByMap" parameterType="java.util.Map">
+        update tbl_detect_parts_dic
+        <if test="_parameter != null">
+            <include refid="ByMap_Set_Clause"/>
+            <include refid="ByMap_Where_Clause"/>
+        </if>
+    </update>
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update tbl_detect_parts_dic
+            <set>
+                <if test="item.detectDeviceId != null">
+                    detect_device_id = #{item.detectDeviceId,jdbcType=NUMERIC},
+                </if>
+                <if test="item.partsId != null">
+                    parts_id = #{item.partsId,jdbcType=NUMERIC},
+                </if>
+                <if test="item.partId != null">
+                    part_id = #{item.partId,jdbcType=VARCHAR},
+                </if>
+                <if test="item.partsSpecial != null">
+                    parts_special = #{item.partsSpecial,jdbcType=VARCHAR},
+                </if>
+                <if test="item.partsCode != null">
+                    parts_code = #{item.partsCode,jdbcType=VARCHAR},
+                </if>
+                <if test="item.enabled != null">
+                    enabled = #{item.enabled,jdbcType=NUMERIC},
+                </if>
+                <if test="item.ifMoved != null">
+                    if_moved = #{item.ifMoved,jdbcType=NUMERIC},
+                </if>
+            </set>
+            where detect_parts_id =
+            #{item.detectPartsId,jdbcType=VARCHAR}
+
+
+        </foreach>
+    </update>
+</mapper>

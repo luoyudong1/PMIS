@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>登录管理</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../css/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+	<link href="../../css/animate.css" rel="stylesheet">
+	<link href="../../css/style.css" rel="stylesheet">
+	<link href="../../css/vehicle.css" rel="stylesheet">
+</head>
+<body class="gray-bg dashbard-1" >
+	<div class="container-fluid">
+		<div class="row">
+            <div class="col-xs-12 col-md-12">
+            	<div id="infoAlert" class="alert alert-warning"  style="position: absolute;left: 42%;top: 8px;width: 15%;height: 50px;display: none">
+					<a href="#" class="close" data-dismiss="alert" style="color: grey">
+						&times;
+					</a>
+					<p id="alertMsg"></p>
+				</div>
+				<div class="pull-right">
+						<label class="control-label">用户名或ID：</label><input id="user_name" type="text" class="form-control input-sm"
+							style="width: 108px; font-size: 14px; font-weight: 600; color: #2e6da4; display: inline-block; margin: 10px 0 10px 5px;" /> &nbsp;&nbsp;
+						<button type="button" id="btnQuery" class="btn btn-primary" style="height: 30px; padding-top: 4px; margin: 10px 0 10px 5px;">查 询</button>
+						<button type="button" class="btn btn-success" id="btnAddUser" data-toggle="modal" data-target="#addUserModal" style="height: 30px; padding-top: 4px; margin: 10px 0 10px 5px;">新 增</button>
+						<button id="btnRefresh" type="button" class="btn btn-warning" style="height: 30px; padding-top: 4px; margin: 5px 0 10px 5px;">刷&nbsp;新</button>
+				</div>
+				<div class="ibox ">
+                    <div class="ibox-title">
+                        <h5>用户信息列表</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="tblUserInfo" role="grid" width="100%" >
+	                           <thead>
+		                            <tr style="">
+		                                <th>序号</th>
+		                                <th>用户ID</th>
+		                                <th>用户姓名</th>
+		                                <th>用户类型</th>
+		                                <th>所属部门</th>
+		                                <th>所属车间</th>
+		                                <th>所属班组</th>
+		                                <th>注册时间</th>
+		                                <th>最近登录时间</th>
+		                                <th>登录状态</th>
+		                                <th>用户编辑</th>
+		                            </tr>
+	                            </thead>
+	                            <tbody>
+	                            </tbody>
+	                      </table>
+                       </div>
+                    </div>
+				</div>
+            </div>
+		</div>
+	</div>
+	<!-- modifyUserModal -->
+	<div class="modal fade" id="modifyUserModal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="myModalLabel">修改用户信息</h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6 offset-md-3">
+							<div class="input-group">
+								<label><strong>用&nbsp;户&nbsp;ID：</strong></label>
+								<input id="userid" type="text" class="form-control "
+									placeholder="请输入用户ID" style="width: 200px;" readOnly="true">
+							</div>
+							<br>
+							<div class="input-group">
+								<label><strong>用户姓名：</strong></label> <input
+									id="username" type="text" class="form-control"
+									placeholder="请输入用户姓名" style="width: 200px;">
+							</div>
+							<br>
+							<div class="input-group">
+								<label><strong>用户口令：</strong></label> <input
+									id="userpassword" type="password" class="form-control"
+									placeholder="请输入用户口令" style="width: 200px;">
+							</div>
+							<br>
+							<div class="input-group">
+								<label><strong>用户类型：</strong></label>
+                                <div style="position: relative; width: 200px;">
+                                    <img id="rolePic" src="../../img/role.png" />
+								    <div id="roleCheckId" style="display:none; width: 300px; position:absolute; z-index:10; top: -20px; left: 25px; padding: 10px; background-color:#A9A389;"></div>
+                                </div>
+							</div>
+							 <br>
+							<div class="input-group">
+								<label><strong>所属部门：</strong></label>
+								<select id="userDepotId"  class="form-control" style="width: 200px;">
+								    <option value="-1"></option>
+								</select>
+							</div>
+							<br>
+							<div class="input-group">
+								<label><strong>所属车间：</strong></label>
+								<select id="userWorkshopId"  class="form-control" style="width: 200px;">
+								    <option value="0"></option>
+								</select>
+							</div>
+							<br>
+							<div class="input-group">
+								<label><strong>所属班组：</strong></label>
+								<select id="userTeamId"  class="form-control" style="width: 200px;">
+								    <option value="0"></option>
+								</select>
+							</div>
+							<br>
+							<div class="input-group">
+								<label><strong>是否可用：</strong></label><select
+									id="userenable" type="text" class="form-control text-center"
+									style="width: 200px;">
+									<option value=1>可用</option>
+									<option value=0>不可用</option>
+								</select>
+							</div>
+							<br>
+						</div>
+					</div>
+				<div style="text-align: center;">
+					<button id="btnModifyOk" data-dismiss="modal" type="submit"
+						class="btn btn-primary">确定</button>
+					<button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- addUserModal -->
+	<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog"
+		aria-labelledby="addUserModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="addUserModalLabel">新增用户</h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6 offset-md-3">
+							<div class="input-group">
+								<label><strong>用&nbsp;&nbsp;户&nbsp;&nbsp;ID：</strong></label>
+								<input id="useridAdd" type="text" class="form-control "
+									placeholder="请输入用户ID" style="width: 200px;">
+							</div>
+							<br>
+							<div class="input-group">
+								<label><strong>用户姓名：</strong></label> <input
+									id="usernameAdd" type="text" class="form-control"
+									placeholder="请输入用户姓名" style="width: 200px;">
+							</div>
+							<br>
+							<div class="input-group">
+								<label><strong>用户口令：</strong></label> <input
+									id="userpasswordAdd" type="password" class="form-control "
+									placeholder="请输入用户口令" style="width: 200px;">
+							</div>
+							<br>
+                            <div class="input-group">
+                                <label><strong>用户类型：</strong></label>
+                                <div style="position: relative; width: 200px;">
+                                    <img id="rolePicAdd" src="../../img/role.png" />
+                                    <div id="roleCheckIdAdd" style="display:none; width: 300px; position:absolute; z-index:10; top: -20px; left: 25px; padding: 10px; background-color:#A9A389;"></div>
+                                </div>
+                            </div>
+                            <br>
+							<div class="input-group">
+								<label><strong>所属部门：</strong></label>
+								<select id="userDepotIdAdd"  class="form-control" 
+									 style="width: 200px;"> <option value="-1"></option></select>
+							</div>
+							<br>
+							<div class="input-group">
+								<label><strong>所属车间：</strong></label>
+								<select id="userWorkshopIdAdd"  class="form-control" 
+									 style="width: 200px;"> <option value="0"></option></select>
+							</div>
+							<br>
+							<div class="input-group">
+								<label><strong>所属班组：</strong></label>
+								<select id="userTeamIdAdd"  class="form-control" 
+									 style="width: 200px;"> <option value="0"></option></select>
+							</div>
+							<br>
+							<div class="input-group">
+								<label><strong>是否可用：</strong></label> <select
+									id="userenableAdd" type="text" class="form-control text-center"
+									style="width: 200px;">
+									<option value=1>可用</option>
+									<option value=0>不可用</option>
+								</select>
+							</div>
+							<br>
+						</div>
+					</div>
+					<div style="text-align: center;">
+						<button id="btnAddOk" data-dismiss="modal" type="submit"
+							class="btn btn-primary">确定</button>
+						<button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div>
+	<!-- deleteUserModal -->
+	<div class="modal fade" id="popModal" tabindex="-1" role="dialog"
+		aria-labelledby="myPopModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="myPopModalLabel">删除用户提示</h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<h4 class="text-danger" style="font-weight: bold;" id="warningText">确定要删除该用户？</h4>
+                    <input type="hidden" id="deleteUserId" />
+				</div>
+				<div class="modal-footer" style="text-align: center;">
+					<button id="btnPopOk" data-dismiss="modal" type="submit"
+						class="btn btn-primary">是</button>
+					&nbsp; &nbsp;
+					<button type="button" class="btn btn-warning" data-dismiss="modal">否</button>
+				</div>
+			</div>
+		</div>
+	</div>
+    <script src="../../js/require.js" data-main="../../js/system/userManage"></script>
+</body>
+</html>

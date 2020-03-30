@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kthw.pmis.mapper.common.FaultHandleMapper">
+  <resultMap id="BaseResultMap" type="com.kthw.pmis.entiy.FaultHandle">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="detect_device_id" jdbcType="NUMERIC" property="detectDeviceId" />
+    <result column="detect_device_name" jdbcType="VARCHAR" property="detectDeviceName" />
+    <result column="detect_device_type" jdbcType="VARCHAR" property="detectDeviceType" />
+    <result column="hault_start_time" jdbcType="TIMESTAMP" property="haultStartTime" />
+    <result column="hault_end_time" jdbcType="TIMESTAMP" property="haultEndTime" />
+    <result column="fault_stop_time" jdbcType="VARCHAR" property="faultStopTime" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="fault_level_type" jdbcType="VARCHAR" property="faultLevelType" />
+    <result column="fault_info" jdbcType="VARCHAR" property="faultInfo" />
+    <result column="handle_info" jdbcType="VARCHAR" property="handleInfo" />
+    <result column="forecast_fault_time" jdbcType="TIMESTAMP" property="forecastFaultTime" />
+    <result column="segment_duty_user" jdbcType="VARCHAR" property="segmentDutyUser" />
+    <result column="handle_start_time" jdbcType="TIMESTAMP" property="handleStartTime" />
+    <result column="handle_end_time" jdbcType="TIMESTAMP" property="handleEndTime" />
+    <result column="repair_person" jdbcType="VARCHAR" property="repairPerson" />
+    <result column="fault_type" jdbcType="VARCHAR" property="faultType" />
+    <result column="confirm_fault_person" jdbcType="VARCHAR" property="confirmFaultPerson" />
+    <result column="complete_flag" jdbcType="NUMERIC" property="completeFlag" />
+    <result column="telegraph_number" jdbcType="VARCHAR" property="telegraphNumber" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="plan_outage_start_time" jdbcType="TIMESTAMP" property="planOutageStartTime" />
+    <result column="plan_outage_end_time" jdbcType="TIMESTAMP" property="planOutageEndTime" />
+    <result column="notice_time" jdbcType="TIMESTAMP" property="noticeTime" />
+    <result column="responsible_unit" jdbcType="VARCHAR" property="responsibleUnit" />
+    <result column="depot_id" jdbcType="NUMERIC" property="depotId" />
+    <result column="depot_name" jdbcType="VARCHAR" property="depotName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="responsible_user" jdbcType="VARCHAR" property="responsibleUser" />
+    <result column="notice_user" jdbcType="VARCHAR" property="noticeUser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, detect_device_id, detect_device_name, detect_device_type, hault_start_time, hault_end_time, 
+    fault_stop_time, type, fault_level_type, fault_info, handle_info, forecast_fault_time, 
+    segment_duty_user, handle_start_time, handle_end_time, repair_person, fault_type, 
+    confirm_fault_person, complete_flag, telegraph_number, remark, plan_outage_start_time, 
+    plan_outage_end_time, notice_time, responsible_unit, depot_id, depot_name, update_time, 
+    responsible_user,notice_user
+  </sql>
+  <sql id="ByMap_Where_Clause">
+    <where>
+      <if test="eqId != null">
+        AND id = #{eqId,jdbcType=INTEGER}
+      </if>
+      <if test="eqDetectDeviceId != null">
+        AND detect_device_id = #{eqDetectDeviceId,jdbcType=NUMERIC}
+      </if>
+      <if test="eqDetectDeviceName != null">
+        AND detect_device_name = #{eqDetectDeviceName,jdbcType=VARCHAR}
+      </if>
+      <if test="eqDetectDeviceType != null">
+        AND detect_device_type = #{eqDetectDeviceType,jdbcType=VARCHAR}
+      </if>
+      <if test="eqHaultStartTime != null">
+        AND hault_start_time = #{eqHaultStartTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="eqHaultEndTime != null">
+        AND hault_end_time = #{eqHaultEndTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="eqFaultStopTime != null">
+        AND fault_stop_time = #{eqFaultStopTime,jdbcType=VARCHAR}
+      </if>
+      <if test="eqType != null">
+        AND type = #{eqType,jdbcType=VARCHAR}
+      </if>
+      <if test="eqFaultLevelType != null">
+        AND fault_level_type = #{eqFaultLevelType,jdbcType=VARCHAR}
+      </if>
+      <if test="eqFaultInfo != null">
+        AND fault_info = #{eqFaultInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="eqHandleInfo != null">
+        AND handle_info = #{eqHandleInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="eqForecastFaultTime != null">
+        AND forecast_fault_time = #{eqForecastFaultTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="eqSegmentDutyUser != null">
+        AND segment_duty_user = #{eqSegmentDutyUser,jdbcType=VARCHAR}
+      </if>
+      <if test="eqHandleStartTime != null">
+        AND handle_start_time = #{eqHandleStartTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="eqHandleEndTime != null">
+        AND handle_end_time = #{eqHandleEndTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="eqRepairPerson != null">
+        AND repair_person = #{eqRepairPerson,jdbcType=VARCHAR}
+      </if>
+      <if test="eqFaultType != null">
+        AND fault_type = #{eqFaultType,jdbcType=VARCHAR}
+      </if>
+      <if test="eqConfirmFaultPerson != null">
+        AND confirm_fault_person = #{eqConfirmFaultPerson,jdbcType=VARCHAR}
+      </if>
+      <if test="eqCompleteFlag != null">
+        AND complete_flag = #{eqCompleteFlag,jdbcType=NUMERIC}
+      </if>
+      <if test="eqTelegraphNumber != null">
+        AND telegraph_number = #{eqTelegraphNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="eqRemark != null">
+        AND remark = #{eqRemark,jdbcType=VARCHAR}
+      </if>
+      <if test="eqPlanOutageStartTime != null">
+        AND plan_outage_start_time = #{eqPlanOutageStartTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="eqPlanOutageEndTime != null">
+        AND plan_outage_end_time = #{eqPlanOutageEndTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="eqNoticeTime != null">
+        AND notice_time = #{eqNoticeTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="eqResponsibleUnit != null">
+        AND responsible_unit = #{eqResponsibleUnit,jdbcType=VARCHAR}
+      </if>
+      <if test="eqDepotId != null">
+        AND depot_id = #{eqDepotId,jdbcType=NUMERIC}
+      </if>
+      <if test="eqDepotName != null">
+        AND depot_name = #{eqDepotName,jdbcType=VARCHAR}
+      </if>
+      <if test="eqUpdateTime != null">
+        AND update_time = #{eqUpdateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="eqResponsibleUser != null">
+        AND responsible_user = #{eqResponsibleUser,jdbcType=VARCHAR}
+      </if>
+      <if test="eqNoticeUser != null">
+        AND notice_user = #{eqNoticeUser,jdbcType=VARCHAR}
+      </if>
+      <if test="ltCompleteFlag != null">
+        AND complete_flag &lt; #{ltCompleteFlag ,jdbcType=NUMERIC}
+      </if>
+      <if test="gtCompleteFlag != null">
+        AND complete_flag > #{gtCompleteFlag ,jdbcType=NUMERIC}
+      </if>
+      <if test='queryTime != null and queryTime != ""'>
+        and update_time >= to_timestamp(#{queryTime}, 'yyyy-mm-dd
+        hh24:mi:ss')
+      </if>
+      <if test='queryTime2 != null and queryTime2 != ""'>
+        and update_time &lt;= to_timestamp(#{queryTime2},
+        'yyyy-mm-dd hh24:mi:ss')
+      </if>
+    </where>
+  </sql>
+  <sql id="ByMap_Set_Clause">
+    <set>
+      <if test="detectDeviceId != null">
+        detect_device_id = #{detectDeviceId,jdbcType=NUMERIC},
+      </if>
+      <if test="detectDeviceName != null">
+        detect_device_name = #{detectDeviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="detectDeviceType != null">
+        detect_device_type = #{detectDeviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="haultStartTime != null">
+        hault_start_time = #{haultStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="haultEndTime != null">
+        hault_end_time = #{haultEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="faultStopTime != null">
+        fault_stop_time = #{faultStopTime,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="faultLevelType != null">
+        fault_level_type = #{faultLevelType,jdbcType=VARCHAR},
+      </if>
+      <if test="faultInfo != null">
+        fault_info = #{faultInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="handleInfo != null">
+        handle_info = #{handleInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="forecastFaultTime != null">
+        forecast_fault_time = #{forecastFaultTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="segmentDutyUser != null">
+        segment_duty_user = #{segmentDutyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="handleStartTime != null">
+        handle_start_time = #{handleStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleEndTime != null">
+        handle_end_time = #{handleEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repairPerson != null">
+        repair_person = #{repairPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="faultType != null">
+        fault_type = #{faultType,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmFaultPerson != null">
+        confirm_fault_person = #{confirmFaultPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="completeFlag != null">
+        complete_flag = #{completeFlag,jdbcType=NUMERIC},
+      </if>
+      <if test="telegraphNumber != null">
+        telegraph_number = #{telegraphNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="planOutageStartTime != null">
+        plan_outage_start_time = #{planOutageStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planOutageEndTime != null">
+        plan_outage_end_time = #{planOutageEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noticeTime != null">
+        notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="responsibleUnit != null">
+        responsible_unit = #{responsibleUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="depotId != null">
+        depot_id = #{depotId,jdbcType=NUMERIC},
+      </if>
+      <if test="depotName != null">
+        depot_name = #{depotName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="responsibleUser != null">
+        responsible_user = #{responsibleUser,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeUser != null">
+        notice_user = #{noticeUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_fault_handle
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getMaxId" resultType="java.lang.Integer">
+    select MAX(id) from tbl_fault_handle
+  </select>
+  <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_fault_handle
+    <if test="_parameter != null">
+      <include refid="ByMap_Where_Clause" />
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_fault_handle
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kthw.pmis.entiy.FaultHandle">
+    insert into tbl_fault_handle (id, detect_device_id, detect_device_name, 
+      detect_device_type, hault_start_time, hault_end_time, 
+      fault_stop_time, type, fault_level_type, 
+      fault_info, handle_info, forecast_fault_time, 
+      segment_duty_user, handle_start_time, handle_end_time, 
+      repair_person, fault_type, confirm_fault_person, 
+      complete_flag, telegraph_number, remark, 
+      plan_outage_start_time, plan_outage_end_time, 
+      notice_time, responsible_unit, depot_id, 
+      depot_name, update_time, responsible_user
+      ,notice_user)
+    values (#{id,jdbcType=INTEGER}, #{detectDeviceId,jdbcType=NUMERIC}, #{detectDeviceName,jdbcType=VARCHAR}, 
+      #{detectDeviceType,jdbcType=VARCHAR}, #{haultStartTime,jdbcType=TIMESTAMP}, #{haultEndTime,jdbcType=TIMESTAMP}, 
+      #{faultStopTime,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{faultLevelType,jdbcType=VARCHAR}, 
+      #{faultInfo,jdbcType=VARCHAR}, #{handleInfo,jdbcType=VARCHAR}, #{forecastFaultTime,jdbcType=TIMESTAMP}, 
+      #{segmentDutyUser,jdbcType=VARCHAR}, #{handleStartTime,jdbcType=TIMESTAMP}, #{handleEndTime,jdbcType=TIMESTAMP}, 
+      #{repairPerson,jdbcType=VARCHAR}, #{faultType,jdbcType=VARCHAR}, #{confirmFaultPerson,jdbcType=VARCHAR}, 
+      #{completeFlag,jdbcType=NUMERIC}, #{telegraphNumber,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{planOutageStartTime,jdbcType=TIMESTAMP}, #{planOutageEndTime,jdbcType=TIMESTAMP}, 
+      #{noticeTime,jdbcType=TIMESTAMP}, #{responsibleUnit,jdbcType=VARCHAR}, #{depotId,jdbcType=NUMERIC}, 
+      #{depotName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{responsibleUser,jdbcType=VARCHAR}
+      ,#{noticeUser,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kthw.pmis.entiy.FaultHandle">
+    insert into tbl_fault_handle
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="detectDeviceId != null">
+        detect_device_id,
+      </if>
+      <if test="detectDeviceName != null">
+        detect_device_name,
+      </if>
+      <if test="detectDeviceType != null">
+        detect_device_type,
+      </if>
+      <if test="haultStartTime != null">
+        hault_start_time,
+      </if>
+      <if test="haultEndTime != null">
+        hault_end_time,
+      </if>
+      <if test="faultStopTime != null">
+        fault_stop_time,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="faultLevelType != null">
+        fault_level_type,
+      </if>
+      <if test="faultInfo != null">
+        fault_info,
+      </if>
+      <if test="handleInfo != null">
+        handle_info,
+      </if>
+      <if test="forecastFaultTime != null">
+        forecast_fault_time,
+      </if>
+      <if test="segmentDutyUser != null">
+        segment_duty_user,
+      </if>
+      <if test="handleStartTime != null">
+        handle_start_time,
+      </if>
+      <if test="handleEndTime != null">
+        handle_end_time,
+      </if>
+      <if test="repairPerson != null">
+        repair_person,
+      </if>
+      <if test="faultType != null">
+        fault_type,
+      </if>
+      <if test="confirmFaultPerson != null">
+        confirm_fault_person,
+      </if>
+      <if test="completeFlag != null">
+        complete_flag,
+      </if>
+      <if test="telegraphNumber != null">
+        telegraph_number,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="planOutageStartTime != null">
+        plan_outage_start_time,
+      </if>
+      <if test="planOutageEndTime != null">
+        plan_outage_end_time,
+      </if>
+      <if test="noticeTime != null">
+        notice_time,
+      </if>
+      <if test="responsibleUnit != null">
+        responsible_unit,
+      </if>
+      <if test="depotId != null">
+        depot_id,
+      </if>
+      <if test="depotName != null">
+        depot_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="responsibleUser != null">
+        responsible_user,
+      </if>
+      <if test="noticeUser != null">
+        notice_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="detectDeviceId != null">
+        #{detectDeviceId,jdbcType=NUMERIC},
+      </if>
+      <if test="detectDeviceName != null">
+        #{detectDeviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="detectDeviceType != null">
+        #{detectDeviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="haultStartTime != null">
+        #{haultStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="haultEndTime != null">
+        #{haultEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="faultStopTime != null">
+        #{faultStopTime,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="faultLevelType != null">
+        #{faultLevelType,jdbcType=VARCHAR},
+      </if>
+      <if test="faultInfo != null">
+        #{faultInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="handleInfo != null">
+        #{handleInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="forecastFaultTime != null">
+        #{forecastFaultTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="segmentDutyUser != null">
+        #{segmentDutyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="handleStartTime != null">
+        #{handleStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleEndTime != null">
+        #{handleEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repairPerson != null">
+        #{repairPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="faultType != null">
+        #{faultType,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmFaultPerson != null">
+        #{confirmFaultPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="completeFlag != null">
+        #{completeFlag,jdbcType=NUMERIC},
+      </if>
+      <if test="telegraphNumber != null">
+        #{telegraphNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="planOutageStartTime != null">
+        #{planOutageStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planOutageEndTime != null">
+        #{planOutageEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noticeTime != null">
+        #{noticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="responsibleUnit != null">
+        #{responsibleUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="depotId != null">
+        #{depotId,jdbcType=NUMERIC},
+      </if>
+      <if test="depotName != null">
+        #{depotName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="responsibleUser != null">
+        #{responsibleUser,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeUser != null">
+        #{noticeUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kthw.pmis.entiy.FaultHandle">
+    update tbl_fault_handle
+    <include refid="ByMap_Set_Clause" />
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kthw.pmis.entiy.FaultHandle">
+    update tbl_fault_handle
+    set detect_device_id = #{detectDeviceId,jdbcType=NUMERIC},
+      detect_device_name = #{detectDeviceName,jdbcType=VARCHAR},
+      detect_device_type = #{detectDeviceType,jdbcType=VARCHAR},
+      hault_start_time = #{haultStartTime,jdbcType=TIMESTAMP},
+      hault_end_time = #{haultEndTime,jdbcType=TIMESTAMP},
+      fault_stop_time = #{faultStopTime,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      fault_level_type = #{faultLevelType,jdbcType=VARCHAR},
+      fault_info = #{faultInfo,jdbcType=VARCHAR},
+      handle_info = #{handleInfo,jdbcType=VARCHAR},
+      forecast_fault_time = #{forecastFaultTime,jdbcType=TIMESTAMP},
+      segment_duty_user = #{segmentDutyUser,jdbcType=VARCHAR},
+      handle_start_time = #{handleStartTime,jdbcType=TIMESTAMP},
+      handle_end_time = #{handleEndTime,jdbcType=TIMESTAMP},
+      repair_person = #{repairPerson,jdbcType=VARCHAR},
+      fault_type = #{faultType,jdbcType=VARCHAR},
+      confirm_fault_person = #{confirmFaultPerson,jdbcType=VARCHAR},
+      complete_flag = #{completeFlag,jdbcType=NUMERIC},
+      telegraph_number = #{telegraphNumber,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      plan_outage_start_time = #{planOutageStartTime,jdbcType=TIMESTAMP},
+      plan_outage_end_time = #{planOutageEndTime,jdbcType=TIMESTAMP},
+      notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      responsible_unit = #{responsibleUnit,jdbcType=VARCHAR},
+      depot_id = #{depotId,jdbcType=NUMERIC},
+      depot_name = #{depotName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      responsible_user = #{responsibleUser,jdbcType=VARCHAR}
+      notice_user = #{noticeUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByMap" parameterType="java.util.Map">
+    update tbl_fault_handle
+    <if test="_parameter != null">
+      <include refid="ByMap_Set_Clause" />
+      <include refid="ByMap_Where_Clause" />
+    </if>
+  </update>
+</mapper>

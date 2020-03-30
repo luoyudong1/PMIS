@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kthw.pmis.mapper.common.StoreHouseMapper">
+  <resultMap id="BaseResultMap" type="com.kthw.pmis.entiy.StoreHouse">
+    <id column="storehouse_id" jdbcType="NUMERIC" property="storehouseId" />
+    <result column="storehouse_name" jdbcType="VARCHAR" property="storehouseName" />
+    <result column="depot_id" jdbcType="NUMERIC" property="depotId" />
+    <result column="type" jdbcType="NUMERIC" property="type" />
+    <result column="enabled" jdbcType="NUMERIC" property="enabled" />
+    <result column="extr_storehouse_id" jdbcType="NUMERIC" property="extrStorehouseId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    storehouse_id, storehouse_name, depot_id, type, enabled, extr_storehouse_id
+  </sql>
+  <sql id="ByMap_Where_Clause">
+    <where>
+      <if test="eqStorehouseId != null">
+        AND storehouse_id = #{eqStorehouseId,jdbcType=NUMERIC}
+      </if>
+      <if test="eqStorehouseName != null">
+        AND storehouse_name = #{eqStorehouseName,jdbcType=VARCHAR}
+      </if>
+      <if test="eqDepotId != null">
+        AND depot_id = #{eqDepotId,jdbcType=NUMERIC}
+      </if>
+      <if test="eqType != null">
+        AND type = #{eqType,jdbcType=NUMERIC}
+      </if>
+      <if test="eqEnabled != null">
+        AND enabled = #{eqEnabled,jdbcType=NUMERIC}
+      </if>
+      <if test="eqExtrStorehouseId != null">
+        AND extr_storehouse_id = #{eqExtrStorehouseId,jdbcType=NUMERIC}
+      </if>
+    </where>
+  </sql>
+  <sql id="ByMap_Set_Clause">
+    <set>
+      <if test="storehouseName != null">
+        storehouse_name = #{storehouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="depotId != null">
+        depot_id = #{depotId,jdbcType=NUMERIC},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=NUMERIC},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=NUMERIC},
+      </if>
+      <if test="extrStorehouseId != null">
+        extr_storehouse_id = #{extrStorehouseId,jdbcType=NUMERIC},
+      </if>
+    </set>
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_storehouse_dict
+    where storehouse_id = #{storehouseId,jdbcType=NUMERIC}
+  </select>
+  <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_storehouse_dict
+    <if test="_parameter != null">
+      <include refid="ByMap_Where_Clause" />
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+  </select>
+  <select id="getDepotReceiptStoreHouse" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_storehouse_dict  
+    where 
+     depot_id in (select 
+    depot_id FROM tbl_depot_dict 
+    WHERE parent_id=#{depotId}) 
+    <if test="type != null">
+    and type=#{type}
+    </if>
+    <if test="eqEnabled != null">
+      and enabled=#{eqEnabled}
+    </if>
+  </select>
+  <select id="getWorkShopReceiptStoreHouse" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_storehouse_dict  
+    where 
+     depot_id = (select 
+    parent_id FROM tbl_depot_dict 
+    WHERE depot_id=#{depotId}) and type=#{type}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from tbl_storehouse_dict
+    where storehouse_id = #{storehouseId,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.kthw.pmis.entiy.StoreHouse">
+    insert into tbl_storehouse_dict (storehouse_id, storehouse_name, depot_id, 
+      type, enabled, extr_storehouse_id
+      )
+    values (#{storehouseId,jdbcType=NUMERIC}, #{storehouseName,jdbcType=VARCHAR}, #{depotId,jdbcType=NUMERIC}, 
+      #{type,jdbcType=NUMERIC}, #{enabled,jdbcType=NUMERIC}, #{extrStorehouseId,jdbcType=NUMERIC}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kthw.pmis.entiy.StoreHouse">
+    insert into tbl_storehouse_dict
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="storehouseId != null">
+        storehouse_id,
+      </if>
+      <if test="storehouseName != null">
+        storehouse_name,
+      </if>
+      <if test="depotId != null">
+        depot_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="extrStorehouseId != null">
+        extr_storehouse_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="storehouseId != null">
+        #{storehouseId,jdbcType=NUMERIC},
+      </if>
+      <if test="storehouseName != null">
+        #{storehouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="depotId != null">
+        #{depotId,jdbcType=NUMERIC},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=NUMERIC},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=NUMERIC},
+      </if>
+      <if test="extrStorehouseId != null">
+        #{extrStorehouseId,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kthw.pmis.entiy.StoreHouse">
+    update tbl_storehouse_dict
+    <include refid="ByMap_Set_Clause" />
+    where storehouse_id = #{storehouseId,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kthw.pmis.entiy.StoreHouse">
+    update tbl_storehouse_dict
+    set storehouse_name = #{storehouseName,jdbcType=VARCHAR},
+      depot_id = #{depotId,jdbcType=NUMERIC},
+      type = #{type,jdbcType=NUMERIC},
+      enabled = #{enabled,jdbcType=NUMERIC},
+      extr_storehouse_id = #{extrStorehouseId,jdbcType=NUMERIC}
+    where storehouse_id = #{storehouseId,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByMap" parameterType="java.util.Map">
+    update tbl_storehouse_dict
+    <if test="_parameter != null">
+      <include refid="ByMap_Set_Clause" />
+      <include refid="ByMap_Where_Clause" />
+    </if>
+  </update>
+</mapper>

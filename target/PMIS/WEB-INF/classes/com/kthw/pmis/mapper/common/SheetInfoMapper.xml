@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kthw.pmis.mapper.common.SheetInfoMapper">
+    <resultMap id="BaseResultMap"
+               type="com.kthw.pmis.entiy.ext.SheetInfoExt">
+        <id column="sheet_id" jdbcType="VARCHAR" property="sheetId"/>
+        <result column="sheet_type" jdbcType="NUMERIC"
+                property="sheetType"/>
+        <result column="supplier_name" jdbcType="VARCHAR"
+                property="supplierName"/>
+        <result column="send_verify_flag" jdbcType="NUMERIC"
+                property="sendVerifyFlag"/>
+        <result column="sheet_date" jdbcType="TIMESTAMP"
+                property="sheetDate"/>
+        <result column="source_store_house_id" jdbcType="NUMERIC"
+                property="sourceStoreHouseId"/>
+        <result column="send_operator_id" jdbcType="VARCHAR"
+                property="sendOperatorId"/>
+        <result column="send_operator_name" jdbcType="VARCHAR"
+                property="sendOperatorName"/>
+        <result column="send_remark" jdbcType="VARCHAR"
+                property="sendRemark"/>
+        <result column="send_verify_id" jdbcType="VARCHAR"
+                property="sendVerifyId"/>
+        <result column="send_verify_name" jdbcType="VARCHAR"
+                property="sendVerifyName"/>
+        <result column="send_verify_date" jdbcType="TIMESTAMP"
+                property="sendVerifyDate"/>
+        <result column="add_date" jdbcType="TIMESTAMP"
+                property="addDate"/>
+        <result column="source" jdbcType="NUMERIC" property="source"/>
+        <result column="object_store_house_id" jdbcType="NUMERIC"
+                property="objectStoreHouseId"/>
+        <result column="receipt_operator_id" jdbcType="VARCHAR"
+                property="receiptOperatorId"/>
+        <result column="receipt_operator_name" jdbcType="VARCHAR"
+                property="receiptOperatorName"/>
+        <result column="receipt_remark" jdbcType="VARCHAR"
+                property="receiptRemark"/>
+        <result column="receipt_verify_id" jdbcType="VARCHAR"
+                property="receiptVerifyId"/>
+        <result column="receipt_verify_name" jdbcType="VARCHAR"
+                property="receiptVerifyName"/>
+        <result column="receipt_verify_date" jdbcType="TIMESTAMP"
+                property="receiptVerifyDate"/>
+        <result column="receipt_verify_flag" jdbcType="NUMERIC"
+                property="receiptVerifyFlag"/>
+        <result column="state" jdbcType="NUMERIC" property="state"/>
+        <result column="tracking_number" jdbcType="VARCHAR"
+                property="trackingNumber"/>
+        <result column="device_id" jdbcType="NUMERIC" property="deviceId"/>
+        <result column="asset_attributes_id" jdbcType="NUMERIC" property="assetAttributesId"/>
+        <result column="device_name" jdbcType="VARCHAR" property="deviceName"/>
+        <result column="source_store_house_name" jdbcType="VARCHAR"
+                property="sourceStoreHouseName"/>
+        <result column="object_store_house_name" jdbcType="VARCHAR"
+                property="objectStoreHouseName"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		sheet_id, sheet_type, supplier_name, send_verify_flag,
+		sheet_date,
+		source_store_house_id,
+		send_operator_id, send_operator_name,
+		send_remark, send_verify_id, send_verify_name,
+		send_verify_date,
+		add_date, source, object_store_house_id,
+		receipt_operator_id,
+		receipt_operator_name,
+		receipt_remark, receipt_verify_id,
+		receipt_verify_name, receipt_verify_date,
+		receipt_verify_flag,
+		state,tracking_number,device_id,device_name,asset_attributes_id
+	</sql>
+    <sql id="ByMap_Where_Clause">
+        <where>
+            <if test="eqSheetId != null">
+                AND sheet_id = #{eqSheetId,jdbcType=VARCHAR}
+            </if>
+            <if test="eqSheetType != null">
+                AND sheet_type = #{eqSheetType,jdbcType=NUMERIC}
+            </if>
+            <if test="eqSupplierName != null">
+                AND supplier_name = #{eqSupplierName,jdbcType=VARCHAR}
+            </if>
+            <if test="eqSendVerifyFlag != null">
+                AND send_verify_flag =
+                #{eqSendVerifyFlag,jdbcType=NUMERIC}
+            </if>
+            <if test="eqSheetDate != null">
+                AND sheet_date = #{eqSheetDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="eqSourceStoreHouseId != null">
+                AND source_store_house_id =
+                #{eqSourceStoreHouseId,jdbcType=NUMERIC}
+            </if>
+            <if test="eqSendOperatorId != null">
+                AND send_operator_id =
+                #{eqSendOperatorId,jdbcType=VARCHAR}
+            </if>
+            <if test="eqSendOperatorName != null">
+                AND send_operator_name =
+                #{eqSendOperatorName,jdbcType=VARCHAR}
+            </if>
+            <if test="eqSendRemark != null">
+                AND send_remark = #{eqSendRemark,jdbcType=VARCHAR}
+            </if>
+            <if test="eqSendVerifyId != null">
+                AND send_verify_id = #{eqSendVerifyId,jdbcType=VARCHAR}
+            </if>
+            <if test="eqSendVerifyName != null">
+                AND send_verify_name =
+                #{eqSendVerifyName,jdbcType=VARCHAR}
+            </if>
+            <if test="eqSendVerifyDate != null">
+                AND send_verify_date =
+                #{eqSendVerifyDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="eqAddDate != null">
+                AND add_date = #{eqAddDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="eqSource != null">
+                AND source = #{eqSource,jdbcType=NUMERIC}
+            </if>
+            <if test="eqObjectStoreHouseId != null">
+                AND object_store_house_id =
+                #{eqObjectStoreHouseId,jdbcType=NUMERIC}
+            </if>
+            <if test="eqReceiptOperatorId != null">
+                AND receipt_operator_id =
+                #{eqReceiptOperatorId,jdbcType=VARCHAR}
+            </if>
+            <if test="eqReceiptOperatorName != null">
+                AND receipt_operator_name =
+                #{eqReceiptOperatorName,jdbcType=VARCHAR}
+            </if>
+            <if test="eqReceiptRemark != null">
+                AND receipt_remark = #{eqReceiptRemark,jdbcType=VARCHAR}
+            </if>
+            <if test="eqReceiptVerifyId != null">
+                AND receipt_verify_id =
+                #{eqReceiptVerifyId,jdbcType=VARCHAR}
+            </if>
+            <if test="eqReceiptVerifyName != null">
+                AND receipt_verify_name =
+                #{eqReceiptVerifyName,jdbcType=VARCHAR}
+            </if>
+            <if test="eqReceiptVerifyDate != null">
+                AND receipt_verify_date =
+                #{eqReceiptVerifyDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="eqReceiptVerifyFlag != null">
+                AND receipt_verify_flag =
+                #{eqReceiptVerifyFlag,jdbcType=NUMERIC}
+            </if>
+            <if test="eqState != null">
+                AND state = #{eqState,jdbcType=NUMERIC}
+            </if>
+            <if test="eqTrackingNumber != null">
+                AND tracking_number = #{eqTrackingNumber,jdbcType=VARCHAR}
+            </if>
+            <if test="eqDeviceId != null">
+                AND device_id = #{eqDeviceId,jdbcType=NUMERIC}
+            </if>
+            <if test="eqDeviceName != null">
+                AND device_name = #{eqDeviceName,jdbcType=VARCHAR}
+            </if>
+            <if test="eqAssetAttributesId != null">
+                AND asset_attributes_id = #{eqAssetAttributesId,jdbcType=NUMERIC}
+            </if>
+        </where>
+    </sql>
+    <sql id="ByMap_Set_Clause">
+        <set>
+            <if test="sheetType != null">
+                sheet_type = #{sheetType,jdbcType=NUMERIC},
+            </if>
+            <if test="supplierName != null">
+                supplier_name = #{supplierName,jdbcType=VARCHAR},
+            </if>
+            <if test="sendVerifyFlag != null">
+                send_verify_flag = #{sendVerifyFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="sheetDate != null">
+                sheet_date = #{sheetDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sourceStoreHouseId != null">
+                source_store_house_id =
+                #{sourceStoreHouseId,jdbcType=NUMERIC},
+            </if>
+            <if test="sendOperatorId != null">
+                send_operator_id = #{sendOperatorId,jdbcType=VARCHAR},
+            </if>
+            <if test="sendOperatorName != null">
+                send_operator_name =
+                #{sendOperatorName,jdbcType=VARCHAR},
+            </if>
+            <if test="sendRemark != null">
+                send_remark = #{sendRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="sendVerifyId != null">
+                send_verify_id = #{sendVerifyId,jdbcType=VARCHAR},
+            </if>
+            <if test="sendVerifyName != null">
+                send_verify_name = #{sendVerifyName,jdbcType=VARCHAR},
+            </if>
+            <if test="sendVerifyDate != null">
+                send_verify_date = #{sendVerifyDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="addDate != null">
+                add_date = #{addDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="source != null">
+                source = #{source,jdbcType=NUMERIC},
+            </if>
+            <if test="objectStoreHouseId != null">
+                object_store_house_id =
+                #{objectStoreHouseId,jdbcType=NUMERIC},
+            </if>
+            <if test="receiptOperatorId != null">
+                receipt_operator_id =
+                #{receiptOperatorId,jdbcType=VARCHAR},
+            </if>
+            <if test="receiptOperatorName != null">
+                receipt_operator_name =
+                #{receiptOperatorName,jdbcType=VARCHAR},
+            </if>
+            <if test="receiptRemark != null">
+                receipt_remark = #{receiptRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="receiptVerifyId != null">
+                receipt_verify_id = #{receiptVerifyId,jdbcType=VARCHAR},
+            </if>
+            <if test="receiptVerifyName != null">
+                receipt_verify_name =
+                #{receiptVerifyName,jdbcType=VARCHAR},
+            </if>
+            <if test="receiptVerifyDate != null">
+                receipt_verify_date =
+                #{receiptVerifyDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="receiptVerifyFlag != null">
+                receipt_verify_flag =
+                #{receiptVerifyFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=NUMERIC},
+            </if>
+            <if test="trackingNumber != null">
+                tracking_number = #{trackingNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceId != null">
+                device_id = #{deviceId,jdbcType=NUMERIC},
+            </if>
+            <if test="deviceName != null">
+                device_name= #{deviceName,jdbcType=VARCHAR},
+            </if>
+            <if test="assetAttributesId != null">
+                AND asset_attributes_id = #{assetAttributesId,jdbcType=NUMERIC}
+            </if>
+        </set>
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_sheet_info
+        where sheet_id = #{sheetId,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByMap" parameterType="java.util.Map"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_sheet_info
+        <if test="_parameter != null">
+            <include refid="ByMap_Where_Clause"/>
+            <if test="orderByClause != null">
+                order by ${orderByClause}
+            </if>
+        </if>
+    </select>
+    <select id="getNotReceiptSheetInfo" parameterType="java.util.Map" resultType="Integer">
+        SELECT count(*) from tbl_sheet_info si left join tbl_storehouse_dict sd
+        on si.object_store_house_id=sd.storehouse_id
+        where
+        si.send_verify_flag=2 and
+        (si.receipt_verify_flag is null or si.receipt_verify_flag=0)
+        <if test="sheetType !=null">
+                and si.sheet_type =
+                #{sheetType}
+            </if>
+            <if test="depotId !=null and depotId !=''">
+                and sd.depot_id =
+                #{depotId}
+            </if>
+
+
+    </select>
+    <select id="getNotVerifySheetInfo" parameterType="java.util.Map" resultType="Integer">
+        SELECT count(*) from tbl_sheet_info si left join tbl_storehouse_dict sd
+        on si.object_store_house_id=sd.storehouse_id
+        where
+        si.send_verify_flag=2 and
+        si.receipt_verify_flag=1
+        <if test="sheetType !=null">
+            and si.sheet_type =
+            #{sheetType}
+        </if>
+        <if test="depotId !=null and depotId !=''">
+            and sd.depot_id =
+            #{depotId}
+        </if>
+
+
+    </select>
+    <!-- 根据条件获取单据 -->
+    <select id="getAllSheets" parameterType="Map"
+            resultMap="BaseResultMap">
+        SELECT
+        si.*,
+        sd1.storehouse_name as source_store_house_name,
+        sd2.storehouse_name as
+        object_store_house_name
+        FROM
+        tbl_sheet_info si,
+        tbl_storehouse_dict sd1,
+        tbl_storehouse_dict sd2
+        WHERE
+        si.source_store_house_id=sd1.storehouse_id
+        and
+        si.object_store_house_id=sd2.storehouse_id
+        <if test="sheetType !=null">
+            and si.sheet_type =
+            #{sheetType}
+        </if>
+        <if test="sourceDepotId !=null and sourceDepotId !=''">
+            and sd1.depot_id =
+            #{sourceDepotId}
+        </if>
+        <if test="objectDepotId !=null and objectDepotId !=''">
+            and sd2.depot_id =
+            #{objectDepotId}
+        </if>
+        <if test="sourceDepotIdIn !=null">
+            and sd1.depot_id in
+            <foreach collection="sourceDepotIdIn" index="index" item="item" open="(" separator="," close=")">
+                #{item.depotId}
+            </foreach>
+
+        </if>
+        <if test="objectDepotIdIn !=null">
+            and sd2.depot_id in
+            <foreach collection="objectDepotIdIn" index="index" item="item" open="(" separator="," close=")">
+                #{item.depotId}
+            </foreach>
+        </if>
+        <if test="sheetId != null and sheetId != '' and sheetId != '%%'">
+            and si.sheet_id like #{sheetId}
+        </if>
+        <if test="sourceStoreHouseId != null and sourceStoreHouseId != ''">
+            and si.source_store_house_id =
+            to_number(#{sourceStoreHouseId},'999')
+        </if>
+        <if test="objectStoreHouseId != null and objectStoreHouseId != ''">
+            and si.object_store_house_id =
+            to_number(#{objectStoreHouseId},'999')
+        </if>
+        <if test="sendVerifyFlag != null and sendVerifyFlag != ''">
+            and si.send_verify_flag = to_number(#{sendVerifyFlag},'9')
+        </if>
+        <if test="receiptVerifyFlag != null and receiptVerifyFlag != ''">
+            and si.receipt_verify_flag =
+            to_number(#{receiptVerifyFlag},'9')
+        </if>
+        <if test='queryTime != null and queryTime != ""'>
+            and si.add_date >= to_timestamp(#{queryTime}, 'yyyy-mm-dd
+            hh24:mi:ss')
+        </if>
+        <if test='queryTime2 != null and queryTime2 != ""'>
+            and si.add_date &lt;= to_timestamp(#{queryTime2},
+            'yyyy-mm-dd hh24:mi:ss')
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <!-- 根据条件获取数量 -->
+    <select id="getSheetParamCount" parameterType="java.util.Map"
+            resultType="INTEGER">
+        select
+        count(1)
+        FROM
+        tbl_sheet_info si,
+        tbl_storehouse_dict sd1,
+        tbl_storehouse_dict sd2
+        WHERE
+        si.source_store_house_id=sd1.storehouse_id
+        and
+        si.object_store_house_id=sd2.storehouse_id
+
+        <if test="sheetType !=null">
+            and si.sheet_type =
+            #{sheetType}
+        </if>
+        <if test="sourceDepotId !=null">
+            and sd1.depot_id =
+            #{sourceDepotId}
+        </if>
+        <if test="objectDepotId !=null">
+            and sd2.depot_id =
+            #{objectDepotId}
+        </if>
+        <if test="sourceDepotIdIn !=null">
+            and sd1.depot_id in
+            <foreach collection="sourceDepotIdIn" index="index" item="item" open="(" separator="," close=")">
+                #{item.depotId}
+            </foreach>
+
+        </if>
+        <if test="objectDepotIdIn !=null">
+            and sd2.depot_id in
+            <foreach collection="objectDepotIdIn" index="index" item="item" open="(" separator="," close=")">
+                #{item.depotId}
+            </foreach>
+        </if>
+        <if test="sheetId != null and sheetId != ''">
+            and si.sheet_id like #{sheetId}
+        </if>
+        <if test="sourceStoreHouseId != null and sourceStoreHouseId != ''">
+            and si.source_store_house_id =
+            to_number(#{sourceStoreHouseId},'9')
+        </if>
+        <if test="objectStoreHouseId != null and objectStoreHouseId != ''">
+            and si.object_store_house_id =
+            to_number(#{objectStoreHouseId},'9')
+        </if>
+        <if test="sendVerifyFlag != null and sendVerifyFlag != ''">
+            and si.send_verify_flag = to_number(#{sendVerifyFlag},'9')
+        </if>
+        <if test="receiptVerifyFlag != null and receiptVerifyFlag != ''">
+            and si.receipt_verify_flag =
+            to_number(#{receiptVerifyFlag},'9')
+        </if>
+        <if test='queryTime != null and queryTime != ""'>
+            and si.add_date >= to_timestamp(#{queryTime}, 'yyyy-mm-dd
+            hh24:mi:ss')
+        </if>
+        <if test='queryTime2 != null and queryTime2 != ""'>
+            and si.add_date &lt;= to_timestamp(#{queryTime2},
+            'yyyy-mm-dd hh24:mi:ss')
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		tbl_sheet_info
+		where sheet_id = #{sheetId,jdbcType=VARCHAR}
+	</delete>
+    <insert id="insert"
+            parameterType="com.kthw.pmis.entiy.SheetInfo">
+		insert into tbl_sheet_info (sheet_id, sheet_type,
+		supplier_name,
+		send_verify_flag, sheet_date, source_store_house_id,
+		send_operator_id, send_operator_name, send_remark,
+		send_verify_id,
+		send_verify_name, send_verify_date,
+		add_date, source,
+		object_store_house_id,
+		receipt_operator_id, receipt_operator_name,
+		receipt_remark, receipt_verify_id, receipt_verify_name,
+		receipt_verify_date, receipt_verify_flag,
+		state,tracking_number,device_id,device_name,asset_attributes_id)
+		values
+		(#{sheetId,jdbcType=VARCHAR}, #{sheetType,jdbcType=NUMERIC},
+		#{supplierName,jdbcType=VARCHAR},
+		#{sendVerifyFlag,jdbcType=NUMERIC},
+		#{sheetDate,jdbcType=TIMESTAMP},
+		#{sourceStoreHouseId,jdbcType=NUMERIC},
+		#{sendOperatorId,jdbcType=VARCHAR},
+		#{sendOperatorName,jdbcType=VARCHAR}, #{sendRemark,jdbcType=VARCHAR},
+		#{sendVerifyId,jdbcType=VARCHAR}, #{sendVerifyName,jdbcType=VARCHAR},
+		#{sendVerifyDate,jdbcType=TIMESTAMP},
+		#{addDate,jdbcType=TIMESTAMP},
+		#{source,jdbcType=NUMERIC}, #{objectStoreHouseId,jdbcType=NUMERIC},
+		#{receiptOperatorId,jdbcType=VARCHAR},
+		#{receiptOperatorName,jdbcType=VARCHAR},
+		#{receiptRemark,jdbcType=VARCHAR},
+		#{receiptVerifyId,jdbcType=VARCHAR},
+		#{receiptVerifyName,jdbcType=VARCHAR},
+		#{receiptVerifyDate,jdbcType=TIMESTAMP},
+		#{receiptVerifyFlag,jdbcType=NUMERIC},
+		#{state,jdbcType=NUMERIC},
+		#{trackingNumber,jdbcType=VARCHAR},
+		#{deviceId,jdbcType=NUMERIC},
+		#{deviceName,jdbcType=VARCHAR},
+		#{assetAttributesId,jdbcType=NUMERIC})
+	</insert>
+    <insert id="insertSelective"
+            parameterType="com.kthw.pmis.entiy.SheetInfo">
+        insert into tbl_sheet_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sheetId != null">
+                sheet_id,
+            </if>
+            <if test="sheetType != null">
+                sheet_type,
+            </if>
+            <if test="supplierName != null">
+                supplier_name,
+            </if>
+            <if test="sendVerifyFlag != null">
+                send_verify_flag,
+            </if>
+            <if test="sheetDate != null">
+                sheet_date,
+            </if>
+            <if test="sourceStoreHouseId != null">
+                source_store_house_id,
+            </if>
+            <if test="sendOperatorId != null">
+                send_operator_id,
+            </if>
+            <if test="sendOperatorName != null">
+                send_operator_name,
+            </if>
+            <if test="sendRemark != null">
+                send_remark,
+            </if>
+            <if test="sendVerifyId != null">
+                send_verify_id,
+            </if>
+            <if test="sendVerifyName != null">
+                send_verify_name,
+            </if>
+            <if test="sendVerifyDate != null">
+                send_verify_date,
+            </if>
+            <if test="addDate != null">
+                add_date,
+            </if>
+            <if test="source != null">
+                source,
+            </if>
+            <if test="objectStoreHouseId != null">
+                object_store_house_id,
+            </if>
+            <if test="receiptOperatorId != null">
+                receipt_operator_id,
+            </if>
+            <if test="receiptOperatorName != null">
+                receipt_operator_name,
+            </if>
+            <if test="receiptRemark != null">
+                receipt_remark,
+            </if>
+            <if test="receiptVerifyId != null">
+                receipt_verify_id,
+            </if>
+            <if test="receiptVerifyName != null">
+                receipt_verify_name,
+            </if>
+            <if test="receiptVerifyDate != null">
+                receipt_verify_date,
+            </if>
+            <if test="receiptVerifyFlag != null">
+                receipt_verify_flag,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+            <if test="trackingNumber != null">
+                tracking_number,
+            </if>
+            <if test="deviceId != null">
+                device_id,
+            </if>
+            <if test="deviceName != null">
+                device_name,
+            </if>
+            <if test="assetAttributesId != null">
+                asset_attributes_id,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sheetId != null">
+                #{sheetId,jdbcType=VARCHAR},
+            </if>
+            <if test="sheetType != null">
+                #{sheetType,jdbcType=NUMERIC},
+            </if>
+            <if test="supplierName != null">
+                #{supplierName,jdbcType=VARCHAR},
+            </if>
+            <if test="sendVerifyFlag != null">
+                #{sendVerifyFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="sheetDate != null">
+                #{sheetDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sourceStoreHouseId != null">
+                #{sourceStoreHouseId,jdbcType=NUMERIC},
+            </if>
+            <if test="sendOperatorId != null">
+                #{sendOperatorId,jdbcType=VARCHAR},
+            </if>
+            <if test="sendOperatorName != null">
+                #{sendOperatorName,jdbcType=VARCHAR},
+            </if>
+            <if test="sendRemark != null">
+                #{sendRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="sendVerifyId != null">
+                #{sendVerifyId,jdbcType=VARCHAR},
+            </if>
+            <if test="sendVerifyName != null">
+                #{sendVerifyName,jdbcType=VARCHAR},
+            </if>
+            <if test="sendVerifyDate != null">
+                #{sendVerifyDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="addDate != null">
+                #{addDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="source != null">
+                #{source,jdbcType=NUMERIC},
+            </if>
+            <if test="objectStoreHouseId != null">
+                #{objectStoreHouseId,jdbcType=NUMERIC},
+            </if>
+            <if test="receiptOperatorId != null">
+                #{receiptOperatorId,jdbcType=VARCHAR},
+            </if>
+            <if test="receiptOperatorName != null">
+                #{receiptOperatorName,jdbcType=VARCHAR},
+            </if>
+            <if test="receiptRemark != null">
+                #{receiptRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="receiptVerifyId != null">
+                #{receiptVerifyId,jdbcType=VARCHAR},
+            </if>
+            <if test="receiptVerifyName != null">
+                #{receiptVerifyName,jdbcType=VARCHAR},
+            </if>
+            <if test="receiptVerifyDate != null">
+                #{receiptVerifyDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="receiptVerifyFlag != null">
+                #{receiptVerifyFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=NUMERIC},
+            </if>
+            <if test="trackingNumber != null">
+                #{trackingNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceId != null">
+                #{deviceId,jdbcType=NUMERIC},
+            </if>
+            <if test="deviceName != null">
+                #{deviceName,jdbcType=VARCHAR},
+            </if>
+            <if test="assetAttributesId != null">
+                #{assetAttributesId,jdbcType=NUMERIC},
+            </if>
+
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.kthw.pmis.entiy.SheetInfo">
+        update tbl_sheet_info
+        <include refid="ByMap_Set_Clause"/>
+        where sheet_id = #{sheetId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey"
+            parameterType="com.kthw.pmis.entiy.SheetInfo">
+		update tbl_sheet_info
+		set sheet_type =
+		#{sheetType,jdbcType=NUMERIC},
+		supplier_name =
+		#{supplierName,jdbcType=VARCHAR},
+		send_verify_flag =
+		#{sendVerifyFlag,jdbcType=NUMERIC},
+		sheet_date =
+		#{sheetDate,jdbcType=TIMESTAMP},
+		source_store_house_id =
+		#{sourceStoreHouseId,jdbcType=NUMERIC},
+		send_operator_id =
+		#{sendOperatorId,jdbcType=VARCHAR},
+		send_operator_name =
+		#{sendOperatorName,jdbcType=VARCHAR},
+		send_remark =
+		#{sendRemark,jdbcType=VARCHAR},
+		send_verify_id =
+		#{sendVerifyId,jdbcType=VARCHAR},
+		send_verify_name =
+		#{sendVerifyName,jdbcType=VARCHAR},
+		send_verify_date =
+		#{sendVerifyDate,jdbcType=TIMESTAMP},
+		add_date =
+		#{addDate,jdbcType=TIMESTAMP},
+		source = #{source,jdbcType=NUMERIC},
+		object_store_house_id = #{objectStoreHouseId,jdbcType=NUMERIC},
+		receipt_operator_id = #{receiptOperatorId,jdbcType=VARCHAR},
+		receipt_operator_name = #{receiptOperatorName,jdbcType=VARCHAR},
+		receipt_remark = #{receiptRemark,jdbcType=VARCHAR},
+		receipt_verify_id =
+		#{receiptVerifyId,jdbcType=VARCHAR},
+		receipt_verify_name =
+		#{receiptVerifyName,jdbcType=VARCHAR},
+		receipt_verify_date =
+		#{receiptVerifyDate,jdbcType=TIMESTAMP},
+		receipt_verify_flag =
+		#{receiptVerifyFlag,jdbcType=NUMERIC},
+		state =
+		#{state,jdbcType=NUMERIC},
+		tracking_number =
+		#{trackingNumber,jdbcType=VARCHAR},
+		device_id =
+		#{deviceId,jdbcType=NUMERIC},
+		device_name =
+		#{deviceName,jdbcType=VARCHAR},
+		asset_attributes_id =
+		#{assetAttributesId,jdbcType=NUMERIC}
+		where sheet_id = #{sheetId,jdbcType=VARCHAR}
+	</update>
+    <update id="updateByMap" parameterType="java.util.Map">
+        update tbl_sheet_info
+        <if test="_parameter != null">
+            <include refid="ByMap_Set_Clause"/>
+            <include refid="ByMap_Where_Clause"/>
+        </if>
+    </update>
+
+</mapper>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>所内返修</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/bootstrap/jquery.datetimepicker.min.css"
+	rel="stylesheet" />
+<link href="../../css/plugins/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href="../../css/plugins/dataTables/datatables.min.css"
+	rel="stylesheet">
+<link href="../../css/animate.css" rel="stylesheet">
+<link href="../../css/style.css" rel="stylesheet">
+<link href="../../css/vehicle.css" rel="stylesheet">
+</head>
+<body class="gray-bg dashbard-1">
+	<div class="container-fluid">
+		<div class="row">
+
+			<div class="col-xs-12 col-md-12">
+				<div>
+					<div id="infoAlert" class="alert alert-warning"
+						style="position: absolute; left: 42%; top: 8px; width: 15%; height: 50px; display: none">
+						<a href="#" class="close" data-dismiss="alert" style="color: grey">
+							&times; </a>
+						<p id="alertMsg"></p>
+					</div>
+					<div class="pull-right">
+
+						<label class="control-label">源仓库：</label><select
+							id="storehouse_id_sel" class="form_sel form-control "
+							style="width: 170px">
+							<option value=""></option>
+							</select>&nbsp;&nbsp; <label
+							class="control-label">审核状态：</label> <select id="verify_flag"
+							class="form-control"
+							style="width: 108px; font-size: 14px; font-weight: 600; color: #2e6da4; display: inline-block; margin: 10px 5px 10px 0; padding-top: 3px;">
+							<option value=""></option>
+							<option value="0">待审核</option>
+							<option value="1">审核中</option>
+							<option value="2">已审核</option>
+						</select> <label class="control-label">入库单号：</label><input id="sheet_id"
+							type="text" class="form-control input-sm"
+							style="width: 108px; font-size: 14px; font-weight: 600; color: #2e6da4; display: inline-block; margin: 10px 0 10px 5px;" />
+						&nbsp;&nbsp; <label class="control-label">时间：</label> <input
+							id="queryTime" type="text" class="form-control"
+							style="width: 100px; font-size: 14px; font-weight: 600; color: #2e6da4; padding-bottom: 10px; display: inline-block;" />
+						~ <input id="queryTime2" type="text" class="form-control"
+							style="width: 100px; font-size: 14px; font-weight: 600; color: #2e6da4; padding-bottom: 10px; display: inline-block;" />
+						<button type="button" id="btn-search" class="btn btn-primary"
+							style="height: 30px; padding-top: 4px; margin: 10px 0 10px 5px;">查询</button>
+						<button id="btnRefresh" type="button"
+							class="btn btn-warning form_sel_btn">刷&nbsp;新</button>
+					</div>
+
+
+
+
+					<div class="ibox-content">
+						<span style="font-size: 15px; font-weight: bolder;">所内送修单据审核</span>
+						<table id="sheetTable"
+							class="table table-striped table-hover table-bordered"
+							width="100%">
+							<thead>
+								<tr style="background-color: #DFE2E6; color: #333333">
+									<th>序号</th>
+									<th>送修单号</th>
+									<th>源仓库</th>
+									<th>收货仓库</th>
+									<th>添加日期</th>
+									<th>备注</th>
+									<th>经办人</th>
+									<th>审核人</th>
+									<th>审核状态</th>
+									<th>审核时间</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+
+
+				<div class="ibox ">
+					<div class="ibox-title">
+						<h5>待审核配件详细信息列表</h5>
+						<button type="button" class="btn btn-success pull-right"
+							id="add_sheetDetail" data-toggle="modal"
+							data-target="#addSheetDetailModal"
+							style="height: 30px; padding-top: 4px; margin: 10px 0 10px 5px; display: none;">新增</button>
+						<div class="ibox-tools">
+							<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
+							</a>
+						</div>
+					</div>
+					<div class="ibox-content">
+						<div class="table-responsive">
+							<div id="sheetDetailTableDiv1">
+								<table
+									class="table table-striped table-bordered table-hover dataTables-example dataTable"
+									id="sheetDetailTable1" role="grid">
+									<thead>
+										<tr>
+											<th>序号</th>
+											<th>配件编号</th>
+											<th>配件出厂编号</th>
+											<th>配件名称</th>
+											<th>设备类型</th>
+											<th>规格型号</th>
+											<th>资产属性</th>
+											<th>备注</th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+							<div id="sheetDetailTableDiv2" style="display: none;">
+								<table
+									class="table table-striped table-bordered table-hover dataTables-example dataTable"
+									id="sheetDetailTable2" role="grid">
+									<thead>
+										<tr>
+											<th>序号</th>
+											<th>配件编号</th>
+											<th>配件出厂编号</th>
+											<th>配件名称</th>
+											<th>设备类型</th>
+											<th>规格型号</th>
+											<th>资产属性</th>
+											<th>使用探测站</th>
+											<th>故障发生日期</th>
+											<th>故障现象</th>
+											<th>备注</th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+							<div id="sheetDetailTableDiv3" style="display: none;">
+								<table
+									class="table table-striped table-bordered table-hover dataTables-example dataTable"
+									id="sheetDetailTable3" role="grid">
+									<thead>
+										<tr>
+											<th>序号</th>
+											<th>配件编号</th>
+											<th>配件出厂编号</th>
+											<th>配件名称</th>
+											<th>设备类型</th>
+											<th>规格型号</th>
+											<th>资产属性</th>
+											<th>更换元件</th>
+											<th>数量</th>
+											<th>检修费用</th>
+											<th>检修日期</th>
+											<th>是否修复</th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- SheetVerifyModal -->
+	<div class="modal fade" id="SheetVerifyOkModal" tabindex="-1"
+		role="dialog" aria-labelledby="myPopModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="max-width: 800px; overflow-x: auto;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="myPopSheetModalLabel">单据审核提示</h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<h4 class="text-danger" style="font-weight: bold;"
+						id="warningSheetVerifyText">确定要审核通过该单据？</h4>
+					<input type="hidden" id="SheetIdVerify" />
+				</div>
+				<div class="modal-footer" style="text-align: center;">
+					<button id="btnPopSheetVerifyOk" data-dismiss="modal" type="submit"
+						class="btn btn-primary">是</button>
+					&nbsp; &nbsp;
+					<button type="button" class="btn btn-warning" data-dismiss="modal">否</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- SheetVerifyModal -->
+	<div class="modal fade" id="SheetVerifyBackModal" tabindex="-1" role="dialog"
+		aria-labelledby="myPopModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="max-width:800px;overflow-x:auto;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="myPopSheetModalLabel">单据审核回退提示</h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<h4 class="text-danger" style="font-weight: bold;" id="warningSheetText">确定该单据未通过审核？</h4>
+                    <input type="hidden" id="SheetVerifyId" />
+				</div>
+				<div class="modal-footer" style="text-align: center;">
+					<button id="btnPopSheetVerify" data-dismiss="modal" type="submit"
+						class="btn btn-primary">是</button>
+					&nbsp; &nbsp;
+					<button type="button" class="btn btn-warning" data-dismiss="modal">否</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../../js/require.js"
+		data-main="../../js/repairManage/repairVerify"></script>
+</body>
+</html>

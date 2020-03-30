@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+    "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.kthw.pmis.mapper.system.CommonMapper">
+
+	<select id="selectPublicStation" resultType="Map">
+		select t.*
+		from tbl_public_station t
+		where t.enabled = 1
+		order by station_name
+	</select>
+	
+	<select id="listCarInfo" resultType="Car" parameterType="map">
+		select * from tbl_5t_car_dict where 1=1 
+		<if test="workshopId!=null and workshopId!=''">
+		  and workshop_id=#{workshopId}
+		</if>
+	</select>
+	
+	<select id="listDriverInfo" resultType="Driver" parameterType="map">
+		select * from tbl_5t_driver_dict where 1=1 
+		<if test="workshopId!=null and workshopId!=''">
+		  and workshop_id=#{workshopId}
+		</if>
+	</select>
+	
+	<select id="listTeamInfo" resultType="Team" parameterType="map">
+		select * from tbl_team_dict where 1=1 
+		<if test="workshopId!=null and workshopId!=''">
+		  and depart_id=#{workshopId}
+		</if>
+	</select>
+	
+</mapper>

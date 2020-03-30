@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>综合统计</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap/jquery.datetimepicker.min.css" rel="stylesheet"/>
+    <link href="../../css/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <link href="../../css/animate.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/vehicle.css" rel="stylesheet">
+</head>
+<body class="gray-bg dashbard-1">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div id="infoAlert" class="alert alert-warning"
+                 style="position: absolute;left: 42%;top: 8px;width: 15%;height: 50px;display: none">
+                <a href="#" class="close" data-dismiss="alert" style="color: grey">
+                    &times;
+                </a>
+                <p id="alertMsg"></p>
+            </div>
+            <div class="pull-right">
+
+                &nbsp;&nbsp; <label class="control-label">时间：</label> <input
+                    id="queryTime" type="text" class="form-control"
+                    style="width: 100px; font-size: 14px; font-weight: 600; color: #2e6da4; padding-bottom: 10px; display: inline-block;"/>
+                ~ <input id="queryTime2" type="text" class="form-control"
+                         style="width: 100px; font-size: 14px; font-weight: 600; color: #2e6da4; padding-bottom: 10px; display: inline-block;"/>
+                <button type="button" id="btnQuery" class="btn btn-primary  form_sel_btn">查 询</button>
+                <!-- 						<button id="exportExcel" type="button" class="btn btn-info form_sel_btn">导出Excel</button> -->
+                <button id="btnRefresh" type="button" class="btn btn-warning form_sel_btn">刷&nbsp;新</button>
+            </div>
+
+
+            <div class="ibox ">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="partsInfoTable" class="table table-striped table-hover table-bordered">
+                                <thead>
+                                <tr style="">
+                                    <th>序号</th>
+                                    <th>车间</th>
+                                    <th>新购数量</th>
+                                    <th>新购总金额(元)</th>
+                                    <th>送修数量</th>
+                                    <th>返厂数量</th>
+                                    <th>在厂数量</th>
+                                    <th>厂家修返数量</th>
+                                    <th>所内修复合格数量</th>
+                                    <th>在所内的数量</th>
+                                    <th>修返配送数量</th>
+                                    <th>修返配件修复总金额(元)</th>
+                                    <th>报废数量</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="../../js/require.js" data-main="../../js/report/comprehensiveStatics"></script>
+</body>
+</html>
