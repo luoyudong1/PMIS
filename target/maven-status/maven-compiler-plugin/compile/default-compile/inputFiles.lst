@@ -1,4 +1,5 @@
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\controller\entryAndOut\RepairEntryController.java
+D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\mapper\common\LineDepotMapper.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\controller\detectManage\DetectManageController.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\core\com\kthw\aiplan\VehicleInfo.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\mapper\common\ResponsibleUnitMapper.java
@@ -48,6 +49,7 @@ D:\360安全浏览器下载\PMIS (1)\PMIS4\core\com\kthw\common\Exceptions.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\helper\StoreHouseHelper.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\core\com\kthw\common\shiro\ShiroDbRealm.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\controller\partsEntryAndOut\AddPartsController.java
+D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\controller\checkPlan\OnDayController.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\mapper\system\PartsMapper.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\model\system\Driver.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\mapper\common\DepotMapper.java
@@ -199,6 +201,7 @@ D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\model\sys
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\model\system\Workshop.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\mapper\entryAndOut\RepairEntryMapper.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\serviceimpl\entryAndOut\PreparePurchaseServiceImpl.java
+D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\entiy\LineDepot.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\entiy\dto\StockInfoDTO.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\model\entryAndOut\AssetAttribute.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\mapper\common\SheetInfoMapper.java

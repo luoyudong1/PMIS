@@ -1085,28 +1085,35 @@
         si.factory_parts_code=sd.part_code and
         sd.sheet_id=sh.sheet_id
         and si.part_id_seq=vp.parts_code
-        <if test="addDate != null and addDate  != ''">
-            and sh.add_date=to_timestamp(#{addDate},
-            'yyyy-mm-dd hh24:mi:ss')
+
+        <if test="eqFactoryPartsCode != null and eqFactoryPartsCode != ''">
+            AND si.factory_parts_code like
+            #{eqFactoryPartsCode,jdbcType=VARCHAR}
         </if>
-        <if test="partCode != null and partCode != ''">
-            and si.factory_parts_code=#{partCode}
+        <if test="partIdSeq != null and partIdSeq != ''">
+            AND si.part_id_seq like #{partIdSeq,jdbcType=VARCHAR}
         </if>
-        <if test="sendVerifyDate != null and sendVerifyDate != ''">
-            and sh.send_verify_date=#{sendVerifyDate}
+        <if test="eqStorehouseId != null">
+            AND si.storehouse_id = #{eqStorehouseId,jdbcType=NUMERIC}
         </if>
-        <if test="receiptVerifyDate != null and receiptVerifyDate != ''">
-            and sh.receipt_verify_date=#{receiptVerifyDate}
+
+
+
+        <if test='devicePartsName != null and devicePartsName != ""'>
+            and vp.device_parts_name = #{devicePartsName}
         </if>
-        <if test="sendVerifyFlag != null and sendVerifyFlag != ''">
-            and sh.send_verify_flag=#{sendVerifyFlag}
+
+        <if test='deviceModelName != null and deviceModelName != ""'>
+            and vp.device_model_name=#{deviceModelName}
         </if>
-        <if test="receiptVerifyFlag != null and receiptVerifyFlag != ''">
-            and sh.receipt_verify_flag=#{receiptVerifyFlag}
+
+        <if test='deviceTypeName != null and deviceTypeName != ""'>
+            and vp.device_type_name=#{deviceTypeName}
         </if>
-        <if test="orderByClause != null">
-            order by ${orderByClause}
+        <if test='supplierName != null and supplierName != ""'>
+            and vp.supplier_name=#{supplierName}
         </if>
+        order by si.create_time desc
     </select>
     <select id="selectMaxDateByPartCode"
             parameterType="java.util.Map" resultType="java.util.Date">

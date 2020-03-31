@@ -47,7 +47,7 @@ public class FaultReportController {
         logger.info("显示故障预报");
         DataTable<FaultHandle> dt = new DataTable<FaultHandle>();
         String depotId = request.getParameter("depotId");
-        String completeFlag = request.getParameter("completeFlag");
+        String completeFlag = request.getParameter("status");
         String queryTime = request.getParameter("queryTime");
         String queryTime2 = request.getParameter("queryTime2");
         String type = request.getParameter("type");

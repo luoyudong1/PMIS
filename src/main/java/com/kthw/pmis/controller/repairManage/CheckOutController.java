@@ -341,38 +341,6 @@ public class CheckOutController {
         return ret;
     }
 
-    @SuppressWarnings("null")
-    @ResponseBody
-    @RequestMapping(value = "/getSheetDetailByMaxDate", method = {RequestMethod.POST})
-    public SheetDetailDTO addRepairParts(@RequestBody Map<String, Object> params, HttpServletRequest request,
-                                         HttpSession httpSession) {
-        logger.info("获取返修配件最新信息");
-        int code = 0;
-        Map<String, Object> ret = new HashMap<String, Object>();
-        SheetDetailDTO sheetDetailDTO = new SheetDetailDTO();
-        List<SheetDetailDTO> sheetDetailDTOs = new ArrayList<SheetDetailDTO>();
-        String partCode = (String) params.get("partCode");
-        //获取配件最近的审核时间
-        Date maxDate = sheetDetailMapper.selectMaxDateByPartCode(params);
-
-        if (maxDate != null) {
-            params.put("addDate", maxDate);
-            //获取配件最近审核通过的配件详细信息sheetDetail
-            sheetDetailDTOs = sheetDetailMapper.selectWithStock(params);
-            if (sheetDetailDTOs.size() > 0) {
-                sheetDetailDTO = sheetDetailDTOs.get(0);
-            }
-        }
-        if (sheetDetailDTO.getPartCode() == null || sheetDetailDTO.getPartId() == null) {
-            params.clear();
-            params.put("eqPartCode", partCode);
-            sheetDetailDTOs = sheetDetailMapper.selectWithParts(params);
-            if (sheetDetailDTOs.size() > 0) {
-                sheetDetailDTO = sheetDetailDTOs.get(0);
-            }
-        }
-        return sheetDetailDTO;
-    }
 
 
     /**

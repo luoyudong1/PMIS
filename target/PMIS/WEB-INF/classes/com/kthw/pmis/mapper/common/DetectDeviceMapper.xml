@@ -208,9 +208,10 @@
         <result column="supplier_name" jdbcType="VARCHAR" property="supplierName"/>
         <result column="depot_name" jdbcType="VARCHAR" property="depotName"/>
         <result column="device_model_name" jdbcType="VARCHAR" property="deviceModelName"/>
+        <result column="device_type_name" jdbcType="VARCHAR" property="deviceTypeName"/>
     </resultMap>
     <select id="listDetectDevice" parameterType="java.util.Map" resultMap="DetectDeviceResultMap">
-        select ddd.*,sd.supplier_name,dd.depot_name,dmd.device_model_name from tbl_detect_device_dict ddd
+        select ddd.*,sd.supplier_name,dd.depot_name,dmd.device_model_name,dtd.device_type_name from tbl_detect_device_dict ddd
         LEFT JOIN tbl_suppliers_dict sd on ddd.supplier_id=sd.supplier_id
         LEFT JOIN tbl_depot_dict dd on dd.depot_id=ddd.depot_id
         LEFT join tbl_5t_device_model_dict dmd on dmd.device_model_id=ddd.device_model_id

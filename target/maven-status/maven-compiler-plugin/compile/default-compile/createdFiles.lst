@@ -87,6 +87,7 @@ com\kthw\pmis\model\system\DeviceName.class
 com\kthw\pmis\entiy\PartsZtree.class
 com\kthw\aiplan\GroupInfo.class
 com\kthw\common\FileParam.class
+com\kthw\pmis\controller\checkPlan\OnDayController.class
 com\kthw\common\DateConvertor.class
 com\kthw\pmis\entiy\dto\DetectDeviceDTO.class
 com\kthw\pmis\entiy\StockInfo1.class
@@ -121,6 +122,7 @@ com\kthw\pmis\entiy\dto\ComprehensiveStatisticsDTO.class
 com\kthw\pmis\model\system\AuthFunction.class
 com\kthw\pmis\model\entryAndOut\SheetInfo.class
 com\kthw\pmis\controller\detectProduce\PartsUseController.class
+com\kthw\pmis\entiy\LineDepot.class
 com\kthw\pmis\controller\stock\TestToDepotController.class
 com\kthw\pmis\mapper\common\DetectPartsMapper.class
 com\kthw\pmis\controller\stock\DepotToWorkShopController.class
@@ -188,6 +190,7 @@ com\kthw\common\MatrixToImageWriter.class
 com\kthw\pmis\model\system\StoreHouseInfo.class
 com\kthw\pmis\entiy\DeviceType.class
 com\kthw\dispatcher\Step.class
+com\kthw\pmis\mapper\common\LineDepotMapper.class
 com\kthw\pmis\websocket\VehicleMonitorHandler.class
 com\kthw\pmis\entiy\PartsDict.class
 com\kthw\pmis\controller\stock\SparesAndRepairController.class

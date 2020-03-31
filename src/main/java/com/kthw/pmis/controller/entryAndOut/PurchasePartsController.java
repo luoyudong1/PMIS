@@ -612,7 +612,7 @@ try{
         //total=stockInfoMapper.getPartsParamCount(params);
         //获取配件详细信息
 
-        list = sheetDetailMapper.selectStockWithSheetId(params);
+        list = sheetDetailMapper.selectWithStock(params);
 
         //返回dataTable参数
         dt.setRecordsTotal(total);

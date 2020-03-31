@@ -108,7 +108,8 @@ require(['../config'],
                         for (var i = 0; i < result.data.length; i++) {
                             // $("#detectDeviceAdd").append('<option value="' + result.data[i].detectDeviceId + '" deviceModelName="' + result.data[i].deviceModelName + '">' + result.data[i].detectDeviceName + '</option>');
                             lineSet.add(result.data[i].lineName)
-                            deviceTypeSet.add(result.data[i].deviceModelName)
+                            deviceTypeSet.add(result.data[i].deviceTypeName)
+                            console.log(result.data[i].deviceTypeName)
                         }
                         initLineAdd()
                         initDeviceTypeAdd()
@@ -186,8 +187,8 @@ require(['../config'],
                     $("#detectDeviceAdd").append('<option></option>')
                     console.log(detectType)
                     for (let i = 0; i < listDetect.length; i++) {
-                        if (listDetect[i].lineName == lineName&&listDetect[i].deviceModelName==detectType) {
-                            $("#detectDeviceAdd").append('<option value="' + listDetect[i].detectDeviceId + '" deviceModelName="' + listDetect[i].deviceModelName + '">' + listDetect[i].detectDeviceName + '</option>');
+                        if (listDetect[i].lineName == lineName&&listDetect[i].deviceTypeName==detectType) {
+                            $("#detectDeviceAdd").append('<option value="' + listDetect[i].detectDeviceId + '" deviceTypeName="' + listDetect[i].deviceTypeName + '">' + listDetect[i].detectDeviceName + '</option>');
                         }
                     }
 
@@ -377,7 +378,7 @@ require(['../config'],
                         var params = JSON.stringify({
                             detectDeviceId: $('#detectDeviceAdd').val(),
                             detectDeviceName: $('#detectDeviceAdd option:selected').text(),
-                            detectDeviceType: $('#detectDeviceAdd option:selected').attr("deviceModelName"),
+                            detectDeviceType: $('#detectDeviceAdd option:selected').attr("deviceTypeName"),
                             haultStartTime: $('#haultStartTimeAdd').val(),
                             faultLevelType: $('#faultLevelAdd option:selected').text(),
                             faultInfo: $('#faultInfoAdd').val(),
@@ -442,6 +443,7 @@ require(['../config'],
                     $('#faultLevelAdd option:first').prop("selected", true)
                     $('#detectDeviceAdd option:first').prop("selected", true)
                     $('#lineAdd option:first').prop("selected", true)
+                    $('#detectTypeAdd option:first').prop("selected", true)
                 })
                 /**
                  * 修改故障预报表

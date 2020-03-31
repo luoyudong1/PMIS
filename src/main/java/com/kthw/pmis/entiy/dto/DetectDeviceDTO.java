@@ -8,14 +8,14 @@ public class DetectDeviceDTO extends DetectDevice {
     private String depotName;
     private String supplierName;
     private String deviceModelName;
-    private String devicetypeName;
+    private String deviceTypeName;
 
-    public String getDevicetypeName() {
-        return devicetypeName;
+    public String getDeviceTypeName() {
+        return deviceTypeName;
     }
 
-    public void setDevicetypeName(String devicetypeName) {
-        this.devicetypeName = devicetypeName;
+    public void setDeviceTypeName(String deviceTypeName) {
+        this.deviceTypeName = deviceTypeName;
     }
 
     public String getDepotName() {

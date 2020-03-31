@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="PMIS:war exploded" />
+      <artifact name="PMIS4:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
@@ -10,9 +10,58 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/report/AccumulativeStatisticsController.java" line="87" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9f7f428-680b-4eaa-9857-05133197aa52" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotToTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotToTest.html" afterDir="false" />
+    <list default="true" id="e9f7f428-680b-4eaa-9857-05133197aa52" name="Default Changelist" comment="git">
+      <change afterPath="$PROJECT_DIR$/../PMIS4.rar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/checkPlan/CheckPlanController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/PlanCheck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/PlanCheckMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/PlanCheckMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/checkPlan/create.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SpringBootDemo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java-design-patterns" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jeesite" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mybatis" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../netty-socketio-demo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../parent" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pdu_manage" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shiro-example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/checkPlan/OnDayController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/entryAndOut/PurchasePartsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/entryAndOut/PurchasePartsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/entryAndOut/RepairEntryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/entryAndOut/RepairEntryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/entryAndOut/RepairOutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/entryAndOut/RepairOutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/faultHandle/FaultReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/faultHandle/FaultReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/partsEntryAndOut/RepairFactoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/partsEntryAndOut/RepairFactoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/repairManage/CheckOutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/repairManage/CheckOutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/dto/DetectDeviceDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/dto/DetectDeviceDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/SheetDetailMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/SheetDetailMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sqlmap/base/LineDepotMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/LineDepotMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReport.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReport.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/checkPlan/OnDayController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/PurchasePartsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/PurchasePartsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/RepairEntryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/RepairEntryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/RepairOutController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/RepairOutController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/partsEntryAndOut/RepairFactoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/partsEntryAndOut/RepairFactoryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/repairManage/CheckOutController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/repairManage/CheckOutController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/dto/DetectDeviceDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/dto/DetectDeviceDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/SheetDetailMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/SheetDetailMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/~$rzTraceExport.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/faultManager/faultReport.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/faultManager/faultReport.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kthw/pmis/mapper/common/SheetDetailMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kthw/pmis/mapper/common/SheetDetailMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/generatorConfig.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,7 +88,7 @@
     <session id="1241442851">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="131" />
+          <entry key="project.closed" value="132" />
           <entry key="project.open.time.1" value="6" />
           <entry key="project.open.time.10" value="2" />
           <entry key="project.open.time.11" value="3" />
@@ -50,14 +99,14 @@
           <entry key="project.open.time.20" value="2" />
           <entry key="project.open.time.21" value="4" />
           <entry key="project.open.time.22" value="2" />
-          <entry key="project.open.time.24" value="5" />
+          <entry key="project.open.time.24" value="6" />
           <entry key="project.open.time.25" value="9" />
           <entry key="project.open.time.26" value="15" />
           <entry key="project.open.time.27" value="16" />
           <entry key="project.open.time.28" value="18" />
           <entry key="project.open.time.29" value="7" />
           <entry key="project.open.time.3" value="7" />
-          <entry key="project.open.time.30" value="14" />
+          <entry key="project.open.time.30" value="15" />
           <entry key="project.open.time.31" value="6" />
           <entry key="project.open.time.32" value="8" />
           <entry key="project.open.time.33" value="7" />
@@ -74,7 +123,7 @@
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="174" />
+          <entry key="project.opened" value="176" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -90,10 +139,10 @@
           <entry key="class" value="4" />
           <entry key="css" value="7" />
           <entry key="dtd" value="1" />
-          <entry key="html" value="523" />
-          <entry key="java" value="1726" />
+          <entry key="html" value="526" />
+          <entry key="java" value="1747" />
           <entry key="jpg" value="4" />
-          <entry key="js" value="1104" />
+          <entry key="js" value="1109" />
           <entry key="png" value="13" />
           <entry key="properties" value="9" />
           <entry key="readme" value="1" />
@@ -101,7 +150,7 @@
           <entry key="svg" value="1" />
           <entry key="ts" value="1" />
           <entry key="txt" value="1" />
-          <entry key="xml" value="252" />
+          <entry key="xml" value="268" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -109,10 +158,10 @@
           <entry key="CLASS" value="4" />
           <entry key="CSS" value="7" />
           <entry key="DTD" value="1" />
-          <entry key="HTML" value="523" />
+          <entry key="HTML" value="526" />
           <entry key="Image" value="17" />
-          <entry key="JAVA" value="1726" />
-          <entry key="JavaScript" value="1104" />
+          <entry key="JAVA" value="1747" />
+          <entry key="JavaScript" value="1109" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Properties" value="9" />
@@ -120,31 +169,32 @@
           <entry key="SVG" value="1" />
           <entry key="TypeScript" value="1" />
           <entry key="UML" value="10" />
-          <entry key="XML" value="252" />
+          <entry key="XML" value="268" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="17" />
-          <entry key="html" value="4844" />
-          <entry key="java" value="28343" />
-          <entry key="js" value="19569" />
+          <entry key="dummy" value="26" />
+          <entry key="html" value="4917" />
+          <entry key="java" value="28508" />
+          <entry key="js" value="19710" />
           <entry key="properties" value="51" />
           <entry key="readme" value="7" />
-          <entry key="xml" value="4303" />
+          <entry key="txt" value="7" />
+          <entry key="xml" value="4382" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="3" />
-          <entry key="HTML" value="4845" />
-          <entry key="JAVA" value="28343" />
-          <entry key="JavaScript" value="19565" />
+          <entry key="HTML" value="4918" />
+          <entry key="JAVA" value="28508" />
+          <entry key="JavaScript" value="19706" />
           <entry key="Markdown" value="7" />
-          <entry key="PLAIN_TEXT" value="17" />
+          <entry key="PLAIN_TEXT" value="33" />
           <entry key="Properties" value="51" />
-          <entry key="SQL" value="140" />
-          <entry key="XML" value="4163" />
+          <entry key="SQL" value="141" />
+          <entry key="XML" value="4241" />
         </counts>
       </usages-collector>
     </session>
@@ -152,43 +202,71 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/faultManager/faultReport.html">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/checkPlan/CheckPlanController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12">
-              <caret line="46" column="165" selection-start-line="46" selection-start-column="165" selection-end-line="46" selection-end-column="165" />
-              <folding>
-                <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#13;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#14;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#3;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/faultHandle/FaultReportController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2176">
-              <caret line="128" column="14" selection-start-line="128" selection-start-column="14" selection-end-line="128" selection-end-column="14" />
+            <state relative-caret-position="408">
+              <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1327#1338#0" expanded="true" />
+                <element signature="e#3745#3756#0" expanded="true" />
+                <element signature="e#4865#4876#0" expanded="true" />
+                <element signature="e#5911#5922#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReport.js">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/websocket/TXDSMessageSend.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="28" column="26" selection-end-line="738" selection-end-column="1" />
+            <state relative-caret-position="119">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-237">
+              <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/SqlMapConfig.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="61" column="15" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/checkPlan/create.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="76" column="37" lean-forward="true" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="37" />
+              <folding>
+                <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/js/checkPlan/create.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="158" column="43" selection-start-line="158" selection-start-column="43" selection-end-line="158" selection-end-column="43" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
@@ -216,37 +294,6 @@
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectManage/DetectManageController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="83" column="52" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="222" column="26" lean-forward="true" selection-start-line="222" selection-start-column="26" selection-end-line="222" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/checkPlan/onDay.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="507" column="43" selection-start-line="507" selection-start-column="43" selection-end-line="507" selection-end-column="43" />
-              <folding>
-                <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -255,60 +302,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/js/checkPlan/onDay.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1131">
-              <caret line="738" column="1" selection-start-line="738" selection-start-column="1" selection-end-line="738" selection-end-column="1" />
+            <state relative-caret-position="373">
+              <caret line="722" column="37" lean-forward="true" selection-end-line="738" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/checkPlan/onDay.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="461">
+              <caret line="503" column="14" lean-forward="true" selection-end-line="509" selection-end-column="7" />
               <folding>
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="e#151#157#0" expanded="true" />
-                <element signature="e#157#163#0" expanded="true" />
-                <element signature="e#151#157#0" expanded="true" />
-                <element signature="e#157#163#0" expanded="true" />
-                <element signature="e#157#163#0" expanded="true" />
-                <element signature="e#163#169#0" expanded="true" />
-                <element signature="e#157#163#0" expanded="true" />
-                <element signature="e#163#169#0" expanded="true" />
-                <element signature="e#156#162#0" expanded="true" />
-                <element signature="e#162#168#0" expanded="true" />
-                <element signature="e#152#158#0" expanded="true" />
-                <element signature="e#158#164#0" expanded="true" />
-                <element signature="e#156#162#0" expanded="true" />
-                <element signature="e#162#168#0" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/checkPlan/OnDayController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/faultHandle/FaultReportController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/js/faultManager/deviceFault.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12">
-              <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+            <state relative-caret-position="374">
+              <caret line="22" selection-start-line="22" selection-end-line="23" selection-end-column="43" />
               <folding>
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -321,28 +340,14 @@
       <list>
         <option value="Interface" />
         <option value="XML" />
+        <option value="Class" />
         <option value="HTML File" />
         <option value="JavaScript File" />
-        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>com.kthw.pmis.entiy.tblDetectDevice</find>
-      <find>Indoor_pic</find>
-      <find>getDetectRepairPerson</find>
-      <find>sheetTable</find>
-      <find>change</find>
-      <find>type</find>
-      <find>sheetTa</find>
-      <find>detectDevice.electricName</find>
-      <find>electricName</find>
-      <find>/upda</find>
-      <find>type=</find>
-      <find>chan</find>
-      <find>alert(t</find>
-      <find>/upd</find>
       <find>Interior_pic</find>
       <find>getResponsibleUnit</find>
       <find>noticeUser</find>
@@ -352,13 +357,27 @@
       <find>检测结论</find>
       <find>合格</find>
       <find>listDetect</find>
-      <find>show.bs</find>
       <find>completeFlag</find>
       <find>typeModify</find>
       <find>btn-search</find>
       <find>btn</find>
       <find>quer</find>
+      <find>si.factory_parts_code=sd.part_code</find>
+      <find>selectWIt</find>
+      <find>selectWi</find>
+      <find>selectWithStock</find>
+      <find>getMax</find>
+      <find>listDe</find>
+      <find>deviceTypeSet</find>
+      <find>devicetypeName</find>
+      <find>$(&quot;#detectTypeAdd&quot;)</find>
+      <find>$(&quot;#lineAdd&quot;)</find>
+      <find>lineAdd</find>
+      <find>change</find>
+      <find>show</find>
+      <find>show.bs</find>
       <find>listDetectDevice</find>
+      <find>get</find>
     </findStrings>
     <replaceStrings>
       <replace>车间</replace>
@@ -399,18 +418,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/js/stock/workShopReceiptQuery.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/js/stock/workShopReceiptSearch.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectProduce/PartsUnstallController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/js/detectProduce/partsUnstallSearch.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/js/detectProduce/partsUseSearch.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectProduce/PartsUseController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/stock/TestToDepotController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/stock/WorkShopReceiptController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/js/detectProduce/partsConsume.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectProduce/PartsConsumeController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/report/PurchaseStatictsController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/report/SectionalStatisticsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/report/ComprehensiveStatisticsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/report/AccumulativeStatisticsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/helper/StatiscsReturnDataHelper.java" />
@@ -436,20 +443,32 @@
         <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/DetectDevice.java" />
         <option value="$PROJECT_DIR$/core/com/kthw/common/ExcelUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/util/excel/ExportExcelUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/FaultHandleMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/faultManager/messageFault.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/faultManager/deviceFault.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/faultManager/electricFault.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/faultManager/comunicationFault.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReport.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/faultManager/faultReport.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/faultHandle/FaultReportController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/checkPlan/onDay.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/onDay.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/checkPlan/OnDayController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/dto/DetectDeviceDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/entryAndOut/PurchasePartsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/SheetDetailMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/entryAndOut/RepairOutController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/repairManage/CheckOutController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/partsEntryAndOut/RepairFactoryController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/entryAndOut/RepairEntryController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/dto/DetectDeviceDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReport.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/faultHandle/FaultReportController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/PlanCheck.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/PlanCheckMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/PlanCheckMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/create.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/checkPlan/CheckPlanController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/js/checkPlan/create.js" />
       </list>
     </option>
   </component>
@@ -477,12 +496,11 @@
       <expand>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="PMIS Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Profiles" type="6783ec58:MavenProjectsStructure$ProfilesNode" />
         </path>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="PMIS Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
         </path>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
@@ -511,44 +529,34 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="PMIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
               <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="PMIS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PMIS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="kthw" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PMIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
               <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="PMIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
               <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="PMIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
               <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="PMIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
               <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
@@ -556,50 +564,60 @@
               <item name="pmis" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="PMIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
               <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="pmis" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="PMIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
               <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="pmis" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PMIS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PMIS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PMIS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
               <item name="checkPlan" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="PMIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pmis" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="faultHandle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="checkPlan" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
               <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -607,7 +625,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -617,27 +634,30 @@
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585530716947" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585624384269" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\webapp\download\tools" />
+      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\controller\system" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.kthw.pmis.controller.stock" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\mapper\common" />
       <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\webapp\js" />
       <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\webapp\js\lib" />
       <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\webapp\download" />
       <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\webapp\pages\stock" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.kthw.pmis.controller.stock" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\webapp\download\tools" />
-      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\controller\system" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -684,10 +704,9 @@
     </configuration>
     <configuration name="tomcat8" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat8" ALTERNATIVE_JRE_ENABLED="false">
       <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8 " />
-      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
-      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="PMIS:war exploded">
+        <artifact name="PMIS4:war exploded">
           <settings>
             <option name="CONTEXT_PATH" value="/" />
           </settings>
@@ -753,6 +772,7 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="PMIS:war exploded" />
+          <artifact name="PMIS4:war exploded" />
         </option>
       </method>
     </configuration>
@@ -953,6 +973,8 @@
       <workItem from="1585202832337" duration="3239000" />
       <workItem from="1585272857082" duration="6374000" />
       <workItem from="1585290053635" duration="7368000" />
+      <workItem from="1585530628068" duration="4173000" />
+      <workItem from="1585617485855" duration="6719000" />
     </task>
     <servers />
   </component>
@@ -977,7 +999,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="980384000" />
+    <option name="totallyTimeSpent" value="991276000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -990,6 +1012,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" sideWeight="0.50211865" side_tool="true" weight="0.23324397" />
       <window_info id="Designer" order="1" />
@@ -997,8 +1020,8 @@
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info id="Capture Tool" order="5" />
-      <window_info id="Web" order="6" sideWeight="0.06666667" side_tool="true" visible="true" weight="0.3197051" />
-      <window_info active="true" content_ui="combo" id="Project" order="7" sideWeight="0.93333334" visible="true" weight="0.3197051" />
+      <window_info id="Web" order="6" sideWeight="0.069503546" side_tool="true" visible="true" weight="0.3243968" />
+      <window_info active="true" content_ui="combo" id="Project" order="7" sideWeight="0.93049645" visible="true" weight="0.3243968" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932975" weight="0.8780142" />
@@ -1010,7 +1033,7 @@
       <window_info anchor="bottom" id="Spring" order="8" weight="0.32907802" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32907802" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067025" side_tool="true" weight="0.9035461" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.0014184397" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.0" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.32907802" />
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="14" show_stripe_button="false" />
@@ -1030,6 +1053,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="git" />
+    <option name="LAST_COMMIT_MESSAGE" value="git" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1256,130 +1283,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairOutQuery.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-974" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/entryAndOut/repairOut.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="911" column="45" selection-start-line="911" selection-start-column="45" selection-end-line="911" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairOutSearch.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="93" column="69" selection-start-line="93" selection-start-column="69" selection-end-line="93" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairOut.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="425" column="14" lean-forward="true" selection-start-line="425" selection-start-column="14" selection-end-line="425" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/repairManage/checkPartsSearch.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="75" column="34" selection-start-line="75" selection-start-column="34" selection-end-line="75" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/util/excel/ExportCheckExcelUtil.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/repairManage/repairOutQuery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2759" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/repairManage/repairOutSearch.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="531" column="15" lean-forward="true" selection-start-line="531" selection-start-column="15" selection-end-line="531" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/repairManage/repairOut.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25874">
-          <caret line="1522" column="23" selection-start-line="1511" selection-start-column="13" selection-end-line="1522" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/repairManage/checkPartsSearch.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5899">
-          <caret line="347" column="20" selection-start-line="347" selection-start-column="20" selection-end-line="347" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/repairManage/repairOutVerify.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12546">
-          <caret line="738" column="37" selection-start-line="738" selection-start-column="33" selection-end-line="738" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/repairManage/CheckInController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="50" column="13" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/tblDetectDevice.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/tblDetectDeviceMapper.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sqlmap/base/tblDetectDeviceMapper.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DevicePartMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1691" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectDeviceMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/StoreHouse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/FaultHandleMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/FaultHandle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="205" column="29" selection-start-line="205" selection-start-column="19" selection-end-line="205" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/ResponsibleUnit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/ExportExcel/ExportExelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="79" column="49" selection-start-line="79" selection-start-column="49" selection-end-line="79" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/util/excel/ExportExcelUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9367">
@@ -1411,31 +1314,10 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext-shiro.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/entryAndOut/PurchaseToDeliveryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/entryAndOut/PurchasePartsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="58" column="13" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/repairManage/CheckController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="75" column="20" selection-start-line="71" selection-start-column="4" selection-end-line="75" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -1458,24 +1340,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/FaultHandleMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="142" column="23" selection-start-line="142" selection-start-column="23" selection-end-line="142" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/js/faultManager/comunicationFault.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1497,13 +1365,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1511,144 +1372,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/faultManager/deviceFault.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12">
-          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/faultManager/faultReport.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12">
-          <caret line="46" column="165" selection-start-line="46" selection-start-column="165" selection-end-line="46" selection-end-column="165" />
-          <folding>
-            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#13;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#14;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#3;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReport.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="28" column="26" selection-end-line="738" selection-end-column="1" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="e#151#157#0" expanded="true" />
-            <element signature="e#157#163#0" expanded="true" />
-            <element signature="e#151#157#0" expanded="true" />
-            <element signature="e#157#163#0" expanded="true" />
-            <element signature="e#157#163#0" expanded="true" />
-            <element signature="e#163#169#0" expanded="true" />
-            <element signature="e#157#163#0" expanded="true" />
-            <element signature="e#163#169#0" expanded="true" />
-            <element signature="e#156#162#0" expanded="true" />
-            <element signature="e#162#168#0" expanded="true" />
-            <element signature="e#152#158#0" expanded="true" />
-            <element signature="e#158#164#0" expanded="true" />
-            <element signature="e#156#162#0" expanded="true" />
-            <element signature="e#162#168#0" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/checkPlan/onDay.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="507" column="43" selection-start-line="507" selection-start-column="43" selection-end-line="507" selection-end-column="43" />
-          <folding>
-            <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/checkPlan/onDay.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1131">
-          <caret line="738" column="1" selection-start-line="738" selection-start-column="1" selection-end-line="738" selection-end-column="1" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="e#151#157#0" expanded="true" />
-            <element signature="e#157#163#0" expanded="true" />
-            <element signature="e#151#157#0" expanded="true" />
-            <element signature="e#157#163#0" expanded="true" />
-            <element signature="e#157#163#0" expanded="true" />
-            <element signature="e#163#169#0" expanded="true" />
-            <element signature="e#157#163#0" expanded="true" />
-            <element signature="e#163#169#0" expanded="true" />
-            <element signature="e#156#162#0" expanded="true" />
-            <element signature="e#162#168#0" expanded="true" />
-            <element signature="e#152#158#0" expanded="true" />
-            <element signature="e#158#164#0" expanded="true" />
-            <element signature="e#156#162#0" expanded="true" />
-            <element signature="e#162#168#0" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/checkPlan/OnDayController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/faultHandle/FaultReportController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2176">
-          <caret line="128" column="14" selection-start-line="128" selection-start-column="14" selection-end-line="128" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1659,38 +1382,423 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/dto/DetectDeviceDTO.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/faultManager/faultReport.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
+        <state relative-caret-position="782">
+          <caret line="46" column="165" selection-start-line="46" selection-start-column="165" selection-end-line="46" selection-end-column="165" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/faultManager/deviceFault.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
           <folding>
-            <element signature="e#325#326#0" expanded="true" />
-            <element signature="e#362#363#0" expanded="true" />
-            <element signature="e#422#423#0" expanded="true" />
-            <element signature="e#474#475#0" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/entryAndOut/PurchaseToDeliveryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+          <folding>
+            <element signature="e#4459#4475#0" expanded="true" />
+            <element signature="e#4858#4874#0" expanded="true" />
+            <element signature="e#6541#6557#0" expanded="true" />
+            <element signature="e#7397#7413#0" expanded="true" />
+            <element signature="e#10364#10380#0" expanded="true" />
+            <element signature="e#10913#10929#0" expanded="true" />
+            <element signature="e#13052#13068#0" expanded="true" />
+            <element signature="e#14680#14696#0" expanded="true" />
+            <element signature="e#15136#15152#0" expanded="true" />
+            <element signature="e#16637#16653#0" expanded="true" />
+            <element signature="e#17317#17333#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/entryAndOut/PurchasePartsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="606" column="33" selection-start-line="606" selection-start-column="33" selection-end-line="606" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/SheetDetailMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18666">
+          <caret line="1098" selection-start-line="1098" selection-end-line="1098" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/SheetDetailMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1105">
+          <caret line="72" column="38" selection-start-line="72" selection-start-column="38" selection-end-line="72" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/entryAndOut/RepairEntryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5865">
+          <caret line="385" selection-start-line="385" selection-end-line="385" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/partsEntryAndOut/RepairFactoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6324">
+          <caret line="407" selection-start-line="407" selection-end-line="407" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/repairManage/CheckOutController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5134">
+          <caret line="342" selection-start-line="342" selection-end-line="342" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/entryAndOut/RepairOutController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6222">
+          <caret line="406" selection-start-line="406" selection-end-line="406" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/entryAndOut/repairOut.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12">
+          <caret line="479" column="61" lean-forward="true" selection-start-line="465" selection-start-column="79" selection-end-line="465" selection-end-column="85" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectManage/DetectManageController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="83" column="52" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="52" />
+        <state relative-caret-position="390">
+          <caret line="83" column="52" lean-forward="true" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="222" column="26" lean-forward="true" selection-start-line="222" selection-start-column="26" selection-end-line="222" selection-end-column="26" />
+        <state relative-caret-position="70">
+          <caret line="206" column="77" selection-start-line="206" selection-start-column="77" selection-end-line="206" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/dto/DetectDeviceDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReport.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2">
+          <caret line="445" column="34" selection-start-line="445" selection-start-column="34" selection-end-line="445" selection-end-column="34" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="e#151#157#0" expanded="true" />
+            <element signature="e#157#163#0" expanded="true" />
+            <element signature="e#151#157#0" expanded="true" />
+            <element signature="e#157#163#0" expanded="true" />
+            <element signature="e#157#163#0" expanded="true" />
+            <element signature="e#163#169#0" expanded="true" />
+            <element signature="e#157#163#0" expanded="true" />
+            <element signature="e#163#169#0" expanded="true" />
+            <element signature="e#156#162#0" expanded="true" />
+            <element signature="e#162#168#0" expanded="true" />
+            <element signature="e#152#158#0" expanded="true" />
+            <element signature="e#158#164#0" expanded="true" />
+            <element signature="e#156#162#0" expanded="true" />
+            <element signature="e#162#168#0" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/sqlmap/base/LineDepotMapper.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/sqlmap/base/PlanCheckMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/LineDepotMapper.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="71" selection-start-line="71" selection-end-line="75" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/PlanCheck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="368" column="28" selection-start-line="368" selection-start-column="28" selection-end-line="368" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/SequenceMapper.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/FaultHandleMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="250" column="11" lean-forward="true" selection-start-line="248" selection-start-column="2" selection-end-line="250" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/PlanCheckMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="198" column="45" selection-start-line="198" selection-start-column="45" selection-end-line="198" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/PlanCheckMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-237">
+          <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/SqlMapConfig.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/websocket/VehicleMonitorHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/websocket/TXDSMessageSend.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="61" column="15" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/checkPlan/onDay.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="461">
+          <caret line="503" column="14" lean-forward="true" selection-end-line="509" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/checkPlan/onDay.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="722" column="37" lean-forward="true" selection-end-line="738" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/faultHandle/FaultReportController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" selection-start-line="22" selection-end-line="23" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/checkPlan/CheckPlanController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1327#1338#0" expanded="true" />
+            <element signature="e#3745#3756#0" expanded="true" />
+            <element signature="e#4865#4876#0" expanded="true" />
+            <element signature="e#5911#5922#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/checkPlan/create.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="76" column="37" lean-forward="true" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="37" />
+          <folding>
+            <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/checkPlan/create.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="158" column="43" selection-start-line="158" selection-start-column="43" selection-end-line="158" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="e#151#157#0" expanded="true" />
+            <element signature="e#157#163#0" expanded="true" />
+            <element signature="e#151#157#0" expanded="true" />
+            <element signature="e#157#163#0" expanded="true" />
+            <element signature="e#157#163#0" expanded="true" />
+            <element signature="e#163#169#0" expanded="true" />
+            <element signature="e#157#163#0" expanded="true" />
+            <element signature="e#163#169#0" expanded="true" />
+            <element signature="e#156#162#0" expanded="true" />
+            <element signature="e#162#168#0" expanded="true" />
+            <element signature="e#152#158#0" expanded="true" />
+            <element signature="e#158#164#0" expanded="true" />
+            <element signature="e#156#162#0" expanded="true" />
+            <element signature="e#162#168#0" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>PMIS4:war</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>PMIS4</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: aopalliance:aopalliance:1.0</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

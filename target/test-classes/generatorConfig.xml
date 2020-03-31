@@ -69,7 +69,7 @@
  			<!--selectByExampleQueryId="false">-->
  			<!--<generatedKey column="id" sqlStatement="MYSQL" identity="true" />-->
  		<!--</table>-->
- 		<!--<table tableName="tbl_line_depot" domainObjectName="LineDepot"-->
+ 		<!--<table tableName="tbl_plan_check_detect" domainObjectName="PlanCheck"-->
  			<!--enableSelectByExample="false" enableDeleteByExample="false"-->
  			<!--enableCountByExample="false" enableUpdateByExample="false"-->
  			<!--selectByExampleQueryId="false">-->
