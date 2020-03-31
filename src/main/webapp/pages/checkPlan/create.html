@@ -67,6 +67,7 @@
                     <thead>
                     <tr style="background-color: #DFE2E6; color: #333333">
                         <th>序号</th>
+                        <th style="display: none">id</th>
                         <th style="display: none">探测站id</th>
                         <th>探测站名称</th>
                         <th>探测站类别</th>
@@ -174,7 +175,7 @@
                         <div class="input-group">
                             <label><strong>维修人员：</strong></label> <select
                                 id="repairUserModify" type="text" class="form-control"
-                                style="width: 200px;" >
+                                style="width: 200px;">
                         </select>
                         </div>
                         <br>
@@ -188,7 +189,7 @@
                         <br>
                     </div>
                     <div class="col-md-5 offset-md-2">
-                        <div class="input-group" >
+                        <div class="input-group">
                             <label><strong>故障日表类别</strong></label>
                             <select id="typeModify" class="form-control "
                                     style="width: 200px;" autocomplete="off">
@@ -269,9 +270,9 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-6 offset-md-6">
+                    <div class="col-md-6 offset-md-3">
                         <div class="input-group">
-                            <label><strong>线别：</strong></label>
+                            <label><strong>线&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;别：</strong></label>
                             <select id="lineAdd" class="form-control "
                                     style="width: 200px;">
                                 <option></option>
@@ -305,18 +306,17 @@
                         </div>
                         <br>
                         <div class="input-group">
-                            <label><strong>计划检修时间：</strong></label> <textarea
+                            <label><strong>计划检修时间：</strong></label> <input
                                 id="planTimeAdd" type="text" class="form-control"
-                                placeholder="请输入计划检修时间" style="width: 200px;height: 50px;" autocomplete="off">
-                        </textarea>
+                                placeholder="请输入计划检修时间" style="width: 200px;" autocomplete="off">
                         </div>
                         <br>
                         <div class="input-group">
-                            <label><strong>创建人：</strong></label> <input
+                            <label><strong>创&nbsp; &nbsp;建&nbsp; &nbsp;人：</strong></label> <input
                                 id="createUserAdd" type="text" class="form-control"
                                 placeholder="请输入创建人" style="width: 200px;" autocomplete="off" readonly>
                         </div>
-                        <br>
+                    </div>
                 </div>
                 <div style="text-align: center;">
                     <button id="btnAddSheetOk" data-dismiss="modal" type="submit"
@@ -328,7 +328,6 @@
         </div>
     </div>
 </div>
-
 <!-- deleteSheetModal -->
 <div class="modal fade" id="popSheetModal" tabindex="-1" role="dialog"
      aria-labelledby="myPopModalLabel" aria-hidden="true">

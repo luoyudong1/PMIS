@@ -96,7 +96,7 @@ public class CheckPlanController {
             DataTable<PlanCheck> dt = new DataTable<PlanCheck>();
             //新增planCheck表
             Integer id = planCheckMapper.getMaxId();
-            id = (id == null ? 1 : id + 1);
+            id = ((id == null) ? 1 : (id + 1));
             planCheck.setId(id);
             planCheck.setStatus((short) 1);
             int flag = planCheckMapper.insert(planCheck);

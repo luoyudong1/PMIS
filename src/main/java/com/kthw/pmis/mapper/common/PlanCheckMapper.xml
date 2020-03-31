@@ -110,11 +110,11 @@
         AND status > #{gtStatus ,jdbcType=NUMERIC}
       </if>
       <if test='queryTime != null and queryTime != ""'>
-        and update_time >= to_timestamp(#{queryTime}, 'yyyy-mm-dd
+        and plan_time >= to_timestamp(#{queryTime}, 'yyyy-mm-dd
         hh24:mi:ss')
       </if>
       <if test='queryTime2 != null and queryTime2 != ""'>
-        and update_time &lt;= to_timestamp(#{queryTime2},
+        and plan_time &lt;= to_timestamp(#{queryTime2},
         'yyyy-mm-dd hh24:mi:ss')
       </if>
     </where>

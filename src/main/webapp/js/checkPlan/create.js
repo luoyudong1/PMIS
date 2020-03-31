@@ -132,7 +132,7 @@ require(['../config'],
                 var sheetTable = dataTable('sheetTable', {
                     bAutoWidth: false,
                     ajax: {
-                        url: config.basePath + '/faultHandle/faultReport/list',
+                        url: config.basePath + '/checkPlan/checkPlan/list',
                         type: 'GET',
                         data: function (d) {
                             if (roleName.indexOf("集团调度员") == -1) {
@@ -191,7 +191,7 @@ require(['../config'],
                         },
                     ],
                     columnDefs: [{
-                        targets: 11,
+                        targets: 12,
                         data: function (row) {
                             var str = '';
                             if (roleName == "段调度员" && (row.completeFlag == 1 || row.completeFlag == 3)) {
@@ -300,17 +300,10 @@ require(['../config'],
 
                         });
                 $('#addSheetModal').on('show.bs.modal', function (e) {
-                    $('#segmentDutyUserAdd').val(user_id)
-                    $('#faultStopTimeAdd').val('')
-                    $('#haultStartTimeAdd').val('')
-                    $('#haultEndTimeAdd').val('')
-                    $('#faultHandleStartTimeAdd').val('')
-                    $('#faultHandleEndTimeAdd').val('')
-                    $('#faultInfoAdd').val('')
-                    $('#handleInfoAdd').val('')
-                    $('#repairUserAdd').val('')
-                    $('#faultTypeAdd option:first').prop("selected", true)
-                    $('#faultLevelAdd option:first').prop("selected", true)
+                    $('#planTimeAdd').val('')
+
+                    $('#planTypeAdd option:first').prop("selected", true)
+                    $('#createUserAdd').val(user_id)
                     $('#detectDeviceAdd option:first').prop("selected", true)
                     $('#lineAdd option:first').prop("selected", true)
                 })
@@ -343,7 +336,6 @@ require(['../config'],
                         $('#planOutageStartTimeModify').val(data.planOutageStartTime)
                         $('#planOutageEndTimeModify').val(data.planOutageEndTime)
                         $('#faultTypeModify option:contains("' + data.faultType + '")').prop("selected", true);
-                        initRepairUserModify(detectDeviceId)
                         if (data.repairPerson != null && data.repairPerson != '') {
                             $('#repairUserModify option:contains("' + data.repairPerson + '")').prop("selected", true);
                         }
@@ -530,7 +522,7 @@ require(['../config'],
                             id: $('#deleteSheetId').val()
                         });
                         $.ajax({
-                            url: config.basePath + '/faultHandle/faultReport/delete',
+                            url: config.basePath + '/checkPlan/checkPlan/delete',
                             type: 'POST',
                             data: params,
                             contentType: 'application/json',
@@ -566,10 +558,10 @@ require(['../config'],
                         e.preventDefault();
                         var params = JSON.stringify({
                             id: $('#backSheetId').val(),
-                            completeFlag: completeFlag - 1
+                            status: completeFlag - 1
                         });
                         $.ajax({
-                            url: config.basePath + '/faultHandle/faultReport/update',
+                            url: config.basePath + '/checkPlan/checkPlan/update',
                             type: 'POST',
                             data: params,
                             contentType: 'application/json',

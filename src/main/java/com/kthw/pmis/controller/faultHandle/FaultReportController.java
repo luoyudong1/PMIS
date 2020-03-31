@@ -31,8 +31,6 @@ public class FaultReportController {
     private RepairUserMapper repairUserMapper;
     @Autowired
     private FaultTypeMapper faultTypeMapper;
-    @Autowired
-    private LineDepotMapper lineDepotMapper;
     private static final Logger logger = LoggerFactory.getLogger(FaultReportController.class);
 
     /**
@@ -201,26 +199,6 @@ public class FaultReportController {
             list = faultTypeMapper.selectByMap(null);
         } catch (Exception e) {
             logger.error("获取故障类别出错");
-        }
-        return list;
-    }
-    /**
-     * 获取线别
-     *
-     * @param
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping(value = "/getLine", method = RequestMethod.GET)
-    public List<LineDepot> getLine(Integer depotId) {
-        logger.info("获取线别");
-        List<LineDepot> list = new ArrayList<>();
-        Map<String, Object> params = new HashMap<>();
-        try {
-            params.put("eqDepotId",depotId);
-            list = lineDepotMapper.selectByMap(params);
-        } catch (Exception e) {
-            logger.error("获取线别出错");
         }
         return list;
     }
