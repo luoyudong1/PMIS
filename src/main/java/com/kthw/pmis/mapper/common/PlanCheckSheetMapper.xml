@@ -99,6 +99,12 @@
       </if>
     </if>
   </select>
+  <select id="getMaxSheetId" parameterType="String"
+          resultType="String">
+		SELECT max(sh.sheet_id) FROM tbl_plan_check_sheet sh
+		WHERE
+		sheet_id like #{sheetId} || '%'
+	</select>
   <insert id="insert" parameterType="com.kthw.pmis.entiy.PlanCheckSheet">
     insert into tbl_plan_check_sheet (sheet_id, year, month, 
       depot_id, depot_name, flag, 

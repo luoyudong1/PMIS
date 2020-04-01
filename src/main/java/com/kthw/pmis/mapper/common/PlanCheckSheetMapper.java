@@ -12,4 +12,7 @@ public interface PlanCheckSheetMapper {
     List<PlanCheckSheet> selectByMap(Map<String, Object> params);
 
     int updateByMap(Map<String, Object> params);
+
+    //获取最大sheet_id
+    String getMaxSheetId(String sheetId);
 }
