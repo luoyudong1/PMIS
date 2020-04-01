@@ -14,6 +14,9 @@
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="verify_user" jdbcType="VARCHAR" property="verifyUser" />
   </resultMap>
+  <sql id="Base_Column_List">
+    sheet_id,year,month,depot_id,depot_name,flag,create_time,update_time,remark,create_user,verify_user
+  </sql>
   <sql id="ByMap_Where_Clause">
     <where>
       <if test="eqSheetId != null">
