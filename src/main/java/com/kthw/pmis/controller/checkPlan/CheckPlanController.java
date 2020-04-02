@@ -45,29 +45,34 @@ public class CheckPlanController {
         String queryTime = request.getParameter("queryTime");
         String queryTime2 = request.getParameter("queryTime2");
         String type = request.getParameter("type");
+        String sheetId = request.getParameter("sheetId");
         try {
             Map<String, Object> params = new HashMap<>();
             List<PlanCheck> list = new ArrayList<>();
             //获取faultHandle表
-            if (StringUtils.isNotBlank(depotId) && !StringUtils.isNotBlank(status)) {
-                params.put("eqDepotId", Long.valueOf(depotId));
-                params.put("ltStatus", 5);
-            } else if (!StringUtils.isNotBlank(depotId) && !StringUtils.isNotBlank(status)) {
-                params.put("gtStatus", 1);
-                params.put("ltStatus", 5);
-            } else if (StringUtils.isNotBlank(depotId) && StringUtils.isNotBlank(status)) {
-                params.put("eqDepotId", Long.valueOf(depotId));
-                params.put("eqStatus", Short.valueOf(status));
-            } else if (!StringUtils.isNotBlank(depotId) && StringUtils.isNotBlank(status)) {
-                params.put("eqStatus", Short.valueOf(status));
+            if (StringUtils.isNotBlank(sheetId)) {
+                params.put("eqSheetId", sheetId);
+            } else {
+                if (StringUtils.isNotBlank(depotId) && !StringUtils.isNotBlank(status)) {
+                    params.put("eqDepotId", Long.valueOf(depotId));
+                    params.put("ltStatus", 5);
+                } else if (!StringUtils.isNotBlank(depotId) && !StringUtils.isNotBlank(status)) {
+                    params.put("gtStatus", 1);
+                    params.put("ltStatus", 5);
+                } else if (StringUtils.isNotBlank(depotId) && StringUtils.isNotBlank(status)) {
+                    params.put("eqDepotId", Long.valueOf(depotId));
+                    params.put("eqStatus", Short.valueOf(status));
+                } else if (!StringUtils.isNotBlank(depotId) && StringUtils.isNotBlank(status)) {
+                    params.put("eqStatus", Short.valueOf(status));
+                }
+                if (StringUtils.isNotBlank(type)) {
+                    params.put("eqPlanType", type);
+                }
+                params.put("queryTime", queryTime);
+                params.put("queryTime2", queryTime2);
             }
-            if (StringUtils.isNotBlank(type)) {
-                params.put("eqPlanType", type);
-            }
-            params.put("queryTime",queryTime);
-            params.put("queryTime2",queryTime2);
             params.put("orderByClause", "status asc,update_time desc");
-           list=planCheckMapper.selectByMap(params);
+            list = planCheckMapper.selectByMap(params);
             dt.setRecordsTotal(list.size());
             dt.setRecordsFiltered(list.size());
             dt.setData(list);

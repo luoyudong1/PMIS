@@ -1,7 +1,6 @@
 package com.kthw.pmis.mapper.common;
 
 import com.kthw.pmis.entiy.SheetInfo;
-import com.kthw.pmis.entiy.dto.SheetDetailDTO;
 import com.kthw.pmis.entiy.ext.SheetInfoExt;
 
 import java.util.List;
@@ -31,5 +30,7 @@ public interface SheetInfoMapper {
     int getNotReceiptSheetInfo(Map<String, Object> params);
     //获取未审核的单据数量
     int getNotVerifySheetInfo(Map<String, Object> params);
+    //获取未审核的发送单据数量
+    int getNotVerifySendSheetInfo(Map<String, Object> params);
     
     }

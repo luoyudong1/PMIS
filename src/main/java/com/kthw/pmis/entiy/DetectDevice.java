@@ -151,6 +151,24 @@ public class DetectDevice {
      *   tbl_detect_device_dict.device_location: 安装位置
      */
     private String deviceLocation;
+    private String planCheckType;
+    private Short  planCheckEnable;
+
+    public String getPlanCheckType() {
+        return planCheckType;
+    }
+
+    public void setPlanCheckType(String planCheckType) {
+        this.planCheckType = planCheckType;
+    }
+
+    public Short getPlanCheckEnable() {
+        return planCheckEnable;
+    }
+
+    public void setPlanCheckEnable(Short planCheckEnable) {
+        this.planCheckEnable = planCheckEnable;
+    }
 
     /**
      * @return the value of tbl_detect_device_dict.detect_device_id

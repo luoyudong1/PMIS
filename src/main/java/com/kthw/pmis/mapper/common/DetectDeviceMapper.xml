@@ -26,12 +26,14 @@
         <result column="indoor_pic" jdbcType="VARCHAR" property="indoorPic" />
         <result column="interior_pic" jdbcType="VARCHAR" property="interiorPic" />
         <result column="device_location" jdbcType="VARCHAR" property="deviceLocation" />
+        <result column="plan_check_type" jdbcType="VARCHAR" property="planCheckType" />
+        <result column="plan_check_enable" jdbcType="NUMERIC" property="planCheckEnable" />
     </resultMap>
     <sql id="Base_Column_List">
     detect_device_id, detect_device_name, depot_id, device_type_id, supplier_id, device_model_id,
     enabled, storehouse_id, create_time, update_time, user_name, remark, line_name, electric_type,
     electric_name, net_connect_type, net_connect_name, approval_doc, location_pic, trackside_pic,
-    outdoor_pic, indoor_pic, interior_pic, device_location
+    outdoor_pic, indoor_pic, interior_pic, device_location,plan_check_type,plan_check_enable
   </sql>
     <sql id="ByMap_Where_Clause">
         <where>
@@ -107,6 +109,12 @@
             <if test="eqDeviceLocation != null">
                 AND device_location = #{eqDeviceLocation,jdbcType=VARCHAR}
             </if>
+            <if test="eqPlanCheckType != null">
+                AND plan_check_type = #{eqPlanCheckType,jdbcType=VARCHAR}
+            </if>
+            <if test="eqPlanCheckEnable != null">
+                AND plan_check_enable = #{eqPlanCheckEnable,jdbcType=NUMERIC}
+            </if>
         </where>
     </sql>
     <sql id="ByMap_Set_Clause">
@@ -179,6 +187,12 @@
             </if>
             <if test="deviceLocation != null">
                 device_location = #{deviceLocation,jdbcType=VARCHAR},
+            </if>
+            <if test="planCheckType != null">
+                plan_check_type = #{planCheckType,jdbcType=VARCHAR},
+            </if>
+            <if test="planCheckEnable != null">
+                plan_check_enable = #{planCheckEnable,jdbcType=NUMERIC},
             </if>
         </set>
     </sql>
@@ -343,6 +357,12 @@
             <if test="deviceLocation != null">
                 device_location,
             </if>
+            <if test="planCheckType != null">
+                plan_check_type,
+            </if>
+            <if test="planCheckEnable != null">
+                plan_check_enable,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="detectDeviceId != null">
@@ -417,6 +437,12 @@
             <if test="deviceLocation != null">
                 #{deviceLocation,jdbcType=VARCHAR},
             </if>
+            <if test="planCheckType != null">
+                #{planCheckType,jdbcType=VARCHAR},
+            </if>
+            <if test="planCheckEnable != null">
+                #{planCheckEnable,jdbcType=NUMERIC},
+            </if>
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.kthw.pmis.entiy.DetectDevice">
@@ -449,6 +475,8 @@
       indoor_pic = #{indoorPic,jdbcType=VARCHAR},
       interior_pic = #{interiorPic,jdbcType=VARCHAR},
       device_location = #{deviceLocation,jdbcType=VARCHAR}
+      plan_check_type = #{planCheckType,jdbcType=VARCHAR}
+      plan_check_enable = #{planCheckEnable,jdbcType=NUMERIC}
     where detect_device_id = #{detectDeviceId,jdbcType=NUMERIC}
   </update>
     <update id="updateByMap" parameterType="java.util.Map">

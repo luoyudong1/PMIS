@@ -2,8 +2,11 @@
  * Created by YFZX-WB on 2017/3/31.
  */
 var currentModal="";  //当前模块
-var currentParent="";
+var currentParent="";//左侧主菜单
 var curr_fun = "";//点击功能id
+var Msg_Clicked=0;      // 消息已被点击查看的数量
+var Msg_numb=["0","0","0","0"];
+var Sub_count=["0","0","0","0"];
 var auths = {};
 require(['config'], function (config) {
 
@@ -93,32 +96,67 @@ require(['config'], function (config) {
             };
             toastr.success(user.userName+', 欢迎您登录PMIS系统!');
         }, 1300);
+
         //右上角提示信息
-     var msgInfos =function(){
-    	 $.ajax({
-	        	url: config.basePath + '/system/messageInfo/getMessageInfoList',
-	            type: 'GET',
+        var msgInfos =function(){
+            $.ajax({
+                url: config.basePath + '/system/messageInfo/getMessageInfoList',
+                type: 'GET',
                 data: {
-                    "depotId": user.deptId
+                    "depotId": user.deptId,
+                    "roleId": user.roleId
                 },
-	            success: function (result) {
+                success: function (result) {
 //	            if($('#MsgInfoNumb').text() == null || result.data.length > $('#MsgInfoNumb').text()){
 //	            };
-	            	$('#MegInfos').empty();
-	                if (result != null && result.data.length != 0) {
-	                	MsgInfos = result.data
-	                    $("#MsgInfoNumb").html(result.data.length);
-	                	$(".fa-bell").css("color","#f27459");
-	                    for(var i=0;i<MsgInfos.length;i++){
-	                    		$('#MegInfos').append("<li style='background: rgba(255,250,231,0.7);'><span style='color:red'>"+MsgInfos[i].message_info+"</span>")
-	                    }
-	                } else {
-	                	$("#MsgInfoNumb").html(0);
-	                	$(".fa-bell").css("color","#b9b1ab");
-	                }
-	            }
-	        });
-     }
+
+                    $('#MegInfos').empty();
+                    if (result != null && result.data.length > 0) {
+                        var MsgInfos = result.data;
+                        var MsgNumb = 0;
+                        var id=0;
+                        var judge= true;
+                        for(var i=0;i<MsgInfos.length;i++){
+                            //		$('#MegInfos').append("<li style='background: rgba(255,250,231,0.7);'><span style='color:red'>"+MsgInfos[i].message_info+"</span>")
+                            id=MsgInfos[i].message_id;
+                            if(MsgInfos[i].message_state != Msg_numb[id]){
+                                if(MsgInfos[i].message_state<Msg_numb[id]){
+                                    judge=false;
+                                }
+                                Msg_numb[id] = MsgInfos[i].message_state;
+                                Sub_count[id]="0";
+                                //被点击后的消息数
+                                Msg_Clicked= Msg_Clicked+Msg_numb[id];
+                            }
+
+                            //实际消息数量
+                            MsgNumb=MsgNumb+MsgInfos[i].message_state;
+                            $('#MegInfos').append("<li> <a id='"+MsgInfos[i].message_id+"' href='"+MsgInfos[i].message_state+"' class='dropdown-item'> <div><i class='fa fa-bell fa-fw'></i> "+MsgInfos[i].message_info+"</div> </a></li>");  //显示提示信息
+                        }
+
+                        $("#MsgInfoNumb").html(MsgNumb);
+                        //$(".fa-bell").css("color","#f27459");
+                        if(Msg_Clicked>0&&judge) {
+                            $("#wifi1").attr("class", "wifi-circle first");
+                            $("#wifi2").attr("class", "wifi-circle second");
+                            $("#wifi3").attr("class", "wifi-circle third");    //此处喇叭开始动态
+                        }else {
+                            $("#wifi1").attr("class", "wifi-circle first-0");
+                            $("#wifi2").attr("class", "wifi-circle second-0");
+                            $("#wifi3").attr("class", "wifi-circle third-0");    //此处喇叭取消动态
+                        }
+
+                    } else {
+                        $("#MsgInfoNumb").html(0);
+                        //$(".fa-bell").css("color","#b9b1ab");
+                        $("#wifi1").attr("class","wifi-circle-0 first-0");
+                        $("#wifi2").attr("class","wifi-circle-0 second-0");
+                        $("#wifi3").attr("class","wifi-circle-0 third-0");    //此处喇叭动态结束，颜色复原
+                    }
+                }
+            });
+        }
+
         //点击上方模块切换
         $("#navTop li a").click(function(){
         	currentModal = $(this).parent().attr('role');
@@ -130,26 +168,133 @@ require(['config'], function (config) {
         	$("#side-menu .memu_parent_" + currentModal).slideDown();
         });
 
+        //显示消息被选中
         $('#MegInfos').on('click', 'a', function (e) {
-            nav.createTab($(this).attr('href').substr(1), $(this).attr('role'), $(this).attr('data-parentrole'),$(this).attr('name'));
+            e.preventDefault();
+            //e.stopPropagation();
+            var subNmb=$(this).attr("href");
+            var msgId=$(this).attr("id");
+            switch(true){
+                case user.deptId==3:     //机辆检测所用户
+                    switch (user.roleId) {
+                        case 2:      //库管人员
+                            if(msgId==0){    //所未接收车间返修的单据
+                                $("#navTop li a").eq(2).click();
+                                var idxUrl = '188';
+                                currentParent = 'stock5';
+                                break;
+                            }
+                            if(msgId==1){   //未接收所内检修出库审核
+                                $("#navTop li a").eq(1).click();
+                                var idxUrl = '232';
+                                currentParent = 'repaireManage5';
+                                break;
+                            }
+                            break;
+                        case 3:  //审核人员
+                            if(msgId==0){  //所未审核车间返修的单据
+                                $("#navTop li a").eq(2).click();
+                                var idxUrl = '189';
+                                currentParent = 'stock5';
+                                break;
+                            }
+                            if(msgId==1){   //所未审核所配送到车间调拨的单据
+                                $("#navTop li a").eq(2).click();
+                                var idxUrl = '180';
+                                currentParent = 'stock2';
+                                break;
+                            }
+                            if(msgId==2){   //所未审核所报废配送到车间调拨的单据
+                                $("#navTop li a").eq(0).click();
+                                var idxUrl = '152';
+                                currentParent = 'entryAndOut5';
+                                break;
+                            }
+                            break;
+                        case 4:   //检修人员
+                            if(msgId==0) {   //所内未审核的送修单据为
+                                $("#navTop li a").eq(0).click();
+                                var idxUrl = '162';
+                                currentParent = 'repaireManage1';
+                                break;
+                            }
+                            break;
+                    }
+                case(user.deptId>7&&user.deptId<16):  //车间用户
+                    switch (user.roleId) {
+                        case 6:      //车间录入人员
+                            if (msgId==0) {    //车间未接收所调拨的单据
+                                $("#navTop li a").eq(1).click();
+                                var idxUrl = '281';
+                                currentParent = 'stock8';
+                                break;
+                            }
+                            if(msgId==1){   //车间未接收所报废调拨的单据
+                                $("#navTop li a").eq(1).click();
+                                var idxUrl = '271';
+                                currentParent = 'stock7';
+                                break;
+                            }
+                            break;
+                        case 7:
+                            if(msgId==0){  //车间未审核所调拨的单据
+                                $("#navTop li a").eq(0).click();
+                                var idxUrl = '282';
+                                currentParent = 'stock8';
+                                break;
+                            }
+                            if(msgId==1){   //车间未审核所报废调拨的单据
+                                $("#navTop li a").eq(0).click();
+                                var idxUrl = '272';
+                                currentParent = 'stock7';
+                                break;
+                            }
+                            if(msgId==2){   //车间未审核返修调拨的单据
+                                $("#navTop li a").eq(0).click();
+                                var idxUrl = '186';
+                                currentParent = 'stock4';
+                                break;
+                            }
+                            break;
+                    }
+                    break;
+                case (user.deptId>15&&user.deptId<50):
+                    switch (user.roleId) {
+                        case 9:
+                            $("#navTop li a").eq(2).click();
+                            var idxUrl = '255';
+                            currentParent = 'detectProduce2';
+
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
+            $('#side-menu a[href="#'+currentParent+'"]').click();
+            nav.openTab(idxUrl);
+            if(Sub_count[msgId]==0){
+                Msg_Clicked=Msg_Clicked-subNmb;
+            }
+            Sub_count[msgId]='1';
+            msgInfos();
+
             $.ajax({
-            	url: config.basePath + '/system/messageInfo/updateMessageState',
+                url: config.basePath + '/system/messageInfo/updateMessageState',
                 type: 'POST',
-                data: $.param({
-                	message_id:$(this).attr('id').split("_")[1]
-                }),
+                data: $.param({message_id:$(this).attr('id').split("_")[1]}),
                 dataType: 'json',
                 success: function (result) {
-                	if(result.code == 0){
-                		msgInfos();
-                	}
+                    if(result.code == 0){msgInfos();}
                 }
             });
         });
+
         //每10分钟执行一次
         msgInfos();
-        window.setInterval(msgInfos,1800000);
+        window.setInterval(msgInfos,500000);
 
+        //显示主界面
         $('a[data-toggle="tab"]').on('shown.bs.tab', function () {
         	curr_fun = $(this).attr('href').substr(5);
         	if($(this).attr('data-parentrole') == 'dataAnalyse/deviceBi' || $(this).attr('data-parentrole') == 'dataAnalyse/vehTXDSFaultStatistics'){
@@ -166,6 +311,7 @@ require(['config'], function (config) {
 
         	}
         });
+
         //关闭功能
         $("#navTabs").on('click', 'i', function (e) {
             e.stopPropagation();

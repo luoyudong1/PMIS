@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  *
- * @mbg.generated do_not_delete_during_merge 2020-03-31 10:04:28
+ * @mbg.generated do_not_delete_during_merge 2020-04-01 16:52:07
  */
 public class PlanCheck {
     /**
@@ -80,8 +80,6 @@ public class PlanCheck {
      * Database Column Remarks:
      *   tbl_plan_check_detect.create_time: 创建时间
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
@@ -157,6 +155,12 @@ public class PlanCheck {
      *   tbl_plan_check_detect.depot_name: 部门名称
      */
     private String depotName;
+
+    /**
+     * Database Column Remarks:
+     *   tbl_plan_check_detect.sheet_id: 单据id
+     */
+    private String sheetId;
 
     /**
      * @return the value of tbl_plan_check_detect.id
@@ -480,6 +484,20 @@ public class PlanCheck {
         this.depotName = depotName == null ? null : depotName.trim();
     }
 
+    /**
+     * @return the value of tbl_plan_check_detect.sheet_id
+     */
+    public String getSheetId() {
+        return sheetId;
+    }
+
+    /**
+     * @param sheetId the value for tbl_plan_check_detect.sheet_id
+     */
+    public void setSheetId(String sheetId) {
+        this.sheetId = sheetId == null ? null : sheetId.trim();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -509,6 +527,7 @@ public class PlanCheck {
         sb.append(", overdueReason=").append(overdueReason);
         sb.append(", depotId=").append(depotId);
         sb.append(", depotName=").append(depotName);
+        sb.append(", sheetId=").append(sheetId);
         sb.append("]");
         return sb.toString();
     }

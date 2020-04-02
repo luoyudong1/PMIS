@@ -1,17 +1,20 @@
 package com.kthw.pmis.entiy;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
  *
- * @mbg.generated do_not_delete_during_merge 2020-03-31 16:16:40
+ * @mbg.generated do_not_delete_during_merge 2020-04-01 15:10:04
  */
 public class PlanCheckSheet {
     /**
      * Database Column Remarks:
      *   tbl_plan_check_sheet.sheet_id: 单据id
      */
-    private Object sheetId;
+    private String sheetId;
 
     /**
      * Database Column Remarks:
@@ -47,12 +50,16 @@ public class PlanCheckSheet {
      * Database Column Remarks:
      *   tbl_plan_check_sheet.create_time: 创建时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
      * Database Column Remarks:
      *   tbl_plan_check_sheet.update_time: 修改时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     /**
@@ -76,15 +83,15 @@ public class PlanCheckSheet {
     /**
      * @return the value of tbl_plan_check_sheet.sheet_id
      */
-    public Object getSheetId() {
+    public String getSheetId() {
         return sheetId;
     }
 
     /**
      * @param sheetId the value for tbl_plan_check_sheet.sheet_id
      */
-    public void setSheetId(Object sheetId) {
-        this.sheetId = sheetId;
+    public void setSheetId(String sheetId) {
+        this.sheetId = sheetId == null ? null : sheetId.trim();
     }
 
     /**

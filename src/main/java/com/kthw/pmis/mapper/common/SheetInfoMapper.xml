@@ -278,6 +278,7 @@
             </if>
         </if>
     </select>
+    <!-- 获取未审核的发送单据数量 -->
     <select id="getNotReceiptSheetInfo" parameterType="java.util.Map" resultType="Integer">
         SELECT count(*) from tbl_sheet_info si left join tbl_storehouse_dict sd
         on si.object_store_house_id=sd.storehouse_id
@@ -295,12 +296,30 @@
 
 
     </select>
+    <!-- 获取未审核的单据数量 -->
     <select id="getNotVerifySheetInfo" parameterType="java.util.Map" resultType="Integer">
         SELECT count(*) from tbl_sheet_info si left join tbl_storehouse_dict sd
         on si.object_store_house_id=sd.storehouse_id
         where
         si.send_verify_flag=2 and
         si.receipt_verify_flag=1
+        <if test="sheetType !=null">
+            and si.sheet_type =
+            #{sheetType}
+        </if>
+        <if test="depotId !=null and depotId !=''">
+            and sd.depot_id =
+            #{depotId}
+        </if>
+
+
+    </select>
+    <!-- 获取未审核的发送单据数量 -->
+    <select id="getNotVerifySendSheetInfo" parameterType="java.util.Map" resultType="Integer">
+        SELECT count(*) from tbl_sheet_info si left join tbl_storehouse_dict sd
+        on si.source_store_house_id=sd.storehouse_id
+        where
+        si.send_verify_flag=1
         <if test="sheetType !=null">
             and si.sheet_type =
             #{sheetType}

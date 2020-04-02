@@ -1,26 +1,24 @@
 package com.kthw.pmis.serviceimpl.system;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.kthw.common.base.ErrCode;
 import com.kthw.pmis.entiy.Depot;
 import com.kthw.pmis.mapper.common.DepotMapper;
 import com.kthw.pmis.mapper.common.DetectPartsMapper;
 import com.kthw.pmis.mapper.common.SheetInfoMapper;
+import com.kthw.pmis.mapper.system.MessageInfoMapper;
+import com.kthw.pmis.model.system.MessageInfo;
+import com.kthw.pmis.service.system.MessageInfoService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kthw.common.base.ErrCode;
-import com.kthw.pmis.mapper.system.MessageInfoMapper;
-import com.kthw.pmis.model.system.MessageInfo;
-import com.kthw.pmis.service.system.MessageInfoService;
-
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class MessageInfoServiceImpl implements MessageInfoService {
@@ -58,25 +56,96 @@ public class MessageInfoServiceImpl implements MessageInfoService {
         }
         return errCode;
     }
+
+    //获取 机辆所库管人员 未接收车间返修的单据数量和所内检修出库未接收的单据数量
     private List<MessageInfo> getTestMessage(Long depotId){
         List<MessageInfo> list = new ArrayList<>();
         Map<String, Object> params = new HashMap<>();
+        //所未接收车间返修的单据数量(机辆所库管)
         params.put("depotId",depotId);
         params.put("sheetType", (short) 9);
         int count = sheetInfoMapper.getNotReceiptSheetInfo(params);
         if (count > 0) {
             MessageInfo messageInfo = new MessageInfo();
-            messageInfo.setMessage_info("所未接收车间返修的单据为" + count + "条");
+            messageInfo.setMessage_info(" 所未接收车间返修的单据为" + count + "条");
+            messageInfo.setMessage_state(count);
+            messageInfo.setMessage_id(0);
             list.add(messageInfo);
         }
-        count = sheetInfoMapper.getNotVerifySheetInfo(params);
+        //机辆所库管未接收所内检修出库审核数量     //ZZF.ADD
+        params.put("depotId",depotId);
+        params.put("sheetType", (short) 7);
+        count = sheetInfoMapper.getNotVerifySendSheetInfo(params);
         if (count > 0) {
             MessageInfo messageInfo = new MessageInfo();
-            messageInfo.setMessage_info("所未审核车间返修的单据为" + count + "条");
+            messageInfo.setMessage_info(" 所内未审核所内检修出库单据为" + count + "条");
+            messageInfo.setMessage_state(count);
+            messageInfo.setMessage_id(1);
+            list.add(messageInfo);
+
+        }
+        return list;
+    }
+
+    //获取 机辆所审核人员 未审核车间返修的单据和所未审核所配送到车间调拨的单据数量              ZZF.ADD
+    private List<MessageInfo> getTestMessageRole(Long depotId){
+        List<MessageInfo> list = new ArrayList<>();
+        Map<String, Object> params = new HashMap<>();
+        //所未审核车间返修的单据数量
+        params.put("depotId",depotId);
+        params.put("sheetType", (short) 9);
+        int count = sheetInfoMapper.getNotVerifySheetInfo(params);
+        if (count > 0) {
+            MessageInfo messageInfo = new MessageInfo();
+            messageInfo.setMessage_info(" 所未审核车间返修的单据为" + count + "条");
+            messageInfo.setMessage_state(count);
+            messageInfo.setMessage_id(0);
+            list.add(messageInfo);
+        }
+        ///所未审核所配送到车间调拨的单据数量
+        params.put("depotId",depotId);
+        params.put("sheetType", (short) 10);
+        count = sheetInfoMapper.getNotVerifySendSheetInfo(params);
+        if (count > 0) {
+            MessageInfo messageInfo = new MessageInfo();
+            messageInfo.setMessage_info(" 所未审核所配送到车间调拨单据为" + count + "条");
+            messageInfo.setMessage_state(count);
+            messageInfo.setMessage_id(1);
+            list.add(messageInfo);
+        }
+        //所未审核所报废配送到车间调拨的单据数量
+        params.put("depotId",depotId);
+        params.put("sheetType", (short) 5);
+        count = sheetInfoMapper.getNotVerifySendSheetInfo(params);
+        if (count > 0) {
+            MessageInfo messageInfo = new MessageInfo();
+            messageInfo.setMessage_info(" 所未审核所报废配送到车间调拨单据为" + count + "条");
+            messageInfo.setMessage_state(count);
+            messageInfo.setMessage_id(2);
             list.add(messageInfo);
         }
         return list;
     }
+
+    //获取机辆所维修人员未接收所内送修单            ZZF.ADD
+    private List<MessageInfo> getFixMessage(Long depotId) {
+        List<MessageInfo> list = new ArrayList<>();
+        Map<String, Object> params = new HashMap<>();
+        //机辆所维修人员未接收所内送修单数量
+        params.put("depotId",depotId);
+        params.put("sheetType", (short) 6);
+        int count = sheetInfoMapper.getNotVerifySendSheetInfo(params);
+        if (count > 0) {
+            MessageInfo messageInfo = new MessageInfo();
+            messageInfo.setMessage_info(" 所内未审核的送修单据为" + count + "条");
+            messageInfo.setMessage_state(count);
+            messageInfo.setMessage_id(0);
+            list.add(messageInfo);
+        }
+        return list;
+    }
+
+    //获取车间录入人员未接收所调拨的单据数量
     private List<MessageInfo> getWorkShopMessage(Long depotId){
         List<MessageInfo> list = new ArrayList<>();
         Map<String, Object> params = new HashMap<>();
@@ -87,17 +156,62 @@ public class MessageInfoServiceImpl implements MessageInfoService {
         if (noReceiptCount > 0) {
             MessageInfo messageInfo = new MessageInfo();
             messageInfo.setMessage_info("车间未接收所调拨的单据为" + noReceiptCount + "条");
+            messageInfo.setMessage_state(noReceiptCount);
+            messageInfo.setMessage_id(0);
             list.add(messageInfo);
         }
-        //车间未审核所调拨的单据数量
-        int noVerifyCount = sheetInfoMapper.getNotVerifySheetInfo(params);
-        if (noVerifyCount > 0) {
+        params.put("depotId", Long.valueOf(depotId));
+        params.put("sheetType", (short) 5);
+        noReceiptCount = sheetInfoMapper.getNotReceiptSheetInfo(params);
+        if (noReceiptCount > 0) {
             MessageInfo messageInfo = new MessageInfo();
-            messageInfo.setMessage_info("车间接收所调拨未审核的单据为" + noVerifyCount + "条");
+            messageInfo.setMessage_info("车间未接收所报废调拨的单据为" + noReceiptCount + "条");
+            messageInfo.setMessage_state(noReceiptCount);
+            messageInfo.setMessage_id(1);
             list.add(messageInfo);
         }
         return list;
     }
+
+    //获取车间审核人员未未审核所调拨的单据数量 ，未审核所报废调拨的单据数量 和车间未审核返修调拨的单据数量
+    private List<MessageInfo> getWorkShopMessageRole(Long depotId) {
+        List<MessageInfo> list = new ArrayList<>();
+        Map<String, Object> params = new HashMap<>();
+        //车间未审核所调拨的单据数量
+        params.put("depotId", Long.valueOf(depotId));
+        params.put("sheetType", (short) 10);
+        int noVerifyCount = sheetInfoMapper.getNotVerifySheetInfo(params);
+        if (noVerifyCount > 0) {
+            MessageInfo messageInfo = new MessageInfo();
+            messageInfo.setMessage_info("车间未审核所调拨的单据为" + noVerifyCount + "条");
+            messageInfo.setMessage_state(noVerifyCount);
+            messageInfo.setMessage_id(0);
+            list.add(messageInfo);
+        }
+        params.put("depotId", Long.valueOf(depotId));
+        params.put("sheetType", (short) 5);
+        noVerifyCount = sheetInfoMapper.getNotVerifySheetInfo(params);
+        if (noVerifyCount > 0) {
+            MessageInfo messageInfo = new MessageInfo();
+            messageInfo.setMessage_info("车间未审核所报废调拨的单据为" + noVerifyCount + "条");
+            messageInfo.setMessage_state(noVerifyCount);
+            messageInfo.setMessage_id(1);
+            list.add(messageInfo);
+        }
+        params.put("depotId", Long.valueOf(depotId));
+        params.put("sheetType", (short) 9);
+        noVerifyCount = sheetInfoMapper.getNotVerifySendSheetInfo(params);
+        if (noVerifyCount > 0) {
+            MessageInfo messageInfo = new MessageInfo();
+            messageInfo.setMessage_info("车间未审核返修调拨的单据为" + noVerifyCount + "条");
+            messageInfo.setMessage_state(noVerifyCount);
+            messageInfo.setMessage_id(2);
+            list.add(messageInfo);
+        }
+        return list;
+    }
+
+
     private List<MessageInfo> getDepotMessage(Long depotId){
         List<MessageInfo> list = new ArrayList<>();
         Map<String, Object> params = new HashMap<>();
@@ -106,14 +220,19 @@ public class MessageInfoServiceImpl implements MessageInfoService {
         params.put("depotId", Long.valueOf(depotId));
         List<String> detectDeviceList = detectPartsMapper.getPartsUnstall(params);
         if (detectDeviceList.size() > 0) {
+            int i=0;
             for (String detectDevice : detectDeviceList) {
                 MessageInfo messageInfo = new MessageInfo();
                 messageInfo.setMessage_info("探测站" + detectDevice + "有配件未安装");
+                messageInfo.setMessage_state(1);
+                messageInfo.setMessage_id(i);
+                i++;
                 list.add(messageInfo);
             }
         }
         return list;
     }
+
     //根据部门获取消息
     @Override
     public List<MessageInfo> getMessageBydepotId(HttpServletRequest request) {
@@ -122,14 +241,34 @@ public class MessageInfoServiceImpl implements MessageInfoService {
         Map<String, Object> params = new HashMap<>();
         try {
             String depotId = request.getParameter("depotId");
+            String roleId = request.getParameter("roleId");      //    ZF:增加了用户权限参数
+
             if (StringUtils.isNotBlank(depotId)) {
                 Depot depot = depotMapper.selectByPrimaryKey(Long.valueOf(depotId));
-                switch (depot.getDepotLevel()) {
+                switch (depot.getDepotLevel()) {                    //    ZF:按用户权限进行了二次分类获取信息
                     case 2://检测所单据未接收信息
-                       list.addAll(getTestMessage(Long.valueOf(depotId)));
+                        if(roleId.equals("2")){ // 机辆所库管员
+                            list.addAll(getTestMessage(Long.valueOf(depotId)));
+                            break;
+                        }
+                        if(roleId.equals("3")){  //机辆所审核员
+                            list.addAll(getTestMessageRole(Long.valueOf(depotId)));
+                            break;
+                        }
+                        if(roleId.equals("4")){  //机辆所检修员
+                            list.addAll(getFixMessage(Long.valueOf(depotId)));
+                            break;
+                        }
                         break;
                     case 4://车间单据未接收信息
-                       list.addAll(getWorkShopMessage(Long.valueOf(depotId)));
+                        if(roleId.equals("6")){   //车间录入员
+                            list.addAll(getWorkShopMessage(Long.valueOf(depotId)));
+                            break;
+                        }
+                        if(roleId.equals("7")){   //车间审核员
+                            list.addAll(getWorkShopMessageRole(Long.valueOf(depotId)));
+                            break;
+                        }
                         break;
                     case 5://班组探测站配件未安装信息
                         list.addAll(getDepotMessage(Long.valueOf(depotId)));
@@ -142,6 +281,8 @@ public class MessageInfoServiceImpl implements MessageInfoService {
         }
         return list;
     }
+
+
 
     @Override
     public int insertMessageInfo(List<MessageInfo> list) {

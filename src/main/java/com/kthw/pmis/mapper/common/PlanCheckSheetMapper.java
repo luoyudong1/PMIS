@@ -5,14 +5,21 @@ import java.util.List;
 import java.util.Map;
 
 public interface PlanCheckSheetMapper {
+    int deleteByPrimaryKey(String sheetId);
+
     int insert(PlanCheckSheet record);
 
     int insertSelective(PlanCheckSheet record);
 
+    PlanCheckSheet selectByPrimaryKey(String sheetId);
+
     List<PlanCheckSheet> selectByMap(Map<String, Object> params);
+
+    int updateByPrimaryKeySelective(PlanCheckSheet record);
+
+    int updateByPrimaryKey(PlanCheckSheet record);
 
     int updateByMap(Map<String, Object> params);
 
-    //获取最大sheet_id
     String getMaxSheetId(String sheetId);
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kthw.pmis.mapper.common.PlanCheckSheetMapper">
   <resultMap id="BaseResultMap" type="com.kthw.pmis.entiy.PlanCheckSheet">
-    <result column="sheet_id" jdbcType="OTHER" property="sheetId" />
+    <id column="sheet_id" jdbcType="VARCHAR" property="sheetId" />
     <result column="year" jdbcType="VARCHAR" property="year" />
     <result column="month" jdbcType="VARCHAR" property="month" />
     <result column="depot_id" jdbcType="NUMERIC" property="depotId" />
@@ -15,12 +15,13 @@
     <result column="verify_user" jdbcType="VARCHAR" property="verifyUser" />
   </resultMap>
   <sql id="Base_Column_List">
-    sheet_id,year,month,depot_id,depot_name,flag,create_time,update_time,remark,create_user,verify_user
+    sheet_id, year, month, depot_id, depot_name, flag, create_time, update_time, remark, 
+    create_user, verify_user
   </sql>
   <sql id="ByMap_Where_Clause">
     <where>
       <if test="eqSheetId != null">
-        AND sheet_id = #{eqSheetId,jdbcType=OTHER}
+        AND sheet_id = #{eqSheetId,jdbcType=VARCHAR}
       </if>
       <if test="eqYear != null">
         AND year = #{eqYear,jdbcType=VARCHAR}
@@ -56,9 +57,6 @@
   </sql>
   <sql id="ByMap_Set_Clause">
     <set>
-      <if test="sheetId != null">
-        sheet_id = #{sheetId,jdbcType=OTHER},
-      </if>
       <if test="year != null">
         year = #{year,jdbcType=VARCHAR},
       </if>
@@ -91,6 +89,18 @@
       </if>
     </set>
   </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_plan_check_sheet
+    where sheet_id = #{sheetId,jdbcType=VARCHAR}
+  </select>
+  <select id="getMaxSheetId" parameterType="String"
+          resultType="String">
+		SELECT max(sh.sheet_id) FROM tbl_plan_check_sheet sh
+		WHERE
+		sheet_id like #{sheetId} || '%'
+	</select>
   <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -102,18 +112,16 @@
       </if>
     </if>
   </select>
-  <select id="getMaxSheetId" parameterType="String"
-          resultType="String">
-		SELECT max(sh.sheet_id) FROM tbl_plan_check_sheet sh
-		WHERE
-		sheet_id like #{sheetId} || '%'
-	</select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tbl_plan_check_sheet
+    where sheet_id = #{sheetId,jdbcType=VARCHAR}
+  </delete>
   <insert id="insert" parameterType="com.kthw.pmis.entiy.PlanCheckSheet">
     insert into tbl_plan_check_sheet (sheet_id, year, month, 
       depot_id, depot_name, flag, 
       create_time, update_time, remark, 
       create_user, verify_user)
-    values (#{sheetId,jdbcType=OTHER}, #{year,jdbcType=VARCHAR}, #{month,jdbcType=VARCHAR}, 
+    values (#{sheetId,jdbcType=VARCHAR}, #{year,jdbcType=VARCHAR}, #{month,jdbcType=VARCHAR}, 
       #{depotId,jdbcType=NUMERIC}, #{depotName,jdbcType=VARCHAR}, #{flag,jdbcType=NUMERIC}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
       #{createUser,jdbcType=VARCHAR}, #{verifyUser,jdbcType=VARCHAR})
@@ -157,7 +165,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="sheetId != null">
-        #{sheetId,jdbcType=OTHER},
+        #{sheetId,jdbcType=VARCHAR},
       </if>
       <if test="year != null">
         #{year,jdbcType=VARCHAR},
@@ -191,6 +199,25 @@
       </if>
     </trim>
   </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kthw.pmis.entiy.PlanCheckSheet">
+    update tbl_plan_check_sheet
+    <include refid="ByMap_Set_Clause" />
+    where sheet_id = #{sheetId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kthw.pmis.entiy.PlanCheckSheet">
+    update tbl_plan_check_sheet
+    set year = #{year,jdbcType=VARCHAR},
+      month = #{month,jdbcType=VARCHAR},
+      depot_id = #{depotId,jdbcType=NUMERIC},
+      depot_name = #{depotName,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=NUMERIC},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      verify_user = #{verifyUser,jdbcType=VARCHAR}
+    where sheet_id = #{sheetId,jdbcType=VARCHAR}
+  </update>
   <update id="updateByMap" parameterType="java.util.Map">
     update tbl_plan_check_sheet
     <if test="_parameter != null">

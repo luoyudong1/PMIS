@@ -69,16 +69,16 @@
  			<!--selectByExampleQueryId="false">-->
  			<!--<generatedKey column="id" sqlStatement="MYSQL" identity="true" />-->
  		<!--</table>-->
- 		<!--<table tableName="tbl_plan_check_detect" domainObjectName="PlanCheck"-->
+ 		<!--<table tableName="tbl_plan_check_sheet" domainObjectName="PlanCheckSheet"-->
  			<!--enableSelectByExample="false" enableDeleteByExample="false"-->
  			<!--enableCountByExample="false" enableUpdateByExample="false"-->
  			<!--selectByExampleQueryId="false">-->
  		<!--</table>-->
-		<!--<table tableName="tbl_repair_user" domainObjectName="RepairUser"-->
-			   <!--enableSelectByExample="false" enableDeleteByExample="false"-->
-			   <!--enableCountByExample="false" enableUpdateByExample="false"-->
-			   <!--selectByExampleQueryId="false">-->
-		<!--</table>-->
+		<table tableName="tbl_plan_check_detect" domainObjectName="PlanCheck"
+			   enableSelectByExample="false" enableDeleteByExample="false"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   selectByExampleQueryId="false">
+		</table>
 		<!--<table tableName="tbl_responsible_user" domainObjectName="ResponsibleUser"-->
 			   <!--enableSelectByExample="false" enableDeleteByExample="false"-->
 			   <!--enableCountByExample="false" enableUpdateByExample="false"-->
