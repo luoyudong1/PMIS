@@ -383,7 +383,6 @@ require(['../config'],
                             faultLevelType: $('#faultLevelAdd option:selected').text(),
                             faultInfo: $('#faultInfoAdd').val(),
                             segmentDutyUser: $('#segmentDutyUserAdd').val(),
-                            repairPerson: $('#repairUserAdd option:selected').text(),
                             faultType: $('#faultTypeAdd option:selected').text(),
                             type: $('#typeAdd option:selected').text(),
                             depotId: deptId

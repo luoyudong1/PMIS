@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
 import java.util.*;
 
 @Controller
@@ -80,6 +81,37 @@ public class CheckPlanSheetController {
         return ret;
 
     }
+    /**
+     * 修改检修计划
+     *
+     * @param planCheckSheet
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public Map<String, Object> update(@RequestBody PlanCheckSheet planCheckSheet) {
+        logger.info("修改检修计划单据");
+        int code = 0;
+        Map<String, Object> ret = new HashMap<>();
+        try {
+            //修改faultHandle表
+            planCheckSheet.setUpdateTime(new Timestamp(new Date().getTime()));
+            int flag = planCheckSheetMapper.updateByPrimaryKeySelective(planCheckSheet);
+            if (flag == 1) {
+                ret.put("code", code);
+                ret.put("msg", ErrCode.getMessage(code));
+            }
+            return ret;
+        } catch (Exception e) {
+            logger.error("修改检修计划单据出错");
+        }
+        code = ErrCode.MODIFY_ERROR;
+        ret.put("code", code);
+        ret.put("msg", ErrCode.getMessage(code));
+        return ret;
+
+    }
+
     @ResponseBody
     @RequestMapping(value = "/getMaxSheetId", method = {RequestMethod.GET})
     public synchronized String getMaxSheetId(@RequestParam String sheet_id, HttpServletRequest request) {

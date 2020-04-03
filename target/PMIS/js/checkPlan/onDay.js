@@ -45,18 +45,7 @@ require(['../config'],
                 var listDetect;
                 const lineSet = new Set();
                 const deviceTypeSet = new Set();
-                CMethod.initDatetimepickerWithSecond("haultStartTimeAdd", null, format);
-                CMethod.initDatetimepickerWithSecond("haultEndTimeAdd", null, format);
-                CMethod.initDatetimepickerWithSecond("faultHandleStartTimeAdd", null, format);
-                CMethod.initDatetimepickerWithSecond("faultHandleEndTimeAdd", null, format);
-                CMethod.initDatetimepickerWithSecond("haultStartTimeModify", null, format);
-                CMethod.initDatetimepickerWithSecond("haultEndTimeModify", null, format);
-                CMethod.initDatetimepickerWithSecond("faultHandleStartTimeModify", null, format);
-                CMethod.initDatetimepickerWithSecond("faultHandleEndTimeModify", null, format);
-                CMethod.initDatetimepickerWithSecond("reportTimeAdd", new Date(), format);
-                CMethod.initDatetimepickerWithSecond("noticeTimeModify", null, format);
-                CMethod.initDatetimepickerWithSecond("planOutageStartTimeModify", null, format);
-                CMethod.initDatetimepickerWithSecond("planOutageEndTimeModify", null, format);
+
                 /**
                  * 查询
                  */
@@ -233,12 +222,12 @@ require(['../config'],
                 }
 
                 /**
-                 * 初始化入库单据
+                 * 初始化检修单据详情
                  */
                 var sheetTable = dataTable('sheetTable', {
                     bAutoWidth: false,
                     ajax: {
-                        url: config.basePath + '/faultHandle/faultReport/list',
+                        url: config.basePath + '/checkPlan/checkPlan/list',
                         type: 'GET',
                         data: function (d) {
                             if (roleName.indexOf("集团调度员") == -1) {
@@ -262,80 +251,61 @@ require(['../config'],
                             data: 'detectDeviceType'
                         },
                         {
-                            data: 'haultStartTime'
+                            data: 'planTime'
                         },
                         {
-                            data: 'faultStopTime'
+                            data: 'startTime'
+                        }, {
+                            data: 'endTime'
+                        }, {
+                            data: 'checkRecord'
+                        }, {
+                            data: 'planType'
+                        }, {
+                            data: 'remark'
                         },
                         {
-                            data: 'type'
-                        },
-                        {
-                            data: 'faultLevelType'
-                        }, {
-                            data: 'faultInfo'
-                        }, {
-                            data: 'handleInfo'
-                        }, {
-                            data: 'forecastFaultTime'
-                        }, {
-                            data: 'segmentDutyUser'
-                        }, {
-                            data: 'responsibleUser', bVisible: false
-                        },
-                        {
-                            data: 'noticeUser', bVisible: false
-                        }, {
-                            data: 'handleStartTime'
-                        }, {
-                            data: 'handleEndTime'
-                        }, {
-                            data: 'repairPerson'
-                        }, {
-                            data: 'faultType'
-                        },
-                        {
-                            data: 'completeFlag',
+                            data: 'status',
                             render: function (data) {
                                 var str = "-";
                                 if (data == 1) {
                                     str = '<span style="color:red;font-weight:bold;">新建</span>';
                                 } else if (data == 2) {
-                                    str = '<span style="color:blue;font-weight:bold;">预报审核中</span>';
+                                    str = '<span style="color:blue;font-weight:bold;">计划审核中</span>';
                                 } else if (data == 3) {
-                                    str = '<span style="color:blue;font-weight:bold;">故障处理中</span>';
+                                    str = '<span style="color:blue;font-weight:bold;">待检修中</span>';
                                 }
                                 else if (data == 4) {
-                                    str = '<span style="color:blue;font-weight:bold;">故障处理结束中</span>';
+                                    str = '<span style="color:blue;font-weight:bold;">检修结束中</span>';
                                 }
                                 else if (data == 5) {
-                                    str = '<span style="color:black;font-weight:bold;">故障处理完成</span>';
+                                    str = '<span style="color:black;font-weight:bold;">检修完成</span>';
                                 }
                                 return str;
                             }
                         },
                     ],
                     columnDefs: [{
-                        targets: 20,
+                        targets: 12,
                         data: function (row) {
                             var str = '';
-                            if (roleName == "段调度员" && (row.completeFlag == 1 || row.completeFlag == 3)) {
+                            if (roleName == "段调度员" && (row.flag == 1 || row.flag == 3)) {
                                 str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
                             }
-                            if (roleName == "集团调度员" && (row.completeFlag == 2 || row.completeFlag == 4)) {
+                            if (roleName == "集团调度员" && (row.flag== 2 || row.flag == 4)) {
                                 str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
                             }
-                            if (roleName == "段调度员" && (row.completeFlag == 1 || row.completeFlag == 3)) {
+                            if (roleName == "段调度员" && (row.flag == 1 || row.flag== 3)) {
                                 str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
-                            } else if (roleName == "集团调度员" && (row.completeFlag == 2 || row.completeFlag == 4)) {
+                            } else if (roleName == "集团调度员" && (row.flag == 2 || row.flag == 4)) {
                                 str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
                                 str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popBackSheetModal" title="回退单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
                             }
-                            if (roleName == "段调度员" && row.completeFlag == 1) {
+                            if (roleName == "段调度员" && row.flag== 1) {
                                 str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popSheetModal" title="删除单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
 
                             }
-                            if (roleName == "段调度员" && row.completeFlag == 3) {
+                            if (roleName == "段调度员" && row.flag== 3) {
                                 str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popBackSheetModal" title="回退单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
 
                             }

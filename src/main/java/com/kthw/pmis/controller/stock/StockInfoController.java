@@ -76,8 +76,8 @@ public class StockInfoController {
         params.put("start", request.getParameter("start"));
         params.put("length", request.getParameter("length"));
         params.put("storeHouseId", Integer.valueOf(request.getParameter("storehouse_id")));
-        params.put("partId", '%'+request.getParameter("part_id")+'%');//使用中
-        params.put("partCode", '%'+request.getParameter("part_code")+'%');//使用中
+        params.put("partId", '%' + request.getParameter("part_id") + '%');//使用中
+        params.put("partCode", '%' + request.getParameter("part_code") + '%');//使用中
         params.put("part_name", request.getParameter("part_name"));
         params.put("begin_time", request.getParameter("begin_time"));
         params.put("end_time", request.getParameter("end_time"));
@@ -134,24 +134,24 @@ public class StockInfoController {
         if (stockInfo.getFactoryPartsCode() != null && stockInfo.getFactoryPartsCode() != "") {
             params.put("eqPartCode", stockInfo.getFactoryPartsCode());
             List<SheetDetail> list = sheetDetailMapper.selectByMap(params);
-            if (list.size() ==1) {//新增配件
+            if (list.size() == 1) {//新增配件
                 params.clear();
-                params.put("eqSheetId",list.get(0).getSheetId());
-                List<SheetDetail> sheetDetailList=sheetDetailMapper.selectByMap(params);
-                if(sheetDetailList.size()==1) {
-                sheetInfoMapper.deleteByPrimaryKey(list.get(0).getSheetId());
+                params.put("eqSheetId", list.get(0).getSheetId());
+                List<SheetDetail> sheetDetailList = sheetDetailMapper.selectByMap(params);
+                if (sheetDetailList.size() == 1) {
+                    sheetInfoMapper.deleteByPrimaryKey(list.get(0).getSheetId());
                 }
                 sheetDetailMapper.deleteByPartCode(stockInfo.getFactoryPartsCode());
                 int row = stockInfoMapper.deleteByPrimaryKey(stockInfo.getFactoryPartsCode());
                 if (row != 1) {
                     code = ErrCode.INCOMPLETE_INFO;
                 }
-            }else if(list.size() ==0){//初始化配件
+            } else if (list.size() == 0) {//初始化配件
                 int row = stockInfoMapper.deleteByPrimaryKey(stockInfo.getFactoryPartsCode());
                 if (row != 1) {
                     code = ErrCode.INCOMPLETE_INFO;
                 }
-            } else{
+            } else {
                 code = ErrCode.DELETE_PARTS_NO_ALLOWED;
             }
         }
@@ -309,10 +309,19 @@ public class StockInfoController {
         if (storeHouse.getDepotId() != 0) {
             Depot depot = depotMapper.selectByPrimaryKey((long) storeHouse.getDepotId());
             //集团获取全部仓库
-            if (depot.getDepotLevel() <= 3) {//最高级别
+            if (depot.getDepotLevel() < 3) {//最高级别
                 list = storeHouseMapper.selectByMap(params);
+            }else if(depot.getDepotLevel() == 3){
+                List<Depot> workShopList=depotHelper.getChildrens(depot.getDepotId());
+                for (Depot workShop:workShopList){//段
+                    params.put("depotId", storeHouse.getDepotId());
+                    list.addAll(storeHouseMapper.getDepotReceiptStoreHouse(params));
+                    params.clear();
+                    params.put("eqDepotId", storeHouse.getDepotId());
+                    params.put("eqEnabled", (short) 1);
+                    list.addAll(storeHouseMapper.selectByMap(params));
+                }
             }
-
             //车间获取车间及其班组库
             else if (depot.getDepotLevel() == 4) {//车间
                 params.put("depotId", storeHouse.getDepotId());

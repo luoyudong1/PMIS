@@ -3,8 +3,10 @@ package com.kthw.pmis.controller.checkPlan;
 import com.kthw.common.DataTable;
 import com.kthw.common.base.ErrCode;
 import com.kthw.pmis.controller.faultHandle.FaultReportController;
+import com.kthw.pmis.entiy.DetectDevice;
 import com.kthw.pmis.entiy.FaultHandle;
 import com.kthw.pmis.entiy.PlanCheck;
+import com.kthw.pmis.mapper.common.DetectDeviceMapper;
 import com.kthw.pmis.mapper.common.PlanCheckMapper;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -28,6 +30,8 @@ public class CheckPlanController {
     private static final Logger logger = LoggerFactory.getLogger(CheckPlanController.class);
     @Autowired
     private PlanCheckMapper planCheckMapper;
+    @Autowired
+    private DetectDeviceMapper detectDeviceMapper;
 
     /**
      * 显示检修计划
@@ -96,6 +100,7 @@ public class CheckPlanController {
         logger.info("新增检修计划");
         int code = 0;
         Map<String, Object> ret = new HashMap<>();
+        DetectDevice detectDevice=new DetectDevice();
         try {
             List<PlanCheck> list = new ArrayList<>();
             DataTable<PlanCheck> dt = new DataTable<PlanCheck>();
@@ -104,11 +109,12 @@ public class CheckPlanController {
             id = ((id == null) ? 1 : (id + 1));
             planCheck.setId(id);
             planCheck.setStatus((short) 1);
-            int flag = planCheckMapper.insert(planCheck);
-            if (flag == 1) {
-                ret.put("code", code);
-                ret.put("msg", ErrCode.getMessage(code));
-            }
+            planCheckMapper.insert(planCheck);
+            detectDevice.setDetectDeviceId(planCheck.getDetectDeviceId());
+            detectDevice.setPlanCheckEnable((short)1);
+            detectDeviceMapper.updateByPrimaryKeySelective(detectDevice);
+            ret.put("code", code);
+            ret.put("msg", ErrCode.getMessage(code));
             return ret;
         } catch (Exception e) {
             logger.error("新增检修计划出错");
@@ -133,9 +139,7 @@ public class CheckPlanController {
         int code = 0;
         Map<String, Object> ret = new HashMap<>();
         try {
-            List<PlanCheck> list = new ArrayList<>();
-            DataTable<PlanCheck> dt = new DataTable<PlanCheck>();
-            //修改faultHandle表
+            //修改planCheck表
             planCheck.setUpdateTime(new Timestamp(new Date().getTime()));
             int flag = planCheckMapper.updateByPrimaryKeySelective(planCheck);
             if (flag == 1) {

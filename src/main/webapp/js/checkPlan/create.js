@@ -70,6 +70,8 @@ require(['../config'],
                  * 显示线别
                  */
                 function initLineAdd() {
+                    $('#lineAdd').empty()
+                    $('#lineAdd').append('<option></option>')
                     for (let line of lineSet) {
                         $('#lineAdd').append('<option>' + line + '</option>')
                     }
@@ -81,6 +83,7 @@ require(['../config'],
                 function initYearAdd() {
                     let date = new Date()
                     let year = parseInt(date.getFullYear().toString())
+                    $('#yearAdd').empty()
                     $('#yearAdd').append('<option>' + year + '</option>')
                     $('#yearAdd').append('<option>' + year + 1 + '</option>')
 
@@ -119,38 +122,59 @@ require(['../config'],
                     }
                 }
 
-                /**
-                 * 显示探测站
-                 */
-                $.ajax({
-                    async: false,
-                    url: config.basePath + "/detectManage/detectManage/listDetect",
-                    type: 'get',
-                    data: {
-                        "depotId": deptId
-                    },
-                    dataType: 'json',
-                    success: function (result) {
-                        listDetect = result.data
-                        for (var i = 0; i < result.data.length; i++) {
-                            // $("#detectDeviceAdd").append('<option value="' + result.data[i].detectDeviceId + '" deviceModelName="' + result.data[i].deviceModelName + '">' + result.data[i].detectDeviceName + '</option>');
-                            lineSet.add(result.data[i].lineName)
-                            deviceTypeSet.add(result.data[i].deviceTypeName)
+                function getDetectDevice() {
+                    /**
+                     * 显示探测站
+                     */
+                    $.ajax({
+                        async: false,
+                        url: config.basePath + "/detectManage/detectManage/listDetect",
+                        type: 'get',
+                        data: {
+                            "depotId": deptId
+                        },
+                        dataType: 'json',
+                        success: function (result) {
+                            listDetect = result.data
+                            lineSet.clear()
+                            deviceTypeSet.clear()
+                            for (var i = 0; i < result.data.length; i++) {
+                                if (result.data[i].planCheckEnable == 0) {
+                                    lineSet.add(result.data[i].lineName)
+                                    deviceTypeSet.add(result.data[i].deviceTypeName)
+                                }
+                            }
+                            initLineAdd()
+                            initDeviceTypeAdd()
+                        },
+                        error: function (result) {
+                            console.log(result);
                         }
-                        initLineAdd()
-                        initDeviceTypeAdd()
-                    },
-                    error: function (result) {
-                        console.log(result);
-                    }
-                });
+                    });
+                }
+
+                //获取探测站
+                getDetectDevice()
                 //初始化年份选择下拉框
                 initYearAdd()
                 //初始化部门名称
                 initDepotNameAdd()
+                /**
+                 * 线别改变事件
+                 */
                 $("#lineAdd").change(function () {
                     $("#detectTypeAdd option:first").prop("selected", true);
                 })
+                /**
+                 * 探测站改变事件
+                 */
+                $("#detectDeviceAdd").change(function () {
+                    let planType=$("#detectDeviceAdd option:selected").attr("planCheckType");
+                    $("#planTypeAdd").val(planType)
+                })
+                /**
+                 * 探测站类型改变事件
+                 */
                 $("#detectTypeAdd").change(function () {
                     var lineName = $("#lineAdd option:selected").text();
                     var detectType = $("#detectTypeAdd option:selected").text();
@@ -158,8 +182,8 @@ require(['../config'],
                     $("#detectDeviceAdd").empty()
                     $("#detectDeviceAdd").append('<option></option>')
                     for (let i = 0; i < listDetect.length; i++) {
-                        if (listDetect[i].lineName == lineName && listDetect[i].deviceTypeName == detectType) {
-                            $("#detectDeviceAdd").append('<option value="' + listDetect[i].detectDeviceId + '" deviceTypeName="' + listDetect[i].deviceTypeName + '">' + listDetect[i].detectDeviceName + '</option>');
+                        if (listDetect[i].lineName == lineName && listDetect[i].deviceTypeName == detectType && listDetect[i].planCheckEnable == 0) {
+                            $("#detectDeviceAdd").append('<option value="' + listDetect[i].detectDeviceId + '" deviceTypeName="' + listDetect[i].deviceTypeName +'" planCheckType="' + listDetect[i].planCheckType + '">' + listDetect[i].detectDeviceName + '</option>');
                         }
                     }
 
@@ -263,7 +287,7 @@ require(['../config'],
                             //     d.queryTime = $("#queryTime").val();
                             //     d.queryTime2 = ($("#queryTime2").val() == '' ? '' : $("#queryTime2").val() + " 23:59:59");
                             // // }
-                            d.sheetId=sheet_id
+                            d.sheetId = sheet_id
                         }
                     },
                     columns: [{
@@ -318,23 +342,23 @@ require(['../config'],
                         targets: 12,
                         data: function (row) {
                             var str = '';
-                            if (roleName == "段调度员" && (row.completeFlag == 1 || row.completeFlag == 3)) {
+                            if (roleName == "段调度员" && (row.flag == 1 || row.flag == 3)) {
                                 str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
                             }
-                            if (roleName == "集团调度员" && (row.completeFlag == 2 || row.completeFlag == 4)) {
+                            if (roleName == "集团调度员" && (row.flag== 2 || row.flag == 4)) {
                                 str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
                             }
-                            if (roleName == "段调度员" && (row.completeFlag == 1 || row.completeFlag == 3)) {
+                            if (roleName == "段调度员" && (row.flag == 1 || row.flag== 3)) {
                                 str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
-                            } else if (roleName == "集团调度员" && (row.completeFlag == 2 || row.completeFlag == 4)) {
+                            } else if (roleName == "集团调度员" && (row.flag == 2 || row.flag == 4)) {
                                 str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
                                 str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popBackSheetModal" title="回退单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
                             }
-                            if (roleName == "段调度员" && row.completeFlag == 1) {
+                            if (roleName == "段调度员" && row.flag== 1) {
                                 str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popSheetModal" title="删除单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
 
                             }
-                            if (roleName == "段调度员" && row.completeFlag == 3) {
+                            if (roleName == "段调度员" && row.flag== 3) {
                                 str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popBackSheetModal" title="回退单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
 
                             }
@@ -426,21 +450,15 @@ require(['../config'],
                             CMethod.hideTimeout("alertMsgAdd", "alertMsgAdd", 5000);
                             return false;
                         }
-                        if ($("#haultStartTimeAdd").val() == "") {
-                            $("#alertMsgAdd").html("<font style='color:red'>停机开始时间为空！请检查输入是否正确</font>");
-                            $("#alertMsgAdd").css('display', 'inline-block')
-                            CMethod.hideTimeout("alertMsgAdd", "alertMsgAdd", 5000);
-                            return false;
-                        }
                         var params = JSON.stringify({
                             detectDeviceId: $('#detectDeviceAdd').val(),
                             detectDeviceName: $('#detectDeviceAdd option:selected').text(),
                             detectDeviceType: $('#detectDeviceAdd option:selected').attr("deviceTypeName"),
                             planTime: $('#planTimeAdd').val(),
                             // createUser: user_id,
-                            planType: $('#planTypeAdd option:selected').text(),
+                            planType: $('#planTypeAdd').text(),
                             depotId: deptId,
-                            sheetId:sheet_id
+                            sheetId: sheet_id
                         });
                         $.ajax({
                             url: config.basePath + '/checkPlan/checkPlan/add',
@@ -452,7 +470,9 @@ require(['../config'],
                                 if (result.code != 0) {
                                     alert(result.msg);
                                 } else {
+                                    getDetectDevice()
                                     sheetDetailTable.ajax.reload();
+                                    $('#detectTypeAdd option:first').prop("selected",true)
                                     $("#alertMsg").html('<span style="color:green;text-align:center"><strong>故障预报添加成功！</strong></span>');
                                     $("#infoAlert").show();
                                     hideTimeout("infoAlert", 2000);
@@ -640,10 +660,10 @@ require(['../config'],
                             var data = sheetTable.row(tr)
                                 .data();
                             $('#warningSheetVerifyText').text(
-                                '确定提交单据ID为:' + data.id
+                                '确定提交单据ID为:' + data.sheetId
                                 + '的单据吗？');
                             $('#btnPopSheetVerifyOk').val(
-                                data.id);
+                                data.sheetId);
                         });
 
                 /**
@@ -656,13 +676,13 @@ require(['../config'],
                             var tr = $(e.relatedTarget).parents('tr');
                             var data = sheetTable.row(tr).data();
                             var params = JSON.stringify({
-                                id: id,
-                                completeFlag: completeFlag + 1
+                                sheetId: sheet_id,
+                                flag: completeFlag + 1
                             });
                             $
                                 .ajax({
                                     url: config.basePath
-                                        + '/faultHandle/faultReport/update',
+                                        + '/checkPlan/sheet/update',
                                     type: "post",
                                     data: params,
                                     contentType: 'application/json',
