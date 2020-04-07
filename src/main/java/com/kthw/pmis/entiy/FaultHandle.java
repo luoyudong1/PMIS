@@ -3,12 +3,11 @@ package com.kthw.pmis.entiy;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 /**
  *
- * @mbg.generated do_not_delete_during_merge 2020-03-17 16:30:10
+ * @mbg.generated do_not_delete_during_merge 2020-04-06 21:31:09
  */
 public class FaultHandle {
     /**
@@ -41,7 +40,7 @@ public class FaultHandle {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Timestamp haultStartTime;
+    private Date haultStartTime;
 
     /**
      * Database Column Remarks:
@@ -49,7 +48,7 @@ public class FaultHandle {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Timestamp haultEndTime;
+    private Date haultEndTime;
 
     /**
      * Database Column Remarks:
@@ -87,7 +86,7 @@ public class FaultHandle {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Timestamp forecastFaultTime;
+    private Date forecastFaultTime;
 
     /**
      * Database Column Remarks:
@@ -101,7 +100,7 @@ public class FaultHandle {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Timestamp handleStartTime;
+    private Date handleStartTime;
 
     /**
      * Database Column Remarks:
@@ -109,7 +108,7 @@ public class FaultHandle {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Timestamp handleEndTime;
+    private Date handleEndTime;
 
     /**
      * Database Column Remarks:
@@ -153,7 +152,7 @@ public class FaultHandle {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Timestamp planOutageStartTime;
+    private Date planOutageStartTime;
 
     /**
      * Database Column Remarks:
@@ -161,7 +160,7 @@ public class FaultHandle {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Timestamp planOutageEndTime;
+    private Date planOutageEndTime;
 
     /**
      * Database Column Remarks:
@@ -169,7 +168,7 @@ public class FaultHandle {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Timestamp noticeTime;
+    private Date noticeTime;
 
     /**
      * Database Column Remarks:
@@ -195,7 +194,7 @@ public class FaultHandle {
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Timestamp updateTime;
+    private Date updateTime;
 
     /**
      * Database Column Remarks:
@@ -203,20 +202,21 @@ public class FaultHandle {
      */
     private String responsibleUser;
 
+    /**
+     * Database Column Remarks:
+     *   tbl_fault_handle.notice_user: 通知责任部门责任人
+     */
     private String noticeUser;
 
-    public String getNoticeUser() {
-        return noticeUser;
-    }
-
-    public void setNoticeUser(String noticeUser) {
-        this.noticeUser = noticeUser;
-    }
+    /**
+     * Database Column Remarks:
+     *   tbl_fault_handle.responsible_depot: 段责任部门
+     */
+    private String responsibleDepot;
 
     /**
      * @return the value of tbl_fault_handle.id
      */
-
     public Integer getId() {
         return id;
     }
@@ -273,28 +273,28 @@ public class FaultHandle {
     /**
      * @return the value of tbl_fault_handle.hault_start_time
      */
-    public Timestamp getHaultStartTime() {
+    public Date getHaultStartTime() {
         return haultStartTime;
     }
 
     /**
      * @param haultStartTime the value for tbl_fault_handle.hault_start_time
      */
-    public void setHaultStartTime(Timestamp haultStartTime) {
+    public void setHaultStartTime(Date haultStartTime) {
         this.haultStartTime = haultStartTime;
     }
 
     /**
      * @return the value of tbl_fault_handle.hault_end_time
      */
-    public Timestamp getHaultEndTime() {
+    public Date getHaultEndTime() {
         return haultEndTime;
     }
 
     /**
      * @param haultEndTime the value for tbl_fault_handle.hault_end_time
      */
-    public void setHaultEndTime(Timestamp haultEndTime) {
+    public void setHaultEndTime(Date haultEndTime) {
         this.haultEndTime = haultEndTime;
     }
 
@@ -371,14 +371,14 @@ public class FaultHandle {
     /**
      * @return the value of tbl_fault_handle.forecast_fault_time
      */
-    public Timestamp getForecastFaultTime() {
+    public Date getForecastFaultTime() {
         return forecastFaultTime;
     }
 
     /**
      * @param forecastFaultTime the value for tbl_fault_handle.forecast_fault_time
      */
-    public void setForecastFaultTime(Timestamp forecastFaultTime) {
+    public void setForecastFaultTime(Date forecastFaultTime) {
         this.forecastFaultTime = forecastFaultTime;
     }
 
@@ -399,28 +399,28 @@ public class FaultHandle {
     /**
      * @return the value of tbl_fault_handle.handle_start_time
      */
-    public Timestamp getHandleStartTime() {
+    public Date getHandleStartTime() {
         return handleStartTime;
     }
 
     /**
      * @param handleStartTime the value for tbl_fault_handle.handle_start_time
      */
-    public void setHandleStartTime(Timestamp handleStartTime) {
+    public void setHandleStartTime(Date handleStartTime) {
         this.handleStartTime = handleStartTime;
     }
 
     /**
      * @return the value of tbl_fault_handle.handle_end_time
      */
-    public Timestamp getHandleEndTime() {
+    public Date getHandleEndTime() {
         return handleEndTime;
     }
 
     /**
      * @param handleEndTime the value for tbl_fault_handle.handle_end_time
      */
-    public void setHandleEndTime(Timestamp handleEndTime) {
+    public void setHandleEndTime(Date handleEndTime) {
         this.handleEndTime = handleEndTime;
     }
 
@@ -511,42 +511,42 @@ public class FaultHandle {
     /**
      * @return the value of tbl_fault_handle.plan_outage_start_time
      */
-    public Timestamp getPlanOutageStartTime() {
+    public Date getPlanOutageStartTime() {
         return planOutageStartTime;
     }
 
     /**
      * @param planOutageStartTime the value for tbl_fault_handle.plan_outage_start_time
      */
-    public void setPlanOutageStartTime(Timestamp planOutageStartTime) {
+    public void setPlanOutageStartTime(Date planOutageStartTime) {
         this.planOutageStartTime = planOutageStartTime;
     }
 
     /**
      * @return the value of tbl_fault_handle.plan_outage_end_time
      */
-    public Timestamp getPlanOutageEndTime() {
+    public Date getPlanOutageEndTime() {
         return planOutageEndTime;
     }
 
     /**
      * @param planOutageEndTime the value for tbl_fault_handle.plan_outage_end_time
      */
-    public void setPlanOutageEndTime(Timestamp planOutageEndTime) {
+    public void setPlanOutageEndTime(Date planOutageEndTime) {
         this.planOutageEndTime = planOutageEndTime;
     }
 
     /**
      * @return the value of tbl_fault_handle.notice_time
      */
-    public Timestamp getNoticeTime() {
+    public Date getNoticeTime() {
         return noticeTime;
     }
 
     /**
      * @param noticeTime the value for tbl_fault_handle.notice_time
      */
-    public void setNoticeTime(Timestamp noticeTime) {
+    public void setNoticeTime(Date noticeTime) {
         this.noticeTime = noticeTime;
     }
 
@@ -595,14 +595,14 @@ public class FaultHandle {
     /**
      * @return the value of tbl_fault_handle.update_time
      */
-    public Timestamp getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
     /**
      * @param updateTime the value for tbl_fault_handle.update_time
      */
-    public void setUpdateTime(Timestamp updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
@@ -618,6 +618,34 @@ public class FaultHandle {
      */
     public void setResponsibleUser(String responsibleUser) {
         this.responsibleUser = responsibleUser == null ? null : responsibleUser.trim();
+    }
+
+    /**
+     * @return the value of tbl_fault_handle.notice_user
+     */
+    public String getNoticeUser() {
+        return noticeUser;
+    }
+
+    /**
+     * @param noticeUser the value for tbl_fault_handle.notice_user
+     */
+    public void setNoticeUser(String noticeUser) {
+        this.noticeUser = noticeUser == null ? null : noticeUser.trim();
+    }
+
+    /**
+     * @return the value of tbl_fault_handle.responsible_depot
+     */
+    public String getResponsibleDepot() {
+        return responsibleDepot;
+    }
+
+    /**
+     * @param responsibleDepot the value for tbl_fault_handle.responsible_depot
+     */
+    public void setResponsibleDepot(String responsibleDepot) {
+        this.responsibleDepot = responsibleDepot == null ? null : responsibleDepot.trim();
     }
 
     @Override
@@ -655,6 +683,8 @@ public class FaultHandle {
         sb.append(", depotName=").append(depotName);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", responsibleUser=").append(responsibleUser);
+        sb.append(", noticeUser=").append(noticeUser);
+        sb.append(", responsibleDepot=").append(responsibleDepot);
         sb.append("]");
         return sb.toString();
     }

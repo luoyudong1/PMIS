@@ -33,7 +33,7 @@ public class ErrCode {
     public static final int CANNOT_NEW_PROJECT = 10002; // 权限错误，不能新建项目
     public static final int START_END_TIME_ERROR = 10003; // 起止时间设置错误
     public static final int INIT_SHIRO_ERROR = 10004;//初始化shiro错误
-    
+
     public static final int MODIFY_ERROR = 10005;//修改失败
     public static final int STOREHOUSE_NOT_EXISTS = 10006;//仓库信息不存在
     public static final int USER_IS_LOGINED = 10007;//用户已登录
@@ -49,6 +49,7 @@ public class ErrCode {
     public static final int DELETE_ININTED_PARTS_NO_ALLOWED = 33; // 配件初始化不允许删除
     public static final int DELETE_ERROR = 34; // 删除失败
     public static final int ADD_ERROR = 35; //新增失败
+    public static final int ADD_NO_WHOLE_ERROR = 36; //探测站未全部新增
 
     public static String getMessage(int code) {
         switch (code) {
@@ -99,17 +100,17 @@ public class ErrCode {
             case MODIFY_ERROR:
                 return "修改错误";
             case PARTS_ALREADY_EXISTS:
-            	return "配件信息已添加";
+                return "配件信息已添加";
             case SHEET_ALREADY_EXISTS:
-            	return "单据信息已添加";
+                return "单据信息已存在，请检查输入信息是否错误！";
             case SHEETDETAIL_ALREADY_EXISTS:
-            	return " 配件信息已添加";
+                return " 配件信息已添加";
             case PARTCODE_ALREADY_EXISTS:
-            	return " 配件出厂编码已添加";
+                return " 配件出厂编码已添加";
             case SHEET_NOT_EXISTS:
-            	return "单据信息不存在";
+                return "单据信息不存在";
             case SHEETDETAIL_IS_NONE:
-            	return "单据详情为空，请添加配件";
+                return "单据详情为空，请添加配件";
             case PART_ID_IS_EXIST:
                 return "配件编码已存在";
             case USER_IS_LOGINED:
@@ -124,6 +125,8 @@ public class ErrCode {
                 return "新增失败";
             case DELETE_ERROR:
                 return "删除失败";
+            case ADD_NO_WHOLE_ERROR:
+                return "探测站未全部新增入单据";
             default:
                 return "异常[" + code + "]";
         }

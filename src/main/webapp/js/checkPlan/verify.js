@@ -30,20 +30,16 @@ require(['../config'],
             function ($, bootstrap, dataTable, CMethod) {
 
 
-                var verify_flag = ''; // 查询的审核状态
 
                 var user_id = window.parent.user.userId; // 登录人ID
                 var user_name = window.parent.user.userName; // 登录人名字
                 var roleName = window.parent.user.roleName; // 登录人角色信息
                 var deptId = window.parent.user.deptId // 所属部门id
-                var id;
-                let sheet_id=''
-                var format = 'Y-m-d H:i:s';
-                var status;
-                CMethod.initDatetimepickerWithSecond("planTimeModify", null, format);
-                CMethod.initDatetimepickerWithSecond("startTimeModify", null, format);
-                CMethod.initDatetimepickerWithSecond("endTimeModify", null, format);
-                CMethod.initDatetimepickerWithSecond("planTimeDelay", null, format);
+                var completeFlag;
+
+
+                let sheet_id = '';
+
                 /**
                  * 查询
                  */
@@ -65,20 +61,107 @@ require(['../config'],
 
 
 
+
+                /**
+                 * 初始化检修单据
+                 */
+                var sheetTable = dataTable('sheetTable', {
+                    bAutoWidth: false,
+                    ajax: {
+                        url: config.basePath + '/checkPlan/sheet/getAllSheets',
+                        type: 'GET',
+                        data: function (d) {
+
+                        }
+                    },
+                    columns: [{
+                        data: null
+                    },
+                        {
+                            data: 'sheetId'
+                        },
+                        {
+                            data: 'year'
+                        },
+                        {
+                            data: 'month'
+                        },
+                        {
+                            data: 'depotName'
+                        },
+                        {
+                            data: 'createTime'
+                        }, {
+                            data: 'createUser'
+                        },
+                        {
+                            data: 'verifyUser'
+                        },
+                        {
+                            data: 'updateTime'
+                        },
+                        {
+                            data: 'remark'
+                        },
+                        {
+                            data: 'flag',
+                            render: function (data) {
+                                var str = "-";
+                                if (data == 1) {
+                                    str = '<span style="color:red;font-weight:bold;">新建</span>';
+                                } else if (data == 2) {
+                                    str = '<span style="color:blue;font-weight:bold;">审核中</span>';
+                                } else if (data == 3) {
+                                    str = '<span style="color:black;font-weight:bold;">已完成</span>';
+                                }
+                                else if (data == 4) {
+                                    str = '<span style="color:red;font-weight:bold;">审核不通过</span>';
+                                }
+                                return str;
+                            }
+                        },
+                    ],
+                    columnDefs: [{
+                        targets: 11,
+                        data: function (row) {
+                            var str = '';
+                            if (row.flag == 2 ) {
+                                str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;' + '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;' + '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popSheetModal" title="删除单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
+                            } else {
+                                str += '';
+                            }
+                            str += '<button id="exportExcel" type="button" class="btn btn-success btn-xs" title="导出"><span class="glyphicon glyphicon-download-alt"></span></button>';
+                            return str;
+                        }
+                    }],
+                    ordering: false,
+                    paging: true,
+                    pageLength: 5,
+                    serverSide: false,
+                    drawCallback: function (settings) {
+                        var api = this.api();
+                        var startIndex = api.context[0]._iDisplayStart; // 获取到本页开始的条数
+                        api.column(0).nodes().each(function (cell, i) {
+                            cell.innerHTML = startIndex + i + 1;
+                        });
+
+                    },
+                });
                 /**
                  * 初始化检修单据详情
                  */
-                var sheetTable = dataTable('sheetTable', {
+                var sheetDetailTable = dataTable('sheetDetailTable', {
                     bAutoWidth: false,
                     ajax: {
                         url: config.basePath + '/checkPlan/checkPlan/list',
                         type: 'GET',
                         data: function (d) {
-                            if (roleName.indexOf("集团调度员") == -1) {
-                                d.depotId = deptId;
-                                d.queryTime = $("#queryTime").val();
-                                d.queryTime2 = ($("#queryTime2").val() == '' ? '' : $("#queryTime2").val() + " 23:59:59");
-                            }
+                            // // if (roleName.indexOf("集团调度员") == -1) {
+                            // //     d.depotId = deptId;
+                            //     d.queryTime = $("#queryTime").val();
+                            //     d.queryTime2 = ($("#queryTime2").val() == '' ? '' : $("#queryTime2").val() + " 23:59:59");
+                            // // }
+                            d.sheetId = sheet_id
                         }
                     },
                     columns: [{
@@ -86,9 +169,6 @@ require(['../config'],
                     }, {
                         data: 'id', bVisible: false
                     },
-                        {
-                            data: 'sheetId', bVisible: false
-                        },
                         {
                             data: 'detectDeviceId', bVisible: false
                         },
@@ -118,36 +198,20 @@ require(['../config'],
                                 if (data == 1) {
                                     str = '<span style="color:red;font-weight:bold;">新建</span>';
                                 } else if (data == 2) {
+                                    str = '<span style="color:blue;font-weight:bold;">计划审核中</span>';
+                                } else if (data == 3) {
                                     str = '<span style="color:blue;font-weight:bold;">待检修中</span>';
                                 }
-                                else if (data == 3) {
+                                else if (data == 4) {
                                     str = '<span style="color:blue;font-weight:bold;">检修结束中</span>';
                                 }
-                                else if (data == 4) {
+                                else if (data == 5) {
                                     str = '<span style="color:black;font-weight:bold;">检修完成</span>';
                                 }
                                 return str;
                             }
                         },
                     ],
-                    columnDefs: [{
-                        targets: 13,
-                        data: function (row) {
-                            var str = '-';
-                            if (roleName == "段调度员" && (row.status == 2)) {
-                                str = '<a class="delaySheet btn btn-info btn-xs" data-toggle="modal" href="#delaySheetModal" title="延期"><span class="glyphicon glyphicon-time"></span></a>&nbsp;&nbsp;'
-                                str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
-                                str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
-                            }
-                            if (roleName == "集团调度员" && (row.status== 3)) {
-                                str = '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
-                                str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
-                                str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popBackSheetModal" title="回退"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
-                            }
-
-                            return str;
-                        }
-                    }],
                     ordering: false,
                     paging: true,
                     pageLength: 10,
@@ -161,37 +225,9 @@ require(['../config'],
                     },
                 });
 
-                /**
-                 * 修改检修计划
-                 */
-                $('#modifySheetModal').on('show.bs.modal',
-                    function (e) {
-                        var tr = $(e.relatedTarget).parents('tr');
-                        var data = sheetTable.row(tr).data();
-                        id = data.id;
-                        $('#detectDeviceModify').val(data.detectDeviceName)
-                        $('#detectTypeModify').val(data.detectDeviceType)
-                        $('#planTypeModify').val(data.planType)
-                        $('#planTimeModify').val(data.planTime)
-                        $('#startTimeModify').val(data.startTime)
-                        $('#endTimeModify').val(data.endTime)
-                        $('#checkRecordModify').val(data.checkRecord)
-                        $('#remarkModify').val(data.remark)
-                    });
 
-                /**
-                 *延期检修计划
-                 */
-                $('#delaySheetModal').on('show.bs.modal',
-                    function (e) {
-                        var tr = $(e.relatedTarget).parents('tr');
-                        var data = sheetTable.row(tr).data();
-                        id = data.id;
-                        $('#detectDeviceDelay').val(data.detectDeviceName)
-                        $('#detectTypeDelay').val(data.detectDeviceType)
-                        $('#planTypeDelay').val(data.planType)
-                        $('#planTimeDelay').val(data.planTime)
-                    });
+
+
                 /*******************************************************
                  * 单据点击事件
                  ********************************************************/
@@ -208,12 +244,13 @@ require(['../config'],
                                 var tr = $(this).closest('tr');
                                 var sheetTrData = sheetTable
                                     .row(tr).data();
-                                status = sheetTrData.status
-                                id=sheetTrData.id
-                                sheet_id=sheetTrData.sheetId
+                                completeFlag = sheetTrData.flag
+                                sheet_id = sheetTrData.sheetId
+                                sheetDetailTable.ajax.reload()
                             }
 
                         });
+
 
 
 
@@ -234,76 +271,7 @@ require(['../config'],
                             $('#btnPopSheetVerifyOk').val(
                                 data.sheetId);
                         });
-                /**
-                 * 修改按钮事件
-                 */
-                $("#btnModifySheetOk").on('click',
-                    function (e) {
-                        e.preventDefault();
-                        var params = JSON.stringify({
-                            id :id,
-                            sheetId:sheet_id,
-                            planType :$('#planTypeModify').val(),
-                            planTime :$('#planTimeModify').val(),
-                            startTime :$('#startTimeModify').val(),
-                            endTime :$('#endTimeModify').val(),
-                            checkRecord :$('#checkRecordModify').val(),
-                            remark : $('#remarkModify').val(),
-                        });
-                        $.ajax({
-                            url: config.basePath + '/checkPlan/checkPlan/update',
-                            type: "post",
-                            data: params,
-                            contentType: 'application/json',
-                            dataType: "json",
-                            success: function (result) {
-                                if (result.code != 0) {
-                                    alert(result.msg);
-                                } else {
-                                    sheetTable.ajax.reload();
-                                    $("#alertMsg").html('<span style="color:green;text-align:center"><strong>单据信息添加成功！</strong></span>');
-                                    $("#infoAlert").show();
-                                    hideTimeout("infoAlert", 2000);
-                                }
-                            }
-                        });
-                    });
-                /**
-                 * 延期按钮事件
-                 */
-                $("#btnDelaySheetOk").on('click',
-                    function (e) {
-                        e.preventDefault();
-                        let date=new Date()
-                        let planTime=$('#planTimeDelay').val()
-                        if(planTime<date){
-                            $("#alertMsgDelay").html("<font style='color:red'>延期时间小于当前时间</font>");
-                            $("#alertMsgDelay").css('display', 'inline-block')
-                            CMethod.hideTimeout("alertMsgAdd", "alertMsgDelay", 5000);
-                        }
-                        var params = JSON.stringify({
-                            id :id,
-                            sheetId:sheet_id,
-                            planTime :$('#planTimeDelay').val(),
-                        });
-                        $.ajax({
-                            url: config.basePath + '/checkPlan/checkPlan/update',
-                            type: "post",
-                            data: params,
-                            contentType: 'application/json',
-                            dataType: "json",
-                            success: function (result) {
-                                if (result.code != 0) {
-                                    alert(result.msg);
-                                } else {
-                                    sheetTable.ajax.reload();
-                                    $("#alertMsg").html('<span style="color:green;text-align:center"><strong>延期成功！</strong></span>');
-                                    $("#infoAlert").show();
-                                    hideTimeout("infoAlert", 2000);
-                                }
-                            }
-                        });
-                    });
+
                 /**
                  * 单据审核
                  */
@@ -312,13 +280,14 @@ require(['../config'],
                         'click',
                         function (e) {
                             var params = JSON.stringify({
-                                id :id,
-                                status:status+1,
-                                sheetId:sheet_id
+                                sheetId: sheet_id,
+                                flag: completeFlag + 1,
+                                verifyUser:user_id
                             });
-                            $.ajax({
+                            $
+                                .ajax({
                                     url: config.basePath
-                                        + '/checkPlan/checkPlan/update',
+                                        + '/checkPlan/sheet/update',
                                     type: "post",
                                     data: params,
                                     contentType: 'application/json',
@@ -328,6 +297,7 @@ require(['../config'],
                                         if (result.code != 0) {
                                             alert(result.msg);
                                         } else {
+                                            $('#add_sheetDetail').hide()
                                             sheetTable.ajax
                                                 .reload();
                                             $("#alertMsg")
@@ -343,6 +313,17 @@ require(['../config'],
                                 });
 
                         });
+
+                /**
+                 * 回退单据
+                 */
+                $('#popBackSheetModal').on('show.bs.modal',
+                    function (e) {
+                        var tr = $(e.relatedTarget).parents('tr');
+                        var data = sheetTable.row(tr).data();
+                        $('#backSheetText').text('确定要回退该故障预报单据（' + data.id + '）？');
+                        $('#backSheetId').val(data.id);
+                    });
                 /**
                  * 点击回退确定按钮
                  */
@@ -350,8 +331,8 @@ require(['../config'],
                     function (e) {
                         e.preventDefault();
                         var params = JSON.stringify({
-                            id: id,
-                            status: status - 1
+                            id: $('#backSheetId').val(),
+                            status: completeFlag - 1
                         });
                         $.ajax({
                             url: config.basePath + '/checkPlan/checkPlan/update',
@@ -376,6 +357,12 @@ require(['../config'],
                 sheetTable.on('draw.dt', function () {
                     //给第一列编号
                     sheetTable.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                });
+                sheetDetailTable.on('draw.dt', function () {
+                    //给第一列编号
+                    sheetDetailTable.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
                         cell.innerHTML = i + 1;
                     });
                 });

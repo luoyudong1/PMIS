@@ -107,6 +107,20 @@
       <if test="eqSheetId != null">
         AND sheet_id = #{eqSheetId,jdbcType=VARCHAR}
       </if>
+      <if test="ltStatus != null">
+        AND status &lt; #{ltStatus ,jdbcType=NUMERIC}
+      </if>
+      <if test="gtStatus != null">
+        AND status > #{gtStatus ,jdbcType=NUMERIC}
+      </if>
+      <if test='queryTime != null and queryTime != ""'>
+        and plan_time >= to_timestamp(#{queryTime}, 'yyyy-mm-dd
+        hh24:mi:ss')
+      </if>
+      <if test='queryTime2 != null and queryTime2 != ""'>
+        and plan_time &lt;= to_timestamp(#{queryTime2},
+        'yyyy-mm-dd hh24:mi:ss')
+      </if>
     </where>
   </sql>
   <sql id="ByMap_Set_Clause">
@@ -180,6 +194,7 @@
       <if test="sheetId != null">
         sheet_id = #{sheetId,jdbcType=VARCHAR},
       </if>
+
     </set>
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

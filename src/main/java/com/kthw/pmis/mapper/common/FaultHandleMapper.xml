@@ -32,14 +32,15 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="responsible_user" jdbcType="VARCHAR" property="responsibleUser" />
     <result column="notice_user" jdbcType="VARCHAR" property="noticeUser" />
+    <result column="responsible_depot" jdbcType="VARCHAR" property="responsibleDepot" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, detect_device_id, detect_device_name, detect_device_type, hault_start_time, hault_end_time, 
-    fault_stop_time, type, fault_level_type, fault_info, handle_info, forecast_fault_time, 
-    segment_duty_user, handle_start_time, handle_end_time, repair_person, fault_type, 
-    confirm_fault_person, complete_flag, telegraph_number, remark, plan_outage_start_time, 
-    plan_outage_end_time, notice_time, responsible_unit, depot_id, depot_name, update_time, 
-    responsible_user,notice_user
+    id, detect_device_id, detect_device_name, detect_device_type, hault_start_time, hault_end_time,
+    fault_stop_time, type, fault_level_type, fault_info, handle_info, forecast_fault_time,
+    segment_duty_user, handle_start_time, handle_end_time, repair_person, fault_type,
+    confirm_fault_person, complete_flag, telegraph_number, remark, plan_outage_start_time,
+    plan_outage_end_time, notice_time, responsible_unit, depot_id, depot_name, update_time,
+    responsible_user, notice_user, responsible_depot
   </sql>
   <sql id="ByMap_Where_Clause">
     <where>
@@ -133,6 +134,9 @@
       <if test="eqNoticeUser != null">
         AND notice_user = #{eqNoticeUser,jdbcType=VARCHAR}
       </if>
+      <if test="eqResponsibleDepot != null">
+        AND responsible_depot = #{eqResponsibleDepot,jdbcType=VARCHAR}
+      </if>
       <if test="ltCompleteFlag != null">
         AND complete_flag &lt; #{ltCompleteFlag ,jdbcType=NUMERIC}
       </if>
@@ -147,6 +151,7 @@
         and update_time &lt;= to_timestamp(#{queryTime2},
         'yyyy-mm-dd hh24:mi:ss')
       </if>
+
     </where>
   </sql>
   <sql id="ByMap_Set_Clause">
@@ -238,6 +243,9 @@
       <if test="noticeUser != null">
         notice_user = #{noticeUser,jdbcType=VARCHAR},
       </if>
+      <if test="responsibleDepot != null">
+        responsible_depot = #{responsibleDepot,jdbcType=VARCHAR},
+      </if>
     </set>
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -265,29 +273,28 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.kthw.pmis.entiy.FaultHandle">
-    insert into tbl_fault_handle (id, detect_device_id, detect_device_name, 
-      detect_device_type, hault_start_time, hault_end_time, 
-      fault_stop_time, type, fault_level_type, 
-      fault_info, handle_info, forecast_fault_time, 
-      segment_duty_user, handle_start_time, handle_end_time, 
-      repair_person, fault_type, confirm_fault_person, 
-      complete_flag, telegraph_number, remark, 
-      plan_outage_start_time, plan_outage_end_time, 
-      notice_time, responsible_unit, depot_id, 
-      depot_name, update_time, responsible_user
-      ,notice_user)
-    values (#{id,jdbcType=INTEGER}, #{detectDeviceId,jdbcType=NUMERIC}, #{detectDeviceName,jdbcType=VARCHAR}, 
-      #{detectDeviceType,jdbcType=VARCHAR}, #{haultStartTime,jdbcType=TIMESTAMP}, #{haultEndTime,jdbcType=TIMESTAMP}, 
-      #{faultStopTime,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{faultLevelType,jdbcType=VARCHAR}, 
-      #{faultInfo,jdbcType=VARCHAR}, #{handleInfo,jdbcType=VARCHAR}, #{forecastFaultTime,jdbcType=TIMESTAMP}, 
-      #{segmentDutyUser,jdbcType=VARCHAR}, #{handleStartTime,jdbcType=TIMESTAMP}, #{handleEndTime,jdbcType=TIMESTAMP}, 
-      #{repairPerson,jdbcType=VARCHAR}, #{faultType,jdbcType=VARCHAR}, #{confirmFaultPerson,jdbcType=VARCHAR}, 
-      #{completeFlag,jdbcType=NUMERIC}, #{telegraphNumber,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{planOutageStartTime,jdbcType=TIMESTAMP}, #{planOutageEndTime,jdbcType=TIMESTAMP}, 
-      #{noticeTime,jdbcType=TIMESTAMP}, #{responsibleUnit,jdbcType=VARCHAR}, #{depotId,jdbcType=NUMERIC}, 
-      #{depotName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{responsibleUser,jdbcType=VARCHAR}
-      ,#{noticeUser,jdbcType=VARCHAR}
-      )
+    insert into tbl_fault_handle (id, detect_device_id, detect_device_name,
+      detect_device_type, hault_start_time, hault_end_time,
+      fault_stop_time, type, fault_level_type,
+      fault_info, handle_info, forecast_fault_time,
+      segment_duty_user, handle_start_time, handle_end_time,
+      repair_person, fault_type, confirm_fault_person,
+      complete_flag, telegraph_number, remark,
+      plan_outage_start_time, plan_outage_end_time,
+      notice_time, responsible_unit, depot_id,
+      depot_name, update_time, responsible_user,
+      notice_user, responsible_depot)
+    values (#{id,jdbcType=INTEGER}, #{detectDeviceId,jdbcType=NUMERIC}, #{detectDeviceName,jdbcType=VARCHAR},
+      #{detectDeviceType,jdbcType=VARCHAR}, #{haultStartTime,jdbcType=TIMESTAMP}, #{haultEndTime,jdbcType=TIMESTAMP},
+      #{faultStopTime,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{faultLevelType,jdbcType=VARCHAR},
+      #{faultInfo,jdbcType=VARCHAR}, #{handleInfo,jdbcType=VARCHAR}, #{forecastFaultTime,jdbcType=TIMESTAMP},
+      #{segmentDutyUser,jdbcType=VARCHAR}, #{handleStartTime,jdbcType=TIMESTAMP}, #{handleEndTime,jdbcType=TIMESTAMP},
+      #{repairPerson,jdbcType=VARCHAR}, #{faultType,jdbcType=VARCHAR}, #{confirmFaultPerson,jdbcType=VARCHAR},
+      #{completeFlag,jdbcType=NUMERIC}, #{telegraphNumber,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+      #{planOutageStartTime,jdbcType=TIMESTAMP}, #{planOutageEndTime,jdbcType=TIMESTAMP},
+      #{noticeTime,jdbcType=TIMESTAMP}, #{responsibleUnit,jdbcType=VARCHAR}, #{depotId,jdbcType=NUMERIC},
+      #{depotName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{responsibleUser,jdbcType=VARCHAR},
+      #{noticeUser,jdbcType=VARCHAR}, #{responsibleDepot,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.kthw.pmis.entiy.FaultHandle">
     insert into tbl_fault_handle
@@ -382,6 +389,9 @@
       <if test="noticeUser != null">
         notice_user,
       </if>
+      <if test="responsibleDepot != null">
+        responsible_depot,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -474,6 +484,9 @@
       <if test="noticeUser != null">
         #{noticeUser,jdbcType=VARCHAR},
       </if>
+      <if test="responsibleDepot != null">
+        #{responsibleDepot,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.kthw.pmis.entiy.FaultHandle">
@@ -510,8 +523,9 @@
       depot_id = #{depotId,jdbcType=NUMERIC},
       depot_name = #{depotName,jdbcType=VARCHAR},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      responsible_user = #{responsibleUser,jdbcType=VARCHAR}
-      notice_user = #{noticeUser,jdbcType=VARCHAR}
+      responsible_user = #{responsibleUser,jdbcType=VARCHAR},
+      notice_user = #{noticeUser,jdbcType=VARCHAR},
+      responsible_depot = #{responsibleDepot,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByMap" parameterType="java.util.Map">

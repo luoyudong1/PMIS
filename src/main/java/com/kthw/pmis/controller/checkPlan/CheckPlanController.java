@@ -6,8 +6,11 @@ import com.kthw.pmis.controller.faultHandle.FaultReportController;
 import com.kthw.pmis.entiy.DetectDevice;
 import com.kthw.pmis.entiy.FaultHandle;
 import com.kthw.pmis.entiy.PlanCheck;
+import com.kthw.pmis.entiy.PlanCheckSheet;
 import com.kthw.pmis.mapper.common.DetectDeviceMapper;
 import com.kthw.pmis.mapper.common.PlanCheckMapper;
+import com.kthw.pmis.mapper.common.PlanCheckSheetMapper;
+import com.kthw.pmis.service.planCheckSheet.PlanCheckSheetService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +33,10 @@ public class CheckPlanController {
     private static final Logger logger = LoggerFactory.getLogger(CheckPlanController.class);
     @Autowired
     private PlanCheckMapper planCheckMapper;
+    @Autowired
+    private PlanCheckSheetService planCheckSheetService;
+    @Autowired
+    private PlanCheckSheetMapper planCheckSheetMapper;
     @Autowired
     private DetectDeviceMapper detectDeviceMapper;
 
@@ -59,6 +66,7 @@ public class CheckPlanController {
             } else {
                 if (StringUtils.isNotBlank(depotId) && !StringUtils.isNotBlank(status)) {
                     params.put("eqDepotId", Long.valueOf(depotId));
+                    params.put("gtStatus", 1);
                     params.put("ltStatus", 5);
                 } else if (!StringUtils.isNotBlank(depotId) && !StringUtils.isNotBlank(status)) {
                     params.put("gtStatus", 1);
@@ -100,7 +108,7 @@ public class CheckPlanController {
         logger.info("新增检修计划");
         int code = 0;
         Map<String, Object> ret = new HashMap<>();
-        DetectDevice detectDevice=new DetectDevice();
+        DetectDevice detectDevice = new DetectDevice();
         try {
             List<PlanCheck> list = new ArrayList<>();
             DataTable<PlanCheck> dt = new DataTable<PlanCheck>();
@@ -111,7 +119,7 @@ public class CheckPlanController {
             planCheck.setStatus((short) 1);
             planCheckMapper.insert(planCheck);
             detectDevice.setDetectDeviceId(planCheck.getDetectDeviceId());
-            detectDevice.setPlanCheckEnable((short)1);
+            detectDevice.setPlanCheckEnable((short) 1);
             detectDeviceMapper.updateByPrimaryKeySelective(detectDevice);
             ret.put("code", code);
             ret.put("msg", ErrCode.getMessage(code));
@@ -138,6 +146,7 @@ public class CheckPlanController {
         logger.info("修改检修计划");
         int code = 0;
         Map<String, Object> ret = new HashMap<>();
+        Map<String, Object> params = new HashMap<>();
         try {
             //修改planCheck表
             planCheck.setUpdateTime(new Timestamp(new Date().getTime()));
@@ -145,6 +154,56 @@ public class CheckPlanController {
             if (flag == 1) {
                 ret.put("code", code);
                 ret.put("msg", ErrCode.getMessage(code));
+            }
+            //检修完成标志
+            if (planCheck.getStatus()!=null&&planCheck.getStatus() == 4) {
+                PlanCheckSheet planCheckSheet = planCheckSheetMapper.selectByPrimaryKey(planCheck.getSheetId());
+                String sheetId = planCheckSheetService.getMaxSheetId(planCheckSheet.getSheetId().substring(0,5));
+                PlanCheckSheet nextMonth = new PlanCheckSheet();
+                params.put("eqDepotId", planCheckSheet.getDepotId());
+                //12月
+                if (planCheckSheet.getMonth().equals("12")) {
+                    Integer year = Integer.valueOf(planCheckSheet.getYear()) + 1;
+                    params.put("eqYear", year.toString());
+                    params.put("eqMonth", "1");
+                    List<PlanCheckSheet> list = planCheckSheetMapper.selectByMap(params);
+                    if (list.size() >= 1) {//已存在直接插入单据下，返回
+                        planCheck.setSheetId(sheetId);
+                        planCheckMapper.insert(planCheck);
+                        return ret;
+                    } else {
+                        //插入新检修单据
+                        nextMonth.setSheetId(sheetId);
+                        nextMonth.setDepotId(planCheckSheet.getDepotId());
+                        nextMonth.setYear(year.toString());
+                        nextMonth.setMonth("1");
+                        nextMonth.setDepotName(planCheckSheet.getDepotName());
+                        nextMonth.setCreateUser(planCheckSheet.getCreateUser());
+                        nextMonth.setFlag((short) 1);
+                        planCheckSheetMapper.insert(nextMonth);
+                    }
+                    //其他月
+                } else {
+                    Integer month = Integer.valueOf(planCheckSheet.getMonth()) + 1;
+                    params.put("eqYear", planCheckSheet.getYear());
+                    params.put("eqMonth", month.toString());
+                    List<PlanCheckSheet> list = planCheckSheetMapper.selectByMap(params);
+                    if (list.size() >= 1) {////已存在直接插入单据下，返回
+                        planCheck.setSheetId(sheetId);
+                        planCheckMapper.insert(planCheck);
+                        return ret;
+                    } else {//插入新检修单据
+                        nextMonth.setSheetId(sheetId);
+                        nextMonth.setDepotId(planCheckSheet.getDepotId());
+                        nextMonth.setYear(planCheckSheet.getYear());
+                        nextMonth.setMonth(month.toString());
+                        nextMonth.setDepotName(planCheckSheet.getDepotName());
+                        nextMonth.setCreateUser(planCheckSheet.getCreateUser());
+                        nextMonth.setFlag((short) 1);
+                        planCheckSheetMapper.insert(nextMonth);
+                    }
+                }
+
             }
             return ret;
         } catch (Exception e) {

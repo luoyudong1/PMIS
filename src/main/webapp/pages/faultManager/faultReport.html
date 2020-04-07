@@ -82,7 +82,8 @@
                         <th>预报时间</th>
                         <th>段值班员</th>
                         <th style="display: none">责任人</th>
-                        <th style="display: none">通知段人员</th>
+                        <th style="display: none">段责任部门</th>
+                        <th style="display: none">通知的责任人</th>
                         <th>故障处理开始时间</th>
                         <th>故障处理结束时间</th>
                         <th>维修人员</th>
@@ -162,7 +163,13 @@
                         </div>
                         <br>
                         <div class="input-group">
-                            <label><strong>通知段人员：</strong></label> <select
+                            <label><strong>段责任部门：</strong></label> <input
+                                id="responsibleDepotModify" type="text" class="form-control"
+                                style="width: 200px;" readonly />
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <label><strong>通知的责任人：</strong></label> <select
                                 id="noticeUserModify" type="text" class="form-control"
                                 style="width: 200px;" autocomplete="off">
                         </select>
@@ -344,12 +351,11 @@
                         </div>
                         <br>
                         <div class="input-group">
-                            <label><strong>段责任部门：</strong></label> <select
-                                id="repairUserAdd" type="text" class="form-control"
-                                style="width: 200px;" autocomplete="off">
-                            <option></option>
-                        </select>
+                            <label><strong>段责任部门：</strong></label> <input
+                                id="responsibleDepotAdd" type="text" class="form-control"
+                                style="width: 200px;" readonly />
                         </div>
+                        <br>
                         <div class="input-group">
                             <label><strong>通知的责任人：</strong></label> <select
                                 id="noticeUserAdd" type="text" class="form-control"

@@ -31,6 +31,8 @@ public class FaultReportController {
     private RepairUserMapper repairUserMapper;
     @Autowired
     private FaultTypeMapper faultTypeMapper;
+    @Autowired
+    private DepotMapper depotMapper;
     private static final Logger logger = LoggerFactory.getLogger(FaultReportController.class);
 
     /**
@@ -227,7 +229,32 @@ public class FaultReportController {
         }
         return list;
     }
+    /**
+     * 获取探测站责任部门
+     *
+     * @param
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/getResponsibleDepot", method = RequestMethod.GET)
+    public String getResponsibleDepot(Integer detectDeviceId) {
+        logger.info("获取探测站责任部门");
+        DetectDevice detectDevice = new DetectDevice();
+        Map<String, Object> params = new HashMap<>();
+        String ret=new String();
+        try {
+            detectDevice = detectDeviceMapper.selectByPrimaryKey(detectDeviceId);
+            Depot depot=depotMapper.selectByPrimaryKey(detectDevice.getDepotId());
+            ret=depot.getDepotName();
+            params.put("eqDepotId",depot.getParentId());
+            List<Depot> list=depotMapper.selectByMap(params);
+            ret=list.get(0).getDepotName()+ret;
 
+        } catch (Exception e) {
+            logger.error("获取探测站责任部门");
+        }
+        return ret;
+    }
 
     /**
      * 获取探测站责任单位

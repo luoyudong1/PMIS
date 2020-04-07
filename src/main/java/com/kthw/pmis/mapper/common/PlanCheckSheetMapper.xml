@@ -53,6 +53,20 @@
       <if test="eqVerifyUser != null">
         AND verify_user = #{eqVerifyUser,jdbcType=VARCHAR}
       </if>
+      <if test="ltCompleteFlag != null">
+        AND flag &lt; #{ltCompleteFlag ,jdbcType=NUMERIC}
+      </if>
+      <if test="gtCompleteFlag != null">
+        AND flag > #{gtCompleteFlag ,jdbcType=NUMERIC}
+      </if>
+      <if test='queryTime != null and queryTime != ""'>
+        and create_time >= to_timestamp(#{queryTime}, 'yyyy-mm-dd
+        hh24:mi:ss')
+      </if>
+      <if test='queryTime2 != null and queryTime2 != ""'>
+        and create_time &lt;= to_timestamp(#{queryTime2},
+        'yyyy-mm-dd hh24:mi:ss')
+      </if>
     </where>
   </sql>
   <sql id="ByMap_Set_Clause">
@@ -87,6 +101,7 @@
       <if test="verifyUser != null">
         verify_user = #{verifyUser,jdbcType=VARCHAR},
       </if>
+
     </set>
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">

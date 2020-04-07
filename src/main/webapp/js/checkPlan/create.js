@@ -169,7 +169,7 @@ require(['../config'],
                  * 探测站改变事件
                  */
                 $("#detectDeviceAdd").change(function () {
-                    let planType=$("#detectDeviceAdd option:selected").attr("planCheckType");
+                    let planType = $("#detectDeviceAdd option:selected").attr("planCheckType");
                     $("#planTypeAdd").val(planType)
                 })
                 /**
@@ -183,7 +183,7 @@ require(['../config'],
                     $("#detectDeviceAdd").append('<option></option>')
                     for (let i = 0; i < listDetect.length; i++) {
                         if (listDetect[i].lineName == lineName && listDetect[i].deviceTypeName == detectType && listDetect[i].planCheckEnable == 0) {
-                            $("#detectDeviceAdd").append('<option value="' + listDetect[i].detectDeviceId + '" deviceTypeName="' + listDetect[i].deviceTypeName +'" planCheckType="' + listDetect[i].planCheckType + '">' + listDetect[i].detectDeviceName + '</option>');
+                            $("#detectDeviceAdd").append('<option value="' + listDetect[i].detectDeviceId + '" deviceTypeName="' + listDetect[i].deviceTypeName + '" planCheckType="' + listDetect[i].planCheckType + '">' + listDetect[i].detectDeviceName + '</option>');
                         }
                     }
 
@@ -324,14 +324,12 @@ require(['../config'],
                                 if (data == 1) {
                                     str = '<span style="color:red;font-weight:bold;">新建</span>';
                                 } else if (data == 2) {
-                                    str = '<span style="color:blue;font-weight:bold;">计划审核中</span>';
-                                } else if (data == 3) {
                                     str = '<span style="color:blue;font-weight:bold;">待检修中</span>';
                                 }
-                                else if (data == 4) {
+                                else if (data == 3) {
                                     str = '<span style="color:blue;font-weight:bold;">检修结束中</span>';
                                 }
-                                else if (data == 5) {
+                                else if (data == 4) {
                                     str = '<span style="color:black;font-weight:bold;">检修完成</span>';
                                 }
                                 return str;
@@ -341,43 +339,36 @@ require(['../config'],
                     columnDefs: [{
                         targets: 12,
                         data: function (row) {
-                            var str = '';
-                            if (roleName == "段调度员" && (row.flag == 1 || row.flag == 3)) {
-                                str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
+                            var str = '-';
+                            if (row.flag == 1 || row.flag == 4) {
+                                str += '<a class="modifySheetDetail btn btn-info btn-xs" data-toggle="modal" href="#modifySheetDetailModal" title="修改配件"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;<a class="deleteParts btn btn-danger btn-xs" data-toggle="modal" href="#popModal" title="删除配件"><span class="glyphicon glyphicon-remove"></span></a>';
+                            } else {
+                                str += '';
                             }
-                            if (roleName == "集团调度员" && (row.flag== 2 || row.flag == 4)) {
-                                str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
-                            }
-                            if (roleName == "段调度员" && (row.flag == 1 || row.flag== 3)) {
-                                str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
-                            } else if (roleName == "集团调度员" && (row.flag == 2 || row.flag == 4)) {
-                                str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
-                                str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popBackSheetModal" title="回退单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
-                            }
-                            if (roleName == "段调度员" && row.flag== 1) {
-                                str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popSheetModal" title="删除单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
-
-                            }
-                            if (roleName == "段调度员" && row.flag== 3) {
-                                str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popBackSheetModal" title="回退单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
-
-                            }
-
-                            // str += '<button id="exportExcel" type="button" class="btn btn-success btn-xs" title="导出"><span class="glyphicon glyphicon-download-alt"></span></button>';
                             return str;
+
+
                         }
-                    }],
+                    }
+                    ],
                     ordering: false,
-                    paging: true,
-                    pageLength: 10,
-                    serverSide: false,
-                    drawCallback: function (settings) {
-                        var api = this.api();
-                        var startIndex = api.context[0]._iDisplayStart; // 获取到本页开始的条数
-                        api.column(0).nodes().each(function (cell, i) {
-                            cell.innerHTML = startIndex + i + 1;
-                        });
-                    },
+                    paging:
+                        true,
+                    pageLength:
+                        10,
+                    serverSide:
+                        false,
+                    drawCallback:
+
+                        function (settings) {
+                            var api = this.api();
+                            var startIndex = api.context[0]._iDisplayStart; // 获取到本页开始的条数
+                            api.column(0).nodes().each(function (cell, i) {
+                                cell.innerHTML = startIndex + i + 1;
+                            });
+                        }
+
+                    ,
                 });
                 /**
                  * 添加单据
@@ -455,8 +446,8 @@ require(['../config'],
                             detectDeviceName: $('#detectDeviceAdd option:selected').text(),
                             detectDeviceType: $('#detectDeviceAdd option:selected').attr("deviceTypeName"),
                             planTime: $('#planTimeAdd').val(),
-                            // createUser: user_id,
-                            planType: $('#planTypeAdd').text(),
+                            createUser: user_id,
+                            planType: $('#planTypeAdd').val(),
                             depotId: deptId,
                             sheetId: sheet_id
                         });
@@ -472,7 +463,7 @@ require(['../config'],
                                 } else {
                                     getDetectDevice()
                                     sheetDetailTable.ajax.reload();
-                                    $('#detectTypeAdd option:first').prop("selected",true)
+                                    $('#detectTypeAdd option:first').prop("selected", true)
                                     $("#alertMsg").html('<span style="color:green;text-align:center"><strong>故障预报添加成功！</strong></span>');
                                     $("#infoAlert").show();
                                     hideTimeout("infoAlert", 2000);
@@ -498,7 +489,7 @@ require(['../config'],
                                     .row(tr).data();
                                 completeFlag = sheetTrData.flag
                                 sheet_id = sheetTrData.sheetId
-                                if (completeFlag == 2) { // 已审核不能添加
+                                if (completeFlag == 3) { // 已审核不能添加
                                     $("#add_sheetDetail").hide();
                                 } else {
                                     $("#add_sheetDetail").show()
@@ -715,8 +706,7 @@ require(['../config'],
                     function (e) {
                         var tr = $(e.relatedTarget).parents('tr');
                         var data = sheetTable.row(tr).data();
-                        $('#warningSheetText').text('确定要删除该故障预报单据（' + data.id + '）？');
-                        $('#deleteSheetId').val(data.id);
+                        $('#warningSheetText').text('确定要删除该故障预报单据（' + data.sheet_id + '）？');
                     });
                 /**
                  * 点击删除确定按钮
@@ -725,10 +715,10 @@ require(['../config'],
                     function (e) {
                         e.preventDefault();
                         var params = JSON.stringify({
-                            id: $('#deleteSheetId').val()
+                           sheetId: sheet_id
                         });
                         $.ajax({
-                            url: config.basePath + '/checkPlan/checkPlan/delete',
+                            url: config.basePath + '/checkPlan/sheet/delete',
                             type: 'POST',
                             data: params,
                             contentType: 'application/json',
@@ -792,7 +782,7 @@ require(['../config'],
                         cell.innerHTML = i + 1;
                     });
                 });
-                sheetTable.on('draw.dt', function () {
+                sheetDetailTable.on('draw.dt', function () {
                     //给第一列编号
                     sheetDetailTable.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
                         cell.innerHTML = i + 1;

@@ -109,7 +109,6 @@ require(['../config'],
                             // $("#detectDeviceAdd").append('<option value="' + result.data[i].detectDeviceId + '" deviceModelName="' + result.data[i].deviceModelName + '">' + result.data[i].detectDeviceName + '</option>');
                             lineSet.add(result.data[i].lineName)
                             deviceTypeSet.add(result.data[i].deviceTypeName)
-                            console.log(result.data[i].deviceTypeName)
                         }
                         initLineAdd()
                         initDeviceTypeAdd()
@@ -159,14 +158,16 @@ require(['../config'],
                     }
                 });
                 /**
-                 * 获取探测站维修人员
+                 * 获取探测站维修人员和责任部门
                  */
                 $('#detectDeviceAdd').change(function (e) {
                     if ($('#detectDeviceAdd').val() != '') {
-                        var data = $('#detectDeviceAdd').val()
-                        var result = getDetectRepairPerson(data)
+                        let data = $('#detectDeviceAdd').val()
+                        let responsibleDepot=getResponsibleDepot(data)
+                        let result = getDetectRepairPerson(data)
                         $('#repairUserAdd').empty()
                         $('#noticeUserAdd').empty()
+                        $('#responsibleDepotAdd').val(responsibleDepot)
                         for (var i = 0; i < result.length; i++) {
                             $("#repairUserAdd").append('<option></option>');
                             $("#repairUserAdd").append('<option value="' + result[i].id + '">' + result[i].name + '</option>');
@@ -185,7 +186,6 @@ require(['../config'],
 
                     $("#detectDeviceAdd").empty()
                     $("#detectDeviceAdd").append('<option></option>')
-                    console.log(detectType)
                     for (let i = 0; i < listDetect.length; i++) {
                         if (listDetect[i].lineName == lineName&&listDetect[i].deviceTypeName==detectType) {
                             $("#detectDeviceAdd").append('<option value="' + listDetect[i].detectDeviceId + '" deviceTypeName="' + listDetect[i].deviceTypeName + '">' + listDetect[i].detectDeviceName + '</option>');
@@ -215,6 +215,11 @@ require(['../config'],
                     }
                 }
 
+                /**
+                 * 获取维修人员
+                 * @param data
+                 * @returns {string}
+                 */
                 function getDetectRepairPerson(data) {
                     var ret = '';
                     $.ajax({
@@ -232,7 +237,27 @@ require(['../config'],
                     });
                     return ret;
                 }
-
+                /**
+                 * 获取责任部门
+                 * @param data
+                 * @returns {string}
+                 */
+                function getResponsibleDepot(data) {
+                    let ret = '';
+                    $.ajax({
+                        async: false,
+                        url: config.basePath + "/faultHandle/faultReport/getResponsibleDepot",
+                        type: 'get',
+                        data: {detectDeviceId: data},
+                        success: function (result) {
+                            ret = result;
+                        },
+                        error: function (result) {
+                            console.log(result);
+                        }
+                    });
+                    return ret;
+                }
                 /**
                  * 初始化入库单据
                  */
@@ -285,6 +310,9 @@ require(['../config'],
                             data: 'responsibleUser', bVisible: false
                         },
                         {
+                            data: 'responsibleDepot', bVisible: false
+                        },
+                        {
                             data: 'noticeUser', bVisible: false
                         }, {
                             data: 'handleStartTime'
@@ -317,7 +345,7 @@ require(['../config'],
                         },
                     ],
                     columnDefs: [{
-                        targets: 20,
+                        targets: 21,
                         data: function (row) {
                             var str = '';
                             if (roleName == "段调度员" && (row.completeFlag == 1 || row.completeFlag == 3)) {
@@ -385,6 +413,7 @@ require(['../config'],
                             segmentDutyUser: $('#segmentDutyUserAdd').val(),
                             faultType: $('#faultTypeAdd option:selected').text(),
                             type: $('#typeAdd option:selected').text(),
+                            responsibleDepot: $('#responsibleDepotAdd').val(),
                             depotId: deptId
                         });
                         $.ajax({
@@ -438,6 +467,7 @@ require(['../config'],
                     $('#faultInfoAdd').val('')
                     $('#handleInfoAdd').val('')
                     $('#repairUserAdd').val('')
+                    $('#responsibleDepotAdd').val('')
                     $('#faultTypeAdd option:first').prop("selected", true)
                     $('#faultLevelAdd option:first').prop("selected", true)
                     $('#detectDeviceAdd option:first').prop("selected", true)
@@ -466,6 +496,7 @@ require(['../config'],
                         $('#faultHandleEndTimeModify').val(data.handleEndTime)
                         $('#responsibleUserModify').val(data.responsibleUser)
                         $('#remarkModify').val(data.remark)
+                        $('#responsibleDepotModify').val(data.responsibleDepot)
                         $('#typeModify option:contains("' + data.type + '")').prop("selected", true);
                         $('#telegraphNumberModify').val(data.telegraphNumber)
                         $('#noticeTimeModify').val(data.noticeTime)
