@@ -107,6 +107,7 @@ D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\mapper\re
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\entiy\SheetDetailKey.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\core\com\kthw\common\shiro\SecurityConstants.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\controller\detectProduce\PartsConsumeController.java
+D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\task\FaultHandleTask.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\serviceimpl\system\MessageInfoServiceImpl.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\service\system\UserService.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\serviceimpl\repairManage\RepairServiceImpl.java

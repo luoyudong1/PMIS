@@ -99,9 +99,6 @@ require(['../config'],
                             data: 'faultStopTime'
                         },
                         {
-                            data: 'type', bVisible: false
-                        },
-                        {
                             data: 'faultLevelType'
                         }, {
                             data: 'handleInfo'

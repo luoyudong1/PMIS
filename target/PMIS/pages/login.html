@@ -3,274 +3,228 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>5T关键配件检测配送系统</title>
+		<title>5T综合管理信息系统</title>
 
 		<meta name="description" content="User login page" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
 		<!-- bootstrap & fontawesome -->
-		<link rel="stylesheet" href="./css/bootstrap.min.css" />
-		<link rel="stylesheet" href="./css/plugins/font-awesome/css/font-awesome.min.css" />
+
 		<!-- <link rel="stylesheet" href="./css/fonts.googleapis.com.css" /> -->
-        <link rel="stylesheet" href="./css/ace.min.css" />
-        <link rel="stylesheet" href="./css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="../css/plugins/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../css/ace.min.css" />
+		<link rel="stylesheet" href="../css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="../css/login.css" />
+		<link rel="stylesheet" href="../css/base.css" />
+        <link href="../css/plugins/toastr/toastr.min.css" rel="stylesheet">
+		<style>
+			a i:hover{
+
+				cursor:pointer;
+				color: white;
+				font-weight: 600;
+
+			}
+			a:hover{
+				cursor:pointer;
+			}
+
+			.func-right span:hover{
+				cursor:pointer;
+			}
+
+            .hide{
+                display: none;
+            }
+		</style>
+
+
+
 	</head>
 
-	<body class="login-layout blur-login" style="background-size: cover;">
-		<div class="main-container">
-			<div class="main-content">
-				<div class="row">
-				   <div class="navbar-fixed-top">
-						<br />
-						&nbsp;
-						<a id="btn-login-dark" href="#">黑暗</a>
-						&nbsp;
-						<span class="blue">/</span>
-						&nbsp;
-						<a id="btn-login-blur" href="#">蓝紫</a>
-						&nbsp;
-						<span class="blue">/</span>
-						&nbsp;
-						<a id="btn-login-light" href="#">白亮</a>
-						&nbsp; &nbsp; &nbsp;
-					
-					<div style="float:right"><a href="./download/tools/ChromePortable-tested.zip" download="ChromePortable-tested.zip" target="_blank" style="font:15px black">点击下载谷歌浏览器</a></div>
+	<body>
+	<div class="my-container">
+
+		<div class="my-header">
+			<div class="my-logo"><a href="#"><img src="../img/title.png" alt="logo"></a></div>
+			<div class="handle-list">
+				<ul>
+					<li><a ><i class="fa fa-arrow-circle-down"></i></a><span>IE下载</span></li>
+					<li class="hide"><a ><i class="fa fa-edit"></i></a><span>账号修改</span></li>
+					<li id="btnQuit1" class="hide"><a ><i class="fa fa-sign-out"></i></a><span>注&nbsp销&nbsp&nbsp</span></li>
+				</ul>
+			</div>
+		</div>
+
+
+		<div class="marq">
+			<marquee onmouseout="start()" onmouseover="stop()" behavior="scroll" scrollamount="3" direction="left" style="word-wrap:normal" >
+				<span class="c-red" id="unViewNum"></span>
+			</marquee>
+		</div>
+
+		<div class="loginWraper height-670">
+			<div class="func">
+
+
+				<div class="func-left">
+
+					<div class="form-head">
+						<i class="fa fa-coffee green" style="color: green"></i><span class="pb-6 pl-5">用户登录</span>
+						<span class="login-tip text-danger login_alert" ></span>
 					</div>
-					<div class="col-sm-12" style="margin-top:3%">
-							<div class="center">
-								<div >
-									<!-- <i class="ace-icon fa fa-leaf green"></i> -->
-									<img alt="" src="./img/tiehui.jpg" width="70" height="70" style="vertical-align: bottom;margin:0 6px 6px 0">
-									<span  style="font-size: 57px;font-weight: 700;color: #e7000a">5T关键配件检测配送系统</span>
-									<!-- <span class="white" id="id-text2">系统登录</span> -->
+
+
+					<form id="login_form" class="form form-horizontal" action="#" method="post" >
+                      <div id="login_div">
+						<label class="block clearfix form-group login_p">
+                            <span class="block input-icon input-icon-left">
+								<input type="text" id="username" class="form-control" placeholder="请输入用户名" style="width: 180px;"/>
+								<i class="ace-icon fa fa-user"></i>
+							</span>
+						</label>
+
+						<label class="block clearfix form-group login_p">
+                            <span class="block input-icon input-icon-left">
+								<input type="password" id="password" class="form-control" placeholder="请输入密码" style="width: 180px"/>
+								<i class="ace-icon fa fa-lock" ></i>
+							</span>
+
+						</label>
+						<label class="block clearfix form-group">
+							<div class="formControls col-xs-8 col-xs-offset-3" style="margin-bottom: 3px;">
+								<!--
+                                <input type="checkbox" name="rememberMe" id="rememberMe" value="1">
+                                记住密码
+                                -->
+								&nbsp;
+							</div>
+							<span class="block input-icon input-icon-left">
+                                 <button type="button" id="btnLogin" class="width-35  btn btn-sm btn-primary" style="margin-left:140px;">
+                                      <i class="ace-icon fa fa-key"></i>
+                                      <span class="bigger-110">登 录</span>
+                                 </button>
+                            </span>
+						</label>
+					  </div>
+					  <div class="hide">
+                            <div class="login_show_p">
+								<i class="ace-icon fa fa-user" style="font-size:20px"></i>&nbsp;
+						        <label id="loginName" class="login_show_l"></label>
+							</div>
+						    <div class="login_show_p">
+							  <i class="ace-icon fa fa-building" style="font-size: 20px"></i>&nbsp;
+								<label id="depotName" class="login_show_l"></label>
+						    </div>
+						    <div class="login_show_p">
+							  <i class="ace-icon fa fa-unlock-alt" style="font-size:20px"></i>&nbsp;
+							  <label class="login_show_l"></label>
+						    </div>
+					  </div>
+					</form>
+				</div>
+
+
+
+				<div class="func-right">
+					<div>
+                      <span class="mgR" >
+                        <a  id="repair"  style="background-color: #0065ff">
+                            <i class="fa fa-wrench"></i><span>5T关键配件检修配送系统</span>
+                        </a>
+                      </span>
+                      <span  class="mgR" >
+                        <a  id="dispatch" style="background-color: #fe9900">
+                            <i class="fa fa-cogs" ></i><span>5T设备信息管理系统</span>
+                        </a>
+                      </span>
+
+					  <span class="mgT mgR" id="case" >
+                        <a style="background-color: #339a99" >
+                            <i class="fa fa-camera" ></i><span>5T动态检测</span>
+                        </a>
+                      </span>
+
+						<span class="mgT mgR" id="ab" >
+                        <a style="background-color: #cc0001" >
+                            <i class="fa fa-twitter-square" ></i><span>5综合评价发布</span>
+                        </a>
+                      </span>
+					</div>
+				</div>
+
+				<div class="func-side">
+					<div class="other-web"></div>
+
+				</div>
+			</div>
+
+
+			<div class="func">
+				<div class="notice">
+					<div class="notice-con">
+
+						<div class="notice-left">
+							<div class="notice-head">
+								<div>
+									<i class=""></i>
+									<span></span>
+									<a ><i class=""></i></a>
 								</div>
 							</div>
-						<div class="login-container">
-							<div class="space-16"></div>
-							<div class="position-relative">
-								<div id="login-box" class="login-box visible widget-box no-border">
-									<div class="widget-body">
-										<div class="widget-main">
-											<h4 class="header blue lighter bigger">
-												<i class="ace-icon fa fa-coffee green"></i>
-												账号信息
-													<span class="login-tip text-danger " style="margin-left: 5px;float: right;font-size: 16px;display: none;" ></span>
-											</h4>
+							<div class="notice-list">
+								<ul id="notice-ul"></ul>
+							</div>
+						</div>
 
-											<div class="space-6"></div>
+						<div class="notice-right">
+							<div class="notice-head">
+								<div>
+									<i class=""></i>
+									<span></span>
+									<a ><i class=""></i></a>
+								</div>
+							</div>
+							<div class="notice-list">
+								<ul id="telegram-ul"></ul>
+							</div>
+						</div>
 
-											<form>
-												<fieldset>
-													<label class="block clearfix form-group">
-														<span class="block input-icon input-icon-right">
-															<input type="text" id="username" class="form-control" placeholder="请输入用户名" />
-															<i class="ace-icon fa fa-user"></i>
-														</span>
-													</label>
+						<div class="notice-side">
+							<div class="notice-head">
+								<div>
+									<i class=""></i>
+									<span></span>
+									<a ><i class=""></i></a>
+								</div>
+							</div>
+							<div class="notice-list">
+								<ul id="notice-side-ul"></ul>
+							</div>
+						</div>
 
-													<label class="block clearfix form-group">
-														<span class="block input-icon input-icon-right">
-															<input type="password" id="password" class="form-control" placeholder="请输入密码" />
-															<i class="ace-icon fa fa-lock"></i>
-														</span>
-													</label>
 
-													<div class="space"></div>
 
-													<div class="clearfix">
-														<!-- <label class="inline">
-															<input type="checkbox" class="ace" checked="checked"/>
-															<span class="lbl"> 请记住我</span>
-														</label> -->
+					</div>
+				</div>
+			</div>
 
-														<button type="button" id="btnLogin" class="width-35 pull-right btn btn-sm btn-primary">
-															<i class="ace-icon fa fa-key"></i>
-															<span class="bigger-110">登 录</span>
-														</button>
-													</div>
+			<div class="my-footer"><img src="../img/tiehui.jpg" style="height: 18px"><span style="margin-left: 15px;margin-bottom: 10px">广铁集团车辆部机辆检测所  @2020 </span></div>
+		</div>
 
-													<div class="space-4"></div>
-												</fieldset>
-											</form>
-<!--
-											<div class="social-or-login center">
-												<span class="bigger-110">或使用下列方式登录</span>
-											</div>
 
-											<div class="space-6"></div>
-
-											<div class="social-login center">
-												<a class="btn btn-info">
-													<i class="ace-icon fa fa-qq"></i>
-												</a>
-
-												<a class="btn btn-success">
-													<i class="ace-icon fa fa-weixin"></i>
-												</a>
-
-												<a class="btn btn-danger">
-													<i class="ace-icon fa fa-weibo"></i>
-												</a>
-											</div>
-											 -->
-										</div><!-- /.widget-main -->
-
-										<div class="toolbar clearfix">
-											<div>
-											<!--
-												<a href="#" data-target="#forgot-box" class="forgot-password-link">
-													<i class="ace-icon fa fa-arrow-left"></i>
-													找回密码
-												</a> -->
-											</div>
-
-											<div>
-											<!--
-												<a href="#" data-target="#signup-box" class="user-signup-link">
-													注册账号
-													<i class="ace-icon fa fa-arrow-right"></i>
-												</a> -->
-											</div>
-										</div>
-									</div><!-- /.widget-body -->
-								</div><!-- /.login-box -->
-
-								<div id="forgot-box" class="forgot-box widget-box no-border">
-									<div class="widget-body">
-										<div class="widget-main">
-											<h4 class="header red lighter bigger">
-												<i class="ace-icon fa fa-key"></i>
-												找回密码
-											</h4>
-
-											<div class="space-6"></div>
-											<p>
-												输入您的电子邮件并接收指示
-											</p>
-
-											<form>
-												<fieldset>
-													<label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input type="email" class="form-control" placeholder="Email" />
-															<i class="ace-icon fa fa-envelope"></i>
-														</span>
-													</label>
-
-													<div class="clearfix">
-														<button type="button" class="width-35 pull-right btn btn-sm btn-danger">
-															<i class="ace-icon fa fa-lightbulb-o"></i>
-															<span class="bigger-110">发 送</span>
-														</button>
-													</div>
-												</fieldset>
-											</form>
-										</div><!-- /.widget-main -->
-
-										<div class="toolbar center">
-											<a href="#" data-target="#login-box" class="back-to-login-link">
-												返回登录
-												<i class="ace-icon fa fa-arrow-right"></i>
-											</a>
-										</div>
-									</div><!-- /.widget-body -->
-								</div><!-- /.forgot-box -->
-
-								<div id="signup-box" class="signup-box widget-box no-border">
-									<div class="widget-body">
-										<div class="widget-main">
-											<h4 class="header green lighter bigger">
-												<i class="ace-icon fa fa-users blue"></i>
-												新用户注册
-											</h4>
-
-											<div class="space-6"></div>
-											<p> 请填写您的信息: </p>
-
-											<form>
-												<fieldset>
-													<label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input type="email" class="form-control" placeholder="邮箱" />
-															<i class="ace-icon fa fa-envelope"></i>
-														</span>
-													</label>
-
-													<label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" placeholder="账号" />
-															<i class="ace-icon fa fa-user"></i>
-														</span>
-													</label>
-
-													<label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="密码" />
-															<i class="ace-icon fa fa-lock"></i>
-														</span>
-													</label>
-
-													<label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="再次输入密码" />
-															<i class="ace-icon fa fa-retweet"></i>
-														</span>
-													</label>
-
-													<label class="block">
-														<input type="checkbox" class="ace" />
-														<span class="lbl">
-															我同意
-															<a href="#">用户协议</a>
-														</span>
-													</label>
-
-													<div class="space-24"></div>
-
-													<div class="clearfix">
-														<button type="reset" class="width-30 pull-left btn btn-sm">
-															<i class="ace-icon fa fa-refresh"></i>
-															<span class="bigger-110">重置</span>
-														</button>
-
-														<button type="button" class="width-65 pull-right btn btn-sm btn-success">
-															<span class="bigger-110">注册</span>
-
-															<i class="ace-icon fa fa-arrow-right icon-on-right"></i>
-														</button>
-													</div>
-												</fieldset>
-											</form>
-										</div>
-
-										<div class="toolbar center">
-											<a href="#" data-target="#login-box" class="back-to-login-link">
-												<i class="ace-icon fa fa-arrow-left"></i>
-												返回登录
-											</a>
-										</div>
-									</div><!-- /.widget-body -->
-								</div><!-- /.signup-box -->
-							</div><!-- /.position-relative -->
-
-                            <div class="space-6"></div>
-                            <div class="center">
-	                            <h4 class="blue" id="id-company-text">&copy; 车辆检测所</h4>
-							</div>							
-						</div>						
-					</div><!-- /.col -->
-				</div><!-- /.row -->
-			</div><!-- /.main-content -->
-		</div><!-- /.main-container -->
+	</div>
 
 		<!-- basic scripts -->
-
-		<!--[if !IE]> -->
+		<script src="js/plugins/toastr/toastr.min.js"></script>
+		<!--
         <script src="js/jquery-3.1.1.min.js"></script>
-		<!-- <![endif]-->
+		<script src="js/plugins/toastr/toastr.min.js"></script>
+		<script src="js/plugins/pace/pace.min.js"></script>
 
-		<!-- inline scripts related to this page -->
-		<script src="js/login.js"></script>
+
+		 inline scripts related to this page
+		<script src="js/login.js"></script>  -->
 		<script type="text/javascript">
 		    //面板切换
 			jQuery(function($) {
@@ -310,5 +264,6 @@
 			 
 			});
 		</script>
+		<script src="../js/require.js" data-main="../js/login"></script>
 	</body>
 </html>

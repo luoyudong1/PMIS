@@ -48,6 +48,7 @@ com\kthw\pmis\service\system\MessageInfoService.class
 com\kthw\common\ImageUtil.class
 com\kthw\pmis\service\entryAndOut\ProduceEntryService.class
 com\kthw\common\shiro\SecurityConstants.class
+com\kthw\pmis\entiy\PlanCheckSheet.class
 com\kthw\pmis\service\entryAndOut\RepairOutService.class
 com\kthw\common\shiro\FramePermissionsAuthorizationFilter.class
 com\kthw\pmis\service\repairManage\RepairService.class
@@ -80,6 +81,7 @@ com\kthw\pmis\model\system\MenuNode.class
 com\kthw\pmis\model\system\KtProductDict.class
 com\kthw\pmis\model\system\Workshop.class
 com\kthw\pmis\helper\DepotHelper.class
+com\kthw\pmis\mapper\common\PlanCheckSheetMapper.class
 com\kthw\pmis\model\repairManage\PartsAllocate.class
 com\kthw\pmis\entiy\DetectParts.class
 com\kthw\pmis\entiy\FaultType.class
@@ -116,6 +118,7 @@ com\kthw\common\Exceptions.class
 com\kthw\pmis\controller\partsEntryAndOut\FactoryReturnController.class
 com\kthw\pmis\mapper\entryAndOut\ProduceEntryMapper.class
 com\kthw\pmis\model\system\Depot.class
+com\kthw\pmis\service\faultHandle\FaultHandleService.class
 com\kthw\pmis\controller\repairManage\CheckInController.class
 com\kthw\pmis\entiy\dto\ComprehensiveStatisticsDTO.class
 com\kthw\pmis\model\system\AuthFunction.class
@@ -131,12 +134,14 @@ com\kthw\pmis\entiy\dto\StockInfoDTO.class
 com\kthw\pmis\model\system\LuJu.class
 com\kthw\pmis\serviceimpl\entryAndOut\PurchasePartsServiceImpl.class
 com\kthw\pmis\controller\entryAndOut\PurchaseToDeliveryController.class
+com\kthw\pmis\serviceimpl\faultHandle\FaultHandleServiceImpl.class
 com\kthw\pmis\controller\stock\WorkShopToDepotController.class
 com\kthw\pmis\mapper\repairManage\RepairMapper.class
 com\kthw\pmis\controller\detectProduce\PartsUnstallController.class
 com\kthw\dispatcher\TaskInfo.class
 com\kthw\pmis\mapper\common\DeviceModelMapper.class
 com\kthw\pmis\controller\stock\ScrapReceiptController.class
+com\kthw\pmis\entiy\Tbl_fault_handle.class
 com\kthw\pmis\controller\stock\SparesToWorkShopController.class
 com\kthw\pmis\controller\report\ComprehensiveStatisticsController.class
 com\kthw\aiplan\DynamicVehInfo.class
@@ -168,6 +173,7 @@ com\kthw\pmis\entiy\SheetDetail.class
 com\kthw\pmis\model\system\Driver.class
 com\kthw\pmis\controller\entryAndOut\RepairEntryController.class
 com\kthw\pmis\mapper\common\AssetAttributesMapper.class
+com\kthw\pmis\service\planCheckSheet\PlanCheckSheetService.class
 com\kthw\pmis\mapper\entryAndOut\PurchasePartsMapper.class
 com\kthw\pmis\serviceimpl\system\StoreHouseManageServiceImpl.class
 com\kthw\pmis\mapper\common\ResponsibleUnitMapper.class
@@ -181,8 +187,10 @@ com\kthw\pmis\service\stock\StockInfoService.class
 com\kthw\dispatcher\Node.class
 com\kthw\pmis\controller\report\SectionalStatisticsController.class
 com\kthw\pmis\entiy\ext\SheetInfoExt.class
+com\kthw\pmis\entiy\PlanCheck.class
 com\kthw\pmis\serviceimpl\system\CommonServiceImpl.class
 com\kthw\pmis\service\entryAndOut\RepairEntryService.class
+com\kthw\pmis\serviceimpl\planCheckSheet\PlanCheckServiceImpl.class
 com\kthw\pmis\model\system\UserDetail.class
 com\kthw\pmis\mapper\common\DeviceTypeMapper.class
 com\kthw\common\MatrixToImageWriter.class
@@ -190,9 +198,11 @@ com\kthw\pmis\model\system\StoreHouseInfo.class
 com\kthw\pmis\entiy\DeviceType.class
 com\kthw\dispatcher\Step.class
 com\kthw\pmis\websocket\VehicleMonitorHandler.class
+com\kthw\pmis\controller\checkPlan\CheckPlanController.class
 com\kthw\pmis\entiy\PartsDict.class
 com\kthw\pmis\controller\stock\SparesAndRepairController.class
 com\kthw\pmis\entiy\SheetDetailKey.class
+com\kthw\pmis\controller\checkPlan\CheckPlanSheetController.class
 com\kthw\pmis\mapper\system\CommonMapper.class
 com\kthw\common\ServletUtils.class
 com\kthw\pmis\service\entryAndOut\PreparePurchaseService.class
@@ -203,6 +213,7 @@ com\kthw\pmis\controller\system\AuthManageController.class
 com\kthw\aiplan\GroupType.class
 com\kthw\pmis\entiy\RepairUser.class
 com\kthw\pmis\controller\partsEntryAndOut\AddPartsController.class
+com\kthw\pmis\mapper\common\PlanCheckMapper.class
 com\kthw\pmis\model\system\Car.class
 com\kthw\pmis\mapper\system\UserMapper.class
 com\kthw\dispatcher\PlatformInfo.class
@@ -236,5 +247,6 @@ com\kthw\pmis\model\KeyInfo.class
 com\kthw\pmis\mapper\SequenceMapper.class
 com\kthw\pmis\mapper\system\PartsMapper.class
 com\kthw\pmis\serviceimpl\SequenceServiceImpl.class
+com\kthw\pmis\task\FaultHandleTask.class
 com\kthw\common\ExecutionTimeLoggingSpringAOP.class
 com\kthw\pmis\controller\system\UserManageController.class

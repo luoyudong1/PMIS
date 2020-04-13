@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kthw.pmis.entiy.Depot;
+import com.kthw.pmis.mapper.common.DepotMapper;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -43,11 +45,13 @@ public class LoginController extends BaseController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private DepotMapper depotMapper;
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String getLoginPage(HttpSession session) {
         if (session.getAttribute("AUTH_USER") != null) {
-            return "redirect:/pages/index.html";
+            return "login";//"redirect:/pages/index.html";      ZFF.MODIFY
         } else {
             return "login";
         }
@@ -78,11 +82,12 @@ private void clear(List<Session> list){
 }
     @ResponseBody
     @RequestMapping(value = "login", method = {RequestMethod.POST})
-    public String login(@RequestBody Map<String, String> params, HttpServletRequest request) {
+    public Map<String, Object> login(@RequestBody Map<String, String> params, HttpServletRequest request) {
         String userId = params.get("userid");
         String password = params.get("password");
         String remember = params.get("remember");
         Map<String, Object> rtmap = new HashMap<String, Object>();
+        Map<String, Object> ret = new HashMap<String, Object>();        //ZFF.ADD
         int errCode = 0;
         logger.info("login user is: " + userId + " ip:" + request.getRemoteAddr());
         if (StringUtils.isNotBlank(userId) && StringUtils.isNotBlank(password)) {
@@ -118,10 +123,21 @@ private void clear(List<Session> list){
         } else {
             errCode = ErrCode.USER_PASSWORD_FORMAT_ERROR;
         }
-        rtmap.put("errCode", errCode);
-        rtmap.put("message", ErrCode.getMessage(errCode));
-        String result = GsonUtils.object2Json(rtmap);
-        return result;
+        //rtmap.put("errCode", errCode);
+        //rtmap.put("message", ErrCode.getMessage(errCode));
+        //String result = GsonUtils.object2Json(rtmap);
+        //return result;
+        ret.put("errCode", errCode);
+        ret.put("message", ErrCode.getMessage(errCode));
+        if(errCode==0){
+            User user = userService.getUserById(userId);
+            Depot depot = depotMapper.selectByPrimaryKey(Long.valueOf(user.getDepot_id()));
+            ret.put("user_name",user.getUser_name());
+            ret.put("depotName",depot.getDepotName());
+            ret.put("user_role",user.getUser_role());
+        }
+
+        return ret;
     }
 
     @ResponseBody
