@@ -76,9 +76,9 @@ require(['../config'],
                         data: function (d) {
                             if (roleName.indexOf("集团调度员") == -1) {
                                 d.depotId = deptId;
-                                d.queryTime = $("#queryTime").val();
-                                d.queryTime2 = ($("#queryTime2").val() == '' ? '' : $("#queryTime2").val() + " 23:59:59");
                             }
+                            d.queryTime = ($("#queryTime").val() == '' ? '' : $("#queryTime").val() + " 00:00:01");
+                            d.queryTime2 = ($("#queryTime2").val() == '' ? '' : $("#queryTime2").val() + " 23:59:59");
                         }
                     },
                     columns: [{
@@ -240,7 +240,15 @@ require(['../config'],
                 $("#btnModifySheetOk").on('click',
                     function (e) {
                         e.preventDefault();
-                        var params = JSON.stringify({
+                          let startTime=$('#startTimeModify').val()
+                          let date=new Date()
+                          if(startTime==''){
+                            $("#alertMsgAdd").html("<font style='color:red'>检修开始时间为空！请检查输入是否正确</font>");
+                            $("#alertMsgAdd").css('display', 'inline-block')
+                            CMethod.hideTimeout("alertMsgAdd", "alertMsgAdd", 5000);
+                            return false;
+                        }
+                        let params = JSON.stringify({
                             id :id,
                             sheetId:sheet_id,
                             planType :$('#planTypeModify').val(),
@@ -261,7 +269,7 @@ require(['../config'],
                                     alert(result.msg);
                                 } else {
                                     sheetTable.ajax.reload();
-                                    $("#alertMsg").html('<span style="color:green;text-align:center"><strong>单据信息添加成功！</strong></span>');
+                                    $("#alertMsg").html('<span style="color:green;text-align:center"><strong>检修计划修改成功！</strong></span>');
                                     $("#infoAlert").show();
                                     hideTimeout("infoAlert", 2000);
                                 }

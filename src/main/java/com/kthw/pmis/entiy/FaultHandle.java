@@ -14,7 +14,7 @@ public class FaultHandle {
      * Database Column Remarks:
      *   tbl_fault_handle.id: 故障预报id
      */
-    private Integer id;
+    private String id;
 
     /**
      * Database Column Remarks:
@@ -39,7 +39,7 @@ public class FaultHandle {
      *   tbl_fault_handle.hault_start_time: 停机开始时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date haultStartTime;
 
     /**
@@ -47,14 +47,14 @@ public class FaultHandle {
      *   tbl_fault_handle.hault_end_time: 停机结束时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date haultEndTime;
 
     /**
      * Database Column Remarks:
      *   tbl_fault_handle.fault_stop_time: 故障停时
      */
-    private String faultStopTime;
+    private Float faultStopTime;
 
     /**
      * Database Column Remarks:
@@ -85,7 +85,7 @@ public class FaultHandle {
      *   tbl_fault_handle.forecast_fault_time: 预报时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date forecastFaultTime;
 
     /**
@@ -99,7 +99,7 @@ public class FaultHandle {
      *   tbl_fault_handle.handle_start_time: 故障处理开始时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date handleStartTime;
 
     /**
@@ -107,7 +107,7 @@ public class FaultHandle {
      *   tbl_fault_handle.handle_end_time: 故障处理结束时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date handleEndTime;
 
     /**
@@ -151,7 +151,7 @@ public class FaultHandle {
      *   tbl_fault_handle.plan_outage_start_time: 计划检修停电开始时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date planOutageStartTime;
 
     /**
@@ -159,7 +159,7 @@ public class FaultHandle {
      *   tbl_fault_handle.plan_outage_end_time: 计划检修停电结束时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date planOutageEndTime;
 
     /**
@@ -167,7 +167,7 @@ public class FaultHandle {
      *   tbl_fault_handle.notice_time: 通知时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date noticeTime;
 
     /**
@@ -193,7 +193,7 @@ public class FaultHandle {
      *   tbl_fault_handle.update_time: 更新时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
 
     /**
@@ -213,18 +213,112 @@ public class FaultHandle {
      *   tbl_fault_handle.responsible_depot: 段责任部门
      */
     private String responsibleDepot;
+    /**
+     * Database Column Remarks:
+     *   tbl_fault_handle.fault_id: 故障id
+     */
+
+    /**
+     * Database Column Remarks:
+     *   tbl_fault_handle.submit_user: 提交人员
+     */
+    private String submitUser;
+
+    /**
+     * Database Column Remarks:
+     *   tbl_fault_handle.maintenance_time: 维修天窗时间
+     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    private Date maintenanceTime;
+
+    /**
+     * Database Column Remarks:
+     *   tbl_fault_handle.check_info: 现场设备检测情况
+     */
+    private String checkInfo;
+
+    /**
+     * Database Column Remarks:
+     *   tbl_fault_handle.fault_info_detail: 故障详细描述
+     */
+    private String faultInfoDetail;
+    private String lineName;
+    private Integer finished;
+
+    public Integer getFinished() {
+        return finished;
+    }
+
+    public void setFinished(Integer finished) {
+        this.finished = finished;
+    }
+
+    public String getLineName() {
+        return lineName;
+    }
+
+    public void setLineName(String lineName) {
+        this.lineName = lineName;
+    }
+
+    /**
+     * Database Column Remarks:
+     *   tbl_fault_handle.segment_depot: 所属段
+     */
+    private String segmentDepot;
+
+    public String getSubmitUser() {
+        return submitUser;
+    }
+
+    public void setSubmitUser(String submitUser) {
+        this.submitUser = submitUser;
+    }
+
+    public Date getMaintenanceTime() {
+        return maintenanceTime;
+    }
+
+    public void setMaintenanceTime(Date maintenanceTime) {
+        this.maintenanceTime = maintenanceTime;
+    }
+
+    public String getCheckInfo() {
+        return checkInfo;
+    }
+
+    public void setCheckInfo(String checkInfo) {
+        this.checkInfo = checkInfo;
+    }
+
+    public String getFaultInfoDetail() {
+        return faultInfoDetail;
+    }
+
+    public void setFaultInfoDetail(String faultInfoDetail) {
+        this.faultInfoDetail = faultInfoDetail;
+    }
+
+    public String getSegmentDepot() {
+        return segmentDepot;
+    }
+
+    public void setSegmentDepot(String segmentDepot) {
+        this.segmentDepot = segmentDepot;
+    }
 
     /**
      * @return the value of tbl_fault_handle.id
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * @param id the value for tbl_fault_handle.id
      */
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -301,15 +395,15 @@ public class FaultHandle {
     /**
      * @return the value of tbl_fault_handle.fault_stop_time
      */
-    public String getFaultStopTime() {
+    public Float getFaultStopTime() {
         return faultStopTime;
     }
 
     /**
      * @param faultStopTime the value for tbl_fault_handle.fault_stop_time
      */
-    public void setFaultStopTime(String faultStopTime) {
-        this.faultStopTime = faultStopTime == null ? null : faultStopTime.trim();
+    public void setFaultStopTime(Float faultStopTime) {
+        this.faultStopTime = faultStopTime;
     }
 
     /**

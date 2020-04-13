@@ -221,6 +221,11 @@
     delete from tbl_plan_check_detect
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <!-- 批量删除单据下的探测站检修计划详情 -->
+  <delete id="deleteBySheetId" parameterType="String">
+		delete from
+		tbl_plan_check_detect where sheet_id =#{sheetId}
+	</delete>
   <insert id="insert" parameterType="com.kthw.pmis.entiy.PlanCheck">
     insert into tbl_plan_check_detect (id, detect_device_id, detect_device_name, 
       detect_device_type, plan_time, start_time, 

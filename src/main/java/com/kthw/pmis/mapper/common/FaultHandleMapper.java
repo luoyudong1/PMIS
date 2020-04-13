@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 public interface FaultHandleMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(FaultHandle record);
 
     int insertSelective(FaultHandle record);
 
-    FaultHandle selectByPrimaryKey(Integer id);
+    FaultHandle selectByPrimaryKey(String id);
 
     List<FaultHandle> selectByMap(Map<String, Object> params);
 
@@ -21,5 +21,13 @@ public interface FaultHandleMapper {
 
     int updateByMap(Map<String, Object> params);
 
-    int getMaxId();
+    String getMaxId(String id);
+    /**
+     * 批量更新
+     * @param list
+     * @return
+     */
+
+    int batchUpdate(List<FaultHandle> list);//
+
 }

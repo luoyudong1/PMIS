@@ -252,7 +252,32 @@
         </div>
     </div>
 </div>
-
+<!-- deleteSheetModal -->
+<div class="modal fade" id="popModal" tabindex="-1" role="dialog"
+     aria-labelledby="myPopModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 800px; overflow-x: auto;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">删除单据提示</h3>
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-danger" style="font-weight: bold;"
+                    id="deleteSheetText">确定要删除该探测站？</h4>
+                <input type="hidden" id="deleteSheetId"/>
+            </div>
+            <div class="modal-footer" style="text-align: center;">
+                <button id="btnPopDeleteSheetOk" data-dismiss="modal" type="submit"
+                        class="btn btn-primary">是
+                </button>
+                &nbsp; &nbsp;
+                <button type="button" class="btn btn-warning" data-dismiss="modal">否</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- backSheetModal -->
 <div class="modal fade" id="popBackSheetModal" tabindex="-1" role="dialog"
      aria-labelledby="myPopModalLabel" aria-hidden="true">

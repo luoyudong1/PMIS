@@ -66,19 +66,22 @@ public class DetectManageController {
     private PartsDictMapper partsDictMapper;
     @ResponseBody
     @RequestMapping(value = "/listDetect", method = {RequestMethod.GET})
-    public DataTable<DetectDeviceDTO> sheetsList(@RequestParam Map<String, Object> params, HttpServletRequest request) {
+    public DataTable<DetectDeviceDTO> sheetsList(HttpServletRequest request) {
         logger.info("显示探测站");
-        String start = request.getParameter("start");
-        String length = request.getParameter("length");
+        Map<String, Object> params=new HashMap<>();
         String depotId = request.getParameter("depotId");
+        String faultEnable = request.getParameter("faultEnable");
+        logger.info("显示探测站"+faultEnable);
         List<DetectDeviceDTO> list = new ArrayList<>();
         DataTable<DetectDeviceDTO> dt = new DataTable<DetectDeviceDTO>();
         int total = 0;
         try {
         //获取子部门
-            if (depotId != null) {
+            if (StringUtils.isNotBlank(depotId)) {
                 List<Depot> childrens = depotHelper.getChildrens(Long.valueOf(depotId));
                 params.put("depotIdList", childrens);
+            } if (StringUtils.isNotBlank(faultEnable)) {
+                params.put("eqFaultEnable", Integer.valueOf(faultEnable));
             }
             params.put("orderByClause","ddd.create_time desc");
             list=detectDeviceMapper.listDetectDevice(params);

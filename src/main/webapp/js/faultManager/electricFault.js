@@ -6,8 +6,10 @@ require(['../config'],
 
         require(['datetimepicker'],
             function () {
-                var date = new Date();
-                initDatetimepicker("queryTime", date);
+                let date = new Date();
+                let preMonth=new Date();
+                preMonth.setMonth(date.getMonth()-1)
+                initDatetimepicker("queryTime", preMonth);
                 initDatetimepicker("queryTime2", date);
 
                 /**
@@ -68,10 +70,10 @@ require(['../config'],
                         data: function (d) {
                             if (roleName.indexOf("集团调度员") == -1) {
                                 d.depotId = deptId;
-                                d.completeFlag = 5;
+                                d.completeFlag = 7;
                                 d.type = "电力故障";
                             }else {
-                                d.completeFlag = 5;
+                                d.completeFlag = 7;
                                 d.type = "电力故障";
                             }
                             d.queryTime = $("#queryTime").val();
@@ -126,15 +128,19 @@ require(['../config'],
                                 if (data == 1) {
                                     str = '<span style="color:red;font-weight:bold;">新建</span>';
                                 } else if (data == 2) {
-                                    str = '<span style="color:blue;font-weight:bold;">审核中</span>';
+                                    str = '<span style="color:blue;font-weight:bold;">预报待审核</span>';
                                 } else if (data == 3) {
-                                    str = '<span style="color:blue;font-weight:bold;">故障处理中</span>';
+                                    str = '<span style="color:blue;font-weight:bold;">故障待处理</span>';
                                 }
                                 else if (data == 4) {
-                                    str = '<span style="color:blue;font-weight:bold;">故障处理确认中</span>';
+                                    str = '<span style="color:blue;font-weight:bold;">故障处理开始待审核</span>';
                                 }
                                 else if (data == 5) {
-                                    str = '<span style="color:black;font-weight:bold;">已完成</span>';
+                                    str = '<span style="color:blue;font-weight:bold;">故障处理开始</span>';
+                                } else if (data == 6) {
+                                    str = '<span style="color:blue;font-weight:bold;">故障处理结束待审核</span>';
+                                } else if (data == 7) {
+                                    str = '<span style="color:black;font-weight:bold;">故障处理完成</span>';
                                 }
                                 return str;
                             }

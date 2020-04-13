@@ -114,12 +114,16 @@ public class CheckPlanController {
             DataTable<PlanCheck> dt = new DataTable<PlanCheck>();
             //新增planCheck表
             Integer id = planCheckMapper.getMaxId();
-            id = ((id == null) ? 1 : (id + 1));
+            if (id == null) {
+                id = 1;
+            } else {
+                id = id + 1;
+            }
             planCheck.setId(id);
             planCheck.setStatus((short) 1);
             planCheckMapper.insert(planCheck);
-            detectDevice.setDetectDeviceId(planCheck.getDetectDeviceId());
-            detectDevice.setPlanCheckEnable((short) 1);
+            detectDevice = detectDeviceMapper.selectByPrimaryKey(planCheck.getDetectDeviceId());
+            detectDevice.setPlanCheckEnable((short) (detectDevice.getPlanCheckEnable().intValue() + 1));
             detectDeviceMapper.updateByPrimaryKeySelective(detectDevice);
             ret.put("code", code);
             ret.put("msg", ErrCode.getMessage(code));
@@ -147,19 +151,34 @@ public class CheckPlanController {
         int code = 0;
         Map<String, Object> ret = new HashMap<>();
         Map<String, Object> params = new HashMap<>();
+        String sheetId=null;
+        Calendar calendar = Calendar.getInstance();
+
         try {
+
             //修改planCheck表
             planCheck.setUpdateTime(new Timestamp(new Date().getTime()));
             int flag = planCheckMapper.updateByPrimaryKeySelective(planCheck);
+
             if (flag == 1) {
                 ret.put("code", code);
                 ret.put("msg", ErrCode.getMessage(code));
             }
+            //获取检修计划
+            planCheck=planCheckMapper.selectByPrimaryKey(planCheck.getId());
             //检修完成标志
-            if (planCheck.getStatus()!=null&&planCheck.getStatus() == 4) {
+            if (planCheck.getStatus() != null && planCheck.getStatus() == 4) {
                 PlanCheckSheet planCheckSheet = planCheckSheetMapper.selectByPrimaryKey(planCheck.getSheetId());
-                String sheetId = planCheckSheetService.getMaxSheetId(planCheckSheet.getSheetId().substring(0,5));
                 PlanCheckSheet nextMonth = new PlanCheckSheet();
+                Integer id = planCheckMapper.getMaxId();
+                if (id == null) {
+                    id = 1;
+                } else {
+                    id = id + 1;
+                }
+                //计算下个月的时间
+                calendar.setTime(planCheck.getPlanTime());
+                calendar.add(Calendar.MONTH, 1);
                 params.put("eqDepotId", planCheckSheet.getDepotId());
                 //12月
                 if (planCheckSheet.getMonth().equals("12")) {
@@ -167,12 +186,9 @@ public class CheckPlanController {
                     params.put("eqYear", year.toString());
                     params.put("eqMonth", "1");
                     List<PlanCheckSheet> list = planCheckSheetMapper.selectByMap(params);
-                    if (list.size() >= 1) {//已存在直接插入单据下，返回
-                        planCheck.setSheetId(sheetId);
-                        planCheckMapper.insert(planCheck);
-                        return ret;
-                    } else {
+                    if (list.size() < 1) {//已存在直接插入单据下，返回
                         //插入新检修单据
+                         sheetId = planCheckSheetService.getMaxSheetId(planCheckSheet.getSheetId().substring(0, 6));
                         nextMonth.setSheetId(sheetId);
                         nextMonth.setDepotId(planCheckSheet.getDepotId());
                         nextMonth.setYear(year.toString());
@@ -181,6 +197,8 @@ public class CheckPlanController {
                         nextMonth.setCreateUser(planCheckSheet.getCreateUser());
                         nextMonth.setFlag((short) 1);
                         planCheckSheetMapper.insert(nextMonth);
+                    }else {
+                        sheetId=list.get(0).getSheetId();//获取单据id
                     }
                     //其他月
                 } else {
@@ -188,11 +206,9 @@ public class CheckPlanController {
                     params.put("eqYear", planCheckSheet.getYear());
                     params.put("eqMonth", month.toString());
                     List<PlanCheckSheet> list = planCheckSheetMapper.selectByMap(params);
-                    if (list.size() >= 1) {////已存在直接插入单据下，返回
-                        planCheck.setSheetId(sheetId);
-                        planCheckMapper.insert(planCheck);
-                        return ret;
-                    } else {//插入新检修单据
+                    if (list.size() < 1) {////已存在直接插入单据下，返回
+                        //插入新检修单据
+                        sheetId = planCheckSheetService.getMaxSheetId(planCheckSheet.getSheetId().substring(0, 6));
                         nextMonth.setSheetId(sheetId);
                         nextMonth.setDepotId(planCheckSheet.getDepotId());
                         nextMonth.setYear(planCheckSheet.getYear());
@@ -201,8 +217,20 @@ public class CheckPlanController {
                         nextMonth.setCreateUser(planCheckSheet.getCreateUser());
                         nextMonth.setFlag((short) 1);
                         planCheckSheetMapper.insert(nextMonth);
+                    }else {
+                        sheetId=list.get(0).getSheetId();//获取单据id
                     }
                 }
+                //插入下个月单据下的探测站检修计划
+                planCheck.setStatus((short) 1);
+                planCheck.setId(id);
+                planCheck.setPlanTime(calendar.getTime());
+                planCheck.setSheetId(sheetId);
+                planCheck.setStartTime(null);
+                planCheck.setEndTime(null);
+                planCheck.setCheckRecord(null);
+                planCheck.setRemark(null);
+                planCheckMapper.insert(planCheck);
 
             }
             return ret;
@@ -228,6 +256,7 @@ public class CheckPlanController {
         logger.info("删除检修计划");
         int code = 0;
         Map<String, Object> ret = new HashMap<>();
+        DetectDevice detectDevice = new DetectDevice();
         try {
             List<PlanCheck> list = new ArrayList<>();
             DataTable<PlanCheck> dt = new DataTable<PlanCheck>();
@@ -236,6 +265,9 @@ public class CheckPlanController {
             if (flag == 0) {
                 code = ErrCode.DELETE_ERROR;
             }
+            detectDevice = detectDeviceMapper.selectByPrimaryKey(planCheck.getDetectDeviceId());
+            detectDevice.setPlanCheckEnable((short) (detectDevice.getPlanCheckEnable().intValue() - 1));
+            detectDeviceMapper.updateByPrimaryKeySelective(detectDevice);
         } catch (Exception e) {
             logger.error("删除检修计划出错");
         }

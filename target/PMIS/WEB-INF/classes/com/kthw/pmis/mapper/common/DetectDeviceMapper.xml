@@ -28,12 +28,13 @@
         <result column="device_location" jdbcType="VARCHAR" property="deviceLocation" />
         <result column="plan_check_type" jdbcType="VARCHAR" property="planCheckType" />
         <result column="plan_check_enable" jdbcType="NUMERIC" property="planCheckEnable" />
+        <result column="fault_enable" jdbcType="NUMERIC" property="faultEnable" />
     </resultMap>
     <sql id="Base_Column_List">
     detect_device_id, detect_device_name, depot_id, device_type_id, supplier_id, device_model_id,
     enabled, storehouse_id, create_time, update_time, user_name, remark, line_name, electric_type,
     electric_name, net_connect_type, net_connect_name, approval_doc, location_pic, trackside_pic,
-    outdoor_pic, indoor_pic, interior_pic, device_location,plan_check_type,plan_check_enable
+    outdoor_pic, indoor_pic, interior_pic, device_location,plan_check_type,plan_check_enable,fault_enable
   </sql>
     <sql id="ByMap_Where_Clause">
         <where>
@@ -115,6 +116,9 @@
             <if test="eqPlanCheckEnable != null">
                 AND plan_check_enable = #{eqPlanCheckEnable,jdbcType=NUMERIC}
             </if>
+            <if test="eqFaultEnable != null">
+                AND fault_enable = #{eqFaultEnable,jdbcType=NUMERIC}
+            </if>
         </where>
     </sql>
     <sql id="ByMap_Set_Clause">
@@ -194,6 +198,9 @@
             <if test="planCheckEnable != null">
                 plan_check_enable = #{planCheckEnable,jdbcType=NUMERIC},
             </if>
+            <if test="faultEnable != null">
+                fault_enable = #{faultEnable,jdbcType=NUMERIC},
+            </if>
         </set>
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -213,9 +220,10 @@
                 <foreach collection="depotIdList" index="index" item="item" open="(" separator="," close=")">
                     #{item.depotId}
                 </foreach>
-             order by depot_id
             </if>
+
         </where>
+        order by depot_id
     </select>
     <!--获取探测站信息-->
     <resultMap id="DetectDeviceResultMap" type="com.kthw.pmis.entiy.dto.DetectDeviceDTO" extends="BaseResultMap">
@@ -237,6 +245,10 @@
                     #{item.depotId}
                 </foreach>
 
+            </if>
+            <if test="eqFaultEnable !=null">
+
+                and fault_enable= #{eqFaultEnable,jdbcType=NUMERIC}
             </if>
         </where>
         <if test="orderByClause != null">
@@ -271,7 +283,7 @@
       electric_name, net_connect_type, net_connect_name,
       approval_doc, location_pic, trackside_pic,
       outdoor_pic, indoor_pic, interior_pic,
-      device_location)
+      device_location,plan_check_type,plan_check_enable,fault_enable)
     values (#{detectDeviceId,jdbcType=NUMERIC}, #{detectDeviceName,jdbcType=VARCHAR},
       #{depotId,jdbcType=NUMERIC}, #{deviceTypeId,jdbcType=NUMERIC}, #{supplierId,jdbcType=NUMERIC},
       #{deviceModelId,jdbcType=NUMERIC}, #{enabled,jdbcType=NUMERIC}, #{storehouseId,jdbcType=NUMERIC},
@@ -280,7 +292,9 @@
       #{electricName,jdbcType=VARCHAR}, #{netConnectType,jdbcType=VARCHAR}, #{netConnectName,jdbcType=VARCHAR},
       #{approvalDoc,jdbcType=VARCHAR}, #{locationPic,jdbcType=VARCHAR}, #{tracksidePic,jdbcType=VARCHAR},
       #{outdoorPic,jdbcType=VARCHAR}, #{indoorPic,jdbcType=VARCHAR}, #{interiorPic,jdbcType=VARCHAR},
-      #{deviceLocation,jdbcType=VARCHAR})
+      #{deviceLocation,jdbcType=VARCHAR}, #{planCheckType,jdbcType=VARCHAR}
+      , #{planCheckEnable,jdbcType=NUMERIC}
+      , #{faultEnable,jdbcType=NUMERIC})
   </insert>
     <insert id="insertSelective" parameterType="com.kthw.pmis.entiy.DetectDevice">
         insert into tbl_detect_device_dict
@@ -363,6 +377,9 @@
             <if test="planCheckEnable != null">
                 plan_check_enable,
             </if>
+            <if test="faultEnable != null">
+                fault_enable,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="detectDeviceId != null">
@@ -443,6 +460,9 @@
             <if test="planCheckEnable != null">
                 #{planCheckEnable,jdbcType=NUMERIC},
             </if>
+            <if test="faultEnable != null">
+                #{faultEnable,jdbcType=NUMERIC},
+            </if>
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.kthw.pmis.entiy.DetectDevice">
@@ -474,9 +494,10 @@
       outdoor_pic = #{outdoorPic,jdbcType=VARCHAR},
       indoor_pic = #{indoorPic,jdbcType=VARCHAR},
       interior_pic = #{interiorPic,jdbcType=VARCHAR},
-      device_location = #{deviceLocation,jdbcType=VARCHAR}
-      plan_check_type = #{planCheckType,jdbcType=VARCHAR}
-      plan_check_enable = #{planCheckEnable,jdbcType=NUMERIC}
+      device_location = #{deviceLocation,jdbcType=VARCHAR},
+      plan_check_type = #{planCheckType,jdbcType=VARCHAR},
+      plan_check_enable = #{planCheckEnable,jdbcType=NUMERIC},
+      fault_enable = #{faultEnable,jdbcType=NUMERIC}
     where detect_device_id = #{detectDeviceId,jdbcType=NUMERIC}
   </update>
     <update id="updateByMap" parameterType="java.util.Map">

@@ -128,9 +128,8 @@ require(['../config'],
                             if (row.flag == 2 ) {
                                 str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;' + '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;' + '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popSheetModal" title="删除单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
                             } else {
-                                str += '';
+                                str += '-';
                             }
-                            str += '<button id="exportExcel" type="button" class="btn btn-success btn-xs" title="导出"><span class="glyphicon glyphicon-download-alt"></span></button>';
                             return str;
                         }
                     }],
@@ -198,14 +197,12 @@ require(['../config'],
                                 if (data == 1) {
                                     str = '<span style="color:red;font-weight:bold;">新建</span>';
                                 } else if (data == 2) {
-                                    str = '<span style="color:blue;font-weight:bold;">计划审核中</span>';
-                                } else if (data == 3) {
                                     str = '<span style="color:blue;font-weight:bold;">待检修中</span>';
                                 }
-                                else if (data == 4) {
+                                else if (data == 3) {
                                     str = '<span style="color:blue;font-weight:bold;">检修结束中</span>';
                                 }
-                                else if (data == 5) {
+                                else if (data == 4) {
                                     str = '<span style="color:black;font-weight:bold;">检修完成</span>';
                                 }
                                 return str;
@@ -297,9 +294,10 @@ require(['../config'],
                                         if (result.code != 0) {
                                             alert(result.msg);
                                         } else {
-                                            $('#add_sheetDetail').hide()
+
                                             sheetTable.ajax
                                                 .reload();
+                                            sheetDetailTable.ajax.reload()
                                             $("#alertMsg")
                                                 .html(
                                                     '<span style="color:green;text-align:center"><strong>单据已提交！</strong></span>');

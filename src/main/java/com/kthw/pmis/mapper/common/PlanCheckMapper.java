@@ -6,6 +6,8 @@ import java.util.Map;
 
 public interface PlanCheckMapper {
     int deleteByPrimaryKey(Integer id);
+    //按单据删除
+    int deleteBySheetId(String sheetId);
 
     int insert(PlanCheck record);
 

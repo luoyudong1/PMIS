@@ -6,7 +6,7 @@ require(['../config'],
 
         require(['datetimepicker'],
             function () {
-                var date = new Date();
+                let date = new Date();
                 initDatetimepicker("queryTime", date);
                 initDatetimepicker("queryTime2", date);
 
@@ -38,7 +38,7 @@ require(['../config'],
                 var deptId = window.parent.user.deptId // 所属部门id
                 var id;
                 var completeFlag;
-                var format = 'Y-m-d H:i:s';
+                var format = 'Y-m-d';
                 var detectDeviceId;
                 var type;
                 var detectDevice;
@@ -46,7 +46,9 @@ require(['../config'],
                 let lineSet = new Set();
                 let deviceTypeSet = new Set();
                 let sheet_id = '';
-                CMethod.initDatetimepickerWithSecond("planTimeAdd", null, format);
+                let date = new Date()
+                CMethod.initDatetimepicker("planTimeAdd", date);
+                CMethod.initDatetimepicker("planTimeModify", date);
                 /**
                  * 查询
                  */
@@ -139,7 +141,7 @@ require(['../config'],
                             lineSet.clear()
                             deviceTypeSet.clear()
                             for (var i = 0; i < result.data.length; i++) {
-                                if (result.data[i].planCheckEnable == 0) {
+                                if (result.data[i].planCheckEnable == 0 || (result.data[i].planCheckEnable == 1 && result.data[i].planCheckType == "半月检")) {
                                     lineSet.add(result.data[i].lineName)
                                     deviceTypeSet.add(result.data[i].deviceTypeName)
                                 }
@@ -256,7 +258,6 @@ require(['../config'],
                             } else {
                                 str += '';
                             }
-                            str += '<button id="exportExcel" type="button" class="btn btn-success btn-xs" title="导出"><span class="glyphicon glyphicon-download-alt"></span></button>';
                             return str;
                         }
                     }],
@@ -320,17 +321,19 @@ require(['../config'],
                         {
                             data: 'status',
                             render: function (data) {
-                                var str = "-";
+                                let str = '';
                                 if (data == 1) {
-                                    str = '<span style="color:red;font-weight:bold;">新建</span>';
+                                    str += '<span style="color:red;font-weight:bold;">新建</span>';
                                 } else if (data == 2) {
-                                    str = '<span style="color:blue;font-weight:bold;">待检修中</span>';
+                                    str += '<span style="color:blue;font-weight:bold;">待检修中</span>';
                                 }
                                 else if (data == 3) {
-                                    str = '<span style="color:blue;font-weight:bold;">检修结束中</span>';
+                                    str += '<span style="color:blue;font-weight:bold;">检修结束中</span>';
                                 }
                                 else if (data == 4) {
-                                    str = '<span style="color:black;font-weight:bold;">检修完成</span>';
+                                    str += '<span style="color:black;font-weight:bold;">检修完成</span>';
+                                } else {
+                                    str += "-";
                                 }
                                 return str;
                             }
@@ -339,11 +342,11 @@ require(['../config'],
                     columnDefs: [{
                         targets: 12,
                         data: function (row) {
-                            var str = '-';
-                            if (row.flag == 1 || row.flag == 4) {
-                                str += '<a class="modifySheetDetail btn btn-info btn-xs" data-toggle="modal" href="#modifySheetDetailModal" title="修改配件"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;<a class="deleteParts btn btn-danger btn-xs" data-toggle="modal" href="#popModal" title="删除配件"><span class="glyphicon glyphicon-remove"></span></a>';
+                            var str = '';
+                            if (row.status == 1 && completeFlag == 1) {
+                                str += '<a class="modifySheetDetail btn btn-info btn-xs" data-toggle="modal" href="#modifySheetDetailModal" title="修改"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;<a class="deleteParts btn btn-danger btn-xs" data-toggle="modal" href="#popModal" title="删除"><span class="glyphicon glyphicon-remove"></span></a>';
                             } else {
-                                str += '';
+                                str += '-';
                             }
                             return str;
 
@@ -435,8 +438,21 @@ require(['../config'],
                 $("#btnAddSheetDetailOk").on('click',
                     function (e) {
                         e.preventDefault();
+                        let date = new Date();
+                        let planTime = $("#planTimeAdd").val();
                         if ($("#detectDeviceAdd").val() == "") {
                             $("#alertMsgAdd").html("<font style='color:red'>探测站为空！请检查输入是否正确</font>");
+                            $("#alertMsgAdd").css('display', 'inline-block')
+                            CMethod.hideTimeout("alertMsgAdd", "alertMsgAdd", 5000);
+                            return false;
+                        }
+                        if ($("#planTimeAdd").val() == "") {
+                            $("#alertMsgAdd").html("<font style='color:red'>检修时间为空！请检查输入是否正确</font>");
+                            $("#alertMsgAdd").css('display', 'inline-block')
+                            CMethod.hideTimeout("alertMsgAdd", "alertMsgAdd", 5000);
+                            return false;
+                        } else if (Date.parse(planTime) <= date) {
+                            $("#alertMsgAdd").html("<font style='color:red'>检修时间小于当前时间！请检查输入是否正确</font>");
                             $("#alertMsgAdd").css('display', 'inline-block')
                             CMethod.hideTimeout("alertMsgAdd", "alertMsgAdd", 5000);
                             return false;
@@ -498,6 +514,27 @@ require(['../config'],
                             }
 
                         });
+                /*******************************************************
+                 * 单据点击事件
+                 ********************************************************/
+                $('#sheetDetailTable tbody')
+                    .on(
+                        'click',
+                        'tr',
+                        function (e) {// 获取当前单号
+                            if (sheetDetailTable.data().any()) {
+                                $(this)
+                                    .addClass('selected')
+                                    .siblings()
+                                    .removeClass('selected');
+                                var tr = $(this).closest('tr');
+                                var sheetDetailTrData = sheetDetailTable
+                                    .row(tr).data();
+                                id = sheetDetailTrData.id
+                                detectDeviceId = sheetDetailTrData.detectDeviceId
+                            }
+
+                        });
                 $('#addSheetDetailModal').on('show.bs.modal', function (e) {
                     $('#planTimeAdd').val('')
 
@@ -507,121 +544,43 @@ require(['../config'],
                     $('#lineAdd option:first').prop("selected", true)
                 })
                 /**
-                 * 修改故障预报表
+                 * 修改检修计划
                  */
                 $('#modifySheetDetailModal').on('show.bs.modal',
                     function (e) {
-                        var tr = $(e.relatedTarget).parents('tr');
-                        var data = sheetTable.row(tr).data();
+                        let tr = $(e.relatedTarget).parents('tr');
+                        let data = sheetDetailTable.row(tr).data();
                         id = data.id;
-                        $('#remarkModify').val(data.remark)
                         $('#detectDeviceModify').val(data.detectDeviceName)
-                        $('#haultStartTimeModify').val(formatDateBy(data.haultStartTime, 'yyyy-MM-dd HH:mm:ss'))
-                        $('#haultEndTimeModify').val(formatDateBy(data.haultEndTime, 'yyyy-MM-dd HH:mm:ss'))
-                        $('#faultStopTimeModify').val(data.faultStopTime)
-                        $('#faultLevelModify option:contains("' + data.faultLevelType + '")').prop("selected", true);
-                        $('#reportTimeModify').val(data.forecastFaultTime)
-                        $('#faultInfoModify').val(data.faultInfo)
-                        $('#segmentDutyUserModify').val(data.segmentDutyUser)
-                        $('#handleInfoModify').val(data.handleInfo)
-                        $('#faultHandleStartTimeModify').val(data.handleStartTime)
-                        $('#faultHandleEndTimeModify').val(data.handleEndTime)
-                        $('#responsibleUserModify').val(data.responsibleUser)
-                        $('#remarkModify').val(data.remark)
-                        $('#typeModify option:contains("' + data.type + '")').prop("selected", true);
-                        $('#telegraphNumberModify').val(data.telegraphNumber)
-                        $('#noticeTimeModify').val(data.noticeTime)
-                        $('#responsibleUnitModify').val(data.responsibleUnit)
-                        $('#planOutageStartTimeModify').val(data.planOutageStartTime)
-                        $('#planOutageEndTimeModify').val(data.planOutageEndTime)
-                        $('#faultTypeModify option:contains("' + data.faultType + '")').prop("selected", true);
-                        if (data.repairPerson != null && data.repairPerson != '') {
-                            $('#repairUserModify option:contains("' + data.repairPerson + '")').prop("selected", true);
-                        }
-                        if (data.noticeUser != null && data.noticeUser != '') {
-                            $('#noticeUserModify option:contains("' + data.noticeUser + '")').prop("selected", true);
-                        }
-                        initModifyModal()
+                        $('#detectTypeModify').val(data.detectDeviceType)
+                        $('#planTypeModify').val(data.planType)
+                        $('#planTimeModify').val(data.planTime)
+
                     });
 
 
-                function initModifyModal() {
-                    if (completeFlag <= 2) {
-                        $('#handleInfoDiv').hide()
-                        $('#handleStartTimeDiv').hide()
-                        $('#handleEndTimeDiv').hide()
-                    }
-                    if ($('#typeModify option:selected').text() != '设备故障' && completeFlag > 2) {
-                        $('.hideDiv').show()
-                    } else {
-                        $('.hideDiv').hide()
-                    }
-
-                }
-
-                $('#typeModify').change(function (e) {
-                    initModifyModal()
-                    var typeModify = $('#typeModify option:selected').text()
-                    if (typeModify == "电力故障") {
-                        $('#responsibleUnitModify').val(detectDevice.electricName)
-                    } else {
-                        $('#responsibleUnitModify').val(detectDevice.netConnectName)
-                    }
-                })
-
                 /**
-                 * 更新faultHandle
+                 * 修改检修计划确定按钮
                  */
-                function verifyFaultStopTime() {
-                    var haultStartTime = $('#haultStartTimeModify').val()
-                    var handleEndTime = $('#faultHandleEndTimeModify').val()
-                    var stopTime = "-"
-                    if (haultStartTime != null && haultStartTime != '' && handleEndTime != null && handleEndTime != '') {
-                        stopTime = getInervalHour(stringToDate(haultStartTime), stringToDate(handleEndTime))
-                    }
-                    return stopTime;
-                }
-
-                function verifyTime(date) {
-                    if (date == '' || date == null) {
-                        return null
-                    }
-                    else return date
-                }
-
-                $("#btnModifyDetailSheetOk").on('click',
+                $("#btnModifySheetDetailOk").on('click',
                     function (e) {
                         e.preventDefault();
-                        var stopTime = verifyFaultStopTime()
-                        var planOutageStartTime = verifyTime($('#planOutageStartTimeModify').val())
-                        var planOutageEndTime = verifyTime($('#planOutageEndTimeModify').val())
-                        var handleStartTime = verifyTime($('#faultHandleStartTimeModify').val())
-                        var handleEndTime = verifyTime($('#faultHandleEndTimeModify').val())
-                        var noticeTime = verifyTime($('#noticeTimeModify').val())
+                        let planTime = $('#planTimeModify').val()
+                        let date=new Date()
+                        if (Date.parse(planTime) <= date) {
+                            $("#alertMsgSheetModify").html("<font style='color:red'>检修时间小于当前时间！请检查输入是否正确</font>");
+                            $("#alertMsgSheetModify").css('display', 'inline-block')
+                            CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
+                            return false;
+                        }
                         var params = JSON.stringify({
                             id: id,
-                            faultStopTime: stopTime,
-                            faultLevelType: $('#faultLevelModify option:selected').text(),
-                            handleStartTime: handleStartTime,
-                            handleEndTime: handleEndTime,
-                            faultInfo: $('#faultInfoModify').val(),
-                            handleInfo: $('#handleInfoModify').val(),
-                            repairPerson: $('#repairUserModify option:selected').text(),
-                            noticeUser: $('#noticeUserModify option:selected').text(),
-                            faultType: $('#faultTypeModify option:selected').text(),
-                            telegraphNumber: $('#telegraphNumberModify').val(),
-                            noticeTime: noticeTime,
-                            type: $('#typeModify option:selected').text(),
-                            responsibleUnit: $('#responsibleUnitModify').val(),
-                            responsibleUser: $('#responsibleUserModify').val(),
-                            remark: $('#remarkModify').val(),
-                            telegraphNumber: $('#telegraphNumberModify').val(),
-                            planOutageStartTime: planOutageStartTime,
-                            planOutageEndTime: planOutageEndTime,
+                            planTime: $('#planTimeModify').val(),
 
                         });
+
                         $.ajax({
-                            url: config.basePath + '/faultHandle/faultReport/update',
+                            url: config.basePath + '/checkPlan/checkPlan/update',
                             type: 'POST',
                             data: params,
                             contentType: 'application/json',
@@ -631,7 +590,8 @@ require(['../config'],
                                     alert(result.msg);
                                 } else {
                                     sheetTable.ajax.reload();
-                                    $("#alertMsg").html('<span style="color:green;text-align:center"><strong>单据信息修改成功！</strong></span>');
+                                    sheetDetailTable.ajax.reload()
+                                    $("#alertMsg").html('<span style="color:green;text-align:center"><strong>修改检修计划成功！</strong></span>');
                                     $("#infoAlert").show();
                                     hideTimeout("infoAlert", 2000);
                                 }
@@ -686,6 +646,8 @@ require(['../config'],
                                             $('#add_sheetDetail').hide()
                                             sheetTable.ajax
                                                 .reload();
+                                            completeFlag = 2
+                                            sheetDetailTable.ajax.reload()
                                             $("#alertMsg")
                                                 .html(
                                                     '<span style="color:green;text-align:center"><strong>单据已提交！</strong></span>');
@@ -706,7 +668,7 @@ require(['../config'],
                     function (e) {
                         var tr = $(e.relatedTarget).parents('tr');
                         var data = sheetTable.row(tr).data();
-                        $('#warningSheetText').text('确定要删除该故障预报单据（' + data.sheet_id + '）？');
+                        $('#warningSheetText').text('确定要删除该检修单据（' + data.sheetId + '）？');
                     });
                 /**
                  * 点击删除确定按钮
@@ -715,7 +677,7 @@ require(['../config'],
                     function (e) {
                         e.preventDefault();
                         var params = JSON.stringify({
-                           sheetId: sheet_id
+                            sheetId: sheet_id
                         });
                         $.ajax({
                             url: config.basePath + '/checkPlan/sheet/delete',
@@ -728,7 +690,9 @@ require(['../config'],
                                     alert(result.msg);
                                 } else {
                                     sheetTable.ajax.reload();
-                                    $("#alertMsg").html('<span style="color:green;text-align:center"><strong>故障预报单据删除成功！</strong></span>');
+                                    sheetDetailTable.ajax.reload();
+                                    getDetectDevice()
+                                    $("#alertMsg").html('<span style="color:green;text-align:center"><strong>检修单据删除成功！</strong></span>');
                                     $("#infoAlert").show();
                                     hideTimeout("infoAlert", 2000);
                                 }
@@ -737,27 +701,26 @@ require(['../config'],
 
                     });
                 /**
-                 * 删除单据
+                 * 回退单据
                  */
-                $('#popBackSheetModal').on('show.bs.modal',
+                $('#popModal').on('show.bs.modal',
                     function (e) {
                         var tr = $(e.relatedTarget).parents('tr');
-                        var data = sheetTable.row(tr).data();
-                        $('#backSheetText').text('确定要回退该故障预报单据（' + data.id + '）？');
-                        $('#backSheetId').val(data.id);
+                        var data = sheetDetailTable.row(tr).data();
+                        $('#deleteText').text('确定要删除该探测站检修计划（' + data.id + '）？');
                     });
                 /**
-                 * 点击删除确定按钮
+                 * 点击回退确定按钮
                  */
-                $('#btnPopBackSheetOk').on('click',
+                $('#btnPopOk').on('click',
                     function (e) {
                         e.preventDefault();
                         var params = JSON.stringify({
-                            id: $('#backSheetId').val(),
-                            status: completeFlag - 1
+                            id: id,
+                            detectDeviceId: detectDeviceId
                         });
                         $.ajax({
-                            url: config.basePath + '/checkPlan/checkPlan/update',
+                            url: config.basePath + '/checkPlan/checkPlan/delete',
                             type: 'POST',
                             data: params,
                             contentType: 'application/json',
@@ -767,7 +730,9 @@ require(['../config'],
                                     alert(result.msg);
                                 } else {
                                     sheetTable.ajax.reload();
-                                    $("#alertMsg").html('<span style="color:green;text-align:center"><strong>故障预报单据回退成功！</strong></span>');
+                                    sheetDetailTable.ajax.reload();
+                                    getDetectDevice()
+                                    $("#alertMsg").html('<span style="color:green;text-align:center"><strong>检修计划删除成功！</strong></span>');
                                     $("#infoAlert").show();
                                     hideTimeout("infoAlert", 2000);
                                 }

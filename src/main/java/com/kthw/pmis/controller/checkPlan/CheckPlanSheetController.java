@@ -155,10 +155,24 @@ public class CheckPlanSheetController {
         logger.info("删除检修计划单据");
         int code = 0;
         Map<String, Object> ret = new HashMap<>();
+        Map<String, Object> params = new HashMap<>();
+        DetectDevice detectDevice = new DetectDevice();
         try {
             List<PlanCheck> list = new ArrayList<>();
             DataTable<PlanCheck> dt = new DataTable<PlanCheck>();
-            //新增planCheck表
+            //"删除检修计划单据
+            params.put("eqSheetId",planCheckSheet.getSheetId());
+            list=planCheckMapper.selectByMap(params);
+            if(list.size()>0) {
+                //删除单据下的全部探测站检修计划
+                planCheckMapper.deleteBySheetId(planCheckSheet.getSheetId());
+                for (PlanCheck planCheck:list){
+                    //回退探测站的检修计划创建标志
+                    detectDevice=detectDeviceMapper.selectByPrimaryKey(planCheck.getDetectDeviceId());
+                    detectDevice.setPlanCheckEnable((short)(detectDevice.getPlanCheckEnable().intValue()-1));
+                    detectDeviceMapper.updateByPrimaryKeySelective(detectDevice);
+                }
+            }
             int flag = planCheckSheetMapper.deleteByPrimaryKey(planCheckSheet.getSheetId());
             if (flag == 0) {
                 code = ErrCode.DELETE_ERROR;

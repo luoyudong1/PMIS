@@ -153,6 +153,15 @@ public class DetectDevice {
     private String deviceLocation;
     private String planCheckType;
     private Short  planCheckEnable;
+    private Integer  faultEnable;
+
+    public Integer getFaultEnable() {
+        return faultEnable;
+    }
+
+    public void setFaultEnable(Integer faultEnable) {
+        this.faultEnable = faultEnable;
+    }
 
     public String getPlanCheckType() {
         return planCheckType;

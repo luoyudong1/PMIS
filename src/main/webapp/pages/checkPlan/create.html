@@ -249,7 +249,7 @@
     <div class="modal-dialog" style="max-width: 1000px; overflow-x: auto;">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">修改故障预报</h3>
+                <h3 class="modal-title">修改检修计划</h3>
                 <p id="alertMsgSheetModify"
                    style="position: absolute; left: 42%; top: 25px; width: 25%; height: 50px; display: none"></p>
                 <button type="button" class="close" data-dismiss="modal"
@@ -258,143 +258,32 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6 offset-md-3">
                         <div class="input-group">
-                            <span style="color: red">*</span><label class="control-label">停机开始时间：</label>
-                            <input id="haultStartTimeModify" type="text"
-                                   class="form-control"
-                                   style="width: 140px;" autocomplete="off" readonly/>
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <label><strong>故障级别：</strong></label> <select
-                                id="faultLevelModify" type="text" class="form-control"
-                                style="width: 200px;" autocomplete="off">
-                            <option></option>
-                            <option>A</option>
-                            <option>B</option>
-                            <option>C</option>
-                        </select>
+                            <label><strong>探测站名称：</strong></label>
+                            <input id="detectDeviceModify" class="form-control "
+                                   style="width: 200px;" readonly/>
                         </div>
                         <br>
                         <div class="input-group">
-                            <label><strong>预报时间：</strong></label> <input
-                                id="reportTimeModify" type="text" class="form-control"
-                                style="width: 200px;" autocomplete="off" readonly>
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <label><strong>故障信息：</strong></label> <textarea
-                                id="faultInfoModify" type="text" class="form-control"
-                                placeholder="请输入故障信息" style="width: 200px;height: 50px;" autocomplete="off">
-                        </textarea>
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <label><strong>段值班员：</strong></label> <input
-                                id="segmentDutyUserModify" type="text" class="form-control"
-                                placeholder="请输入段值班员" style="width: 200px;" autocomplete="off" readonly>
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <label><strong>通知段人员：</strong></label> <select
-                                id="noticeUserModify" type="text" class="form-control"
-                                style="width: 200px;" autocomplete="off">
-                        </select>
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <label><strong>处理情况：</strong></label> <textarea
-                                id="handleInfoModify" type="text" class="form-control"
-                                placeholder="请输入处理情况" style="width: 200px;height: 50px;" autocomplete="off">
-                        </textarea>
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <span style="color: red">*</span><label class="control-label">故障处理开始时间：</label>
-                            <input id="faultHandleStartTimeModify" type="text"
-                                   class="form-control"
-                                   style="width: 140px;" autocomplete="off"/>
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <span style="color: red">*</span><label class="control-label">故障处理结束时间：</label>
-                            <input id="faultHandleEndTimeModify" type="text"
-                                   class="form-control"
-                                   style="width: 140px;" autocomplete="off"/>
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <label><strong>维修人员：</strong></label> <select
-                                id="repairUserModify" type="text" class="form-control"
-                                style="width: 200px;">
-                        </select>
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <label><strong>故障类别：</strong></label> <select
-                                id="faultTypeModify" type="text" class="form-control"
-                                placeholder="请输入故障类别" style="width: 200px;" autocomplete="off">
-                            <option></option>
-                        </select>
-                        </div>
-                        <br>
-                    </div>
-                    <div class="col-md-5 offset-md-2">
-                        <div class="input-group">
-                            <label><strong>故障日表类别</strong></label>
-                            <select id="typeModify" class="form-control "
-                                    style="width: 200px;" autocomplete="off">
-                                <option value="1">设备故障</option>
-                                <option value="2">电力故障</option>
-                                <option value="3">通信故障</option>
-                                <option value="4">信息故障</option>
-                            </select>
-                        </div>
-                        <br>
-                        <div class="input-group hideDiv">
-                            <label><strong>计划检修电报号：</strong></label> <input
-                                id="telegraphNumberModify" type="text" class="form-control"
-                                placeholder="请输入计划检修电报号" style="width: 200px;" autocomplete="off"/>
-                        </div>
-                        <br>
-                        <div class="input-group hideDiv">
-                            <label><strong>计划检修停电开始时间：</strong></label> <input
-                                id="planOutageStartTimeModify" type="text" class="form-control"
-                                placeholder="请输入计划检修停电开始时间" style="width: 200px;" autocomplete="off"/>
-                        </div>
-                        <br>
-                        <div class="input-group hideDiv">
-                            <label><strong>计划检修停电结束时间：</strong></label> <input
-                                id="planOutageEndTimeModify" type="text" class="form-control"
-                                placeholder="请输入计划检修停电结束时间" style="width: 200px;" autocomplete="off"/>
-                        </div>
-                        <br>
-                        <div class="input-group hideDiv">
-                            <label><strong>通知时间：</strong></label> <input
-                                id="noticeTimeModify" type="text" class="form-control"
-                                placeholder="请输入通知时间" style="width: 200px;" autocomplete="off"/>
-                        </div>
-                        <br>
-                        <div class="input-group hideDiv">
-                            <label><strong>责任单位：</strong></label> <input
-                                id="responsibleUnitModify" type="text" class="form-control"
-                                placeholder="请输入责任单位" style="width: 200px;" autocomplete="off" readonly/>
-                        </div>
-                        <br>
-                        <div class="input-group hideDiv">
-                            <label><strong>责任人：</strong></label> <input
-                                id="responsibleUserModify" type="text" class="form-control"
-                                placeholder="请输入责任人" style="width: 200px;"/>
-                        </div>
-                        <br>
-                        <div class="input-group hideDiv">
-                            <label><strong>备注：</strong></label> <input
-                                id="checkPlanRemarkModify" type="text" class="form-control"
-                                placeholder="请输入备注" style="width: 200px;" autocomplete="off"/>
-                        </div>
-                        <br>
+                            <label><strong>探测站类型：</strong></label>
+                            <input id="detectTypeModify" class="form-control "
+                                   style="width: 200px;" readonly/>
 
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <label><strong>检修计划类型：</strong></label> <input
+                                id="planTypeModify" type="text" class="form-control"
+                                style="width: 200px;" autocomplete="off" readonly/>
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <label><strong>计划检修时间：</strong></label> <input
+                                id="planTimeModify" type="text" class="form-control"
+                                placeholder="请输入计划检修时间" style="width: 200px;">
+                        </div>
+                        <br>
                     </div>
                 </div>
                 <div style="text-align: center;">
@@ -529,14 +418,13 @@
     <div class="modal-dialog" style="max-width: 800px; overflow-x: auto;">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="myPopModalLabel">删除配件提示</h3>
+                <h3 class="modal-title" id="myPopModalLabel">删除探测站检修计划提示</h3>
                 <button type="button" class="close" data-dismiss="modal"
                         aria-hidden="true">&times;
                 </button>
             </div>
             <div class="modal-body">
-                <h4 class="text-danger" style="font-weight: bold;" id="warningText">确定要删除该配件？</h4>
-                <input type="hidden" id="deletePartId"/>
+                <h4 class="text-danger" style="font-weight: bold;" id="deleteText">确定要删除该探测站？</h4>
             </div>
             <div class="modal-footer" style="text-align: center;">
                 <button id="btnPopOk" data-dismiss="modal" type="submit"
