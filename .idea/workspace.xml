@@ -114,10 +114,8 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/service/entryAndOut/ScrapOutService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/util/excel/ExportExcelUtil.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/util/excel/ExportSheet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/img/dispatch-system.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/img/repair-system.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/img/title.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/base.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/img/header-1.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/js/checkPlan/onDay.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/js/detectManage/detectManage.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/js/detectProduce/partsConsume.js" afterDir="false" />
@@ -157,7 +155,6 @@
       <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/faultManager/faultReport.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/faultManager/messageFault.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/increate/purchaseParts.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/index-dpch.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/partsEntryAndOut/addParts.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/partsEntryAndOut/addPartsQuery.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/partsEntryAndOut/factoryReturn.html" afterDir="false" />
@@ -2266,652 +2263,228 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/system/roleManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/system/roleManage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/system/userManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/system/userManage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/kthw/dmis/mapper/StockInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/kthw/dmis/mapper/StockInfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS.war" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/PMIS/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/SqlMapConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/applicationContext-shiro.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/applicationContext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/aiplan/CalcPlan.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/aiplan/Const.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/aiplan/DynamicVehInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/aiplan/GroupInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/aiplan/GroupType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/aiplan/JsonDateValueProcessor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/aiplan/VehicleInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/ChineseCharToEn.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/DBConnException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/DataTable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/DateConvertor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/Encodes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/ErrObj.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/ExcelUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/Exceptions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/ExecutionTimeLoggingSpringAOP.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/FileParam.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/GsonUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/ImageUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/ListItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/MD5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/MatrixToImageWriter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/Page.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/PeriodConstants.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/PinYinUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/Role.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/ServletUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/Utils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/UtilsDate.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/WordUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/base/AppCache.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/base/BaseController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/base/ErrCode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/shiro/AdminLoginToken.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/shiro/FramePermissionsAuthorizationFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/shiro/SecurityConstants.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/shiro/ShiroDbRealm.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/shiro/ShiroUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/web/EncodesFilter$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/web/EncodesFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/dispatcher/Dispatcher$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/dispatcher/Dispatcher.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/dispatcher/Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/dispatcher/PlatformInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/dispatcher/Route.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/dispatcher/Step.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/dispatcher/TaskInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/dispatcher/Tools.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/_enum/SheetInfoSource.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/_enum/SheetInfoType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/_enum/StoreHouseEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/_enum/VerifyFlagType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/ExportExcel/ExportExelController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/detectManage/DetectManageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/detectProduce/PartsConsumeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/detectProduce/PartsUnstallController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/detectProduce/PartsUseController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/PreparePurchaseController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/ProduceEntryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/PurchasePartsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/PurchaseToDeliveryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/RepairEntryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/RepairOutController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/ScrapOutController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/faultHandle/FaultReportController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/partsEntryAndOut/AddPartsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/partsEntryAndOut/FactoryReturnController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/partsEntryAndOut/RepairFactoryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/repairManage/CheckController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/repairManage/CheckInController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/repairManage/CheckOutController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/report/AccumulativeStatisticsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/report/ComprehensiveStatisticsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/report/DepotToTestStatictsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/report/PurchaseStatictsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/report/SectionalStatisticsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/DepotReceiptController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/DepotToTestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/DepotToWorkShopController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/DetectToWorkShopController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/PartsSearchController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/RepairAndSparesController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/ScrapReceiptController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/SparesAndRepairController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/SparesToWorkShopController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/StockInfoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/TestReceiptController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/TestToDepotController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/WorkShopReceiptController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/WorkShopToDepotController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/AuthManageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/CommonController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/MessageInfoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/PartsManageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/StoreHouseManageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/UserManageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/AssetAttributes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/Depot.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/DetectDevice.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/DetectParts.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/DeviceModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/DevicePart.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/DeviceType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/FaultHandle.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/FaultType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/LineDepot.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/PartIdConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/applicationContext-shiro.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/applicationContext-shiro.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/ExcelUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/ExcelUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/base/ErrCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/base/ErrCode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/shiro/ShiroDbRealm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/common/shiro/ShiroDbRealm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/_enum/SheetInfoType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/_enum/SheetInfoType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/detectProduce/PartsUnstallController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/detectProduce/PartsUnstallController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/detectProduce/PartsUseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/detectProduce/PartsUseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/PreparePurchaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/PreparePurchaseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/ProduceEntryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/ProduceEntryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/PurchasePartsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/PurchasePartsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/RepairEntryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/RepairEntryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/RepairOutController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/RepairOutController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/ScrapOutController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/entryAndOut/ScrapOutController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/repairManage/CheckController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/repairManage/CheckController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/repairManage/CheckInController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/repairManage/CheckInController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/repairManage/CheckOutController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/repairManage/CheckOutController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/DepotReceiptController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/DepotReceiptController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/DepotToTestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/DepotToTestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/DepotToWorkShopController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/DepotToWorkShopController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/DetectToWorkShopController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/DetectToWorkShopController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/PartsSearchController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/PartsSearchController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/ScrapReceiptController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/ScrapReceiptController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/SparesAndRepairController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/SparesAndRepairController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/SparesToWorkShopController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/SparesToWorkShopController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/StockInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/StockInfoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/TestReceiptController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/TestReceiptController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/TestToDepotController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/TestToDepotController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/WorkShopReceiptController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/WorkShopReceiptController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/WorkShopToDepotController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/stock/WorkShopToDepotController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/AuthManageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/AuthManageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/CommonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/CommonController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/MessageInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/MessageInfoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/PartsManageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/PartsManageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/StoreHouseManageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/StoreHouseManageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/UserManageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/system/UserManageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/DetectDevice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/DetectDevice.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/Parts.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/PartsDict.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/PartsZtree.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/RepairUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/ResponsibleUnit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/ResponsibleUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/SheetDetail.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/SheetDetailKey.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/SheetInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/StockInfo1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/StoreHouse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/dto/ComprehensiveStatisticsDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/dto/DetectDeviceDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/dto/DetectPartsDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/dto/PartsStatictsDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/dto/SheetDetailDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/dto/StockInfoDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/ext/SheetInfoExt.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/ext/ViewParts.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/helper/CheckHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/helper/DepotHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/helper/PartsStaticsHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/helper/SheetDetailHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/helper/StatiscsReturnDataHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/helper/StoreHouseHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/SequenceMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/SequenceMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/AssetAttributesMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/AssetAttributesMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DepotMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DepotMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectPartsMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectPartsMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DeviceModelMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DeviceModelMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DevicePartMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DevicePartMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DeviceTypeMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DeviceTypeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/FaultHandleMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/FaultHandleMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/FaultTypeMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/FaultTypeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/PartIdConfigMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/PartIdConfigMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/PartsDictMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/PartsDictMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/PartsZtreeMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/PartsZtreeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/RepairUserMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/RepairUserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/ResponsibleUnitMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/ResponsibleUnitMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/ResponsibleUserMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/ResponsibleUserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/SheetDetailMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/SheetDetailMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/SheetInfoMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/SheetInfoMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/StockInfo1Mapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/StockInfo1Mapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/StoreHouseMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/StoreHouseMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/entryAndOut/ProduceEntryMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/entryAndOut/ProduceEntryMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/entryAndOut/PurchasePartsMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/entryAndOut/PurchasePartsMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/entryAndOut/RepairEntryMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/entryAndOut/RepairEntryMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/entryAndOut/RepairOutMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/entryAndOut/RepairOutMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/repairManage/RepairMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/repairManage/RepairMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/stock/StockInfoMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/stock/StockInfoMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/system/AuthMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/system/AuthMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/system/CommonMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/system/CommonMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/system/MessageInfoMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/system/MessageInfoMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/system/PartsMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/system/PartsMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/system/StoreHouseManageMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/system/StoreHouseManageMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/system/UserMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/system/UserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/KeyInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/Sequence.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/TableView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/entryAndOut/AssetAttribute.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/entryAndOut/SheetDetail.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/entryAndOut/SheetInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/entryAndOut/Supplier.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/repairManage/PartsAllocate.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/repairManage/RepairAllocateDetail.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/stock/StockInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/AuthFunction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/Car.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/CheLiangDuan.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/CodeName.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/DepartmentInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/Depot.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/DeviceModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/DeviceName.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/DeviceType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/Driver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/Function.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/KtCalendar.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/KtProductDict.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/LoginInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/LuJu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/MenuNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/MessageInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/Parts.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/Permission.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/Role.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/Route.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/StationPos.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/StoreHouseInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/Team.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/UserDetail.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/UserInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/UserLog.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/UserRole.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/ViewLogStat.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/model/system/Workshop.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/InitDictionaryService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/SequenceService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/entryAndOut/PreparePurchaseService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/entryAndOut/ProduceEntryService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/entryAndOut/PurchasePartsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/entryAndOut/RepairEntryService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/entryAndOut/RepairOutService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/entryAndOut/ScrapOutService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/repairManage/RepairService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/stock/StockInfoService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/system/CommonService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/system/MessageInfoService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/system/PartsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/system/StoreHouseManageService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/system/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/InitDictionaryServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/SequenceServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/entryAndOut/PreparePurchaseServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/entryAndOut/ProduceEntryServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/entryAndOut/PurchasePartsServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/entryAndOut/RepairEntryServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/entryAndOut/RepairOutServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/repairManage/RepairServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/stock/StockInfoServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/system/CommonServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/system/MessageInfoServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/system/PartsServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/system/StoreHouseManageServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/system/UserServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/util/excel/ExportExcelUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/util/excel/ExportSheet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/websocket/TXDSMessageSend.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/websocket/VehicleMonitorHandler$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/websocket/VehicleMonitorHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/ehcache/ehcache-hibernate-local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/ehcache/ehcache-pcaptcha.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/ehcache/ehcache-shiro.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/generatorConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/jdbc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/log4j.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/spring-mvc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/sqlmap/base/LineDepotMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/aopalliance-1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/aspectjweaver-1.8.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/autocomplete-2.5.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/commons-beanutils-1.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/commons-codec-1.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/commons-collections-3.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/commons-dbcp2-2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/commons-fileupload-1.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/commons-io-2.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/commons-lang-2.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/commons-lang3-3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/commons-logging-1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/commons-pool-1.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/commons-pool2-2.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/core-2.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/ehcache-core-2.5.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/ezmorph-1.0.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/gson-2.3.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/itextpdf-5.5.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/jackson-annotations-2.4.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/jackson-core-2.4.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/jackson-databind-2.4.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/json-lib-2.4-jdk15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/json-simple-1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/junit-4.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/log4j-1.2.14.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/mybatis-3.2.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/mybatis-spring-1.2.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/mysql-connector-java-5.1.36.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/org.apache.commons.codec-1.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/pinyin4j-2.5.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/poi-3.5-FINAL.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/postgresql-42.2.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/rsyntaxtextarea-2.5.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/shiro-core-1.3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/shiro-ehcache-1.3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/shiro-spring-1.3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/shiro-web-1.3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/slf4j-api-1.7.12.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/slf4j-log4j12-1.7.12.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/spring-aop-4.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/spring-beans-4.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/spring-context-4.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/spring-core-4.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/spring-expression-4.3.14.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/spring-jdbc-4.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/spring-security-core-4.1.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/spring-security-web-4.1.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/spring-test-2.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/spring-tx-4.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/spring-web-4.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/spring-webmvc-4.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/lib/spring-websocket-4.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/rzTraceExport.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/SheetDetail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/SheetDetail.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/StockInfo1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/StockInfo1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/dto/DetectPartsDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/dto/DetectPartsDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/dto/SheetDetailDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/dto/SheetDetailDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/helper/DepotHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/helper/DepotHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/helper/SheetDetailHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/helper/SheetDetailHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DepotMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DepotMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectPartsMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectPartsMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectPartsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectPartsMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/SheetDetailMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/SheetDetailMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/SheetDetailMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/SheetDetailMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/SheetInfoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/SheetInfoMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/SheetInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/SheetInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/StockInfo1Mapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/StockInfo1Mapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/StockInfo1Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/StockInfo1Mapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/entryAndOut/PurchasePartsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/entryAndOut/PurchasePartsMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/system/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/system/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/entryAndOut/PreparePurchaseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/entryAndOut/PreparePurchaseService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/system/MessageInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/service/system/MessageInfoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/entryAndOut/PreparePurchaseServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/entryAndOut/PreparePurchaseServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/system/MessageInfoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/serviceimpl/system/MessageInfoServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/rzTraceExport.xls" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/rzTraceExport.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/PMIS/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/PMIS/error/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/error/404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/img/tiehui.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/img/tiehui.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/FileSaver.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/commonMethod.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/dateConvert.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/dateFormat.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/dt.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/jquery.PrintArea.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/jquery.PrintArea.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/jquery.wordexport.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/list.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/map.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/nav.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/pinyin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/select2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/select2.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/slider.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/tinyeditor.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/utils.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/xlsx.core.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/demo/peity-demo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/demo/sparkline-demo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUnstall.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUnstallQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUnstallSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUnstallVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUse.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUseQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUseSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUseVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/preparePurchase.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/preparePurchaseQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/preparePurchaseSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/preparePurchaseVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/produceEntry.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/produceEntryQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/produceEntrySearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/produceEntryVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/purchaseParts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/purchasePartsQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/purchasePartsSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/purchasePartsVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairEntry.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairEntryQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairEntrySearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairEntryVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairOut.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairOutQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairOutSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairOutVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/scrapOut.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/scrapOutQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/scrapOutSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/scrapOutVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/faultManager/deviceFault.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/faultManager/deviceFault.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/footable/footable.filter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/footable/footable.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/footable/footable.plugin.template.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/inspinia.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/jquery-3.1.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/jquery.ztree.all.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/PxLoader.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/PxLoaderImage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/ajaxfileupload.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/bootstrap-datetimepicker.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/bootstrap-switch.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/calendar/fullcalendar.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/calendar/jquery-ui.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/calendar/jquery.fancybox-1.3.1.pack.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/calendar/jquery.form.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/calendar/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/dataTables.bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/echarts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/echarts/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/echarts/echarts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/echarts/jquery-letterfx.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/echarts/particles.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/echarts/wonderland.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jqplotlib/jqplot.barRenderer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jqplotlib/jqplot.canvasAxisLabelRenderer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jqplotlib/jqplot.canvasAxisTickRenderer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jqplotlib/jqplot.canvasTextRenderer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jqplotlib/jqplot.categoryAxisRenderer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jqplotlib/jqplotPlugin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jqplotlib/jquery.jqplot.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jquery-smartMenu.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jquery.autocomplete.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jquery.autocomplete.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jquery.dataTables.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jquery.datetimepicker.full.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jquery.mousewheel.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jquery.table2excel.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jquery.wordexport.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jquery.ztree.all.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/jscharts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/raphael-min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/reconnecting-websocket.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/require.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/tableExport.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/lib/validation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/commonMethod.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/common/commonMethod.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/common/dateFormat.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/common/dateFormat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUnstall.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUnstall.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUnstallSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUnstallSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUnstallVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUnstallVerify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUse.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUseSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUseSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/preparePurchase.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/preparePurchase.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/preparePurchaseSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/preparePurchaseSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/preparePurchaseVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/preparePurchaseVerify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/produceEntry.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/produceEntry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/produceEntrySearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/produceEntrySearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/produceEntryVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/produceEntryVerify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/purchaseParts.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/purchaseParts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/purchasePartsQuery.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/purchasePartsQuery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/purchasePartsSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/purchasePartsSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/purchasePartsVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/purchasePartsVerify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairEntry.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairEntry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairEntrySearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairEntrySearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairEntryVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairEntryVerify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairOut.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairOut.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairOutSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairOutSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairOutVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/repairOutVerify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/scrapOut.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/scrapOut.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/scrapOutSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/scrapOutSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/scrapOutVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/entryAndOut/scrapOutVerify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/PMIS/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/ol.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/ol3-layerswitcher.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/plugins/chartJs/Chart.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/plugins/dataTables/dataTables.bootstrap4.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/plugins/dataTables/jquery.dataTables.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/plugins/flot/jquery.flot.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/plugins/flot/jquery.flot.pie.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/plugins/flot/jquery.flot.resize.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/plugins/flot/jquery.flot.spline.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/plugins/flot/jquery.flot.tooltip.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/plugins/gritter/jquery.gritter.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/plugins/gritter/jquery.gritter.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/plugins/jquery-ui/jquery-ui.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/plugins/metisMenu/jquery.metisMenu.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/plugins/pace/pace.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/plugins/peity/jquery.peity.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/plugins/slimscroll/jquery.slimscroll.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/plugins/sparkline/jquery.sparkline.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/plugins/toastr/toastr.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/popper.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/checkParts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/checkPartsQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/checkPartsSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/checkPartsVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/repair.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/repairOut.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/repairOutQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/repairOutSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/repairOutVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/repairQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/repairSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/repairVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/require.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/depotReceipt.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/depotReceiptQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/depotReceiptQuery.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/depotReceiptQuery.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/depotReceiptSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/depotReceiptVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/depotToTest.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/depotToTestQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/depotToTestSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/depotToTestVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/depotToWorkShop.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/detectToWorkShop.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/detectToWorkShopQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/partsSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/repairAndSpares.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/repairAndSparesQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/scrapReceipt.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/scrapReceiptQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/scrapReceiptSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/scrapReceiptVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/sparesAndRepair.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/sparesAndRepairQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/sparesToWorkShop.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/sparesToWorkShopQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/stockInfo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/stockInfoManage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/testReceipt.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/testReceiptQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/testReceiptSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/testReceiptVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/testToDepot.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/testToDepotQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/testToDepotSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/testToDepotVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/workShopReceipt.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/workShopReceiptQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/workShopReceiptSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/workShopReceiptVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/workShopToDepot.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/workShopToDepotQuery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/workShopToDepotSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/workShopToDepotVerify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/system/authManage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/system/operationManage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/system/partsManage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/system/roleManage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/system/userManage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/checkPlan/onDay.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectManage/detectManage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsConsume.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstall.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstallQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstallSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstallVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUse.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUseQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUseSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUseVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchase.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchaseQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchaseSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchaseVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntry.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntryQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntrySearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntryVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchaseParts.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchasePartsQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchasePartsSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchasePartsVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchaseToDelivery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchaseToDeliveryQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntry.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntryQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntrySearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntryVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOut.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOutQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOutSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOutVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOut.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOutQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOutSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOutVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/faultManager/comunicationFault.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/faultManager/deviceFault.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/faultManager/electricFault.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/faultManager/faultReport.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/faultManager/messageFault.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/increate/purchaseParts.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/addParts.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/addPartsQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/factoryReturn.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/factoryReturnQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/repairFactory.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/repairFactoryQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkParts.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkPartsQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkPartsSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkPartsVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairIn.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairInQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairInSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairInVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOut.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOutQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOutSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOutVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/report/accumulativeStatistics.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/report/comprehensiveStatics.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/report/depotToTestStaticts.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/report/purchaseStatistics.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/report/sectionalStatistics.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/skin-config.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceipt.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceiptQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceiptSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceiptVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTestQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTestSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTestVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToWorkShop.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/detectToWorkShop.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/detectToWorkShopQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/partsSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/repairAndSpares.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/repairAndSparesQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceipt.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceiptQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceiptSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceiptVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/sparesAndRepair.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/sparesAndRepairQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/sparesToWorkShop.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/sparesToWorkShopQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/stockInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/stockInfoManage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceipt.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceiptQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceiptSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceiptVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepot.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepotQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepotSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepotVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceipt.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceiptQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceiptSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceiptVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepot.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepotQuery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepotSearch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepotVerify.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stockInfoManage/repairToWorkShop.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/system/authManage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/system/operationManage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/system/partsManage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/system/roleManage.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/system/userManage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/checkParts.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/repairManage/checkParts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/checkPartsSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/repairManage/checkPartsSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/checkPartsVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/repairManage/checkPartsVerify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/repair.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/repairManage/repair.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/repairOut.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/repairManage/repairOut.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/repairOutSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/repairManage/repairOutSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/repairOutVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/repairManage/repairOutVerify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/repairSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/repairManage/repairSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/repairManage/repairVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/repairManage/repairVerify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/depotReceipt.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/depotReceipt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/depotToTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/depotToTest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/depotToTestSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/depotToTestSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/depotToTestVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/depotToTestVerify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/depotToWorkShop.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/depotToWorkShop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/detectToWorkShop.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/detectToWorkShop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/partsSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/partsSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/scrapReceipt.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/scrapReceipt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/scrapReceiptSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/scrapReceiptSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/scrapReceiptVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/scrapReceiptVerify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/sparesAndRepair.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/sparesAndRepair.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/sparesToWorkShop.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/sparesToWorkShop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/stockInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/stockInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/stockInfoManage.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/stockInfoManage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/testReceipt.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/testReceipt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/testReceiptSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/testReceiptSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/testReceiptVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/testReceiptVerify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/testToDepot.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/testToDepot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/testToDepotSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/testToDepotSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/testToDepotVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/testToDepotVerify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/workShopReceipt.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/workShopReceipt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/workShopReceiptQuery.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/workShopReceiptQuery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/workShopReceiptSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/workShopReceiptSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/workShopReceiptVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/workShopReceiptVerify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/workShopToDepot.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/workShopToDepot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/workShopToDepotSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/workShopToDepotSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/stock/workShopToDepotVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/stock/workShopToDepotVerify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstall.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstall.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstallQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstallQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstallSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstallSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstallVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstallVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUse.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUse.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUseQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUseQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUseSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUseSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUseVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUseVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchase.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchase.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchaseQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchaseQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchaseSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchaseSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchaseVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchaseVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntry.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntry.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntryQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntryQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntrySearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntrySearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntryVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntryVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchaseParts.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchaseParts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchasePartsQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchasePartsQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchasePartsSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchasePartsSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchasePartsVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchasePartsVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntry.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntry.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntryQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntryQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntrySearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntrySearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntryVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntryVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOut.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOut.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOutQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOutQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOutSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOutSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOutVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOutVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOut.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOut.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOutQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOutQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOutSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOutSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOutVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOutVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkParts.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkParts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkPartsQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkPartsQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkPartsSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkPartsSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkPartsVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkPartsVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairIn.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairIn.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairInQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairInQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairInSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairInSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairInVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairInVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOut.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOut.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOutQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOutQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOutSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOutSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOutVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOutVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceipt.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceipt.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceiptQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceiptQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceiptSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceiptSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceiptVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceiptVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTestQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTestQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTestSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTestSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTestVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTestVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToWorkShop.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToWorkShop.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/detectToWorkShop.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/detectToWorkShop.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/partsSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/partsSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceipt.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceipt.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceiptQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceiptQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceiptSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceiptSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceiptVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceiptVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/sparesAndRepair.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/sparesAndRepair.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/sparesToWorkShop.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/sparesToWorkShop.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/stockInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/stockInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/stockInfoManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/stockInfoManage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceipt.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceipt.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceiptQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceiptQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceiptSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceiptSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceiptVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceiptVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepot.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepot.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepotQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepotQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepotSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepotSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepotVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepotVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceipt.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceipt.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceiptQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceiptQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceiptSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceiptSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceiptVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceiptVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepot.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepot.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepotQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepotQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepotSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepotSearch.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepotVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepotVerify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stockInfoManage/repairToWorkShop.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stockInfoManage/repairToWorkShop.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/system/authManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/system/authManage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/system/operationManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/system/operationManage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/system/partsManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/system/partsManage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/system/roleManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/system/roleManage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/system/userManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/system/userManage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/applicationContext-shiro.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/applicationContext-shiro.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/applicationContext.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/kthw/common/ExcelUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kthw/common/ExcelUtil.class" afterDir="false" />
@@ -2976,8 +2549,7 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/kthw/pmis/serviceimpl/system/MessageInfoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kthw/pmis/serviceimpl/system/MessageInfoServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jdbc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sqlmap/base/LineDepotMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
@@ -2986,7 +2558,6 @@
       <change beforePath="$PROJECT_DIR$/target/test-classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/applicationContext.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/generatorConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/jdbc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/sqlmap/base/LineDepotMapper.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../SpringBootDemo" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBootDemo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../java-design-patterns" beforeDir="false" afterPath="$PROJECT_DIR$/../java-design-patterns" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../mybatis" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis" afterDir="false" />
@@ -3019,7 +2590,7 @@
     <session id="1241442851">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="146" />
+          <entry key="project.closed" value="147" />
           <entry key="project.open.time.1" value="6" />
           <entry key="project.open.time.10" value="2" />
           <entry key="project.open.time.11" value="3" />
@@ -3038,7 +2609,7 @@
           <entry key="project.open.time.28" value="21" />
           <entry key="project.open.time.29" value="7" />
           <entry key="project.open.time.3" value="7" />
-          <entry key="project.open.time.30" value="16" />
+          <entry key="project.open.time.30" value="17" />
           <entry key="project.open.time.31" value="7" />
           <entry key="project.open.time.32" value="8" />
           <entry key="project.open.time.33" value="8" />
@@ -3055,7 +2626,7 @@
           <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="198" />
+          <entry key="project.opened" value="199" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -3069,9 +2640,9 @@
           <entry key="PropertiesBeanDefinitionReader" value="1" />
           <entry key="TXDSMessageSend" value="1" />
           <entry key="class" value="4" />
-          <entry key="css" value="9" />
+          <entry key="css" value="10" />
           <entry key="dtd" value="2" />
-          <entry key="html" value="562" />
+          <entry key="html" value="567" />
           <entry key="java" value="1851" />
           <entry key="jpg" value="4" />
           <entry key="js" value="1177" />
@@ -3082,15 +2653,15 @@
           <entry key="svg" value="1" />
           <entry key="ts" value="1" />
           <entry key="txt" value="1" />
-          <entry key="xml" value="326" />
+          <entry key="xml" value="327" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="4" />
-          <entry key="CSS" value="9" />
+          <entry key="CSS" value="10" />
           <entry key="DTD" value="2" />
-          <entry key="HTML" value="562" />
+          <entry key="HTML" value="567" />
           <entry key="Image" value="17" />
           <entry key="JAVA" value="1851" />
           <entry key="JavaScript" value="1177" />
@@ -3101,7 +2672,7 @@
           <entry key="SVG" value="1" />
           <entry key="TypeScript" value="1" />
           <entry key="UML" value="10" />
-          <entry key="XML" value="326" />
+          <entry key="XML" value="327" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -3134,94 +2705,62 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReport.js">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="329" column="87" selection-start-line="329" selection-start-column="87" selection-end-line="329" selection-end-column="87" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="e#151#157#0" expanded="true" />
-                <element signature="e#157#163#0" expanded="true" />
-                <element signature="e#151#157#0" expanded="true" />
-                <element signature="e#157#163#0" expanded="true" />
-                <element signature="e#157#163#0" expanded="true" />
-                <element signature="e#163#169#0" expanded="true" />
-                <element signature="e#157#163#0" expanded="true" />
-                <element signature="e#163#169#0" expanded="true" />
-                <element signature="e#158#164#0" expanded="true" />
-                <element signature="e#164#170#0" expanded="true" />
-                <element signature="e#152#158#0" expanded="true" />
-                <element signature="e#158#164#0" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="488">
+              <caret line="266" column="50" selection-start-line="266" selection-start-column="50" selection-end-line="266" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/faultHandle/FaultReportController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/system/authManage.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/stockInfoManage/repairToWorkShop.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/stock/depotReceipt.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="74" column="28" selection-start-line="74" selection-start-column="28" selection-end-line="74" selection-end-column="28" />
+            <state relative-caret-position="425">
+              <caret line="25" column="12" lean-forward="true" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/js/faultManager/deviceFault.js">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext-shiro.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5">
-              <caret line="109" column="51" selection-start-line="109" selection-start-column="51" selection-end-line="109" selection-end-column="51" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="680">
+              <caret line="40" column="28" selection-start-line="39" selection-start-column="27" selection-end-line="40" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/login.html">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/index-dpch.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="12">
-              <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="56" />
+              <caret line="30" column="75" selection-start-line="30" selection-start-column="75" selection-end-line="30" selection-end-column="75" />
+              <folding>
+                <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/css/base.css">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/index.html">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -3234,78 +2773,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/css/login.css">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
+            <state relative-caret-position="374">
               <caret line="54" column="16" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/faultManager/deviceFault.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="60" column="49" selection-start-line="60" selection-start-column="49" selection-end-line="60" selection-end-column="49" />
-              <folding>
-                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/SheetDetailMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="92" column="45" selection-start-line="86" selection-start-column="2" selection-end-line="92" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReportVerify.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="232" column="73" selection-start-line="232" selection-start-column="73" selection-end-line="232" selection-end-column="73" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="e#151#157#0" expanded="true" />
-                <element signature="e#157#163#0" expanded="true" />
-                <element signature="e#157#163#0" expanded="true" />
-                <element signature="e#163#169#0" expanded="true" />
-                <element signature="e#158#164#0" expanded="true" />
-                <element signature="e#164#170#0" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -3395,7 +2866,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/entryAndOut/RepairOutController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/repairManage/CheckOutController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/partsEntryAndOut/RepairFactoryController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/entryAndOut/RepairEntryController.java" />
@@ -3446,6 +2916,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/pages/faultManager/deviceFault.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/faultManager/deviceFault.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/login.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/login.html" />
       </list>
     </option>
   </component>
@@ -3536,21 +3007,6 @@
               <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pmis" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -3559,15 +3015,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
@@ -3576,6 +3024,29 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="stockInfoManage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -3588,7 +3059,7 @@
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1586770901139" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1586773044980" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -3607,9 +3078,9 @@
       <recent name="com.kthw.pmis.controller.stock" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\controller" />
-      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\webapp\img" />
       <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\webapp\css" />
+      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\webapp\img" />
+      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\controller" />
       <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\webapp\js" />
       <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\webapp\pages" />
     </key>
@@ -3950,7 +3421,8 @@
       <workItem from="1586502629348" duration="1868000" />
       <workItem from="1586508320836" duration="24000" />
       <workItem from="1586703890102" duration="1816000" />
-      <workItem from="1586741336036" duration="20984000" />
+      <workItem from="1586741336036" duration="23202000" />
+      <workItem from="1586830208664" duration="671000" />
     </task>
     <task id="LOCAL-00001" summary="检修计划">
       <created>1585624421503</created>
@@ -3994,7 +3466,21 @@
       <option name="project" value="LOCAL" />
       <updated>1586767676540</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="故障预报">
+      <created>1586770866830</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1586770866830</updated>
+    </task>
+    <task id="LOCAL-00008" summary="故障预报">
+      <created>1586770969373</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1586770969373</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -4018,7 +3504,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1121881000" />
+    <option name="totallyTimeSpent" value="1124770000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -4031,6 +3517,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" sideWeight="0.50211865" side_tool="true" weight="0.23324397" />
       <window_info id="Designer" order="1" />
@@ -4038,11 +3525,11 @@
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info id="Capture Tool" order="5" />
-      <window_info id="Web" order="6" side_tool="true" visible="true" weight="0.43967828" />
-      <window_info content_ui="combo" id="Project" order="7" visible="true" weight="0.43967828" />
+      <window_info id="Web" order="6" sideWeight="0.10212766" side_tool="true" visible="true" weight="0.44571045" />
+      <window_info content_ui="combo" id="Project" order="7" sideWeight="0.8978723" visible="true" weight="0.44571045" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49932975" visible="true" weight="0.8780142" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932975" weight="0.8780142" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.41702127" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -4063,7 +3550,7 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Database" order="6" weight="0.3297587" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.013404826" />
-      <window_info anchor="right" id="Maven Projects" order="8" visible="true" weight="0.34651473" />
+      <window_info anchor="right" id="Maven Projects" order="8" weight="0.34651473" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -4296,51 +3783,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/common/dateConvert.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/common/dateFormat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1853">
-          <caret line="109" column="30" selection-start-line="109" selection-start-column="30" selection-end-line="109" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/SheetInfoMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/service/planCheckSheet/PlanCheckSheetService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="42" lean-forward="true" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/serviceimpl/faultHandle/FaultHandleServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="33" column="9" lean-forward="true" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.12/slf4j-api-1.7.12-sources.jar!/org/slf4j/Logger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="787">
-          <caret line="606" column="16" selection-start-line="606" selection-start-column="16" selection-end-line="606" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/service/faultHandle/FaultHandleService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/PlanCheckSheetMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -4458,15 +3900,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="621">
           <caret line="139" column="29" selection-start-line="139" selection-start-column="29" selection-end-line="139" selection-end-column="29" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4481,32 +3914,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="120" column="15" lean-forward="true" selection-end-line="631" selection-end-column="7" />
-          <folding>
-            <element signature="e#2083#2089#0" expanded="true" />
-            <element signature="e#2089#2095#0" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#7;n#tr#2;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#1;n#tr#5;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#3;n#tr#5;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#3;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#select#0;n#div#7;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#8;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#3;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#7;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#10;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#8;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4514,33 +3921,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="210" column="26" selection-start-line="210" selection-start-column="25" selection-end-line="210" selection-end-column="26" />
-          <folding>
-            <element signature="e#2083#2089#0" expanded="true" />
-            <element signature="e#2089#2095#0" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#7;n#tr#2;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#1;n#tr#5;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#3;n#tr#5;n#thead#0;n#table#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#3;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#5;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#select#0;n#div#9;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#10;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#3;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#7;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#8;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4548,12 +3928,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="161" column="38" selection-start-line="161" selection-start-column="38" selection-end-line="161" selection-end-column="38" />
-          <folding>
-            <element signature="e#3548#3549#0" expanded="true" />
-            <element signature="e#3582#3583#0" expanded="true" />
-            <element signature="e#3635#3636#0" expanded="true" />
-            <element signature="e#3681#3682#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4589,13 +3963,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="248" column="34" selection-start-line="248" selection-start-column="34" selection-end-line="248" selection-end-column="34" />
-          <folding>
-            <element signature="e#6315#6316#0" expanded="true" />
-            <element signature="e#6364#6365#0" expanded="true" />
-            <element signature="e#6404#6405#0" expanded="true" />
-            <element signature="e#9839#9840#0" expanded="true" />
-            <element signature="e#9889#9890#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4645,9 +4012,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
           <caret line="37" column="44" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4667,38 +4031,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
           <caret line="232" column="73" selection-start-line="232" selection-start-column="73" selection-end-line="232" selection-end-column="73" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="e#151#157#0" expanded="true" />
-            <element signature="e#157#163#0" expanded="true" />
-            <element signature="e#157#163#0" expanded="true" />
-            <element signature="e#163#169#0" expanded="true" />
-            <element signature="e#158#164#0" expanded="true" />
-            <element signature="e#164#170#0" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4706,52 +4038,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
           <caret line="329" column="87" selection-start-line="329" selection-start-column="87" selection-end-line="329" selection-end-column="87" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="e#151#157#0" expanded="true" />
-            <element signature="e#157#163#0" expanded="true" />
-            <element signature="e#151#157#0" expanded="true" />
-            <element signature="e#157#163#0" expanded="true" />
-            <element signature="e#157#163#0" expanded="true" />
-            <element signature="e#163#169#0" expanded="true" />
-            <element signature="e#157#163#0" expanded="true" />
-            <element signature="e#163#169#0" expanded="true" />
-            <element signature="e#158#164#0" expanded="true" />
-            <element signature="e#164#170#0" expanded="true" />
-            <element signature="e#152#158#0" expanded="true" />
-            <element signature="e#158#164#0" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4766,10 +4052,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="60" column="49" selection-start-line="60" selection-start-column="49" selection-end-line="60" selection-end-column="49" />
-          <folding>
-            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4777,19 +4059,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5">
           <caret line="109" column="51" selection-start-line="109" selection-start-column="51" selection-end-line="109" selection-end-column="51" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/css/login.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/system/authManage.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/stockInfoManage/repairToWorkShop.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext-shiro.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="40" column="28" selection-start-line="39" selection-start-column="27" selection-end-line="40" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/css/base.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/index.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/js/login.js">
@@ -4801,15 +4093,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
+        <state relative-caret-position="374">
           <caret line="54" column="16" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/stock/depotReceipt.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="12" lean-forward="true" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/login.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="266" column="50" selection-start-line="266" selection-start-column="50" selection-end-line="266" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/index-dpch.html">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12">
-          <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="56" />
+          <caret line="30" column="75" selection-start-line="30" selection-start-column="75" selection-end-line="30" selection-end-column="75" />
+          <folding>
+            <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
