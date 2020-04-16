@@ -28,7 +28,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/exportExcel")
 public class ExportExelController {
-    private static Logger logger = LoggerFactory.getLogger(PreparePurchaseController.class);
+    private static Logger logger = LoggerFactory.getLogger(ExportExelController.class);
     @Autowired
     private SheetInfoMapper sheetInfoMapper;
     @Autowired

@@ -3,8 +3,8 @@
 <mapper namespace="com.kthw.pmis.mapper.common.PlanCheckSheetMapper">
   <resultMap id="BaseResultMap" type="com.kthw.pmis.entiy.PlanCheckSheet">
     <id column="sheet_id" jdbcType="VARCHAR" property="sheetId" />
-    <result column="year" jdbcType="VARCHAR" property="year" />
-    <result column="month" jdbcType="VARCHAR" property="month" />
+    <result column="year" jdbcType="NUMERIC" property="year" />
+    <result column="month" jdbcType="NUMERIC" property="month" />
     <result column="depot_id" jdbcType="NUMERIC" property="depotId" />
     <result column="depot_name" jdbcType="VARCHAR" property="depotName" />
     <result column="flag" jdbcType="NUMERIC" property="flag" />
@@ -24,10 +24,10 @@
         AND sheet_id = #{eqSheetId,jdbcType=VARCHAR}
       </if>
       <if test="eqYear != null">
-        AND year = #{eqYear,jdbcType=VARCHAR}
+        AND year = #{eqYear,jdbcType=NUMERIC}
       </if>
       <if test="eqMonth != null">
-        AND month = #{eqMonth,jdbcType=VARCHAR}
+        AND month = #{eqMonth,jdbcType=NUMERIC}
       </if>
       <if test="eqDepotId != null">
         AND depot_id = #{eqDepotId,jdbcType=NUMERIC}
@@ -72,10 +72,10 @@
   <sql id="ByMap_Set_Clause">
     <set>
       <if test="year != null">
-        year = #{year,jdbcType=VARCHAR},
+        year = #{year,jdbcType=NUMERIC},
       </if>
       <if test="month != null">
-        month = #{month,jdbcType=VARCHAR},
+        month = #{month,jdbcType=NUMERIC},
       </if>
       <if test="depotId != null">
         depot_id = #{depotId,jdbcType=NUMERIC},
@@ -136,7 +136,7 @@
       depot_id, depot_name, flag, 
       create_time, update_time, remark, 
       create_user, verify_user)
-    values (#{sheetId,jdbcType=VARCHAR}, #{year,jdbcType=VARCHAR}, #{month,jdbcType=VARCHAR}, 
+    values (#{sheetId,jdbcType=VARCHAR}, #{year,jdbcType=NUMERIC}, #{month,jdbcType=NUMERIC},
       #{depotId,jdbcType=NUMERIC}, #{depotName,jdbcType=VARCHAR}, #{flag,jdbcType=NUMERIC}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
       #{createUser,jdbcType=VARCHAR}, #{verifyUser,jdbcType=VARCHAR})
@@ -183,10 +183,10 @@
         #{sheetId,jdbcType=VARCHAR},
       </if>
       <if test="year != null">
-        #{year,jdbcType=VARCHAR},
+        #{year,jdbcType=NUMERIC},
       </if>
       <if test="month != null">
-        #{month,jdbcType=VARCHAR},
+        #{month,jdbcType=NUMERIC},
       </if>
       <if test="depotId != null">
         #{depotId,jdbcType=NUMERIC},
@@ -221,8 +221,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.kthw.pmis.entiy.PlanCheckSheet">
     update tbl_plan_check_sheet
-    set year = #{year,jdbcType=VARCHAR},
-      month = #{month,jdbcType=VARCHAR},
+    set year = #{year,jdbcType=NUMERIC},
+      month = #{month,jdbcType=NUMERIC},
       depot_id = #{depotId,jdbcType=NUMERIC},
       depot_name = #{depotName,jdbcType=VARCHAR},
       flag = #{flag,jdbcType=NUMERIC},

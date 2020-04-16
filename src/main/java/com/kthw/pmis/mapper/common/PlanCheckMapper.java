@@ -23,5 +23,5 @@ public interface PlanCheckMapper {
 
     int updateByMap(Map<String, Object> params);
 
-    int getMaxId();//
+    Integer getMaxId();//
 }

@@ -124,7 +124,7 @@ require(['config'], function (config) {
         e.preventDefault();
         if(userName!=null){
             if(userRole!=null){
-                if(userRole<10){
+                if(userRole<12){
                     window.location.href = "./pages/index.html"
                 }else{
                     toastr.warning("用户："+userName+"，您未开通登录权限！");
@@ -141,7 +141,7 @@ require(['config'], function (config) {
             e.preventDefault();
             if(userName!=null){
                 if(userRole!=null){
-                    if(userRole>9||userRole==1){
+                    if(userRole>11||userRole==1){
                         window.location.href = "./pages/index-dpch.html"
                     }else{
                         toastr.warning("用户："+userName+"，您未开通登录权限！");

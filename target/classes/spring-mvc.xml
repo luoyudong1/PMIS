@@ -67,7 +67,7 @@
 	</websocket:handlers>
 
 	<task:annotation-driven/>
-	<context:component-scan base-package="com.kthw.pmis.controller.websocket.task"></context:component-scan>
+	<context:component-scan base-package="com.kthw.pmis.task"></context:component-scan>
 	
     <!-- <mvc:interceptors>
         <mvc:interceptor>

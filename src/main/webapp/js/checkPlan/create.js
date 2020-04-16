@@ -24,6 +24,23 @@ require(['../config'],
                         // 关闭选择今天按钮
                     });
                 }
+
+                /**
+                 * 初始化时间框
+                 */
+                function initDatetimepickerLimitDate(id, date, startDate, endDate) {
+                    $.datetimepicker.setLocale('ch');
+                    $('#' + id).datetimepicker({
+                        value: date,
+                        format: 'Y-m-d',
+                        timepicker: false,
+                        // 关闭时间选项
+                        todayButton: true,
+                        // 关闭选择今天按钮
+                        startDate: startDate,
+                        endDate: endDate
+                    });
+                }
             });
 
         require(['jquery', 'bootstrap', 'common/dt', 'common/commonMethod', 'common/slider', 'common/dateFormat', 'common/select2', 'common/pinyin'],
@@ -47,8 +64,7 @@ require(['../config'],
                 let deviceTypeSet = new Set();
                 let sheet_id = '';
                 let date = new Date()
-                CMethod.initDatetimepicker("planTimeAdd", date);
-                CMethod.initDatetimepicker("planTimeModify", date);
+                let sheetData;
                 /**
                  * 查询
                  */
@@ -321,19 +337,21 @@ require(['../config'],
                         {
                             data: 'status',
                             render: function (data) {
-                                let str = '';
+                                var str = "-";
                                 if (data == 1) {
-                                    str += '<span style="color:red;font-weight:bold;">新建</span>';
+                                    str = '<span style="color:red;font-weight:bold;">新建</span>';
                                 } else if (data == 2) {
-                                    str += '<span style="color:blue;font-weight:bold;">待检修中</span>';
+                                    str = '<span style="color:blue;font-weight:bold;">待检修</span>';
                                 }
                                 else if (data == 3) {
-                                    str += '<span style="color:blue;font-weight:bold;">检修结束中</span>';
+                                    str = '<span style="color:blue;font-weight:bold;">检修开始待审核</span>';
+                                } else if (data == 4) {
+                                    str = '<span style="color:blue;font-weight:bold;">检修结开始</span>';
                                 }
-                                else if (data == 4) {
-                                    str += '<span style="color:black;font-weight:bold;">检修完成</span>';
-                                } else {
-                                    str += "-";
+                                else if (data == 5) {
+                                    str = '<span style="color:blue;font-weight:bold;">检修结束待审核</span>';
+                                } else if (data == 6) {
+                                    str = '<span style="color:black;font-weight:bold;">检修完成</span>';
                                 }
                                 return str;
                             }
@@ -399,6 +417,8 @@ require(['../config'],
 
                         });
                         $('#createUserAdd').val(user_id)
+                        // let date=new Date(sheetData.year,sheetData.month,1)
+                        // date.setMonth(date.getMonth())
                     });
 
                 $("#btnAddSheetOk").on('click',
@@ -512,7 +532,7 @@ require(['../config'],
                                 }
                                 sheetDetailTable.ajax.reload()
                             }
-
+                            sheetData = sheetTrData
                         });
                 /*******************************************************
                  * 单据点击事件
@@ -566,8 +586,8 @@ require(['../config'],
                     function (e) {
                         e.preventDefault();
                         let planTime = $('#planTimeModify').val()
-                        let date=new Date()
-                        if (Date.parse(planTime) <= date) {
+                        let date = new Date()
+                        if (Date.parse(planTime) < date.toLocaleDateString()) {
                             $("#alertMsgSheetModify").html("<font style='color:red'>检修时间小于当前时间！请检查输入是否正确</font>");
                             $("#alertMsgSheetModify").css('display', 'inline-block')
                             CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);

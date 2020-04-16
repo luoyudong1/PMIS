@@ -50,8 +50,18 @@ public class LoginController extends BaseController {
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String getLoginPage(HttpSession session) {
-        if (session.getAttribute("AUTH_USER") != null) {
-            return "login";//"redirect:/pages/index.html";      ZFF.MODIFY
+        User user=(User)session.getAttribute("AUTH_USER");      //ZF.add
+        if (user != null) {
+            if(user.getUser_role()<12) {
+                return "redirect:/pages/index.html";
+            }else{
+                if(user.getUser_role()>11){
+                    return "redirect:/pages/index-dpch.html";
+                }else{
+                    return "login";
+                }
+            }
+
         } else {
             return "login";
         }

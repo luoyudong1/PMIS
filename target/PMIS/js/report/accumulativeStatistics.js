@@ -5,7 +5,7 @@ require(['../config'], function (config) {
 
     require(['datetimepicker'], function () {
         var date = new Date();
-        initDatetimepicker("queryTime2", new Date());
+        initDatetimepicker("queryTime2", date);
 
         /**
          * 初始化时间框

@@ -30,6 +30,7 @@ com\kthw\pmis\service\system\PartsService.class
 com\kthw\pmis\controller\entryAndOut\ScrapOutController.class
 com\kthw\pmis\controller\LoginController.class
 com\kthw\pmis\model\system\UserInfo.class
+com\kthw\pmis\domain\Employer.class
 com\kthw\common\ErrObj.class
 com\kthw\pmis\controller\stock\DetectToWorkShopController.class
 com\kthw\pmis\_enum\VerifyFlagType.class
@@ -44,6 +45,7 @@ com\kthw\pmis\serviceimpl\InitDictionaryServiceImpl.class
 com\kthw\pmis\controller\system\MessageInfoController.class
 com\kthw\pmis\mapper\common\DetectDeviceMapper.class
 com\kthw\pmis\controller\stock\PartsSearchController.class
+com\kthw\pmis\domain\Employee.class
 com\kthw\pmis\service\system\MessageInfoService.class
 com\kthw\common\ImageUtil.class
 com\kthw\pmis\service\entryAndOut\ProduceEntryService.class
@@ -117,6 +119,7 @@ com\kthw\pmis\mapper\common\ResponsibleUserMapper.class
 com\kthw\common\Exceptions.class
 com\kthw\pmis\controller\partsEntryAndOut\FactoryReturnController.class
 com\kthw\pmis\mapper\entryAndOut\ProduceEntryMapper.class
+com\kthw\pmis\_enum\MarriageEnum.class
 com\kthw\pmis\model\system\Depot.class
 com\kthw\pmis\service\faultHandle\FaultHandleService.class
 com\kthw\pmis\controller\repairManage\CheckInController.class
@@ -161,6 +164,7 @@ com\kthw\pmis\serviceimpl\system\UserServiceImpl.class
 com\kthw\pmis\controller\stock\WorkShopReceiptController.class
 com\kthw\pmis\mapper\system\StoreHouseManageMapper.class
 com\kthw\pmis\model\system\CodeName.class
+com\kthw\pmis\_enum\GenderEnum.class
 com\kthw\pmis\websocket\VehicleMonitorHandler$1.class
 com\kthw\pmis\model\system\StationPos.class
 com\kthw\pmis\controller\report\DepotToTestStatictsController.class
@@ -192,6 +196,7 @@ com\kthw\pmis\serviceimpl\system\CommonServiceImpl.class
 com\kthw\pmis\service\entryAndOut\RepairEntryService.class
 com\kthw\pmis\serviceimpl\planCheckSheet\PlanCheckServiceImpl.class
 com\kthw\pmis\model\system\UserDetail.class
+com\kthw\pmis\domain\Spouse.class
 com\kthw\pmis\mapper\common\DeviceTypeMapper.class
 com\kthw\common\MatrixToImageWriter.class
 com\kthw\pmis\model\system\StoreHouseInfo.class
@@ -247,6 +252,7 @@ com\kthw\pmis\model\KeyInfo.class
 com\kthw\pmis\mapper\SequenceMapper.class
 com\kthw\pmis\mapper\system\PartsMapper.class
 com\kthw\pmis\serviceimpl\SequenceServiceImpl.class
+com\kthw\pmis\controller\ExportExcel\JxlsExcelController.class
 com\kthw\pmis\task\FaultHandleTask.class
 com\kthw\common\ExecutionTimeLoggingSpringAOP.class
 com\kthw\pmis\controller\system\UserManageController.class

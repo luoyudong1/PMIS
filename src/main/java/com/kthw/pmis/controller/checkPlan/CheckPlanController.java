@@ -64,17 +64,10 @@ public class CheckPlanController {
             if (StringUtils.isNotBlank(sheetId)) {
                 params.put("eqSheetId", sheetId);
             } else {
-                if (StringUtils.isNotBlank(depotId) && !StringUtils.isNotBlank(status)) {
+                if (StringUtils.isNotBlank(depotId)) {
                     params.put("eqDepotId", Long.valueOf(depotId));
-                    params.put("gtStatus", 1);
-                    params.put("ltStatus", 5);
-                } else if (!StringUtils.isNotBlank(depotId) && !StringUtils.isNotBlank(status)) {
-                    params.put("gtStatus", 1);
-                    params.put("ltStatus", 5);
-                } else if (StringUtils.isNotBlank(depotId) && StringUtils.isNotBlank(status)) {
-                    params.put("eqDepotId", Long.valueOf(depotId));
-                    params.put("eqStatus", Short.valueOf(status));
-                } else if (!StringUtils.isNotBlank(depotId) && StringUtils.isNotBlank(status)) {
+                }
+                if (StringUtils.isNotBlank(status)) {
                     params.put("eqStatus", Short.valueOf(status));
                 }
                 if (StringUtils.isNotBlank(type)) {
@@ -151,7 +144,7 @@ public class CheckPlanController {
         int code = 0;
         Map<String, Object> ret = new HashMap<>();
         Map<String, Object> params = new HashMap<>();
-        String sheetId=null;
+        String sheetId = null;
         Calendar calendar = Calendar.getInstance();
 
         try {
@@ -165,10 +158,10 @@ public class CheckPlanController {
                 ret.put("msg", ErrCode.getMessage(code));
             }
             //获取检修计划
-            planCheck=planCheckMapper.selectByPrimaryKey(planCheck.getId());
+            PlanCheck info = planCheckMapper.selectByPrimaryKey(planCheck.getId());
             //检修完成标志
-            if (planCheck.getStatus() != null && planCheck.getStatus() == 4) {
-                PlanCheckSheet planCheckSheet = planCheckSheetMapper.selectByPrimaryKey(planCheck.getSheetId());
+            if (planCheck.getStatus() != null && planCheck.getStatus() == 6) {
+                PlanCheckSheet planCheckSheet = planCheckSheetMapper.selectByPrimaryKey(info.getSheetId());
                 PlanCheckSheet nextMonth = new PlanCheckSheet();
                 Integer id = planCheckMapper.getMaxId();
                 if (id == null) {
@@ -177,60 +170,46 @@ public class CheckPlanController {
                     id = id + 1;
                 }
                 //计算下个月的时间
-                calendar.setTime(planCheck.getPlanTime());
-                calendar.add(Calendar.MONTH, 1);
+                calendar.setTime(info.getPlanTime());
+                if (info.getPlanType().equals("月检")) {
+                    calendar.add(Calendar.MONTH, 1);
+                }
+                if (info.getPlanType().equals("双月检")) {
+                    calendar.add(Calendar.MONTH, 2);
+                }
                 params.put("eqDepotId", planCheckSheet.getDepotId());
-                //12月
-                if (planCheckSheet.getMonth().equals("12")) {
-                    Integer year = Integer.valueOf(planCheckSheet.getYear()) + 1;
-                    params.put("eqYear", year.toString());
-                    params.put("eqMonth", "1");
-                    List<PlanCheckSheet> list = planCheckSheetMapper.selectByMap(params);
-                    if (list.size() < 1) {//已存在直接插入单据下，返回
-                        //插入新检修单据
-                         sheetId = planCheckSheetService.getMaxSheetId(planCheckSheet.getSheetId().substring(0, 6));
-                        nextMonth.setSheetId(sheetId);
-                        nextMonth.setDepotId(planCheckSheet.getDepotId());
-                        nextMonth.setYear(year.toString());
-                        nextMonth.setMonth("1");
-                        nextMonth.setDepotName(planCheckSheet.getDepotName());
-                        nextMonth.setCreateUser(planCheckSheet.getCreateUser());
-                        nextMonth.setFlag((short) 1);
-                        planCheckSheetMapper.insert(nextMonth);
-                    }else {
-                        sheetId=list.get(0).getSheetId();//获取单据id
-                    }
-                    //其他月
+                params.put("eqYear", calendar.get(Calendar.YEAR));
+                params.put("eqMonth", calendar.get(Calendar.MONTH)+1);
+                List<PlanCheckSheet> list = planCheckSheetMapper.selectByMap(params);
+                if (list.size() < 1) {//已存在直接插入单据下，返回
+                    //插入新检修单据
+                    Date date=new Date();
+                    sheetId = planCheckSheetService.getMaxSheetId(planCheckSheet.getSheetId().substring(0, 6));
+                    nextMonth.setSheetId(sheetId);
+                    nextMonth.setDepotId(planCheckSheet.getDepotId());
+                    nextMonth.setYear(calendar.get(Calendar.YEAR));
+                    nextMonth.setMonth(calendar.get(Calendar.MONTH)+1);
+                    nextMonth.setDepotName(planCheckSheet.getDepotName());
+                    nextMonth.setCreateUser(planCheckSheet.getCreateUser());
+                    nextMonth.setCreateTime(date);
+                    nextMonth.setUpdateTime(date);
+                    nextMonth.setVerifyUser(null);
+                    nextMonth.setFlag((short) 1);
+                    planCheckSheetMapper.insert(nextMonth);
                 } else {
-                    Integer month = Integer.valueOf(planCheckSheet.getMonth()) + 1;
-                    params.put("eqYear", planCheckSheet.getYear());
-                    params.put("eqMonth", month.toString());
-                    List<PlanCheckSheet> list = planCheckSheetMapper.selectByMap(params);
-                    if (list.size() < 1) {////已存在直接插入单据下，返回
-                        //插入新检修单据
-                        sheetId = planCheckSheetService.getMaxSheetId(planCheckSheet.getSheetId().substring(0, 6));
-                        nextMonth.setSheetId(sheetId);
-                        nextMonth.setDepotId(planCheckSheet.getDepotId());
-                        nextMonth.setYear(planCheckSheet.getYear());
-                        nextMonth.setMonth(month.toString());
-                        nextMonth.setDepotName(planCheckSheet.getDepotName());
-                        nextMonth.setCreateUser(planCheckSheet.getCreateUser());
-                        nextMonth.setFlag((short) 1);
-                        planCheckSheetMapper.insert(nextMonth);
-                    }else {
-                        sheetId=list.get(0).getSheetId();//获取单据id
-                    }
+                    sheetId = list.get(0).getSheetId();//获取单据id
+
                 }
                 //插入下个月单据下的探测站检修计划
-                planCheck.setStatus((short) 1);
-                planCheck.setId(id);
-                planCheck.setPlanTime(calendar.getTime());
-                planCheck.setSheetId(sheetId);
-                planCheck.setStartTime(null);
-                planCheck.setEndTime(null);
-                planCheck.setCheckRecord(null);
-                planCheck.setRemark(null);
-                planCheckMapper.insert(planCheck);
+                info.setStatus((short) 1);
+                info.setId(id);
+                info.setPlanTime(calendar.getTime());
+                info.setSheetId(sheetId);
+                info.setStartTime(null);
+                info.setEndTime(null);
+                info.setCheckRecord(null);
+                info.setRemark(null);
+                planCheckMapper.insert(info);
 
             }
             return ret;

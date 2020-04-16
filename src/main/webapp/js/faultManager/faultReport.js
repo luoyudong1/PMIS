@@ -402,19 +402,11 @@ require(['../config'],
                         targets: 15,
                         data: function (row) {
                             var str = '';
-                            if (roleName == "段调度员" && (row.completeFlag == 1 || row.completeFlag == 3|| row.completeFlag == 5)) {
+                            if (row.completeFlag == 1 || row.completeFlag == 3|| row.completeFlag == 5) {
                                 str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
-                            }
-                            if (roleName == "集团调度员" && (row.completeFlag == 2 || row.completeFlag == 4|| row.completeFlag == 6)) {
-                                str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
-                            }
-                            if (roleName == "段调度员" && (row.completeFlag == 1 || row.completeFlag == 3|| row.completeFlag == 5)) {
                                 str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
-                            } else if (roleName == "集团调度员" && (row.completeFlag == 2 || row.completeFlag == 4|| row.completeFlag == 6)) {
-                                str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
-                                str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popBackSheetModal" title="回退单据"><span class="glyphicon glyphicon-backward"></span></a>&nbsp;&nbsp;';
                             }
-                            if (roleName == "段调度员" && row.completeFlag == 1) {
+                            if ( row.completeFlag == 1) {
                                 str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popSheetModal" title="删除单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
 
                             }
@@ -547,14 +539,7 @@ require(['../config'],
                  * 重绘故障预报详情
                  */
                 function drawSheetDetail(sheetTrData) {
-                    $('#id').text(sheetTrData.id)
-                    $('#detectDeviceName').text(sheetTrData.detectDeviceName)
-                    $('#detectDeviceType').text(sheetTrData.detectDeviceType)
-                    $('#haultStartTime').text(sheetTrData.haultStartTime)
-                    $('#faultStopTime').text(sheetTrData.faultStopTime)
-                    $('#type').text(sheetTrData.type)
-                    $('#faultLevelType').text(sheetTrData.faultLevelType)
-                    $('#faultInfo').text(sheetTrData.faultInfo)
+
                     $('#faultInfoDetail').text(sheetTrData.faultInfoDetail)
                     $('#maintenanceTime').text(sheetTrData.maintenanceTime)
                     $('#checkInfo').text(sheetTrData.checkInfo)
@@ -563,19 +548,14 @@ require(['../config'],
                     $('#segmentDepot').text(sheetTrData.segmentDepot)
                     $('#responsibleUser').text(sheetTrData.responsibleUser)
                     $('#responsibleDepot').text(sheetTrData.responsibleDepot)
-                    $('#handleStartTime').text(sheetTrData.handleStartTime)
-                    $('#handleEndTime').text(sheetTrData.handleEndTime)
                     $('#handleInfo').text(sheetTrData.handleInfo)
                     $('#repairPerson').text(sheetTrData.repairPerson)
-                    $('#faultType').text(sheetTrData.faultType)
                     $('#telegraphNumber').text(sheetTrData.telegraphNumber)
                     $('#planOutageStartTime').text(sheetTrData.planOutageStartTime)
                     $('#planOutageEndTime').text(sheetTrData.planOutageEndTime)
                     $('#responsibleUnit').text(sheetTrData.responsibleUnit)
                     $('#noticeTime').text(sheetTrData.noticeTime)
-                    $('#remark').text(sheetTrData.remark)
                 }
-
                 /**
                  * 新增模态框打开按钮事件
                  */
@@ -835,6 +815,11 @@ require(['../config'],
                         var handleEndTime = verifyTime($('#faultHandleEndTimeModify').val())
                         var noticeTime = verifyTime($('#noticeTimeModify').val())
                         var maintenanceTime = verifyTime($('#maintenanceTimeModify').val())
+                        let type=$('#typeModify option:selected').text()
+                        let responsibleUnit=$('#responsibleUnitModify').val()
+                        if(type=="设备故障"){
+                            responsibleUnit=""
+                        }
                         var params = JSON.stringify({
                             id: id,
                             faultLevelType: $('#faultLevelModify option:selected').text(),
@@ -850,8 +835,8 @@ require(['../config'],
                             faultType: $('#faultTypeModify option:selected').text(),
                             telegraphNumber: $('#telegraphNumberModify').val(),
                             noticeTime: noticeTime,
-                            type: $('#typeModify option:selected').text(),
-                            responsibleUnit: $('#responsibleUnitModify').val(),
+                            type: type,
+                            responsibleUnit: responsibleUnit,
                             responsibleUser: $('#responsibleUserModify').val(),
                             remark: $('#remarkModify').val(),
                             telegraphNumber: $('#telegraphNumberModify').val(),

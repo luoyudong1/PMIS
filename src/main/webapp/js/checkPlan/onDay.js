@@ -37,7 +37,7 @@ require(['../config'],
                 var roleName = window.parent.user.roleName; // 登录人角色信息
                 var deptId = window.parent.user.deptId // 所属部门id
                 var id;
-                let sheet_id=''
+                let sheet_id = ''
                 var format = 'Y-m-d H:i:s';
                 var status;
                 CMethod.initDatetimepickerWithSecond("planTimeModify", null, format);
@@ -64,7 +64,6 @@ require(['../config'],
                 });
 
 
-
                 /**
                  * 初始化检修单据详情
                  */
@@ -74,9 +73,7 @@ require(['../config'],
                         url: config.basePath + '/checkPlan/checkPlan/list',
                         type: 'GET',
                         data: function (d) {
-                            if (roleName.indexOf("集团调度员") == -1) {
-                                d.depotId = deptId;
-                            }
+                            d.depotId = deptId;
                             d.queryTime = ($("#queryTime").val() == '' ? '' : $("#queryTime").val() + " 00:00:01");
                             d.queryTime2 = ($("#queryTime2").val() == '' ? '' : $("#queryTime2").val() + " 23:59:59");
                         }
@@ -118,12 +115,16 @@ require(['../config'],
                                 if (data == 1) {
                                     str = '<span style="color:red;font-weight:bold;">新建</span>';
                                 } else if (data == 2) {
-                                    str = '<span style="color:blue;font-weight:bold;">待检修中</span>';
+                                    str = '<span style="color:blue;font-weight:bold;">待检修</span>';
                                 }
                                 else if (data == 3) {
-                                    str = '<span style="color:blue;font-weight:bold;">检修结束中</span>';
+                                    str = '<span style="color:blue;font-weight:bold;">检修开始待审核</span>';
+                                } else if (data == 4) {
+                                    str = '<span style="color:blue;font-weight:bold;">检修结开始</span>';
                                 }
-                                else if (data == 4) {
+                                else if (data == 5) {
+                                    str = '<span style="color:blue;font-weight:bold;">检修结束待审核</span>';
+                                } else if (data == 6) {
                                     str = '<span style="color:black;font-weight:bold;">检修完成</span>';
                                 }
                                 return str;
@@ -134,17 +135,11 @@ require(['../config'],
                         targets: 13,
                         data: function (row) {
                             var str = '-';
-                            if (roleName == "段调度员" && (row.status == 2)) {
+                            if (row.status == 2 || row.status == 4) {
                                 str = '<a class="delaySheet btn btn-info btn-xs" data-toggle="modal" href="#delaySheetModal" title="延期"><span class="glyphicon glyphicon-time"></span></a>&nbsp;&nbsp;'
                                 str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
                                 str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
                             }
-                            if (roleName == "集团调度员" && (row.status== 3)) {
-                                str = '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
-                                str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
-                                str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popBackSheetModal" title="回退"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
-                            }
-
                             return str;
                         }
                     }],
@@ -209,12 +204,11 @@ require(['../config'],
                                 var sheetTrData = sheetTable
                                     .row(tr).data();
                                 status = sheetTrData.status
-                                id=sheetTrData.id
-                                sheet_id=sheetTrData.sheetId
+                                id = sheetTrData.id
+                                sheet_id = sheetTrData.sheetId
                             }
 
                         });
-
 
 
                 /**
@@ -240,23 +234,42 @@ require(['../config'],
                 $("#btnModifySheetOk").on('click',
                     function (e) {
                         e.preventDefault();
-                          let startTime=$('#startTimeModify').val()
-                          let date=new Date()
-                          if(startTime==''){
-                            $("#alertMsgAdd").html("<font style='color:red'>检修开始时间为空！请检查输入是否正确</font>");
-                            $("#alertMsgAdd").css('display', 'inline-block')
-                            CMethod.hideTimeout("alertMsgAdd", "alertMsgAdd", 5000);
+                        let startTime = $('#startTimeModify').val()
+                        let endTime = $('#endTimeModify').val()
+                        let date = new Date()
+                        if (startTime == '') {
+                            $("#alertMsgModify").html("<font style='color:red'>检修开始时间为空！请检查输入是否正确</font>");
+                            $("#alertMsgModify").css('display', 'inline-block')
+                            CMethod.hideTimeout("alertMsgModify", "alertMsgModify", 5000);
+                            return false;
+                        }
+                        if (Date.parse(startTime) > date) {
+                            $("#alertMsgModify").html("<font style='color:red'>检修开始时间大于当前时间</font>");
+                            $("#alertMsgModify").css('display', 'inline-block')
+                            CMethod.hideTimeout("alertMsgModify", "alertMsgModify", 5000);
+                            return false;
+                        }
+                        if (status >= 4 && endTime == '') {
+                            $("#alertMsgModify").html("<font style='color:red'>检修结束时间为空！请检查输入是否正确</font>");
+                            $("#alertMsgModify").css('display', 'inline-block')
+                            CMethod.hideTimeout("alertMsgModify", "alertMsgModify", 5000);
+                            return false;
+                        }
+                        if (status >= 4 && Date.parse(endTime) < Date.parse(startTime)) {
+                            $("#alertMsgModify").html("<font style='color:red'>检修结束时间小于检修开始时间！请检查输入是否正确</font>");
+                            $("#alertMsgModify").css('display', 'inline-block')
+                            CMethod.hideTimeout("alertMsgModify", "alertMsgModify", 5000);
                             return false;
                         }
                         let params = JSON.stringify({
-                            id :id,
-                            sheetId:sheet_id,
-                            planType :$('#planTypeModify').val(),
-                            planTime :$('#planTimeModify').val(),
-                            startTime :$('#startTimeModify').val(),
-                            endTime :$('#endTimeModify').val(),
-                            checkRecord :$('#checkRecordModify').val(),
-                            remark : $('#remarkModify').val(),
+                            id: id,
+                            sheetId: sheet_id,
+                            planType: $('#planTypeModify').val(),
+                            planTime: $('#planTimeModify').val(),
+                            startTime: $('#startTimeModify').val(),
+                            endTime: $('#endTimeModify').val(),
+                            checkRecord: $('#checkRecordModify').val(),
+                            remark: $('#remarkModify').val(),
                         });
                         $.ajax({
                             url: config.basePath + '/checkPlan/checkPlan/update',
@@ -282,17 +295,17 @@ require(['../config'],
                 $("#btnDelaySheetOk").on('click',
                     function (e) {
                         e.preventDefault();
-                        let date=new Date()
-                        let planTime=$('#planTimeDelay').val()
-                        if(planTime<date){
+                        let date = new Date()
+                        let planTime = $('#planTimeDelay').val()
+                        if (planTime < date) {
                             $("#alertMsgDelay").html("<font style='color:red'>延期时间小于当前时间</font>");
                             $("#alertMsgDelay").css('display', 'inline-block')
-                            CMethod.hideTimeout("alertMsgAdd", "alertMsgDelay", 5000);
+                            CMethod.hideTimeout("alertMsgModify", "alertMsgDelay", 5000);
                         }
                         var params = JSON.stringify({
-                            id :id,
-                            sheetId:sheet_id,
-                            planTime :$('#planTimeDelay').val(),
+                            id: id,
+                            sheetId: sheet_id,
+                            planTime: $('#planTimeDelay').val(),
                         });
                         $.ajax({
                             url: config.basePath + '/checkPlan/checkPlan/update',
@@ -320,35 +333,35 @@ require(['../config'],
                         'click',
                         function (e) {
                             var params = JSON.stringify({
-                                id :id,
-                                status:status+1,
-                                sheetId:sheet_id
+                                id: id,
+                                status: status + 1,
+                                sheetId: sheet_id
                             });
                             $.ajax({
-                                    url: config.basePath
-                                        + '/checkPlan/checkPlan/update',
-                                    type: "post",
-                                    data: params,
-                                    contentType: 'application/json',
-                                    dataType: "json",
-                                    success: function (
-                                        result) {
-                                        if (result.code != 0) {
-                                            alert(result.msg);
-                                        } else {
-                                            sheetTable.ajax
-                                                .reload();
-                                            $("#alertMsg")
-                                                .html(
-                                                    '<span style="color:green;text-align:center"><strong>单据已提交！</strong></span>');
-                                            $("#infoAlert")
-                                                .show();
-                                            hideTimeout(
-                                                "infoAlert",
-                                                2000);
-                                        }
+                                url: config.basePath
+                                    + '/checkPlan/checkPlan/update',
+                                type: "post",
+                                data: params,
+                                contentType: 'application/json',
+                                dataType: "json",
+                                success: function (
+                                    result) {
+                                    if (result.code != 0) {
+                                        alert(result.msg);
+                                    } else {
+                                        sheetTable.ajax
+                                            .reload();
+                                        $("#alertMsg")
+                                            .html(
+                                                '<span style="color:green;text-align:center"><strong>单据已提交！</strong></span>');
+                                        $("#infoAlert")
+                                            .show();
+                                        hideTimeout(
+                                            "infoAlert",
+                                            2000);
                                     }
-                                });
+                                }
+                            });
 
                         });
                 /**

@@ -18,7 +18,7 @@ public class FaultHandleTask {
     private FaultHandleMapper faultHandleMapper;
     private static final Logger logger = LoggerFactory.getLogger(CheckPlanController.class);
     /**
-     * 每个月一号凌晨一点执行test1
+     * 每天八点执行
      */
     //                   秒分时日 月周
     @Scheduled(cron = "0 0 8 ? * *")
@@ -36,11 +36,5 @@ public class FaultHandleTask {
             handle.setFinished(1);
         }
         faultHandleMapper.batchUpdate(list);
-    }
-    @Scheduled(cron = "0/5 * * * * ?")//每隔5秒隔行一次
-
-    public void  test2(){
-        System.out.println("job2 开始执行");
-
     }
 }

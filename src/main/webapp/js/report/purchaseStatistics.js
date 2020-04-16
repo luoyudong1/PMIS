@@ -5,9 +5,8 @@ require(['../config'], function (config) {
 
     require(['datetimepicker'], function () {
         var date = new Date();
-        date.setDate("1")
-        date.setMonth(date.getMonth() - 1)
-        date.setMonth(date.getMonth() - 1)
+        date.setDate(1);
+        date.setMonth(0)
         initDatetimepicker("queryTime", date);
         initDatetimepicker("queryTime2", new Date());
 

@@ -205,6 +205,7 @@ require(['../config'],
                     });
                     return ret;
                 }
+
                 /**
                  * 获取责任单位
                  */
@@ -224,6 +225,7 @@ require(['../config'],
                     });
                     return detectDevice
                 }
+
                 /**
                  * 初始化入库单据
                  */
@@ -234,8 +236,8 @@ require(['../config'],
                         type: 'GET',
                         data: function (d) {
 
-                                d.queryTime = ($("#queryTime").val() == '' ? '' : $("#queryTime2").val() + " 00:00:01");
-                                d.queryTime2 = ($("#queryTime2").val() == '' ? '' : $("#queryTime2").val() + " 23:59:59");
+                            d.queryTime = ($("#queryTime").val() == '' ? '' : $("#queryTime2").val() + " 00:00:01");
+                            d.queryTime2 = ($("#queryTime2").val() == '' ? '' : $("#queryTime2").val() + " 23:59:59");
 
                         }
                     },
@@ -307,11 +309,11 @@ require(['../config'],
                         data: function (row) {
                             var str = '';
 
-                            if (row.completeFlag == 2 || row.completeFlag == 4|| row.completeFlag == 6) {
+                            if (row.completeFlag == 2 || row.completeFlag == 4 || row.completeFlag == 6) {
                                 str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
                                 str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
                                 str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popBackSheetModal" title="回退单据"><span class="glyphicon glyphicon-backward"></span></a>&nbsp;&nbsp;';
-                            }else{
+                            } else {
                                 str = '-'
                             }
 
@@ -362,14 +364,7 @@ require(['../config'],
                  * 重绘故障预报详情
                  */
                 function drawSheetDetail(sheetTrData) {
-                    $('#id').text(sheetTrData.id)
-                    $('#detectDeviceName').text(sheetTrData.detectDeviceName)
-                    $('#detectDeviceType').text(sheetTrData.detectDeviceType)
-                    $('#haultStartTime').text(sheetTrData.haultStartTime)
-                    $('#faultStopTime').text(sheetTrData.faultStopTime)
-                    $('#type').text(sheetTrData.type)
-                    $('#faultLevelType').text(sheetTrData.faultLevelType)
-                    $('#faultInfo').text(sheetTrData.faultInfo)
+
                     $('#faultInfoDetail').text(sheetTrData.faultInfoDetail)
                     $('#maintenanceTime').text(sheetTrData.maintenanceTime)
                     $('#checkInfo').text(sheetTrData.checkInfo)
@@ -378,17 +373,13 @@ require(['../config'],
                     $('#segmentDepot').text(sheetTrData.segmentDepot)
                     $('#responsibleUser').text(sheetTrData.responsibleUser)
                     $('#responsibleDepot').text(sheetTrData.responsibleDepot)
-                    $('#handleStartTime').text(sheetTrData.handleStartTime)
-                    $('#handleEndTime').text(sheetTrData.handleEndTime)
                     $('#handleInfo').text(sheetTrData.handleInfo)
                     $('#repairPerson').text(sheetTrData.repairPerson)
-                    $('#faultType').text(sheetTrData.faultType)
                     $('#telegraphNumber').text(sheetTrData.telegraphNumber)
                     $('#planOutageStartTime').text(sheetTrData.planOutageStartTime)
                     $('#planOutageEndTime').text(sheetTrData.planOutageEndTime)
                     $('#responsibleUnit').text(sheetTrData.responsibleUnit)
                     $('#noticeTime').text(sheetTrData.noticeTime)
-                    $('#remark').text(sheetTrData.remark)
                 }
 
                 /**
@@ -399,11 +390,14 @@ require(['../config'],
                         var tr = $(e.relatedTarget).parents('tr');
                         var data = sheetTable.row(tr).data();
                         id = data.id;
-                        $('#lineModify').append('<option>' + data.lineName+ '</option>');
-                        $('#detectTypeModify').append('<option>' +data.detectDeviceType+ '</option>');
-                        $('#detectDeviceModify').append('<option>' + data.detectDeviceName+ '</option>');
+                        $('#lineModify').append('<option>' + data.lineName + '</option>');
+                        $('#detectTypeModify').append('<option>' + data.detectDeviceType + '</option>');
+                        $('#detectDeviceModify').append('<option>' + data.detectDeviceName + '</option>');
 
                         $('#remarkModify').val(data.remark)
+                        if (data.checkInfo != "") {
+                            $('#checkInfoModify').val(data.checkInfo)
+                        }
                         $('#detectDeviceModify').val(data.detectDeviceName)
                         $('#haultStartTimeModify').val(formatDateBy(data.haultStartTime, 'yyyy-MM-dd HH:mm:ss'))
                         $('#haultEndTimeModify').val(formatDateBy(data.haultEndTime, 'yyyy-MM-dd HH:mm:ss'))
@@ -426,7 +420,9 @@ require(['../config'],
                         $('#responsibleUnitModify').val(data.responsibleUnit)
                         $('#planOutageStartTimeModify').val(data.planOutageStartTime)
                         $('#planOutageEndTimeModify').val(data.planOutageEndTime)
-                        $('#faultTypeModify option:contains("' + data.faultType + '")').prop("selected", true);
+                        if (data.faultType != "") {
+                            $('#faultTypeModify option:contains("' + data.faultType + '")').prop("selected", true);
+                        }
                         initRepairUserModify(detectDeviceId)
                         if (data.repairPerson != null && data.repairPerson != '') {
                             $('#repairUserModify option:contains("' + data.repairPerson + '")').prop("selected", true);
@@ -459,29 +455,27 @@ require(['../config'],
                     if (completeFlag > 1) {
 
                         $('#noticeUserModify').attr("disabled", true)
-                    } if (completeFlag > 2) {
+                    }
+                    if (completeFlag > 2) {
 
                         $('#haultStartTimeModify').attr("readOnly", true)
                         $('#faultInfoModify').attr("readOnly", true)
                         $('#faultInfoDetailModify').attr("readOnly", true)
                     }
-                    if(completeFlag >3){
+                    if (completeFlag > 3) {
                         $('#maintenanceTimeModify').attr("readOnly", true)
                         $('#maintenanceTimeModify').attr("readOnly", true)
                         $('#checkInfoModify').attr("readOnly", true)
                         $('#faultHandleStartTimeModify').attr("readOnly", true)
                         $('#repairUserModify').attr("disabled", true)
                     }
-                    if(completeFlag>5){
-                        $('#faultHandleEndTimeModify').attr("readOnly", true)
-                        $('#handleInfoModify').attr("readOnly", true)
+                    if (completeFlag > 5) {
                         $('#telegraphNumberModify').attr("readOnly", true)
                         $('#planOutageStartTimeModify').attr("readOnly", true)
                         $('#planOutageEndTimeModify').attr("readOnly", true)
                         $('#noticeTimeModify').attr("readOnly", true)
                         $('#responsibleUnitModify').attr("readOnly", true)
                         $('#responsibleUserModify').attr("readOnly", true)
-                        $('#typeModify').attr("disabled", true)
                     }
                 }
 
@@ -525,62 +519,63 @@ require(['../config'],
                     let maintenanceTime = $('#maintenanceTimeModify').val()
                     let handleInfo = $('#handleInfoModify').val()
                     let repairUserModify = $('#repairUserModify option:selected').text()
-                    let haultStartTime=$('#haultStartTimeModify').val()
+                    let haultStartTime = $('#haultStartTimeModify').val()
                     let date = new Date()
-                    if (completeFlag>=1&&haultStartTime=='') {
+                    if (completeFlag >= 1 && haultStartTime == '') {
                         $("#alertMsgSheetModify").html("<font style='color:red'>故障发生时间为空！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
-                    }if (completeFlag>=1&&Date.parse(haultStartTime) >date) {
+                    }
+                    if (completeFlag >= 1 && Date.parse(haultStartTime) > date) {
                         $("#alertMsgSheetModify").html("<font style='color:red'>故障发生时间大于当前时间！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
                     }
-                    if (completeFlag>=3&&handleStartTime=='') {
+                    if (completeFlag >= 3 && handleStartTime == '') {
                         $("#alertMsgSheetModify").html("<font style='color:red'>故障处理开始时间为空！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
                     }
-                    else if (completeFlag>=3&&Date.parse(handleStartTime) >date) {
+                    else if (completeFlag >= 3 && Date.parse(handleStartTime) > date) {
                         $("#alertMsgSheetModify").html("<font style='color:red'>故障处理开始时间大于当前时间！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
-                    }  else if (completeFlag>=3&&Date.parse(handleStartTime) <Date.parse(haultStartTime)) {
+                    } else if (completeFlag >= 3 && Date.parse(handleStartTime) < Date.parse(haultStartTime)) {
                         $("#alertMsgSheetModify").html("<font style='color:red'>故障处理开始时间小于故障发生时间！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
-                    } else if (completeFlag>=5&&handleEndTime=='') {
+                    } else if (completeFlag >= 5 && handleEndTime == '') {
                         $("#alertMsgSheetModify").html("<font style='color:red'>故障处理结束时间为空！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
                     }
-                    else if (completeFlag>=5&&Date.parse(handleEndTime) < Date.parse(handleStartTime)) {
+                    else if (completeFlag >= 5 && Date.parse(handleEndTime) < Date.parse(handleStartTime)) {
                         $("#alertMsgSheetModify").html("<font style='color:red'>故障处理结束时间小于开始时间！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
-                    } else if (completeFlag>=5&&handleInfo=='') {
+                    } else if (completeFlag >= 5 && handleInfo == '') {
                         $("#alertMsgSheetModify").html("<font style='color:red'>处理情况为空！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
-                    }else if(maintenanceTime!=''&&Date.parse(maintenanceTime) < date){
+                    } else if (maintenanceTime != '' && Date.parse(maintenanceTime) < date) {
                         $("#alertMsgSheetModify").html("<font style='color:red'>维修天窗小于当前时间！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
-                    }else if (completeFlag>=3&&repairUserModify=='') {
+                    } else if (completeFlag >= 3 && repairUserModify == '') {
                         $("#alertMsgSheetModify").html("<font style='color:red'>维修人员为空！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
-                    }else if (completeFlag>=3&&checkInfoModify=='') {
+                    } else if (completeFlag >= 3 && checkInfoModify == '') {
                         $("#alertMsgSheetModify").html("<font style='color:red'>现场设备诊断情况为空！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
@@ -595,7 +590,7 @@ require(['../config'],
                 $("#btnModifySheetOk").on('click',
                     function (e) {
                         e.preventDefault();
-                        if(verifyParmasByCompleteFlag()==false){
+                        if (verifyParmasByCompleteFlag() == false) {
                             return false
                         }
                         var stopTime = verifyFaultStopTime()
@@ -605,10 +600,13 @@ require(['../config'],
                         var handleEndTime = verifyTime($('#faultHandleEndTimeModify').val())
                         var noticeTime = verifyTime($('#noticeTimeModify').val())
                         var maintenanceTime = verifyTime($('#maintenanceTimeModify').val())
-                        let faultStopTime;
+                        let type=$('#typeModify option:selected').text()
+                        let responsibleUnit=$('#responsibleUnitModify').val()
+                        if(type=="设备故障"){
+                            responsibleUnit=""
+                        }
                         var params = JSON.stringify({
                             id: id,
-                            faultStopTime: stopTime,
                             faultLevelType: $('#faultLevelModify option:selected').text(),
                             handleStartTime: handleStartTime,
                             handleEndTime: handleEndTime,
@@ -622,8 +620,8 @@ require(['../config'],
                             faultType: $('#faultTypeModify option:selected').text(),
                             telegraphNumber: $('#telegraphNumberModify').val(),
                             noticeTime: noticeTime,
-                            type: $('#typeModify option:selected').text(),
-                            responsibleUnit: $('#responsibleUnitModify').val(),
+                            type: type,
+                            responsibleUnit: responsibleUnit,
                             responsibleUser: $('#responsibleUserModify').val(),
                             remark: $('#remarkModify').val(),
                             telegraphNumber: $('#telegraphNumberModify').val(),

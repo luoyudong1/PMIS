@@ -126,7 +126,7 @@ require(['../config'],
                         data: function (row) {
                             var str = '';
                             if (row.flag == 2 ) {
-                                str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;' + '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;' + '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popSheetModal" title="删除单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
+                                str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;' + '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;' + '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popSheetModal" title="回退单据"><span class="glyphicon glyphicon-backward"></span></a>&nbsp;&nbsp;';
                             } else {
                                 str += '-';
                             }
@@ -197,12 +197,16 @@ require(['../config'],
                                 if (data == 1) {
                                     str = '<span style="color:red;font-weight:bold;">新建</span>';
                                 } else if (data == 2) {
-                                    str = '<span style="color:blue;font-weight:bold;">待检修中</span>';
+                                    str = '<span style="color:blue;font-weight:bold;">待检修</span>';
                                 }
                                 else if (data == 3) {
-                                    str = '<span style="color:blue;font-weight:bold;">检修结束中</span>';
+                                    str = '<span style="color:blue;font-weight:bold;">检修开始待审核</span>';
+                                } else if (data == 4) {
+                                    str = '<span style="color:blue;font-weight:bold;">检修结开始</span>';
                                 }
-                                else if (data == 4) {
+                                else if (data == 5) {
+                                    str = '<span style="color:blue;font-weight:bold;">检修结束待审核</span>';
+                                }else if (data == 6) {
                                     str = '<span style="color:black;font-weight:bold;">检修完成</span>';
                                 }
                                 return str;
@@ -315,12 +319,12 @@ require(['../config'],
                 /**
                  * 回退单据
                  */
-                $('#popBackSheetModal').on('show.bs.modal',
+                $('#popSheetModal').on('show.bs.modal',
                     function (e) {
                         var tr = $(e.relatedTarget).parents('tr');
                         var data = sheetTable.row(tr).data();
-                        $('#backSheetText').text('确定要回退该故障预报单据（' + data.id + '）？');
-                        $('#backSheetId').val(data.id);
+                        $('#backSheetText').text('确定要回退该检修计划单据（' + data.sheetId + '）？');
+                        $('#backSheetId').val(data.sheetId);
                     });
                 /**
                  * 点击回退确定按钮
@@ -329,8 +333,8 @@ require(['../config'],
                     function (e) {
                         e.preventDefault();
                         var params = JSON.stringify({
-                            id: $('#backSheetId').val(),
-                            status: completeFlag - 1
+                            sheetId: $('#backSheetId').val(),
+                            flag: completeFlag - 1
                         });
                         $.ajax({
                             url: config.basePath + '/checkPlan/checkPlan/update',

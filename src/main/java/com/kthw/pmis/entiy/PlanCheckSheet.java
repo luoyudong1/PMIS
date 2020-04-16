@@ -20,13 +20,13 @@ public class PlanCheckSheet {
      * Database Column Remarks:
      *   tbl_plan_check_sheet.year: 年份
      */
-    private String year;
+    private Integer year;
 
     /**
      * Database Column Remarks:
      *   tbl_plan_check_sheet.month: 月份
      */
-    private String month;
+    private Integer month;
 
     /**
      * Database Column Remarks:
@@ -51,7 +51,7 @@ public class PlanCheckSheet {
      *   tbl_plan_check_sheet.create_time: 创建时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
     /**
@@ -59,7 +59,7 @@ public class PlanCheckSheet {
      *   tbl_plan_check_sheet.update_time: 修改时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
 
     /**
@@ -97,29 +97,29 @@ public class PlanCheckSheet {
     /**
      * @return the value of tbl_plan_check_sheet.year
      */
-    public String getYear() {
+    public Integer getYear() {
         return year;
     }
 
     /**
      * @param year the value for tbl_plan_check_sheet.year
      */
-    public void setYear(String year) {
-        this.year = year == null ? null : year.trim();
+    public void setYear(Integer year) {
+        this.year = year ;
     }
 
     /**
      * @return the value of tbl_plan_check_sheet.month
      */
-    public String getMonth() {
+    public Integer getMonth() {
         return month;
     }
 
     /**
      * @param month the value for tbl_plan_check_sheet.month
      */
-    public void setMonth(String month) {
-        this.month = month == null ? null : month.trim();
+    public void setMonth(Integer month) {
+        this.month = month ;
     }
 
     /**
