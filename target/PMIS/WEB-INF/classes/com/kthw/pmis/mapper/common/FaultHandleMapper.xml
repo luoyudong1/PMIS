@@ -40,6 +40,19 @@
     <result column="segment_depot" jdbcType="VARCHAR" property="segmentDepot" />
     <result column="line_name" jdbcType="VARCHAR" property="lineName" />
     <result column="finished" jdbcType="NUMERIC" property="finished" />
+    <result column="detect_depot_id" jdbcType="NUMERIC" property="detectDepotId" />
+    <result column="verify_user1" jdbcType="VARCHAR" property="verifyUser1" />
+    <result column="verify_user2" jdbcType="VARCHAR" property="verifyUser2" />
+    <result column="verify_user3" jdbcType="VARCHAR" property="verifyUser3" />
+    <result column="verify_user4" jdbcType="VARCHAR" property="verifyUser4" />
+    <result column="verify_user5" jdbcType="VARCHAR" property="verifyUser5" />
+    <result column="verify_date1" jdbcType="TIMESTAMP" property="verifyDate1" />
+    <result column="verify_date2" jdbcType="TIMESTAMP" property="verifyDate2" />
+    <result column="verify_date3" jdbcType="TIMESTAMP" property="verifyDate3" />
+    <result column="verify_date4" jdbcType="TIMESTAMP" property="verifyDate4" />
+    <result column="verify_date5" jdbcType="TIMESTAMP" property="verifyDate5" />
+    <result column="dispatcher" jdbcType="NUMERIC" property="dispatcher" />
+
   </resultMap>
   <sql id="Base_Column_List">
     id, detect_device_id, detect_device_name, detect_device_type, hault_start_time, hault_end_time,
@@ -48,7 +61,8 @@
     confirm_fault_person, complete_flag, telegraph_number, remark, plan_outage_start_time,
     plan_outage_end_time, notice_time, responsible_unit, depot_id, depot_name, update_time,
     responsible_user, notice_user, responsible_depot, submit_user, maintenance_time,
-    check_info, fault_info_detail, segment_depot,line_name,finished
+    check_info, fault_info_detail, segment_depot,line_name,finished,detect_depot_id,verify_user1,
+    verify_user2,verify_user3,verify_user4,verify_user5,verify_date1,verify_date2,verify_date3,verify_date4,verify_date5,dispatcher
   </sql>
   <sql id="ByMap_Where_Clause">
     <where>
@@ -166,6 +180,12 @@
       <if test="eqFinished != null">
         AND finished = #{eqFinished,jdbcType=NUMERIC}
       </if>
+      <if test="eqDetectDepotId != null">
+        AND detect_depot_id = #{eqDetectDepotId,jdbcType=NUMERIC}
+      </if>
+      <if test="eqDispatcher != null">
+        AND dispatcher = #{eqDispatcher,jdbcType=NUMERIC}
+      </if>
       <if test="ltCompleteFlag != null">
         AND complete_flag &lt; #{ltCompleteFlag ,jdbcType=NUMERIC}
       </if>
@@ -180,7 +200,12 @@
         and update_time &lt;= to_timestamp(#{queryTime2},
         'yyyy-mm-dd hh24:mi:ss')
       </if>
-
+      <if test="depotIdList !=null">
+        and detect_depot_id in
+        <foreach collection="depotIdList" index="index" item="item" open="(" separator="," close=")">
+          #{item.depotId}
+        </foreach>
+      </if>
     </where>
   </sql>
   <sql id="ByMap_Set_Clause">
@@ -296,6 +321,42 @@
       <if test="finished != null">
         finished = #{finished,jdbcType=NUMERIC},
       </if>
+      <if test="detectDepotId != null">
+        detect_depot_id = #{detectDepotId,jdbcType=NUMERIC},
+      </if>
+      <if test="verifyUser1 != null">
+        verify_user1 = #{verifyUser1,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyUser2 != null">
+        verify_user2 = #{verifyUser2,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyUser3 != null">
+        verify_user3 = #{verifyUser3,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyUser4 != null">
+        verify_user4= #{verifyUser4,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyUser5 != null">
+        verify_user5 = #{verifyUser5,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyDate1 != null">
+        verify_date1 = #{verifyDate1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifyDate2 != null">
+        verify_date2 = #{verifyDate2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifyDate3 != null">
+        verify_date3 = #{verifyDate3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifyDate4!= null">
+        verify_date4 = #{verifyDate4,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifyDate5 != null">
+        verify_date5 = #{verifyDate5,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dispatcher != null">
+        dispatcher = #{dispatcher,jdbcType=NUMERIC},
+      </if>
     </set>
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -338,7 +399,7 @@
       depot_name, update_time, responsible_user,
       notice_user, responsible_depot, submit_user,
       maintenance_time, check_info, fault_info_detail,
-      segment_depot,line_name,finished)
+      segment_depot,line_name,finished,detect_depot_id,dispatcher)
     values (#{id,jdbcType=VARCHAR}, #{detectDeviceId,jdbcType=NUMERIC}, #{detectDeviceName,jdbcType=VARCHAR},
       #{detectDeviceType,jdbcType=VARCHAR}, #{haultStartTime,jdbcType=TIMESTAMP}, #{haultEndTime,jdbcType=TIMESTAMP},
       #{faultStopTime,jdbcType=NUMERIC}, #{type,jdbcType=VARCHAR}, #{faultLevelType,jdbcType=VARCHAR},
@@ -351,7 +412,8 @@
       #{depotName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{responsibleUser,jdbcType=VARCHAR},
       #{noticeUser,jdbcType=VARCHAR}, #{responsibleDepot,jdbcType=VARCHAR}, #{submitUser,jdbcType=VARCHAR},
       #{maintenanceTime,jdbcType=TIMESTAMP}, #{checkInfo,jdbcType=VARCHAR}, #{faultInfoDetail,jdbcType=VARCHAR},
-      #{segmentDepot,jdbcType=VARCHAR},#{lineName,jdbcType=VARCHAR},#{finished,jdbcType=NUMERIC})
+      #{segmentDepot,jdbcType=VARCHAR},#{lineName,jdbcType=VARCHAR},#{finished,jdbcType=NUMERIC},#{detectDepotId,jdbcType=NUMERIC}
+      ,#{dispatcher,jdbcType=NUMERIC})
   </insert>
   <insert id="insertSelective" parameterType="com.kthw.pmis.entiy.FaultHandle">
     insert into tbl_fault_handle
@@ -470,6 +532,12 @@
       <if test="finished != null">
         finished,
       </if>
+      <if test="detectDepotId != null">
+        detect_depot_id,
+      </if>
+      <if test="dispatcher != null">
+        dispatcher,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -586,6 +654,12 @@
       <if test="finished != null">
         #{finished,jdbcType=NUMERIC},
       </if>
+      <if test="detectDepotId != null">
+        #{detectDepotId,jdbcType=NUMERIC},
+      </if>
+      <if test="dispatcher != null">
+        #{dispatcher,jdbcType=NUMERIC},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.kthw.pmis.entiy.FaultHandle">
@@ -631,7 +705,9 @@
       fault_info_detail = #{faultInfoDetail,jdbcType=VARCHAR},
       segment_depot = #{segmentDepot,jdbcType=VARCHAR},
       line_name = #{lineName,jdbcType=VARCHAR},
-      finished = #{finished,jdbcType=NUMERIC}
+      finished = #{finished,jdbcType=NUMERIC},
+      detectDepotId = #{detectDepotId,jdbcType=NUMERIC},
+      dispatcher = #{dispatcher,jdbcType=NUMERIC}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByMap" parameterType="java.util.Map">
@@ -643,124 +719,25 @@
   </update>
   <update id="batchUpdate" parameterType="java.util.List">
     <foreach collection="list" item="item" index="index" open="" close="" separator=";">
-      update tbl_sheet_detail
+      update tbl_fault_handle
       <set>
-        <if test="detectDeviceId != null">
-          detect_device_id = #{item.detectDeviceId,jdbcType=NUMERIC},
-        </if>
-        <if test="detectDeviceName != null">
-          detect_device_name = #{item.detectDeviceName,jdbcType=VARCHAR},
-        </if>
-        <if test="detectDeviceType != null">
-          detect_device_type = #{item.detectDeviceType,jdbcType=VARCHAR},
-        </if>
-        <if test="haultStartTime != null">
-          hault_start_time = #{item.haultStartTime,jdbcType=TIMESTAMP},
-        </if>
-        <if test="haultEndTime != null">
-          hault_end_time = #{item.haultEndTime,jdbcType=TIMESTAMP},
-        </if>
-        <if test="faultStopTime != null">
-          fault_stop_time = #{item.faultStopTime,jdbcType=NUMERIC},
-        </if>
-        <if test="type != null">
-          type = #{item.type,jdbcType=VARCHAR},
-        </if>
-        <if test="faultLevelType != null">
-          fault_level_type = #{item.faultLevelType,jdbcType=VARCHAR},
-        </if>
-        <if test="faultInfo != null">
-          fault_info = #{item.faultInfo,jdbcType=VARCHAR},
-        </if>
-        <if test="handleInfo != null">
-          handle_info = #{item.handleInfo,jdbcType=VARCHAR},
-        </if>
-        <if test="forecastFaultTime != null">
-          forecast_fault_time = #{item.forecastFaultTime,jdbcType=TIMESTAMP},
-        </if>
-        <if test="segmentDutyUser != null">
-          segment_duty_user = #{item.segmentDutyUser,jdbcType=VARCHAR},
-        </if>
-        <if test="handleStartTime != null">
-          handle_start_time = #{item.handleStartTime,jdbcType=TIMESTAMP},
-        </if>
-        <if test="handleEndTime != null">
-          handle_end_time = #{item.handleEndTime,jdbcType=TIMESTAMP},
-        </if>
-        <if test="repairPerson != null">
-          repair_person = #{item.repairPerson,jdbcType=VARCHAR},
-        </if>
-        <if test="faultType != null">
-          fault_type = #{item.faultType,jdbcType=VARCHAR},
-        </if>
-        <if test="confirmFaultPerson != null">
-          confirm_fault_person = #{item.confirmFaultPerson,jdbcType=VARCHAR},
-        </if>
-        <if test="completeFlag != null">
-          complete_flag = #{item.completeFlag,jdbcType=NUMERIC},
-        </if>
-        <if test="telegraphNumber != null">
-          telegraph_number = #{item.telegraphNumber,jdbcType=VARCHAR},
-        </if>
-        <if test="remark != null">
-          remark = #{item.remark,jdbcType=VARCHAR},
-        </if>
-        <if test="planOutageStartTime != null">
-          plan_outage_start_time = #{item.planOutageStartTime,jdbcType=TIMESTAMP},
-        </if>
-        <if test="planOutageEndTime != null">
-          plan_outage_end_time = #{item.planOutageEndTime,jdbcType=TIMESTAMP},
-        </if>
-        <if test="noticeTime != null">
-          notice_time = #{item.noticeTime,jdbcType=TIMESTAMP},
-        </if>
-        <if test="responsibleUnit != null">
-          responsible_unit = #{item.responsibleUnit,jdbcType=VARCHAR},
-        </if>
-        <if test="depotId != null">
-          depot_id = #{item.depotId,jdbcType=NUMERIC},
-        </if>
-        <if test="depotName != null">
-          depot_name = #{item.depotName,jdbcType=VARCHAR},
-        </if>
-        <if test="updateTime != null">
-          update_time = #{item.updateTime,jdbcType=TIMESTAMP},
-        </if>
-        <if test="responsibleUser != null">
-          responsible_user = #{item.responsibleUser,jdbcType=VARCHAR},
-        </if>
-        <if test="noticeUser != null">
-          notice_user = #{item.noticeUser,jdbcType=VARCHAR},
-        </if>
-        <if test="responsibleDepot != null">
-          responsible_depot = #{item.responsibleDepot,jdbcType=VARCHAR},
-        </if>
-        <if test="submitUser != null">
-          submit_user = #{item.submitUser,jdbcType=VARCHAR},
-        </if>
-        <if test="maintenanceTime != null">
-          maintenance_time = #{item.maintenanceTime,jdbcType=TIMESTAMP},
-        </if>
-        <if test="checkInfo != null">
-          check_info = #{item.checkInfo,jdbcType=VARCHAR},
-        </if>
-        <if test="faultInfoDetail != null">
-          fault_info_detail = #{item.faultInfoDetail,jdbcType=VARCHAR},
-        </if>
-        <if test="segmentDepot != null">
-          segment_depot = #{item.segmentDepot,jdbcType=VARCHAR},
-        </if>
-        <if test="lineName != null">
-          line_name = #{item.lineName,jdbcType=VARCHAR},
-        </if>
-        <if test="finished != null">
+
+        <if test="item.finished != null">
           finished = #{item.finished,jdbcType=NUMERIC},
         </if>
       </set>
-      <include refid="ByMap_Where_Clause"/>
-
-
+     where id=#{item.id,jdbcType=NUMERIC}
     </foreach>
   </update>
+  <!-- 辆安站调度获取故障预报处理未完成信息数量  -->
+  <select id="getFaultCheckByMap" parameterType="java.util.Map" resultType="Integer">
+        SELECT count(*) from tbl_fault_handle
+        where complete_flag=#{flag}
+  </select>
 
+  <!-- 段值班员获取故障预报处理未完成信息数量  -->
+  <select id="getFaultCheckByMapDepot" parameterType="java.util.Map" resultType="Integer">
+        SELECT count(*) from tbl_fault_handle
+        where complete_flag=#{flag} and depot_id=#{depotId}
+  </select>
 </mapper>

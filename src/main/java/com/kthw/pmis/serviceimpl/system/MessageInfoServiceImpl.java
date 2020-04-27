@@ -2,9 +2,7 @@ package com.kthw.pmis.serviceimpl.system;
 
 import com.kthw.common.base.ErrCode;
 import com.kthw.pmis.entiy.Depot;
-import com.kthw.pmis.mapper.common.DepotMapper;
-import com.kthw.pmis.mapper.common.DetectPartsMapper;
-import com.kthw.pmis.mapper.common.SheetInfoMapper;
+import com.kthw.pmis.mapper.common.*;
 import com.kthw.pmis.mapper.system.MessageInfoMapper;
 import com.kthw.pmis.model.system.MessageInfo;
 import com.kthw.pmis.service.system.MessageInfoService;
@@ -15,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class MessageInfoServiceImpl implements MessageInfoService {
@@ -33,6 +28,10 @@ public class MessageInfoServiceImpl implements MessageInfoService {
     private SheetInfoMapper sheetInfoMapper;
     @Autowired
     private DetectPartsMapper detectPartsMapper;
+    @Autowired
+    private FaultHandleMapper faultHandleMapper;
+    @Autowired
+    private PlanCheckMapper planCheckMapper;
 
     @Override
     public List<MessageInfo> getMessageInfoByUser(String userId) {
@@ -57,6 +56,12 @@ public class MessageInfoServiceImpl implements MessageInfoService {
         return errCode;
     }
 
+    /**
+     *
+     * PMIS系统各登录用户根据部门及角色获取消息
+     * @param depotId
+     * @return
+     */
     //获取 机辆所库管人员 未接收车间返修的单据数量和所内检修出库未接收的单据数量
     private List<MessageInfo> getTestMessage(Long depotId){
         List<MessageInfo> list = new ArrayList<>();
@@ -211,7 +216,7 @@ public class MessageInfoServiceImpl implements MessageInfoService {
         return list;
     }
 
-
+    //班组录入人员 获得探测站拆除配件未安装数量
     private List<MessageInfo> getDepotMessage(Long depotId){
         List<MessageInfo> list = new ArrayList<>();
         Map<String, Object> params = new HashMap<>();
@@ -233,6 +238,116 @@ public class MessageInfoServiceImpl implements MessageInfoService {
         return list;
     }
 
+    /**
+     * MIS系统各登录用户根据部门及角色获取消息
+     * @param depotId
+     * @return
+     */
+
+    //集团调度员  获得故障预报未确认信息条数  获得故障开始处理未确认信息条数  获得故障结束未确认信息条数
+    private List<MessageInfo> getDispatchMessage(Long depotId) {
+        List<MessageInfo> list = new ArrayList<>();
+        Map<String, Object> params = new HashMap<>();
+        // 获得故障预报未确认信息条数
+        params.clear();
+        params.put("flag", Long.valueOf(2));
+        int noVerifyCount = faultHandleMapper.getFaultCheckByMap(params);
+        if (noVerifyCount > 0) {
+            MessageInfo messageInfo = new MessageInfo();
+            messageInfo.setMessage_info("故障预报未确认信息为" + noVerifyCount + "条");
+            messageInfo.setMessage_state(noVerifyCount);
+            messageInfo.setMessage_id(0);
+            list.add(messageInfo);
+        }
+        //获得故障开始处理未确认信息条数
+        params.put("flag", Long.valueOf(4));
+        noVerifyCount = faultHandleMapper.getFaultCheckByMap(params);
+        if (noVerifyCount > 0) {
+            MessageInfo messageInfo = new MessageInfo();
+            messageInfo.setMessage_info("故障处理开始未确认信息为" + noVerifyCount + "条");
+            messageInfo.setMessage_state(noVerifyCount);
+            messageInfo.setMessage_id(1);
+            list.add(messageInfo);
+        }
+        //获得故障结束未确认信息条数
+        params.put("flag", Long.valueOf(6));
+        noVerifyCount = faultHandleMapper.getFaultCheckByMap(params);
+        if (noVerifyCount > 0) {
+            MessageInfo messageInfo = new MessageInfo();
+            messageInfo.setMessage_info("故障处理结束未确认信息为" + noVerifyCount + "条");
+            messageInfo.setMessage_state(noVerifyCount);
+            messageInfo.setMessage_id(2);
+            list.add(messageInfo);
+        }
+
+        //获得检修开始未确认信息条数
+        params.put("status", Long.valueOf(3));
+        noVerifyCount = planCheckMapper.getPlanCheckByMap(params);
+        if (noVerifyCount > 0) {
+            MessageInfo messageInfo = new MessageInfo();
+            messageInfo.setMessage_info("计划检修开始未确认信息为" + noVerifyCount + "条");
+            messageInfo.setMessage_state(noVerifyCount);
+            messageInfo.setMessage_id(3);
+            list.add(messageInfo);
+        }
+        //获得检修结束未确认信息条数
+        params.put("status", Long.valueOf(5));
+        noVerifyCount = planCheckMapper.getPlanCheckByMap(params);
+        if (noVerifyCount > 0) {
+            MessageInfo messageInfo = new MessageInfo();
+            messageInfo.setMessage_info("计划检修结束未确认信息为" + noVerifyCount + "条");
+            messageInfo.setMessage_state(noVerifyCount);
+            messageInfo.setMessage_id(4);
+            list.add(messageInfo);
+        }
+
+        return list;
+    }
+
+    //段值班员 获得故障预报未确认信息条数  获得故障开始处理未确认信息条数  获得故障结束未确认信息条数
+    private List<MessageInfo> getDispatchEchoMessage(Long depotId) {
+        List<MessageInfo> list = new ArrayList<>();
+        Map<String, Object> params = new HashMap<>();
+        // 获得故障预报未确认信息条数
+        params.clear();
+        params.put("flag", Long.valueOf(3));
+        params.put("depotId", Long.valueOf(depotId));
+        int noVerifyCount = faultHandleMapper.getFaultCheckByMapDepot(params);
+        if (noVerifyCount > 0) {
+            MessageInfo messageInfo = new MessageInfo();
+            messageInfo.setMessage_info("故障待开始处理未确认信息为" + noVerifyCount + "条");
+            messageInfo.setMessage_state(noVerifyCount);
+            messageInfo.setMessage_id(0);
+            list.add(messageInfo);
+        }
+        //获得故障开始处理未确认信息条数
+        params.put("flag", Long.valueOf(5));
+        params.put("depotId", Long.valueOf(depotId));
+        noVerifyCount = faultHandleMapper.getFaultCheckByMapDepot(params);
+        if (noVerifyCount > 0) {
+            MessageInfo messageInfo = new MessageInfo();
+            messageInfo.setMessage_info("故障待处理结束未确认信息为" + noVerifyCount + "条");
+            messageInfo.setMessage_state(noVerifyCount);
+            messageInfo.setMessage_id(1);
+            list.add(messageInfo);
+        }
+
+        //获得计划检修处理待结束未确认信息条数
+        params.put("status", Long.valueOf(4));
+        params.put("depotId", Long.valueOf(depotId));
+        noVerifyCount = planCheckMapper.getPlanCheckByMapDept(params);
+        if (noVerifyCount > 0) {
+            MessageInfo messageInfo = new MessageInfo();
+            messageInfo.setMessage_info("计划检修待处理结束未确认信息为" + noVerifyCount + "条");
+            messageInfo.setMessage_state(noVerifyCount);
+            messageInfo.setMessage_id(2);
+            list.add(messageInfo);
+        }
+
+        return list;
+    }
+
+
     //根据部门获取消息
     @Override
     public List<MessageInfo> getMessageBydepotId(HttpServletRequest request) {
@@ -242,46 +357,71 @@ public class MessageInfoServiceImpl implements MessageInfoService {
         try {
             String depotId = request.getParameter("depotId");
             String roleId = request.getParameter("roleId");      //    ZF:增加了用户权限参数
+            String roleCode = request.getParameter("roleCode");   //ZF:增加了用户登录的系统编号
 
-            if (StringUtils.isNotBlank(depotId)) {
-                Depot depot = depotMapper.selectByPrimaryKey(Long.valueOf(depotId));
-                switch (depot.getDepotLevel()) {                    //    ZF:按用户权限进行了二次分类获取信息
-                    case 2://检测所单据未接收信息
-                        if(roleId.equals("2")){ // 机辆所库管员
-                            list.addAll(getTestMessage(Long.valueOf(depotId)));
-                            break;
-                        }
-                        if(roleId.equals("3")){  //机辆所审核员
-                            list.addAll(getTestMessageRole(Long.valueOf(depotId)));
-                            break;
-                        }
-                        if(roleId.equals("4")){  //机辆所检修员
-                            list.addAll(getFixMessage(Long.valueOf(depotId)));
-                            break;
-                        }
-                        break;
-                    case 4://车间单据未接收信息
-                        if(roleId.equals("6")){   //车间录入员
-                            list.addAll(getWorkShopMessage(Long.valueOf(depotId)));
-                            break;
-                        }
-                        if(roleId.equals("7")){   //车间审核员
-                            list.addAll(getWorkShopMessageRole(Long.valueOf(depotId)));
-                            break;
-                        }
-                        break;
-                    case 5://班组探测站配件未安装信息
-                        list.addAll(getDepotMessage(Long.valueOf(depotId)));
-                        break;
+            switch (roleCode){
+                case "PMIS":      //用户登录的为配件系统
+                    if (StringUtils.isNotBlank(depotId)) {
+                        Depot depot = depotMapper.selectByPrimaryKey(Long.valueOf(depotId));
+                        switch (depot.getDepotLevel()) {                    //    ZF:按用户权限进行了二次分类获取信息
+                            case 2://检测所单据未接收信息
+                                if(roleId.equals("2")){ // 机辆所库管员
+                                    list.addAll(getTestMessage(Long.valueOf(depotId)));
+                                    break;
+                                }
+                                if(roleId.equals("3")){  //机辆所审核员
+                                    list.addAll(getTestMessageRole(Long.valueOf(depotId)));
+                                    break;
+                                }
+                                if(roleId.equals("4")){  //机辆所检修员
+                                    list.addAll(getFixMessage(Long.valueOf(depotId)));
+                                    break;
+                                }
+                                break;
+                            case 4://车间单据未接收信息
+                                if(roleId.equals("6")){   //车间录入员
+                                    list.addAll(getWorkShopMessage(Long.valueOf(depotId)));
+                                    break;
+                                }
+                                if(roleId.equals("7")){   //车间审核员
+                                    list.addAll(getWorkShopMessageRole(Long.valueOf(depotId)));
+                                    break;
+                                }
+                                break;
+                            case 5://班组探测站配件未安装信息
+                                list.addAll(getDepotMessage(Long.valueOf(depotId)));
+                                break;
 
-                }
+                        }
+                    }
+                    break;
+                case "TMIS":   //用户登录的为故障预报系统
+                    if (StringUtils.isNotBlank(depotId)) {
+                        Depot depot = depotMapper.selectByPrimaryKey(Long.valueOf(depotId));
+                        switch (depot.getDepotLevel()) {                    //    ZF:按用户权限进行了二次分类获取信息
+                            case 2://辆安站单据未接收信息
+                                if(roleId.equals("13")){ // 辆安站调度员
+                                    list.addAll(getDispatchMessage(Long.valueOf(depotId)));
+                                    break;
+                                }
+                                break;
+                            case 4://段单据未接收信息
+                            case 5://车间单据未接收信息
+                                if(roleId.equals("12")){   //车间值班员
+                                    list.addAll(getDispatchEchoMessage(Long.valueOf(depotId)));
+                                    break;
+                                }
+                                break;
+                        }
+                    }
+                    break;
             }
+
         } catch (Exception e) {
-            logger.error("getMessageBydepotId error: ", e);
+           logger.error("getMessageBydepotId error: ", e);
         }
         return list;
     }
-
 
 
     @Override

@@ -39,6 +39,7 @@ com\kthw\pmis\model\TableView.class
 com\kthw\common\Utils.class
 com\kthw\pmis\mapper\entryAndOut\RepairOutMapper.class
 com\kthw\pmis\controller\entryAndOut\PreparePurchaseController.class
+com\kthw\pmis\entiy\dto\StockInfoCountDTO.class
 com\kthw\pmis\model\system\Team.class
 com\kthw\pmis\mapper\common\PartIdConfigMapper.class
 com\kthw\pmis\serviceimpl\InitDictionaryServiceImpl.class

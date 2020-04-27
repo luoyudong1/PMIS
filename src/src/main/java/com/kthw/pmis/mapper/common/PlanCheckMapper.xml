@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kthw.pmis.mapper.common.PlanCheckMapper">
+    <resultMap id="BaseResultMap" type="com.kthw.pmis.entiy.PlanCheck">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="detect_device_id" jdbcType="NUMERIC" property="detectDeviceId"/>
+        <result column="detect_device_name" jdbcType="VARCHAR" property="detectDeviceName"/>
+        <result column="detect_device_type" jdbcType="VARCHAR" property="detectDeviceType"/>
+        <result column="plan_time" jdbcType="TIMESTAMP" property="planTime"/>
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="check_record" jdbcType="VARCHAR" property="checkRecord"/>
+        <result column="plan_type" jdbcType="VARCHAR" property="planType"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
+        <result column="verify_user" jdbcType="VARCHAR" property="verifyUser"/>
+        <result column="delay" jdbcType="VARCHAR" property="delay"/>
+        <result column="status" jdbcType="NUMERIC" property="status"/>
+        <result column="delay_count" jdbcType="NUMERIC" property="delayCount"/>
+        <result column="next_plan_enable" jdbcType="VARCHAR" property="nextPlanEnable"/>
+        <result column="check_user" jdbcType="VARCHAR" property="checkUser"/>
+        <result column="overdue" jdbcType="VARCHAR" property="overdue"/>
+        <result column="overdue_reason" jdbcType="VARCHAR" property="overdueReason"/>
+        <result column="depot_id" jdbcType="NUMERIC" property="depotId"/>
+        <result column="depot_name" jdbcType="VARCHAR" property="depotName"/>
+        <result column="sheet_id" jdbcType="VARCHAR" property="sheetId"/>
+        <result column="detect_depot_id" jdbcType="NUMERIC" property="detectDepotId" />
+        <result column="detect_depot_name" jdbcType="VARCHAR" property="detectDepotName" />
+        <result column="old_plan_time" jdbcType="TIMESTAMP" property="oldPlanTime"/>
+        <result column="finished" jdbcType="NUMERIC" property="finished" />
+        <result column="verify_user1" jdbcType="VARCHAR" property="verifyUser1"/>
+        <result column="verify_user2" jdbcType="VARCHAR" property="verifyUser2"/>
+        <result column="verify_user3" jdbcType="VARCHAR" property="verifyUser3"/>
+        <result column="verify_user4" jdbcType="VARCHAR" property="verifyUser4"/>
+        <result column="verify_date1" jdbcType="TIMESTAMP" property="verifyDate1"/>
+        <result column="verify_date2" jdbcType="TIMESTAMP" property="verifyDate2"/>
+        <result column="verify_date3" jdbcType="TIMESTAMP" property="verifyDate3"/>
+        <result column="verify_date4" jdbcType="TIMESTAMP" property="verifyDate4"/>
+        <result column="dispatcher" jdbcType="NUMERIC" property="dispatcher" />
+
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, detect_device_id, detect_device_name, detect_device_type, plan_time, start_time, 
+    end_time, check_record, plan_type, remark, create_time, update_time, create_user, 
+    verify_user, delay, status, delay_count, next_plan_enable, check_user, overdue, overdue_reason, 
+    depot_id, depot_name, sheet_id,detect_depot_id,detect_depot_name,old_plan_time,verify_user1,
+    verify_user2,verify_user3,verify_user4,verify_date1,verify_date2,verify_date3,verify_date4,finished,dispatcher
+  </sql>
+    <sql id="ByMap_Where_Clause">
+        <where>
+            <if test="eqId != null">
+                AND id = #{eqId,jdbcType=INTEGER}
+            </if>
+            <if test="eqDetectDeviceId != null">
+                AND detect_device_id = #{eqDetectDeviceId,jdbcType=NUMERIC}
+            </if>
+            <if test="eqDetectDeviceName != null">
+                AND detect_device_name = #{eqDetectDeviceName,jdbcType=VARCHAR}
+            </if>
+            <if test="eqDetectDeviceType != null">
+                AND detect_device_type = #{eqDetectDeviceType,jdbcType=VARCHAR}
+            </if>
+            <if test="eqPlanTime != null">
+                AND plan_time = #{eqPlanTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="eqStartTime != null">
+                AND start_time = #{eqStartTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="eqEndTime != null">
+                AND end_time = #{eqEndTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="eqCheckRecord != null">
+                AND check_record = #{eqCheckRecord,jdbcType=VARCHAR}
+            </if>
+            <if test="eqPlanType != null">
+                AND plan_type = #{eqPlanType,jdbcType=VARCHAR}
+            </if>
+            <if test="eqRemark != null">
+                AND remark = #{eqRemark,jdbcType=VARCHAR}
+            </if>
+            <if test="eqCreateTime != null">
+                AND create_time = #{eqCreateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="eqUpdateTime != null">
+                AND update_time = #{eqUpdateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="eqCreateUser != null">
+                AND create_user = #{eqCreateUser,jdbcType=VARCHAR}
+            </if>
+            <if test="eqVerifyUser != null">
+                AND verify_user = #{eqVerifyUser,jdbcType=VARCHAR}
+            </if>
+            <if test="eqDelay != null">
+                AND delay = #{eqDelay,jdbcType=VARCHAR}
+            </if>
+            <if test="eqStatus != null">
+                AND status = #{eqStatus,jdbcType=NUMERIC}
+            </if>
+            <if test="eqDelayCount != null">
+                AND delay_count = #{eqDelayCount,jdbcType=NUMERIC}
+            </if>
+            <if test="eqNextPlanEnable != null">
+                AND next_plan_enable = #{eqNextPlanEnable,jdbcType=VARCHAR}
+            </if>
+            <if test="eqCheckUser != null">
+                AND check_user = #{eqCheckUser,jdbcType=VARCHAR}
+            </if>
+            <if test="eqOverdue != null">
+                AND overdue = #{eqOverdue,jdbcType=VARCHAR}
+            </if>
+            <if test="eqOverdueReason != null">
+                AND overdue_reason = #{eqOverdueReason,jdbcType=VARCHAR}
+            </if>
+            <if test="eqDepotId != null">
+                AND depot_id = #{eqDepotId,jdbcType=NUMERIC}
+            </if>
+            <if test="eqDepotName != null">
+                AND depot_name = #{eqDepotName,jdbcType=VARCHAR}
+            </if>
+            <if test="eqSheetId != null">
+                AND sheet_id = #{eqSheetId,jdbcType=VARCHAR}
+            </if>
+            <if test="eqOldPlanTime != null">
+                AND old_plan_time = #{eqOldPlanTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="eqFinished != null">
+                AND finished = #{eqFinished,jdbcType=NUMERIC}
+            </if>
+            <if test="eqDispatcher != null">
+                AND dispatcher = #{eqDispatcher,jdbcType=NUMERIC}
+            </if>
+            <if test="ltStatus != null">
+                AND status &lt; #{ltStatus ,jdbcType=NUMERIC}
+            </if>
+            <if test="gtStatus != null">
+                AND status > #{gtStatus ,jdbcType=NUMERIC}
+            </if>
+            <if test='queryTime != null and queryTime != ""'>
+                and plan_time >= to_timestamp(#{queryTime}, 'yyyy-mm-dd
+                hh24:mi:ss')
+            </if>
+            <if test='queryTime2 != null and queryTime2 != ""'>
+                and plan_time &lt;= to_timestamp(#{queryTime2},
+                'yyyy-mm-dd hh24:mi:ss')
+            </if>
+            <if test="depotIdList !=null">
+                and detect_depot_id in
+                <foreach collection="depotIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item.depotId}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+    <sql id="ByMap_Set_Clause">
+        <set>
+            <if test="detectDeviceId != null">
+                detect_device_id = #{detectDeviceId,jdbcType=NUMERIC},
+            </if>
+            <if test="detectDeviceName != null">
+                detect_device_name = #{detectDeviceName,jdbcType=VARCHAR},
+            </if>
+            <if test="detectDeviceType != null">
+                detect_device_type = #{detectDeviceType,jdbcType=VARCHAR},
+            </if>
+            <if test="planTime != null">
+                plan_time = #{planTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="checkRecord != null">
+                check_record = #{checkRecord,jdbcType=VARCHAR},
+            </if>
+            <if test="planType != null">
+                plan_type = #{planType,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="verifyUser != null">
+                verify_user = #{verifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="delay != null">
+                delay = #{delay,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=NUMERIC},
+            </if>
+            <if test="delayCount != null">
+                delay_count = #{delayCount,jdbcType=NUMERIC},
+            </if>
+            <if test="nextPlanEnable != null">
+                next_plan_enable = #{nextPlanEnable,jdbcType=VARCHAR},
+            </if>
+            <if test="checkUser != null">
+                check_user = #{checkUser,jdbcType=VARCHAR},
+            </if>
+            <if test="overdue != null">
+                overdue = #{overdue,jdbcType=VARCHAR},
+            </if>
+            <if test="overdueReason != null">
+                overdue_reason = #{overdueReason,jdbcType=VARCHAR},
+            </if>
+            <if test="depotId != null">
+                depot_id = #{depotId,jdbcType=NUMERIC},
+            </if>
+            <if test="depotName != null">
+                depot_name = #{depotName,jdbcType=VARCHAR},
+            </if>
+            <if test="sheetId != null">
+                sheet_id = #{sheetId,jdbcType=VARCHAR},
+            </if>
+            <if test="oldPlanTime != null">
+                old_plan_time = #{oldPlanTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="finished != null">
+                finished = #{finished,jdbcType=NUMERIC},
+            </if>
+            <if test="verifyUser1 != null">
+                verify_user1 = #{verifyUser1,jdbcType=VARCHAR},
+            </if>
+            <if test="verifyUser2 != null">
+                verify_user2 = #{verifyUser2,jdbcType=VARCHAR},
+            </if>
+            <if test="verifyUser3 != null">
+                verify_user3 = #{verifyUser3,jdbcType=VARCHAR},
+            </if>
+            <if test="verifyUser4 != null">
+                verify_user4= #{verifyUser4,jdbcType=VARCHAR},
+            </if>
+
+            <if test="verifyDate1 != null">
+                verify_date1 = #{verifyDate1,jdbcType=TIMESTAMP},
+            </if>
+            <if test="verifyDate2 != null">
+                verify_date2 = #{verifyDate2,jdbcType=TIMESTAMP},
+            </if>
+            <if test="verifyDate3 != null">
+                verify_date3 = #{verifyDate3,jdbcType=TIMESTAMP},
+            </if>
+            <if test="verifyDate4!= null">
+                verify_date4 = #{verifyDate4,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dispatcher != null">
+                dispatcher = #{dispatcher,jdbcType=NUMERIC},
+            </if>
+        </set>
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_plan_check_detect
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="getMaxId" resultType="java.lang.Integer">
+    select MAX(id) from tbl_plan_check_detect
+  </select>
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_plan_check_detect
+        <if test="_parameter != null">
+            <include refid="ByMap_Where_Clause"/>
+            <if test="orderByClause != null">
+                order by ${orderByClause}
+            </if>
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_plan_check_detect
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <!-- 批量删除单据下的探测站检修计划详情 -->
+    <delete id="deleteBySheetId" parameterType="String">
+		delete from
+		tbl_plan_check_detect where sheet_id =#{sheetId}
+	</delete>
+    <insert id="insert" parameterType="com.kthw.pmis.entiy.PlanCheck">
+    insert into tbl_plan_check_detect (id, detect_device_id, detect_device_name, 
+      detect_device_type, plan_time, start_time, 
+      end_time, check_record, plan_type, 
+      remark, create_time, update_time, 
+      create_user, verify_user, delay, 
+      status, delay_count, next_plan_enable, 
+      check_user, overdue, overdue_reason, 
+      depot_id, depot_name, sheet_id,old_plan_time,
+      detect_depot_id,detect_depot_name,dispatcher)
+    values (#{id,jdbcType=INTEGER}, #{detectDeviceId,jdbcType=NUMERIC}, #{detectDeviceName,jdbcType=VARCHAR}, 
+      #{detectDeviceType,jdbcType=VARCHAR}, #{planTime,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{checkRecord,jdbcType=VARCHAR}, #{planType,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{verifyUser,jdbcType=VARCHAR}, #{delay,jdbcType=VARCHAR}, 
+      #{status,jdbcType=NUMERIC}, #{delayCount,jdbcType=NUMERIC}, #{nextPlanEnable,jdbcType=VARCHAR}, 
+      #{checkUser,jdbcType=VARCHAR}, #{overdue,jdbcType=VARCHAR}, #{overdueReason,jdbcType=VARCHAR}, 
+      #{depotId,jdbcType=NUMERIC}, #{depotName,jdbcType=VARCHAR}, #{sheetId,jdbcType=VARCHAR}
+      , #{oldPlanTime,jdbcType=TIMESTAMP}, #{detectDepotId,jdbcType=NUMERIC}, #{detectDepotName,jdbcType=VARCHAR}
+       ,#{dispatcher,jdbcType=NUMERIC})
+  </insert>
+    <insert id="insertSelective" parameterType="com.kthw.pmis.entiy.PlanCheck">
+        insert into tbl_plan_check_detect
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="detectDeviceId != null">
+                detect_device_id,
+            </if>
+            <if test="detectDeviceName != null">
+                detect_device_name,
+            </if>
+            <if test="detectDeviceType != null">
+                detect_device_type,
+            </if>
+            <if test="planTime != null">
+                plan_time,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="checkRecord != null">
+                check_record,
+            </if>
+            <if test="planType != null">
+                plan_type,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="createUser != null">
+                create_user,
+            </if>
+            <if test="verifyUser != null">
+                verify_user,
+            </if>
+            <if test="delay != null">
+                delay,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="delayCount != null">
+                delay_count,
+            </if>
+            <if test="nextPlanEnable != null">
+                next_plan_enable,
+            </if>
+            <if test="checkUser != null">
+                check_user,
+            </if>
+            <if test="overdue != null">
+                overdue,
+            </if>
+            <if test="overdueReason != null">
+                overdue_reason,
+            </if>
+            <if test="depotId != null">
+                depot_id,
+            </if>
+            <if test="depotName != null">
+                depot_name,
+            </if>
+            <if test="sheetId != null">
+                sheet_id,
+            </if>
+            <if test="oldPlanTime != null">
+                old_plan_time,
+            </if>
+            <if test="detectDepotId != null">
+                detect_depot_id,
+            </if>
+            <if test="detectDepotName != null">
+                detect_depot_name,
+            </if>
+            <if test="dispatcher != null">
+                dispatcher,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="detectDeviceId != null">
+                #{detectDeviceId,jdbcType=NUMERIC},
+            </if>
+            <if test="detectDeviceName != null">
+                #{detectDeviceName,jdbcType=VARCHAR},
+            </if>
+            <if test="detectDeviceType != null">
+                #{detectDeviceType,jdbcType=VARCHAR},
+            </if>
+            <if test="planTime != null">
+                #{planTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="checkRecord != null">
+                #{checkRecord,jdbcType=VARCHAR},
+            </if>
+            <if test="planType != null">
+                #{planType,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null">
+                #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="verifyUser != null">
+                #{verifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="delay != null">
+                #{delay,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=NUMERIC},
+            </if>
+            <if test="delayCount != null">
+                #{delayCount,jdbcType=NUMERIC},
+            </if>
+            <if test="nextPlanEnable != null">
+                #{nextPlanEnable,jdbcType=VARCHAR},
+            </if>
+            <if test="checkUser != null">
+                #{checkUser,jdbcType=VARCHAR},
+            </if>
+            <if test="overdue != null">
+                #{overdue,jdbcType=VARCHAR},
+            </if>
+            <if test="overdueReason != null">
+                #{overdueReason,jdbcType=VARCHAR},
+            </if>
+            <if test="depotId != null">
+                #{depotId,jdbcType=NUMERIC},
+            </if>
+            <if test="depotName != null">
+                #{depotName,jdbcType=VARCHAR},
+            </if>
+            <if test="sheetId != null">
+                #{sheetId,jdbcType=VARCHAR},
+            </if>
+            <if test="oldPlanTime != null">
+                #{oldPlanTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="detectDepotId != null">
+                #{detectDepotId,jdbcType=NUMERIC},
+            </if>
+            <if test="detectDepotName != null">
+                #{detectDepotName,jdbcType=VARCHAR},
+            </if>
+            <if test="dispatcher != null">
+                #{dispatcher,jdbcType=NUMERIC},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.kthw.pmis.entiy.PlanCheck">
+        update tbl_plan_check_detect
+        <include refid="ByMap_Set_Clause"/>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.kthw.pmis.entiy.PlanCheck">
+    update tbl_plan_check_detect
+    set detect_device_id = #{detectDeviceId,jdbcType=NUMERIC},
+      detect_device_name = #{detectDeviceName,jdbcType=VARCHAR},
+      detect_device_type = #{detectDeviceType,jdbcType=VARCHAR},
+      plan_time = #{planTime,jdbcType=TIMESTAMP},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      check_record = #{checkRecord,jdbcType=VARCHAR},
+      plan_type = #{planType,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      verify_user = #{verifyUser,jdbcType=VARCHAR},
+      delay = #{delay,jdbcType=VARCHAR},
+      status = #{status,jdbcType=NUMERIC},
+      delay_count = #{delayCount,jdbcType=NUMERIC},
+      next_plan_enable = #{nextPlanEnable,jdbcType=VARCHAR},
+      check_user = #{checkUser,jdbcType=VARCHAR},
+      overdue = #{overdue,jdbcType=VARCHAR},
+      overdue_reason = #{overdueReason,jdbcType=VARCHAR},
+      depot_id = #{depotId,jdbcType=NUMERIC},
+      depot_name = #{depotName,jdbcType=VARCHAR},
+      sheet_id = #{sheetId,jdbcType=VARCHAR},
+      old_plan_time = #{oldPlanTime,jdbcType=TIMESTAMP},
+      detect_depot_id = #{detectDepotId,jdbcType=NUMERIC},
+      detect_depot_name = #{detectDepotName,jdbcType=VARCHAR},
+      dispatcher = #{dispatcher,jdbcType=NUMERIC}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <update id="updateByMap" parameterType="java.util.Map">
+        update tbl_plan_check_detect
+        <if test="_parameter != null">
+            <include refid="ByMap_Set_Clause"/>
+            <include refid="ByMap_Where_Clause"/>
+        </if>
+    </update>
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update tbl_plan_check_detect
+            <set>
+
+                <if test="item.finished != null">
+                    finished = #{item.finished,jdbcType=NUMERIC},
+                </if>
+            </set>
+            where id=#{item.id,jdbcType=NUMERIC}
+        </foreach>
+    </update>
+    <!-- 辆安站调度获取计划检修处理未完成信息数量  -->
+    <select id="getPlanCheckByMap" parameterType="java.util.Map" resultType="Integer">
+        SELECT count(*) from tbl_plan_check_detect
+        where status=#{status} and dispatcher=#{dispatcher}
+    </select>
+
+    <!-- 车间只把暖获取计划检修处理未完成信息数量  -->
+    <select id="getPlanCheckByMapDept" parameterType="java.util.Map" resultType="Integer">
+        SELECT count(*) from tbl_plan_check_detect
+        where status=#{status} and depot_id=#{depotId}
+    </select>
+</mapper>

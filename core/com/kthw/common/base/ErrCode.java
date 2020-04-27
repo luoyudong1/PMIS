@@ -50,6 +50,8 @@ public class ErrCode {
     public static final int DELETE_ERROR = 34; // 删除失败
     public static final int ADD_ERROR = 35; //新增失败
     public static final int ADD_NO_WHOLE_ERROR = 36; //探测站未全部新增
+    public static final int DELAY_ERROR = 37; //延期失败
+    public static final int NO_ALLOW_OPERATE = 38; //不符合条件操作
 
     public static String getMessage(int code) {
         switch (code) {
@@ -127,6 +129,10 @@ public class ErrCode {
                 return "删除失败";
             case ADD_NO_WHOLE_ERROR:
                 return "探测站未全部新增入单据";
+            case DELAY_ERROR:
+                return "延期失败";
+            case NO_ALLOW_OPERATE:
+                return "不符合条件，不能延期";
             default:
                 return "异常[" + code + "]";
         }

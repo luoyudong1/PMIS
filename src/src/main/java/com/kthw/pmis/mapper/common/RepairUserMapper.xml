@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kthw.pmis.mapper.common.RepairUserMapper">
+  <resultMap id="BaseResultMap" type="com.kthw.pmis.entiy.RepairUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="depot_id" jdbcType="NUMERIC" property="depotId" />
+    <result column="depot_name" jdbcType="VARCHAR" property="depotName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, depot_id, depot_name
+  </sql>
+  <sql id="ByMap_Where_Clause">
+    <where>
+      <if test="eqId != null">
+        AND id = #{eqId,jdbcType=INTEGER}
+      </if>
+      <if test="eqName != null">
+        AND name = #{eqName,jdbcType=VARCHAR}
+      </if>
+      <if test="eqDepotId != null">
+        AND depot_id = #{eqDepotId,jdbcType=NUMERIC}
+      </if>
+      <if test="eqDepotName != null">
+        AND depot_name = #{eqDepotName,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </sql>
+  <sql id="ByMap_Set_Clause">
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="depotId != null">
+        depot_id = #{depotId,jdbcType=NUMERIC},
+      </if>
+      <if test="depotName != null">
+        depot_name = #{depotName,jdbcType=VARCHAR},
+      </if>
+    </set>
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_repair_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_repair_user
+    <if test="_parameter != null">
+      <include refid="ByMap_Where_Clause" />
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_repair_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kthw.pmis.entiy.RepairUser">
+    insert into tbl_repair_user (id, name, depot_id, 
+      depot_name)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{depotId,jdbcType=NUMERIC}, 
+      #{depotName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kthw.pmis.entiy.RepairUser">
+    insert into tbl_repair_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="depotId != null">
+        depot_id,
+      </if>
+      <if test="depotName != null">
+        depot_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="depotId != null">
+        #{depotId,jdbcType=NUMERIC},
+      </if>
+      <if test="depotName != null">
+        #{depotName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kthw.pmis.entiy.RepairUser">
+    update tbl_repair_user
+    <include refid="ByMap_Set_Clause" />
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kthw.pmis.entiy.RepairUser">
+    update tbl_repair_user
+    set name = #{name,jdbcType=VARCHAR},
+      depot_id = #{depotId,jdbcType=NUMERIC},
+      depot_name = #{depotName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByMap" parameterType="java.util.Map">
+    update tbl_repair_user
+    <if test="_parameter != null">
+      <include refid="ByMap_Set_Clause" />
+      <include refid="ByMap_Where_Clause" />
+    </if>
+  </update>
+</mapper>

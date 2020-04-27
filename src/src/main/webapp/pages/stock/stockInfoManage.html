@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>库存信息</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap/jquery.datetimepicker.min.css" rel="stylesheet" />
+	<link href="../../css/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+	<link href="../../css/animate.css" rel="stylesheet">
+	<link href="../../css/style.css" rel="stylesheet">
+	<link href="../../css/vehicle.css" rel="stylesheet">
+	<link rel="stylesheet"
+	href="../../css/plugins/zTreeStyle/zTreeStyle.css" />
+</head>
+<style>
+#funcTree li span{
+font-size:15px;}
+</style>
+<body class="gray-bg dashbard-1" >
+	<div class="container-fluid">
+		<div class="row">
+            <div class="col-xs-12 col-md-12">
+            	<div id="infoAlert" class="alert alert-warning"  style="position: absolute;left: 42%;top: 8px;width: 15%;height: 50px;display: none">
+					<a href="#" class="close" data-dismiss="alert" style="color: grey">
+						&times;
+					</a>
+					<p id="alertMsg"></p>
+				</div>
+				<div class="pull-right">
+				        
+						<label class="control-label">仓库：</label><select id="storehouse_id_sel"  class="form_sel form-control " style="width: 170px;"></select>&nbsp;&nbsp;
+<!-- 						<label class="control-label">探测站：</label><select id="detect_device"  class="form_sel form-control " style="width: 170px;" disabled="disabled"></select>&nbsp;&nbsp; -->
+						<label class="control-label">配件编号：</label><input id="part_id_sel" type="text" class="form-control input-sm form_sel"/> &nbsp;&nbsp;
+						<label class="control-label">配件编码：</label><input id="part_code_sel" type="text" class="form-control input-sm form_sel"/> &nbsp;&nbsp;
+						<label class="control-label">时间：</label>
+	                    <input id="queryTimeBegin" type="text" class="form-control input-sm form_sel"/>
+	                     ~
+	                    <input id="queryTimeEnd" type="text" class="form-control input-sm form_sel"/>
+						<button type="button" id="btnQuery" class="btn btn-primary  form_sel_btn" >查 询</button>
+<!-- 						<button id="exportExcel" type="button" class="btn btn-info form_sel_btn">导出Excel</button> -->
+						<button id="btnRefresh" type="button" class="btn btn-warning form_sel_btn">刷&nbsp;新</button>
+				</div>
+				
+
+                <div class="ibox ">
+	                <div class="ibox-title">
+	                    <h5>配件详细信息列表</h5>
+	                    <div class="form_sel_div">
+	                    </div>
+	                    <div class="ibox-tools">
+	                        <a class="collapse-link">
+	                            <i class="fa fa-chevron-up"></i>
+	                        </a>
+	                    </div>
+	                </div>
+	                <div class="ibox-content">
+	                    <div class="table-responsive">
+	                       <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="tblStockInfo" role="grid" >
+	                        <thead>
+	                          <tr style="">
+	                              <th>序号</th>
+	                              <th>配件编号</th>
+	                              <th>配件出厂编号</th>
+	                              <th>配件名称</th>
+	                              <th>规格型号</th>
+	                              <th>生产厂家</th>
+	                              <th>单价</th>
+	                              <th>单据编码</th>
+	                              <th>存放位置</th>
+	                              <th>是否可用</th>
+	                              <th>添加时间</th>
+	                              <th>修改时间</th>
+	                              <th>资产属性</th>
+	                              <th>操作</th>
+	                          </tr>
+	                         </thead>
+	                         <tbody>
+	                         </tbody>
+	                     </table>
+	                   </div>
+	                    
+	                </div>
+
+                 </div>
+
+            </div>
+		</div>
+	</div>
+	<!-- modifyUserModal -->
+	<div class="modal fade" id="modifyStockInfoModal" tabindex="-1" role="dialog"
+		aria-labelledby="modifyStockInModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="modifyUserModalLabel">修改配件详细信息</h3>
+					<p id="alertMsgModify" style="position: absolute;left: 42%;top: 25px;width: 25%;height: 50px;display: none"></p>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6 offset-md-3">
+							<div class="input-group">
+								<span style="color: red">*</span><label><strong>配件编号：</strong></label>
+								<input id="part_id_modify" type="text" class="form-control form_input"  disabled="disabled"/>
+							</div>
+							<br>
+							<div class="input-group">
+								<label><strong>配件名称：</strong></label>
+								<input id="part_name_modify" type="text" class="form-control form_input"  disabled="disabled"/>
+							</div>
+							<br>
+							<div class="input-group">
+								<span style="color: red">*</span><label><strong>出厂编码：</strong></label>
+								<input id="part_code_modify" type="text" class="form-control form_input" placeholder="请输入新购配件出场编号" />
+							</div>
+							<br>
+							<div class="input-group">
+								<label><strong>库存单价：</strong></label>
+								<input id="unit_price_modify" type="text" class="form-control form_input" placeholder="请输入新购配件价格"  disabled="disabled"/>
+							</div>
+							<br>
+							<div class="input-group">
+								<label><strong>备　　注：</strong></label> 
+								<input id="remark_modify" type="text" class="form-control form_input" placeholder="请输入备注信息"/>
+							</div>
+							<br>
+						</div>
+					</div>
+					<div class="modal-footer" style="text-align: center;">
+						<button id="btnModifyOk" data-dismiss="modal" type="submit" class="btn btn-primary">确定</button>
+						<button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div>
+	<!--&lt;!&ndash; #addStockInfoModal &ndash;&gt;-->
+	<!--<div class="modal fade" id="addStockInfoModal" tabindex="-1" role="dialog"-->
+		<!--aria-labelledby="addStockInModalLabel" aria-hidden="true">-->
+		<!--<div class="modal-dialog" style="width: 800px;">-->
+			<!--<div class="modal-content">-->
+				<!--<div class="modal-header">-->
+					<!--<h3 class="modal-title" id="addUserModalLabel">新增配件详细信息</h3>-->
+					<!--<p id="alertMsgAdd" style="position: absolute;left: 42%;top: 25px;width: 25%;height: 50px;display: none"></p>-->
+					<!--<button type="button" class="close" data-dismiss="modal"-->
+						<!--aria-hidden="true">&times;</button>-->
+				<!--</div>-->
+				<!--<div class="modal-body">-->
+					<!--<div class="row">-->
+						<!--<div class="col-md-6 offset-md-3">-->
+							<!--<div class="input-group">-->
+								<!--<label><strong>配件名称：</strong></label>-->
+								<!--<input id="part_name_add" type="text" class="form-control form_input" placeholder="点击进行选择"  readonly="readonly"/>-->
+								<!--&lt;!&ndash; <button type="button" id="btnQueryPart" class="btn btn-primary" >查 询</button> &ndash;&gt;-->
+							<!--</div>-->
+							<!--<br>-->
+							<!--<div class="input-group">-->
+								<!--<span style="color: red">*</span><label><strong>配件编号：</strong></label>-->
+								<!--<input id="part_id_add" type="text" class="form-control form_input" placeholder="点击配件名称" readonly="readonly"/>-->
+							<!--</div>-->
+							<!--<br>-->
+							<!--<div class="input-group">-->
+								<!--<label><strong>配件型号：</strong></label>-->
+								<!--<input id="part_model_add" type="text" class="form-control form_input" placeholder="点击配件名称" readonly="readonly"/>-->
+							<!--</div>-->
+							<!--<br>-->
+							<!--<div class="input-group">-->
+								<!--<span style="color: red">*</span><label><strong>出厂编码：</strong></label>-->
+								<!--<input id="part_code_add" type="text" class="form-control form_input" placeholder="请输入出厂编码" />-->
+							<!--</div>-->
+							<!--<br>-->
+							<!--<div class="input-group">-->
+								<!--<label><strong>库存单价：</strong></label>-->
+								<!--<input id="unit_price_add" type="text" class="form-control form_input" placeholder="点击配件名称" readonly="readonly"/>-->
+							<!--</div>-->
+							<!--<br>-->
+							<!--<div class="input-group" >-->
+								<!--<label><strong>选择-&nbsp;-库：</strong></label> -->
+								<!--<select id="position_storehouse_add" class="form-control form_select" ></select>-->
+							<!--</div>-->
+							<!--<br>-->
+
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="modal-footer" style="text-align: center;">-->
+						<!--<button id="btnAddOk" data-dismiss="modal" type="submit" class="btn btn-primary">确定</button>-->
+						<!--<button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>-->
+					<!--</div>-->
+				<!--</div>				-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!-- deleteStockInfoModal -->
+	<div class="modal fade" id="popStockInfoModal" tabindex="-1" role="dialog"
+		aria-labelledby="myPopModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="myPopModalLabel">删除配件提示</h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<h4 class="text-danger warn_text" id="warningText"></h4>
+                    <input type="hidden" id="deletePartCode" />
+				</div>
+				<div class="modal-footer" style="text-align: center;">
+					<button id="btnPopOk" data-dismiss="modal" type="submit" class="btn btn-primary">是</button>&nbsp; &nbsp;
+					<button type="button" class="btn btn-warning" data-dismiss="modal">否</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--choosePartInfoModal -->
+	<div class="modal fade" id="choosePartInfoModal" tabindex="-1" role="dialog"
+		aria-labelledby="choosePartInfoLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 80%;height: 60%">
+			<div class="modal-content" style="min-height: 100%">
+				<div class="modal-header">
+					<h3 class="modal-title" id="choosePartInfoLabel">配件信息列表</h3>
+					<p id="alertMsgPart" style="position: absolute;left: 42%;top: 10px;width: 25%;height: 50px;display: none"></p>
+				
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<div class="ibox " >
+						<div class="ibox-title">
+		                    <label class="control-label">配件编号/名称：</label>
+		                    <input id="part_name_add_sel" type="text" class="form-control input-sm form_sel form_input"/>
+		                    <button type="button" id="btnQueryPartInfo" class="btn btn-primary  form_sel_btn" >查 询</button>
+		                </div>
+		                <div class="ibox-content">
+		                <div class="row">
+						<div class="col-xs-2 col-md-3">
+							<dl style="padding-right: 20px;">
+								<dd>
+									<ul id="funcTree" class="ztree" style="font-size:50px;"></ul>
+								</dd>
+							</dl>
+						</div>
+						<div class="col-xs-10 col-md-9">
+		                    <div class="table-responsive">
+		                       <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="tblPartInfo" role="grid" >
+		                        <thead>
+		                          <tr style="">
+		                              <th>序号</th>
+		                              <th>配件编号</th>
+		                              <th>配件名称</th>
+		                              <th>配件类型</th>
+		                              <th>规格型号</th>
+		                              <th>生产厂家</th>
+		                              <th>单价</th>
+		                            <!--   <th>厂家</th> -->
+		                          </tr>
+		                         </thead>
+		                         <tbody>
+		                         </tbody>
+		                     </table>
+		                   </div>
+		                </div>
+		                </div>
+		                </div>
+                 </div>
+				</div>
+				<div class="modal-footer" style="text-align: center;">
+					<button id="btnChoosePartOk"  type="submit" class="btn btn-primary">确定</button>&nbsp; &nbsp;
+					<button type="button" class="btn btn-warning" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <script src="../../js/require.js" data-main="../../js/stock/stockInfoManage"></script>
+</body>
+</html>

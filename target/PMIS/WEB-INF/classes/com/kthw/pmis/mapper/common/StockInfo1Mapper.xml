@@ -554,4 +554,29 @@
             #{item.factoryPartsCode,jdbcType=VARCHAR}
         </foreach>
     </delete>
+    <resultMap id="countResultMap" type="com.kthw.pmis.entiy.dto.StockInfoCountDTO">
+        <result column="part_id" jdbcType="VARCHAR" property="partId"/>
+        <result column="supplier_name" jdbcType="VARCHAR" property="supplierName"/>
+        <result column="device_parts_name" jdbcType="VARCHAR" property="devicePartsName"/>
+        <result column="device_type_name" jdbcType="VARCHAR" property="deviceTypeName"/>
+        <result column="device_model_name" jdbcType="VARCHAR" property="deviceModelName"/>
+        <result column="storehouse_name" jdbcType="VARCHAR" property="storeHouseName"/>
+        <result column="count" jdbcType="NUMERIC" property="count"/>
+    </resultMap>
+    <select id="countPartsByStoreHouse" parameterType="java.util.Map"
+            resultMap="countResultMap">
+        select vp.parts_code as
+        part_id,vp.supplier_name,vp.device_parts_name,vp.device_type_name,vp.device_model_name,sd.storehouse_name,count(*)
+        from tbl_stock_info si LEFT join view_parts_dict vp
+        on SUBSTR(si.part_id_seq,1,5)=vp.parts_code
+        LEFT join tbl_storehouse_dict sd on si.storehouse_id=sd.storehouse_id
+        <where>
+            <if test="storeHouseId != null">
+                si.storehouse_id=#{storeHouseId,jdbcType=NUMERIC}
+            </if>
+        </where>
+        group by
+        vp.parts_code,vp.supplier_name,vp.device_parts_name,vp.device_type_name,vp.device_model_name,sd.storehouse_name
+
+    </select>
 </mapper>

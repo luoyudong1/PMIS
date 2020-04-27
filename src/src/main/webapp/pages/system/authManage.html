@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>角色管理</title>
+    <link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../css/bootstrap/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" href="../../css/zTreeStyle/zTreeStyle.css" />
+    <style>
+        #role-table tr th, #role-table tr td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        #role-table thead > tr > th[class^='sorting_'] {
+            padding-right: 8px;
+        }
+        .ztree li span.button.add {
+            margin-left:2px;
+            margin-right: -1px;
+            background-position:-144px 0;
+            vertical-align:top;
+            *vertical-align:middle
+        }
+        #role-table a span.link {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            vertical-align: middle;
+            border: 0 none;
+            cursor: pointer;
+            outline: none;
+            background: transparent url("../../css/zTreeStyle/img/zTreeStandard.png") no-repeat scroll;
+        }
+        #role-table a span.link.modify {
+            background-position: -110px -48px;
+        }
+        #role-table a span.link.delete {
+            background-position: -110px -64px;
+        }
+        #role-table a span.link.auth {
+            background-position: -110px -80px;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            <dl style="padding-left: 20px;">
+                <dt>
+                    <h3 style="display: inline-block; font-weight: 700; font-size: 20px;">
+                        角色列表
+                    </h3>
+                    <button type="button" id="btnRefresh" class="btn btn-warning pull-right" style="margin: 15px 0 10px 5px;">
+                        <span class="glyphicon glyphicon-refresh"></span>&nbsp;刷&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新
+                    </button>
+                    <button type="button" id="btnRoleCreate" class="btn btn-success pull-right" style="margin: 15px 5px 10px 0;">
+                        <span class="glyphicon glyphicon-user"></span>&nbsp;新增角色
+                    </button>
+                </dt>
+                <dd>
+                    <table id="role-table" class="table table-hover table-striped table-bordered" width="100%">
+                        <thead>
+                        <tr style="background-color: #DFE2E6;">
+                            <th>序号</th>
+                            <th>角色名称</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </dd>
+            </dl>
+        </div>
+        <div class="hidden-xs hidden-sm" style="position: absolute; height: 96%; border-left: 1px solid #EEE; top: 2%; left: 50%;"></div>
+        <div class="col-xs-12 col-md-6">
+            <dl style="padding-right: 20px;">
+                <dt>
+                    <h3 id="funcTitle" style="display: inline-block; font-size: 20px; font-weight: 700;">功能列表</h3>
+                    <button type="button" id="btnTreeRefresh" class="btn btn-warning" style="float: right; margin: 15px 0 10px 5px;">
+                        <span class="glyphicon glyphicon-refresh"></span>&nbsp;刷&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新
+                    </button>
+                    <button type="button" id="btnBuild" class="btn btn-success" disabled="disabled" style="float: right; margin: 15px 5px 10px;">
+                        <span class="glyphicon glyphicon-edit"></span>&nbsp;构&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;建
+                    </button>
+                    <button type="button" id="btnTreeSave" class="btn btn-primary" style="float: right; margin: 15px 5px 10px 0; display: none;">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存
+                    </button>
+                </dt>
+                <dd>
+                    <ul id="funcTree" class="ztree"></ul>
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<!-- functionModal -->
+<div class="modal fade" id="funcModal" tabindex="-1" role="dialog"
+     aria-labelledby="funcModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 800px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="funcModalLabel"></h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="input-group">
+                            <span class="input-group-addon" style="text-align: right;">功能名称：</span>
+                            <input id="funcName" type="text" class="form-control "
+                                   placeholder="功能名称" style="width: 200px;" />
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">功能代码：</span>
+                            <input id="funcCode" type="text" class="form-control"
+                                placeholder="功能代码" style="width: 200px;" />
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">功能上级：</span>
+                            <input id="funcParent" type="text" class="form-control" disabled
+                                placeholder="功能上级" style="width: 200px;" />
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">同级顺序：</span>
+                            <input id="funcOrder" type="text" class="form-control"
+                                   placeholder="默认为0值大后展示" style="width: 200px;" />
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">功能描述：</span>
+                            <textarea id="funcDesc" class="form-control" rows="3" style="width: 200px;"></textarea>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <button id="btnFunc" type="button" class="btn btn-primary">确定</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../js/lib/require.js" data-main="../../js/system/authManage"></script>
+</body>
+</html>

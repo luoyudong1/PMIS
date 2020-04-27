@@ -69,6 +69,7 @@
                         <th style="display: none">sheetId</th>
                         <th style="display: none">探测站id</th>
                         <th>探测站名称</th>
+                        <th>所属班组</th>
                         <th>探测站类别</th>
                         <th>计划检修时间</th>
                         <th>检修开始时间</th>
@@ -98,7 +99,7 @@
     <div class="modal-dialog" style="max-width: 1000px; overflow-x: auto;">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">修改检修计划</h3>
+                <h3 class="modal-title">实施检修计划</h3>
                 <p id="alertMsgModify"
                    style="position: absolute; left: 42%; top: 25px; width: 25%; height: 50px; display: none"></p>
                 <button type="button" class="close" data-dismiss="modal"
@@ -140,19 +141,19 @@
                                 placeholder="请输入计划检修时间" style="width: 200px;" autocomplete="off">
                         </div>
                         <br>
-                        <div class="input-group">
+                        <div class="input-group checkEnd">
                             <label><strong>检修结束时间：</strong></label> <input
                                 id="endTimeModify" type="text" class="form-control"
                                 placeholder="请输入计划检修时间" style="width: 200px;" autocomplete="off">
                         </div>
                         <br>
-                        <div class="input-group">
+                        <div class="input-group checkEnd">
                             <label><strong>检修记录：</strong></label> <input
                                 id="checkRecordModify" type="text" class="form-control"
                                 placeholder="请输入检修记录" style="width: 200px;" autocomplete="off">
                         </div>
                         <br>
-                        <div class="input-group">
+                        <div class="input-group checkEnd">
                             <label><strong>备注：</strong></label> <input
                                 id="remarkModify" type="text" class="form-control"
                                 placeholder="请输入备注" style="width: 200px;" autocomplete="off">

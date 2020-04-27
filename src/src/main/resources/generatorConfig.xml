@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry location="D:\mavenchangku\org\postgresql\postgresql\42.2.5\postgresql-42.2.5.jar" 
+		/> 
+	<!--<classPathEntry location="/Library/apache-maven-3.6.0/rep/mysql-connector-java-5.1.46.jar"/> -->
+	<!-- <classPathEntry location="/Library/apache-maven-3.5.4/rep/mysql-connector-java-5.1.46.jar" /> -->
+	<context id="mysqlTables" targetRuntime="MyBatis3">
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin">
+			<property name="useToStringFromRoot" value="true" />
+		</plugin>
+		<commentGenerator>
+			<property name="suppressDefaultComments" value="true" />
+			<property name="dateFormat" value="yyyy-MM-dd HH:mm:ss" />
+			<property name="addRemarkComments" value="true" />
+		</commentGenerator>
+
+		<!--<jdbcConnection driverClass="com.mysql.jdbc.Driver" -->
+		<!--connectionURL="jdbc:mysql://mysql.maduoduo.com.cn:3306/unicom_mall?characterEncoding=utf8" -->
+		<!--userId="gift_dev" -->
+		<!--password="gift_p@2018"> -->
+		<!--</jdbcConnection> -->
+		<jdbcConnection driverClass="org.postgresql.Driver"
+			connectionURL="jdbc:postgresql://127.0.0.1:5432/db_pmis10.20?characterEncoding=utf8"
+			userId="postgres" password="123456">
+		</jdbcConnection>
+
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.kthw.pmis.entiy"
+
+			targetProject="src/main/java/">
+			<!--targetProject="src/main/java/"> -->
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+
+		<sqlMapGenerator targetPackage="sqlmap.base"
+			targetProject="src/main/resources">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</sqlMapGenerator>
+
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.kthw.pmis.mapper.common" 
+			targetProject="src/main/java/">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+
+		<!--t_order_rule -->
+		<!--t_dept_store_staff_realtion -->
+		<!--t_commission_user -->
+		<!--t_commission_rule -->
+		<!--t_commission_detail -->
+
+
+  		<!--<table tableName="tbl_parts_dict" domainObjectName="PartsDict"-->
+ 			<!--enableSelectByExample="false" enableDeleteByExample="false"-->
+ 			<!--enableCountByExample="false" enableUpdateByExample="false"-->
+ 			<!--selectByExampleQueryId="false">-->
+ 			<!--<generatedKey column="id" sqlStatement="MYSQL" identity="true" />-->
+ 		<!--</table>-->
+ 		<!--<table tableName="tbl_plan_check_sheet" domainObjectName="PlanCheckSheet"-->
+ 			<!--enableSelectByExample="false" enableDeleteByExample="false"-->
+ 			<!--enableCountByExample="false" enableUpdateByExample="false"-->
+ 			<!--selectByExampleQueryId="false">-->
+ 		<!--</table>-->
+		<!--<table tableName="tbl_fault_handle" domainObjectName="Tbl_fault_handle"-->
+			   <!--enableSelectByExample="false" enableDeleteByExample="false"-->
+			   <!--enableCountByExample="false" enableUpdateByExample="false"-->
+			   <!--selectByExampleQueryId="false">-->
+		<!--</table>-->
+		<!--<table tableName="tbl_responsible_user" domainObjectName="ResponsibleUser"-->
+			   <!--enableSelectByExample="false" enableDeleteByExample="false"-->
+			   <!--enableCountByExample="false" enableUpdateByExample="false"-->
+			   <!--selectByExampleQueryId="false">-->
+		<!--</table>-->
+		<!--<table tableName="tbl_responsible_unit" domainObjectName="ResponsibleUnit"-->
+			   <!--enableSelectByExample="false" enableDeleteByExample="false"-->
+			   <!--enableCountByExample="false" enableUpdateByExample="false"-->
+			   <!--selectByExampleQueryId="false">-->
+		<!--</table>-->
+<!-- 		<table tableName="t_matter_info" domainObjectName="MatterInfo" -->
+<!-- 			enableSelectByExample="false" enableDeleteByExample="false" -->
+<!-- 			enableCountByExample="false" enableUpdateByExample="false" -->
+<!-- 			selectByExampleQueryId="false"> -->
+<!-- 			<generatedKey column="id" sqlStatement="MYSQL" identity="true" /> -->
+<!-- 		</table> -->
+<!-- 		<table tableName="t_matter_type" domainObjectName="MatterType" -->
+<!-- 			enableSelectByExample="false" enableDeleteByExample="false" -->
+<!-- 			enableCountByExample="false" enableUpdateByExample="false" -->
+<!-- 			selectByExampleQueryId="false"> -->
+<!-- 			<generatedKey column="id" sqlStatement="MYSQL" identity="true" /> -->
+<!-- 		</table> -->
+<!-- 		<table tableName="t_mem_info" domainObjectName="MemInfo" -->
+<!-- 			enableSelectByExample="false" enableDeleteByExample="false" -->
+<!-- 			enableCountByExample="false" enableUpdateByExample="false" -->
+<!-- 			selectByExampleQueryId="false"> -->
+<!-- 			<generatedKey column="id" sqlStatement="MYSQL" identity="true" /> -->
+<!-- 		</table> -->
+<!-- 		<table tableName="tbl_sheet_info" domainObjectName="SheetInfo" -->
+<!-- 			enableSelectByExample="false" enableDeleteByExample="false" -->
+<!-- 			enableCountByExample="false" enableUpdateByExample="false" -->
+<!-- 			selectByExampleQueryId="false"> -->
+<!-- 			<generatedKey column="id" sqlStatement="POSTGRESQL" identity="true" /> -->
+<!-- 		</table> -->
+<!-- 		<table tableName="tbl_sheet_detail" domainObjectName="SheetDetail" -->
+<!-- 			enableSelectByExample="false" enableDeleteByExample="false" -->
+<!-- 			enableCountByExample="false" enableUpdateByExample="false" -->
+<!-- 			selectByExampleQueryId="false"> -->
+<!-- 			<generatedKey column="id" sqlStatement="POSTGRESQL" identity="true" /> -->
+<!-- 		</table> -->
+<!-- 	    <table tableName="tbl_stock_info" domainObjectName="StockInfo" -->
+<!-- 			enableSelectByExample="false" enableDeleteByExample="false" -->
+<!-- 			enableCountByExample="false" enableUpdateByExample="false" -->
+<!-- 			selectByExampleQueryId="false"> -->
+<!-- 			<generatedKey column="id" sqlStatement="POSTGRESQL" identity="true" /> -->
+<!-- 		</table> -->
+<!-- 		<table tableName="tbl_parts_dict" domainObjectName="Parts" -->
+<!-- 			enableSelectByExample="false" enableDeleteByExample="false" -->
+<!-- 			enableCountByExample="false" enableUpdateByExample="false" -->
+<!-- 			selectByExampleQueryId="false"> -->
+<!-- 			<generatedKey column="id" sqlStatement="POSTGRESQL" identity="true" /> -->
+<!-- 		</table> -->
+<!-- 		<table tableName="tbl_asset_attributes" domainObjectName="AssetAttributes" -->
+<!-- 			enableSelectByExample="false" enableDeleteByExample="false" -->
+<!-- 			enableCountByExample="false" enableUpdateByExample="false" -->
+<!-- 			selectByExampleQueryId="false"> -->
+<!-- 			<generatedKey column="id" sqlStatement="POSTGRESQL" identity="true" /> -->
+<!-- 		</table> -->
+
+		
+	</context>
+</generatorConfiguration>

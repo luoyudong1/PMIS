@@ -11,6 +11,13 @@
 		and U.USER_ID=UR.USER_ID
 	</select>
 
+	<!--  //根据user_roleId 获得Role信息                      -->
+	<select id="getRoleByUserRole" parameterType="int" resultType="Role">
+		SELECT *
+		FROM TBL_ROLE
+		WHERE ROLE_ID = #{userRole}
+	</select>
+
 	<select id="getFuncList" resultType="Function">
 		<![CDATA[
 			WITH RECURSIVE res AS (

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd
+        http://www.springframework.org/schema/task  http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+
+	<!-- 自动扫描且只扫描@Controller -->
+	<context:component-scan base-package="com.kthw.pmis.controller" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+	</context:component-scan>
+	
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+		    	<constructor-arg value="UTF-8" />
+			</bean>
+			<!-- 将Jackson2HttpMessageConverter的默认格式化输出设为true -->
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="prettyPrint" value="true"/>
+            </bean>			
+  		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<!-- 定义html文件的位置 --> 
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/pages/"/>
+		<property name="suffix" value=".html"/>
+	</bean>
+	
+			
+	<!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL-->	
+	<mvc:default-servlet-handler/>
+	
+	<!-- 支持上传文件 -->  
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	
+	<!-- 定义无需Controller的url<->view直接映射 -->
+	<!-- 如果不用redirect:则直接先找对应的路径下的页面，如果用 redirect:则先找控制器;forword:关键字不起作用-->
+	<!-- 如果直接打TSIP-->
+	<mvc:view-controller path="/" view-name="redirect:/login"/>
+
+	<!-- 将Controller抛出的异常转到特定View, 保持SiteMesh的装饰效果 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
+		<property name="exceptionMappings">  
+			<props>  
+				<prop key="java.lang.Throwable">../error/500</prop>
+            </props>  
+		</property>  
+    </bean>
+
+	<bean id="vehicleHandler" class="com.kthw.pmis.websocket.VehicleMonitorHandler"/>
+
+	<websocket:handlers allowed-origins="*">
+		<websocket:mapping path="/webSocket" handler="vehicleHandler" />
+		<websocket:handshake-interceptors>
+			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
+
+	<task:annotation-driven/>
+	<context:component-scan base-package="com.kthw.pmis.task"></context:component-scan>
+	
+    <!-- <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/vehicle/integratedWarning/trainImage/**" />
+            <bean class="com.kthw.pmis.controller.vehicle.TEDSImgInterceptor">
+                <property name="imgPath">
+                    <map>
+                        <entry key="bigImagePath" value="D:\\work\\image\\images" />
+                        <entry key="smallImagePath" value="D:\\work\\image\\imaget" />
+                        <entry key="faultImagePath" value="D:\\work\\image\\imagef" />
+                    </map>
+                </property>
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors> -->
+
+</beans>

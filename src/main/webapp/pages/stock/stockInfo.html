@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>库存信息</title>
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/bootstrap/jquery.datetimepicker.min.css" rel="stylesheet"/>
@@ -37,12 +37,14 @@
                 <label class="control-label">探测站：</label><select id="detect_device" class="form_sel form-control "
                                                                  style="width: 170px;" disabled="disabled"></select>&nbsp;&nbsp;
                 <label class="control-label">配件编号：</label><input id="part_id_sel" type="text"
-                                                                 class="form-control input-sm form_sel" style="width: 220px;"/> &nbsp;&nbsp;
+                                                                 class="form-control input-sm form_sel"
+                                                                 style="width: 220px;"/> &nbsp;&nbsp;
                 <label class="control-label">配件出厂编码：</label><input id="part_code_sel" type="text"
-                                                                 class="form-control input-sm form_sel" style="width: 220px;"/> &nbsp;&nbsp;
+                                                                   class="form-control input-sm form_sel"
+                                                                   style="width: 220px;"/> &nbsp;&nbsp;
                 <button type="button" id="btnQuery" class="btn btn-primary  form_sel_btn">查 询</button>
                 <!-- 						<button type="button" class="btn btn-success form_sel_btn" id="btnAddStockInfo" data-toggle="modal" data-target="#addStockInfoModal">新 增</button> -->
-                 						<button id="exportExcel" type="button" class="btn btn-info form_sel_btn">导出Excel</button>
+                <button id="exportExcel" type="button" class="btn btn-info form_sel_btn">导出Excel</button>
                 <button id="btnRefresh" type="button" class="btn btn-warning form_sel_btn">刷&nbsp;新</button>
             </div>
 
@@ -50,11 +52,8 @@
             <div class="ibox ">
                 <div class="ibox-title">
 
-                    <h5>仓库配件类别数量
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                   配件详细信息列表</h5>
+                    <h5 style="width: 420px;">仓库配件数量</h5>
+                    <h5> 配件详细信息列表</h5>
 
                     <div class="form_sel_div">
                     </div>
@@ -67,6 +66,7 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-md-3">
+                            <button id="exportCountExcel" type="button" class="btn btn-info form_sel_btn">导出仓库配件数量Excel</button>
                             <dl style="padding-right: 20px;">
                                 <dd>
                                     <ul id="funcTree" class="ztree" style="font-size:50px;"></ul>

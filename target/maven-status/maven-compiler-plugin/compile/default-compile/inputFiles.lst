@@ -78,6 +78,7 @@ D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\model\sys
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\mapper\common\DeviceModelMapper.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\model\system\LoginInfo.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\controller\report\ComprehensiveStatisticsController.java
+D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\entiy\dto\StockInfoCountDTO.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\entiy\PartsZtree.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\entiy\RepairUser.java
 D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\helper\SheetDetailHelper.java

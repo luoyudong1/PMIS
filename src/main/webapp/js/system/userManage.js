@@ -170,7 +170,8 @@ require(['../config'], function (config) {
                 idx_url: config.init_idx_url,
                 depot_id : $('#userDepotIdAdd').val(),
                 workshop_id : $('#userWorkshopIdAdd').val(),
-                team_id : $('#userTeamIdAdd').val()
+                team_id : $('#userTeamIdAdd').val(),
+                dispatcher : $('#dispatcherAdd').val(),
             });
 
             $.ajax({

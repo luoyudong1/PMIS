@@ -13,48 +13,70 @@ require(['config'], function (config) {
 	require(['jquery','common/nav','popper','toastr','pace','bootstrap','metisMenu','slimscroll','inspinia','common/dateFormat'], function ($,nav,Popper,toastr,pace) {
         var newWindow=''   //新窗口
         var oldWindow=''   //旧窗口
+
+
 		function init () {
             //-------------------------------------------------------------------
             var user = {};
+            var userRole=[];
+            var url = location.search;
+            if ( url.indexOf( "?" ) !== -1 ) {
+                var str = url.substr( 1 ); //substr()方法返回从参数值开始到结束的字符串；
+                var strs = str.split( "&" );
+                for ( var i = 0; i < strs.length; i++ ) {
+                       userRole[i]=  strs[ i ].split( "=" )[ 1 ];                       // theRequest[ (strs[ i ].split( "=" )[ 0 ]).toLowerCase() ] = ( strs[ i ].split( "=" )[ 1 ] );
+                }
+                console.log( userRole[0]);
+            }
+
             $.ajax({
+                /*
                 async : false,
                 url : config.basePath + "/user/getRoleIDbyUser?_=" + new Date().getTime(),
                 dataType : 'json',
+                */
+                async : false,
+                url: config.basePath + "/user/getRoleIDbyUserRole?_=" + new Date().getTime(),
+                type: 'POST',
+                contentType: 'application/json',
+                dataType : "json",
+                data: JSON.stringify({
+                    userRole: userRole[0],
+                }),
                 success : function(result) {
-                	//user.deptId=result.deptId
-                    user.userId = result.userId;
-                    user.userName = result.userName;
-                    user.roleName = result.roles[0].role_name;
-                    user.departmentId=result.departmentId; //dujun  2018-07-16
-                    user.deptId = result.roles[0].dept_id;
-                    user.roleName = result.roles[0].role_name;
-                    user.roleId = result.roles[0].role_id;
-                    user.menus = result.menus;
+                    user.deptId=result.deptId;                       //部门id
+                    user.userId = result.userId;                     //用户ID
+                    user.userName = result.userName;                 //用户名
+                    user.roleName = result.roles.role_name;          //用户角色名                         //user.departmentId=result.departmentId; //dujun  2018-07-16
+                    user.roleId = result.roles.role_id;              //用户角色ID
+                    user.roleCode=result.roles.role_code;            //用户角色CODE
+                    user.menus = result.menus;                       //用户菜单
                     auths = result.auths;
-                    user.idxUrl = result.idxUrl;//此处的idxUrl是功能id 
+                    user.idxUrl = result.idxUrl;//此处的idxUrl是功能id
                     window.self.user=user;   //dujun  2018-07-16
+
                     var validate = false;
                     if (result.menus) {
                         $("#navTop").append('<li>|</li>');
                         $.each(result.menus, function(i, menu) {
-                        	//顶部一级模块
-                        	$("#navTop").append('<li role="' + menu.code + '"><a href="#">' + '<span style="color:black">'  + menu.name +'</span></a></li><li>|</li>');
-                        	$.each(menu.children || [], function (idx, item) {
+                            //顶部一级模块
+                            $("#navTop").append('<li role="' + menu.code + '"><a href="#">' + '<span style="color:black">'  + menu.name +'</span></a></li><li>|</li>');
+                            $.each(menu.children || [], function (idx, item) {
                                 $('#side-menu').append('<li class="memu_parent_' + menu.code + '" style="display:none">'
-         							   +'<a href="#' + item.code + '" role="' + menu.code + '" ><i class="fa '+ buildIcon(item.code) +'"></i> <span class="nav-label">' + item.name + '</span>'
-       								   +'<span class="fa arrow"></span></a>'
-	       							   +'<ul class="nav nav-second-level" id="menu_'+item.code+'">'
-	    							   +'</ul>'
-       							+'</li>');
+                                    +'<a href="#' + item.code + '" role="' + menu.code + '" ><i class="fa '+ buildIcon(item.code) +'"></i> <span class="nav-label">' + item.name + '</span>'
+                                    +'<span class="fa arrow"></span></a>'
+                                    +'<ul class="nav nav-second-level" id="menu_'+item.code+'">'
+                                    +'</ul>'
+                                    +'</li>');
                                 var menuId=$('#menu_'+item.code);
                                 //左侧二级菜单
                                 $.each(item.children || [], function (idx3, item3) {
                                     if (parseInt(result.idxUrl) === item3.id){
-                                    	validate = true;
-                                    	$("#navTop li[role='"+menu.code+"']").css("background-color","#1ab394");
-                                    	$("#navTop li[role='"+menu.code+"'] a").css("color","white");
-                                    	currentModal = menu.code ;
-                                    	currentParent = item.code;
+                                        validate = true;
+                                        $("#navTop li[role='"+menu.code+"']").css("background-color","#1ab394");
+                                        $("#navTop li[role='"+menu.code+"'] a").css("color","white");
+                                        currentModal = menu.code ;
+                                        currentParent = item.code;
                                     }
                                     //左侧功能
                                     menuId.append('<li><a href="#fun_' + item3.id + '" role="' +menu.code + '"data-parentrole="'+item3.code+'" data-toggle="tab">' + item3.name + '</a></li>')
@@ -65,46 +87,45 @@ require(['config'], function (config) {
                     if (!validate) {
                         user.idxUrl = result.menus[0] && result.menus[0].children[0] ? result.menus[0].children[0].children[0].id : '11';
                         currentModal = result.menus[0].code;
-                    	currentParent = result.menus[0].children[0].code;
-                    	$("#navTop li[role='"+result.menus[0].code+"']").css("background-color","#1ab394");
-                    	$("#navTop li[role='"+result.menus[0].children[0].code+"'] a").css("color","white");
+                        currentParent = result.menus[0].children[0].code;
+                        $("#navTop li[role='"+result.menus[0].code+"']").css("background-color","#1ab394");
+                        $("#navTop li[role='"+result.menus[0].children[0].code+"'] a").css("color","white");
                     }
                     $("#side-menu .memu_parent_" + currentModal).show();
-                    $('#userName').text(result.userName); // 显示登录用户
-                    $('#roleName').text(result.roles[0].role_name); // 显示登录用户角色
+                    $('#userName').text(user.userName); // 显示登录用户
+                    $('#roleName').text(user.roleName); // 显示登录用户角色
                     $('#quit1,#quit2').attr('href', config.basePath + '/logout');
                 },
                 error : function(msg) {
+
                     document.location.href = config.basePath;
                 }
             });
+
             return user;
         }
+
         var user = init();
+
         Popper.Defaults.modifiers.computeStyle.gpuAcceleration = false;
         //页面加载进度条
         pace.start({
             document: false
         });
-    	//右上角提示框
-        setTimeout(function() {
-            toastr.options = {
-                closeButton: true,
-                progressBar: true,
-                showMethod: 'slideDown',
-                timeOut: 3000
-            };
-            toastr.success(user.userName+', 欢迎您登录PMIS系统!');
-        }, 1300);
+
 
         //右上角提示信息
         var msgInfos =function(){
+            console.log("user.deptId====="+user.deptId);
+            console.log("user.roleId========"+user.roleId);
+            console.log("user.roleCode========"+user.roleCode);
             $.ajax({
                 url: config.basePath + '/system/messageInfo/getMessageInfoList',
                 type: 'GET',
                 data: {
                     "depotId": user.deptId,
-                    "roleId": user.roleId
+                    "roleId": user.roleId,
+                    "roleCode":user.roleCode
                 },
                 success: function (result) {
 //	            if($('#MsgInfoNumb').text() == null || result.data.length > $('#MsgInfoNumb').text()){
@@ -139,7 +160,13 @@ require(['config'], function (config) {
                         if(Msg_Clicked>0&&judge) {
                             $("#wifi1").attr("class", "wifi-circle first");
                             $("#wifi2").attr("class", "wifi-circle second");
-                            $("#wifi3").attr("class", "wifi-circle third");    //此处喇叭开始动态
+                            $("#wifi3").attr("class", "wifi-circle third");    //此处喇叭图标开始动态
+                            $('audio').remove();
+
+                            var audioElementHovertree = document.createElement('audio');
+                            audioElementHovertree.setAttribute('src', config.basePath+'/sound/message.mp3');
+                            audioElementHovertree.setAttribute('autoplay', 'autoplay');    //打开自动播放报警声音            //audioElement.load();
+
                         }else {
                             $("#wifi1").attr("class", "wifi-circle first-0");
                             $("#wifi2").attr("class", "wifi-circle second-0");
@@ -278,7 +305,7 @@ require(['config'], function (config) {
             }
             Sub_count[msgId]='1';
             msgInfos();
-
+/**
             $.ajax({
                 url: config.basePath + '/system/messageInfo/updateMessageState',
                 type: 'POST',
@@ -288,6 +315,7 @@ require(['config'], function (config) {
                     if(result.code == 0){msgInfos();}
                 }
             });
+ **/
         });
 
         //每10分钟执行一次

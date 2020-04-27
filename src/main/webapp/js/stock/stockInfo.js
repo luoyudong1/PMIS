@@ -510,10 +510,13 @@ require(['../config'], function (config) {
 
                 detectDeviceId: detectDeviceId
             });
-            console.log(params);
             window.location.href = config.basePath + '/stock/stockInfo/exportStockInfos?' + params;
         });
-
+        /** 导出配件详情信息*/
+        $("#exportCountExcel").on('click', function () {
+            var storeHouseId = $("#storehouse_id_sel").val()
+            window.location.href = config.basePath + '/stockInfo/exportCount/' + storeHouseId;
+        });
         stockInfoTable.on('draw.dt', function () {
             //给第一列编号
             stockInfoTable.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {

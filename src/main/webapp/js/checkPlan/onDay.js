@@ -9,6 +9,8 @@ require(['../config'],
                 var date = new Date();
                 initDatetimepicker("queryTime", date);
                 initDatetimepicker("queryTime2", date);
+                initDatetimepicker("planTimeDelay", date);
+                initDatetimepicker("planTimeModify", date);
 
                 /**
                  * 初始化时间框
@@ -40,10 +42,8 @@ require(['../config'],
                 let sheet_id = ''
                 var format = 'Y-m-d H:i:s';
                 var status;
-                CMethod.initDatetimepickerWithSecond("planTimeModify", null, format);
                 CMethod.initDatetimepickerWithSecond("startTimeModify", null, format);
                 CMethod.initDatetimepickerWithSecond("endTimeModify", null, format);
-                CMethod.initDatetimepickerWithSecond("planTimeDelay", null, format);
                 /**
                  * 查询
                  */
@@ -70,7 +70,7 @@ require(['../config'],
                 var sheetTable = dataTable('sheetTable', {
                     bAutoWidth: false,
                     ajax: {
-                        url: config.basePath + '/checkPlan/checkPlan/list',
+                        url: config.basePath + '/checkPlan/checkPlan/listOnDay',
                         type: 'GET',
                         data: function (d) {
                             d.depotId = deptId;
@@ -91,6 +91,8 @@ require(['../config'],
                         },
                         {
                             data: 'detectDeviceName'
+                        }, {
+                            data: 'detectDepotName'
                         }, {
                             data: 'detectDeviceType'
                         },
@@ -132,11 +134,13 @@ require(['../config'],
                         },
                     ],
                     columnDefs: [{
-                        targets: 13,
+                        targets: 14,
                         data: function (row) {
                             var str = '-';
-                            if (row.status == 2 || row.status == 4) {
+                            if (row.status == 2) {
                                 str = '<a class="delaySheet btn btn-info btn-xs" data-toggle="modal" href="#delaySheetModal" title="延期"><span class="glyphicon glyphicon-time"></span></a>&nbsp;&nbsp;'
+                            }
+                            if (row.status == 2 || row.status == 4) {
                                 str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
                                 str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
                             }
@@ -172,7 +176,20 @@ require(['../config'],
                         $('#endTimeModify').val(data.endTime)
                         $('#checkRecordModify').val(data.checkRecord)
                         $('#remarkModify').val(data.remark)
+                        initModifyModal()
                     });
+
+                function initModifyModal() {
+                    if (status == 2 || status == 3) {
+                        $('.checkEnd').each(function () {
+                            $(this).hide()
+                        })
+                    }
+                    if (status > 3) {
+                        $('#startTimeModify').attr("readOnly", true)
+                    }
+
+                }
 
                 /**
                  *延期检修计划
@@ -308,7 +325,7 @@ require(['../config'],
                             planTime: $('#planTimeDelay').val(),
                         });
                         $.ajax({
-                            url: config.basePath + '/checkPlan/checkPlan/update',
+                            url: config.basePath + '/checkPlan/checkPlan/delay',
                             type: "post",
                             data: params,
                             contentType: 'application/json',
@@ -332,9 +349,25 @@ require(['../config'],
                     .on(
                         'click',
                         function (e) {
+                            let verifyUser1;
+                            let verifyUser3;
+                            let verifyDate1 = null;
+                            let verifyDate3 = null;
+                            let date = formatDateBy(new Date().getTime(), 'yyyy-MM-dd HH:mm:ss')
+                            if (status == 2) {//提交人员1
+                                verifyUser1 = user_id
+                                verifyDate1 = date
+                            } else if (status == 4) {//提交人员2
+                                verifyUser3 = user_id
+                                verifyDate3 = date
+                            }
                             var params = JSON.stringify({
                                 id: id,
                                 status: status + 1,
+                                verifyUser1, verifyUser1,
+                                verifyDate1, verifyDate1,
+                                verifyUser3, verifyUser3,
+                                verifyDate3, verifyDate3,
                                 sheetId: sheet_id
                             });
                             $.ajax({

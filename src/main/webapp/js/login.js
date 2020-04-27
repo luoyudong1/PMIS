@@ -5,7 +5,8 @@ require(['config'], function (config) {
 
     require(['jquery','common/nav','popper','toastr','pace','bootstrap','metisMenu','slimscroll','inspinia','common/dateFormat'], function ($,nav,Popper,toastr,pace) {
     var userName=null;
-    var userRole=null;
+    var userRole=[];
+    var userRole_code=[];
     const Login = {
         username: $('#username'),
         password: $('#password'),
@@ -19,10 +20,10 @@ require(['config'], function (config) {
             input.parents('.form-group').removeClass('has-error');
         },
         showError: function (error) {
-            $('.login-tip').text(error).show();
+            $('.my-login-tip').text(error).show();
         },
         hideError: function () {
-            $('.login-tip').hide();
+            $('.my-login-tip').hide();
         },
         validate: function () {
             if ($.trim(this.username.val()) == '') {
@@ -49,13 +50,22 @@ require(['config'], function (config) {
                         self.showError(result.message);
         				if (result.errCode == 0) {
         				    userName=result.user_name;
-        				    userRole=result.user_role;
-
-
+                            for(var i=0;i<result.roles.length;i++){
+                                userRole[i]=result.roles[i].role_id;
+                                userRole_code[i]=result.roles[i].role_code;
+                                console.log("userRole["+i+"]============="+userRole[i]);
+                                console.log("userRole_code["+i+"]============="+userRole_code[i]);
+                                if(userRole[i]==1||userRole[i]==3){
+                                    $('.admin-hide').show();
+                                }
+                            }
 
                             $('#login_div').css("display","none");
                             $('#loginName').text(result.user_name);
                             $('#depotName').text(result.depotName);
+                            $('#userRole').text(result.user_role_name);
+                            $('#user-name').html(result.user_name);
+                            $('#user-dept').html(result.depotName);
                             $('.hide').show();
                             self.showLogin();
 
@@ -112,48 +122,88 @@ require(['config'], function (config) {
 
     });
 
-    $('#btnQuit1').on('click', function (e) {
+    $('#btnSet').on('click', function (e) {
         e.preventDefault();
-        Login.quit();
-
+        toOtherPage("./pages/index-set.html","SET");
     });
-
 
 
     $('#repair').on('click',function (e) {
         e.preventDefault();
-        if(userName!=null){
-            if(userRole!=null){
-                if(userRole<12){
-                    window.location.href = "./pages/index.html"
-                }else{
-                    toastr.warning("用户："+userName+"，您未开通登录权限！");
-                }
-
-            }
-        }else{
-            toastr.error("请您先登录", "提示：");
-        }
+        toOtherPage("./pages/index.html","PMIS");
     });
 
 
      $('#dispatch').on('click',function (e) {
-            e.preventDefault();
-            if(userName!=null){
-                if(userRole!=null){
-                    if(userRole>11||userRole==1){
-                        window.location.href = "./pages/index-dpch.html"
-                    }else{
-                        toastr.warning("用户："+userName+"，您未开通登录权限！");
-                    }
-
-                }
-            }else{
-               toastr.error("请您先登录", "提示：");
-            }
+         e.preventDefault();
+         toOtherPage("./pages/index-dpch.html","TMIS")
      });
 
+     function toOtherPage(url,pageName) {
+         if(userName!=null){
+             for(var i in userRole_code) {
 
+                 if (userRole_code[i] == pageName) {
+                     window.location.href = url+"? userRole="+userRole[i];
+                     break;
+                 }
+             }
+             toastr.warning("用户：" + userName + "，您未开通登录权限！");
+         }else{
+             toastr.error("请您先登录", "提示：");
+         }
+     }
+
+     $("#btnModifyPsOk").on('click', function (e) {
+            e.preventDefault();
+            if ($('#old-ps').val() == '' || $('#new-ps').val() == "" || $('#cf-ps').val() == "") {
+                $('#noModal').modal('show');
+                //清空密码输入框
+                $('#old-ps').val("");
+                $('#new-ps').val("");
+                $('#cf-ps').val("");
+                return false;
+            } else {
+                if ($('#new-ps').val() != $('#cf-ps').val()) {
+                    $('#noSameModal').modal('show');
+                    //清空密码输入框
+                    $('#old-ps').val("");
+                    $('#new-ps').val("");
+                    $('#cf-ps').val("");
+                    return false;
+                } else {
+                    $.ajax({
+                        url: config.basePath + '/user/modifyPassword',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            userId: userName,
+                            password: $('#old-ps').val(),
+                            newPas: $('#new-ps').val()
+                        }),
+                        dataType: "json",
+                        success: function(result) {
+                            if (result.code != 0) {
+                                alert(result.msg);
+                                //清空密码输入框
+                                $('#old-ps').val("");
+                                $('#new-ps').val("");
+                                $('#cf-ps').val("");
+                                return false;
+                            } else {
+                                $('#updatePassModal').modal('show');
+                                //清空密码输入框
+                                $('#old-ps').val("");
+                                $('#new-ps').val("");
+                                $('#cf-ps').val("");
+                                //隐藏密码修改页面
+                                $('#userInfo').modal('hide');
+                            }
+                        }
+                    });
+                }
+            }
+     });
 });
 
 });

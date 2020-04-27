@@ -1,0 +1,228 @@
+.width-10 {
+  width: 10px;
+}
+
+.width-15 {
+  width: 15px;
+}
+
+.width-25 {
+  width: 25px !important;
+}
+
+.width-30 {
+  width: 30px;
+}
+
+.width-35 {
+  width: 35px;
+}
+
+.width-40 {
+  width: 40px;
+}
+
+.width-50 {
+  width: 50px;
+}
+
+.width-55 {
+  width: 55px;
+}
+
+.width-65 {
+  width: 65px;
+}
+
+.width-70 {
+  width: 70px;
+}
+
+.width-75 {
+  width: 75px;
+}
+
+.width-100 {
+  width: 100px;
+}
+
+.width-110 {
+  width: 110px;
+}
+
+.width-105 {
+  width: 105px;
+}
+
+.width-120 {
+  width: 120px;
+}
+
+.width-150 {
+  width: 150px;
+}
+
+.width-200 {
+  width: 200px !important;
+}
+
+.width-220 {
+  width: 220px !important;
+}
+
+.width-225 {
+  width: 225px !important;
+}
+
+.width-230 {
+  width: 230px !important;
+}
+
+.width-250 {
+  width: 250px !important;
+}
+
+.width-300 {
+  width: 300px !important;
+}
+
+.width-305 {
+  width: 305px !important;
+}
+
+.width-333 {
+  width: 333px !important;
+}
+
+.width-800 {
+  width: 800px !important;
+}
+
+.height-420 {
+  height: 420px;
+}
+
+.height-670 {
+  height: 670px;
+}
+
+/*.layui-layer-title-jlfb-confirm {*/
+/*padding: 0 80px 0 20px;*/
+/*height: 35px !important;*/
+/*line-height: 35px !important;*/
+/*border-bottom: 1px solid #eee;*/
+/*font-size: 14px;*/
+/*color: #333;*/
+/*overflow: hidden;*/
+/*background-color: #F8F8F8;*/
+/*border-radius: 2px 2px 0 0;*/
+/*}*/
+
+.pb-6 {
+  padding-bottom: 6px;
+}
+
+.pl-5 {
+  padding-left: 5px;
+}
+
+.pl-6 {
+  padding-left: 6px;
+}
+
+.pl-150 {
+  padding-left: 150px !important;
+}
+
+.pl-235 {
+  padding-left: 235px !important;
+}
+
+.pl-255 {
+  padding-left: 255px !important;
+}
+
+.pr-3 {
+  padding-right: 3px;
+}
+
+.ml-3 {
+  margin-left: 3px !important;
+}
+
+.ml-4 {
+  margin-left: 4px;
+}
+
+.ml-5 {
+  margin-left: 5px;
+}
+
+.mt-f-4 {
+  margin-top: -4px;
+}
+
+.mt-f-14 {
+  margin-top: -14px;
+}
+
+.mt-f-25 {
+  margin-top: -25px;
+}
+
+.mt-f-55 {
+  margin-top: -55px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.d-n {
+  display: none;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.fw-800 {
+  font-weight: 800;
+}
+
+.ta-l {
+  text-align: left !important;
+}
+
+.ta-r {
+  text-align: right !important;
+}
+
+.ta-c {
+  text-align: center !important;
+}
+
+.color555 {
+  color: #555;
+}
+
+.backgroud-jlfb {
+  background-color: #2fa4e7 !important;
+  color: #FFFFFF;
+}
+
+.tree-jlfb {
+  top: 20px;
+  height: 100%;
+  border-right: 1px solid #e5e5e5;
+  background-color: #f5f5f5;
+  overflow-y: auto
+}
+.div-a{
+  overflow: hidden;
+  white-space: nowrap !important;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  /*word-wrap: initial;*/
+  /*word-wrap: normal;*/
+}

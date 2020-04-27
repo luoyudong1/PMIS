@@ -45,8 +45,8 @@
 
 	<insert id="addUser" parameterType="User">
 		insert into
-		TBL_user(user_id,user_pass,user_name,user_role,enabled,reg_date,last_login,login_status,idx_url,depot_id)
-		values(#{user_id},#{user_pass},#{user_name},${user_role},${enabled},#{reg_date},#{last_login},0,#{idx_url, jdbcType=VARCHAR},#{depot_id})
+		TBL_user(user_id,user_pass,user_name,user_role,enabled,reg_date,last_login,login_status,idx_url,depot_id,dispatcher)
+		values(#{user_id},#{user_pass},#{user_name},${user_role},${enabled},#{reg_date},#{last_login},0,#{idx_url, jdbcType=VARCHAR},#{depot_id},#{dispatcher})
 	</insert>
 
 	<update id="updateUser" parameterType="User">
@@ -87,6 +87,14 @@
         SELECT DISTINCT (f.ID),f.FUNC_NAME, f.FUNC_URL, f.PARENT_ID, f.FUNC_LEVEL, f.FUNC_DESC, f.SHOW_ORDER, f.ENABLE
         FROM TBL_USER_ROLES r, TBL_PERMISSION p, TBL_FUNCTION f
         WHERE r.USER_ID = #{userId} AND r.ROLE_ID = p.ROLE_ID AND p.FUNC_ID = f.ID AND f.ENABLE != 1
+        ORDER BY f.FUNC_LEVEL
+    </select>
+
+	<!-- //登录不同系统后,根据用户id和role 获得用户功能和权限   ZF.add         -->
+	<select id="queryFuncByUserRole" parameterType="User" resultType="Function">
+        SELECT DISTINCT (f.ID),f.FUNC_NAME, f.FUNC_URL, f.PARENT_ID, f.FUNC_LEVEL, f.FUNC_DESC, f.SHOW_ORDER, f.ENABLE
+        FROM TBL_PERMISSION p, TBL_FUNCTION f
+        WHERE p.ROLE_ID = #{user_role}  AND p.FUNC_ID = f.ID AND f.ENABLE != 1
         ORDER BY f.FUNC_LEVEL
     </select>
     
@@ -136,5 +144,12 @@
         	and workshop_id = ${workshop_id}
        	</if>
 	</select>
+
+	<!--   登录不同系统后更行tbl_user 表中的角色编号和登录日期   ZF.add -->
+	<update id="updateUser_Index" parameterType="User">
+		update TBL_user set
+		user_role=#{user_role},last_login=#{last_login}
+		where user_id=#{user_id}
+	</update>
 	
 </mapper>

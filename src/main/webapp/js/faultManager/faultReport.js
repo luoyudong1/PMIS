@@ -106,13 +106,12 @@ require(['../config'],
                     type: 'get',
                     data: {
                         depotId: deptId,
-                        faultEnable:1
+                        faultEnable: 1
                     },
                     dataType: 'json',
                     success: function (result) {
                         listDetect = result.data
                         for (var i = 0; i < result.data.length; i++) {
-                            // $("#detectDeviceAdd").append('<option value="' + result.data[i].detectDeviceId + '" deviceModelName="' + result.data[i].deviceModelName + '">' + result.data[i].detectDeviceName + '</option>');
                             lineSet.add(result.data[i].lineName)
                             deviceTypeSet.add(result.data[i].deviceTypeName)
                         }
@@ -172,14 +171,11 @@ require(['../config'],
                         let responsibleDepot = getResponsibleDepot(data)
                         let responsibleSegment = getResponsibleSegment(data)
                         let result = getDetectRepairPerson(data)
-                        $('#repairUserAdd').empty()
                         $('#noticeUserAdd').empty()
                         $('#responsibleDepotAdd').val(responsibleDepot)
                         $('#segmentDepotAdd').val(responsibleSegment)
+                        $("#noticeUserAdd").append('<option></option>');
                         for (var i = 0; i < result.length; i++) {
-                            $("#repairUserAdd").append('<option></option>');
-                            $("#repairUserAdd").append('<option value="' + result[i].id + '">' + result[i].name + '</option>');
-                            $("#noticeUserAdd").append('<option></option>');
                             $("#noticeUserAdd").append('<option value="' + result[i].id + '">' + result[i].name + '</option>');
                         }
 
@@ -208,8 +204,10 @@ require(['../config'],
                     $("#detectDeviceAdd").append('<option></option>')
                     for (let i = 0; i < listDetect.length; i++) {
                         if (listDetect[i].lineName == lineName && listDetect[i].deviceTypeName == detectType) {
-                            $("#detectDeviceAdd").append('<option value="' + listDetect[i].detectDeviceId + '" deviceTypeName="' + listDetect[i].deviceTypeName + '">' + listDetect[i].detectDeviceName + '</option>');
-                             }
+                            $("#detectDeviceAdd").append('<option value="' + listDetect[i].detectDeviceId + '" deviceTypeName="'
+                                + listDetect[i].deviceTypeName + '" depotId="' + listDetect[i].depotId +
+                                '" dispatcher="' + listDetect[i].dispatcher+ '">' + listDetect[i].detectDeviceName + '</option>');
+                        }
                     }
 
                 })
@@ -229,10 +227,13 @@ require(['../config'],
                     $("#detectDeviceModify").append('<option></option>')
                     for (let i = 0; i < listDetect.length; i++) {
                         if (listDetect[i].lineName == lineName && listDetect[i].deviceTypeName == detectType) {
-                            $("#detectDeviceModify").append('<option value="' + listDetect[i].detectDeviceId + '" deviceTypeName="' + listDetect[i].deviceTypeName + '">' + listDetect[i].detectDeviceName + '</option>');
+                            $("#detectDeviceModify").append('<option value="' + listDetect[i].detectDeviceId +
+                                '" deviceTypeName="' + listDetect[i].deviceTypeName + '" depotId="'
+                                + listDetect[i].depotId + '" dispatcher="' + listDetect[i].dispatcher+ '">' + listDetect[i].detectDeviceName + '</option>');
                         }
                     }
                 }
+
                 /**
                  * 初始化维修人员
                  * @param detectDeviceId
@@ -243,10 +244,10 @@ require(['../config'],
                         var result = getDetectRepairPerson(data)
                         $('#repairUserModify').empty()
                         $('#noticeUserModify').empty()
+                        $("#repairUserModify").append('<option></option>');
+                        $("#noticeUserModify").append('<option></option>');
                         for (var i = 0; i < result.length; i++) {
-                            $("#repairUserModify").append('<option></option>');
                             $("#repairUserModify").append('<option value="' + result[i].id + '">' + result[i].name + '</option>');
-                            $("#noticeUserModify").append('<option></option>');
                             $("#noticeUserModify").append('<option value="' + result[i].id + '">' + result[i].name + '</option>');
                         }
                     }
@@ -302,6 +303,7 @@ require(['../config'],
                     });
                     return ret;
                 }
+
                 /**
                  * 获取责任单位
                  */
@@ -321,6 +323,7 @@ require(['../config'],
                     });
                     return detectDevice
                 }
+
                 /**
                  * 初始化入库单据
                  */
@@ -330,9 +333,8 @@ require(['../config'],
                         url: config.basePath + '/faultHandle/faultReport/byEightNextDay',
                         type: 'GET',
                         data: function (d) {
-                                d.depotId = deptId;
-                                d.queryTime = ($("#queryTime").val() == '' ? '' : $("#queryTime2").val() + " 00:00:01");
-                                d.queryTime2 = ($("#queryTime2").val() == '' ? '' : $("#queryTime2").val() + " 23:59:59");
+                            d.depotId = deptId;
+                            d.finished = 0
                         }
                     },
                     columns: [{
@@ -402,11 +404,11 @@ require(['../config'],
                         targets: 15,
                         data: function (row) {
                             var str = '';
-                            if (row.completeFlag == 1 || row.completeFlag == 3|| row.completeFlag == 5) {
+                            if (row.completeFlag == 1 || row.completeFlag == 3 || row.completeFlag == 5) {
                                 str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
                                 str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
                             }
-                            if ( row.completeFlag == 1) {
+                            if (row.completeFlag == 1) {
                                 str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popSheetModal" title="删除单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
 
                             }
@@ -479,8 +481,10 @@ require(['../config'],
                             detectDeviceId: $('#detectDeviceAdd').val(),
                             detectDeviceName: $('#detectDeviceAdd option:selected').text(),
                             detectDeviceType: $('#detectDeviceAdd option:selected').attr("deviceTypeName"),
+                            detectDepotId: $('#detectDeviceAdd option:selected').attr("depotId"),
+                            dispatcher: $('#detectDeviceAdd option:selected').attr("dispatcher"),
                             haultStartTime: $('#haultStartTimeAdd').val(),
-                            lineName:$('#lineAdd option:selected').text(),
+                            lineName: $('#lineAdd option:selected').text(),
                             noticeUser: $('#noticeUserAdd option:selected').text(),
                             faultInfo: $('#faultInfoAdd').val(),
                             segmentDutyUser: $('#segmentDutyUserAdd').val(),
@@ -556,6 +560,7 @@ require(['../config'],
                     $('#responsibleUnit').text(sheetTrData.responsibleUnit)
                     $('#noticeTime').text(sheetTrData.noticeTime)
                 }
+
                 /**
                  * 新增模态框打开按钮事件
                  */
@@ -607,7 +612,6 @@ require(['../config'],
                         var data = sheetTable.row(tr).data();
                         id = data.id;
                         $('#remarkModify').val(data.remark)
-                        $('#detectDeviceModify').val(data.detectDeviceName)
                         $('#haultStartTimeModify').val(formatDateBy(data.haultStartTime, 'yyyy-MM-dd HH:mm:ss'))
                         $('#haultEndTimeModify').val(formatDateBy(data.haultEndTime, 'yyyy-MM-dd HH:mm:ss'))
                         $('#faultStopTimeModify').val(data.faultStopTime)
@@ -666,7 +670,8 @@ require(['../config'],
                     if (completeFlag > 1) {
 
                         $('#noticeUserModify').attr("disabled", true)
-                    } if (completeFlag > 2) {
+                    }
+                    if (completeFlag > 2) {
 
                         $('#haultStartTimeModify').attr("readOnly", true)
                         $('#faultInfoModify').attr("readOnly", true)
@@ -675,14 +680,14 @@ require(['../config'],
                         $('#detectTypeModify').attr("disabled", true)
                         $('#detectDeviceModify').attr("disabled", true)
                     }
-                    if(completeFlag >3){
+                    if (completeFlag > 3) {
                         $('#maintenanceTimeModify').attr("readOnly", true)
                         $('#maintenanceTimeModify').attr("readOnly", true)
                         $('#checkInfoModify').attr("readOnly", true)
                         $('#faultHandleStartTimeModify').attr("readOnly", true)
                         $('#repairUserModify').attr("disabled", true)
                     }
-                    if(completeFlag>5){
+                    if (completeFlag > 5) {
                         $('#faultHandleEndTimeModify').attr("readOnly", true)
                         $('#handleInfoModify').attr("readOnly", true)
                         $('#telegraphNumberModify').attr("readOnly", true)
@@ -735,62 +740,63 @@ require(['../config'],
                     let maintenanceTime = $('#maintenanceTimeModify').val()
                     let handleInfo = $('#handleInfoModify').val()
                     let repairUserModify = $('#repairUserModify option:selected').text()
-                    let haultStartTime=$('#haultStartTimeModify').val()
+                    let haultStartTime = $('#haultStartTimeModify').val()
                     let date = new Date()
-                    if (completeFlag>=1&&haultStartTime=='') {
+                    if (completeFlag >= 1 && haultStartTime == '') {
                         $("#alertMsgSheetModify").html("<font style='color:red'>故障发生时间为空！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
-                    }if (completeFlag>=1&&Date.parse(haultStartTime) >date) {
+                    }
+                    if (completeFlag >= 1 && Date.parse(haultStartTime) > date) {
                         $("#alertMsgSheetModify").html("<font style='color:red'>故障发生时间大于当前时间！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
                     }
-                    if (completeFlag>=3&&handleStartTime=='') {
+                    if (completeFlag >= 3 && handleStartTime == '') {
                         $("#alertMsgSheetModify").html("<font style='color:red'>故障处理开始时间为空！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
                     }
-                    else if (completeFlag>=3&&Date.parse(handleStartTime) >date) {
+                    else if (completeFlag >= 3 && Date.parse(handleStartTime) > date) {
                         $("#alertMsgSheetModify").html("<font style='color:red'>故障处理开始时间大于当前时间！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
-                    }  else if (completeFlag>=3&&Date.parse(handleStartTime) <Date.parse(haultStartTime)) {
+                    } else if (completeFlag >= 3 && Date.parse(handleStartTime) < Date.parse(haultStartTime)) {
                         $("#alertMsgSheetModify").html("<font style='color:red'>故障处理开始时间小于故障发生时间！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
-                    } else if (completeFlag>=5&&handleEndTime=='') {
+                    } else if (completeFlag >= 5 && handleEndTime == '') {
                         $("#alertMsgSheetModify").html("<font style='color:red'>故障处理结束时间为空！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
                     }
-                    else if (completeFlag>=5&&Date.parse(handleEndTime) < Date.parse(handleStartTime)) {
+                    else if (completeFlag >= 5 && Date.parse(handleEndTime) < Date.parse(handleStartTime)) {
                         $("#alertMsgSheetModify").html("<font style='color:red'>故障处理结束时间小于开始时间！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
-                    } else if (completeFlag>=5&&handleInfo=='') {
+                    } else if (completeFlag >= 5 && handleInfo == '') {
                         $("#alertMsgSheetModify").html("<font style='color:red'>处理情况为空！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
-                    }else if(maintenanceTime!=''&&Date.parse(maintenanceTime) < date){
+                    } else if (maintenanceTime != '' && Date.parse(maintenanceTime) < date) {
                         $("#alertMsgSheetModify").html("<font style='color:red'>维修天窗小于当前时间！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
-                    }else if (completeFlag>=3&&repairUserModify=='') {
+                    } else if (completeFlag >= 3 && repairUserModify == '') {
                         $("#alertMsgSheetModify").html("<font style='color:red'>维修人员为空！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
-                    }else if (completeFlag>=3&&checkInfoModify=='') {
+                    } else if (completeFlag >= 3 && checkInfoModify == '') {
                         $("#alertMsgSheetModify").html("<font style='color:red'>现场设备诊断情况为空！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
@@ -805,23 +811,34 @@ require(['../config'],
                 $("#btnModifySheetOk").on('click',
                     function (e) {
                         e.preventDefault();
-                        if(verifyParmasByCompleteFlag()==false){
+                        if (verifyParmasByCompleteFlag() == false) {
                             return false
                         }
-                        var stopTime = verifyFaultStopTime()
                         var planOutageStartTime = verifyTime($('#planOutageStartTimeModify').val())
                         var planOutageEndTime = verifyTime($('#planOutageEndTimeModify').val())
                         var handleStartTime = verifyTime($('#faultHandleStartTimeModify').val())
                         var handleEndTime = verifyTime($('#faultHandleEndTimeModify').val())
                         var noticeTime = verifyTime($('#noticeTimeModify').val())
                         var maintenanceTime = verifyTime($('#maintenanceTimeModify').val())
-                        let type=$('#typeModify option:selected').text()
-                        let responsibleUnit=$('#responsibleUnitModify').val()
-                        if(type=="设备故障"){
-                            responsibleUnit=""
+                        let type = $('#typeModify option:selected').text()
+                        let responsibleUnit = $('#responsibleUnitModify').val()
+                        if (type == "设备故障") {
+                            responsibleUnit = ""
                         }
+                        var repairPerson='';
+                        $("#repairUserModify option:selected").each(function () {
+                            if(repairPerson!=''){
+                                repairPerson+=','+$(this).text()
+                            }else {
+                                repairPerson+=$(this).text()
+                            }
+                        })
                         var params = JSON.stringify({
                             id: id,
+                            detectDeviceId: $('#detectDeviceModify').val(),
+                            detectDeviceName: $('#detectDeviceModify option:selected').text(),
+                            detectDeviceType: $('#detectDeviceModify option:selected').attr("deviceTypeName"),
+                            detectDepotId: $('#detectDeviceModify option:selected').attr("depotId"),
                             faultLevelType: $('#faultLevelModify option:selected').text(),
                             handleStartTime: handleStartTime,
                             handleEndTime: handleEndTime,
@@ -830,7 +847,7 @@ require(['../config'],
                             faultInfoDetail: $('#faultInfoDetailModify').val(),
                             faultInfo: $('#faultInfoModify').val(),
                             handleInfo: $('#handleInfoModify').val(),
-                            repairPerson: $('#repairUserModify option:selected').text(),
+                            repairPerson: repairPerson,
                             noticeUser: $('#noticeUserModify option:selected').text(),
                             faultType: $('#faultTypeModify option:selected').text(),
                             telegraphNumber: $('#telegraphNumberModify').val(),
@@ -917,14 +934,33 @@ require(['../config'],
                                     2000);
                                 return false;
                             }
-                            let submitUser;
-                            if (completeFlag == 5) {//提交人员
-                                submitUser = user_id
+                            let verifyUser1;
+                            let verifyUser3;
+                            let verifyUser5;
+                            let verifyDate1 = null;
+                            let verifyDate3 = null;
+                            let verifyDate5 = null;
+                            let date = formatDateBy(new Date().getTime(), 'yyyy-MM-dd HH:mm:ss')
+                            if (completeFlag == 1) {//提交人员1
+                                verifyUser1 = user_id
+                                verifyDate1 = date
+                            } else if (completeFlag == 3) {//提交人员2
+                                verifyUser3 = user_id
+                                verifyDate3 = date
+                            }
+                            if (completeFlag == 5) {//提交人员3
+                                verifyUser5 = user_id
+                                verifyDate5 = date
                             }
                             var params = JSON.stringify({
                                 id: id,
                                 completeFlag: completeFlag + 1,
-                                submitUser: submitUser
+                                verifyUser1: verifyUser1,
+                                verifyUser3: verifyUser3,
+                                verifyUser5: verifyUser5,
+                                verifyDate1: verifyDate1,
+                                verifyDate3: verifyDate3,
+                                verifyDate5: verifyDate5,
                             });
                             $.ajax({
                                 url: config.basePath
