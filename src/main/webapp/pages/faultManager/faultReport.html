@@ -51,6 +51,7 @@
                             style="height: 30px; padding-top: 4px; margin: 10px 0 10px 5px;">重
                         置
                     </button>
+                    <button id="exportExcel" type="button" class="btn btn-info form_sel_btn">导出Excel</button>
                 </div>
             </div>
             <div class="ibox-content">
@@ -139,6 +140,38 @@
                     <tr>
                         <th>责任单位调度员</th>
                         <th id="responsibleUser"></th>
+                    </tr>
+                    <tr>
+                        <th>提报人</th>
+                        <th id="verifyUser1"></th>
+                        <th>提报人</th>
+                        <th colspan="3" id="verifyUser3"></th>
+                        <th>提报人</th>
+                        <th id="verifyUser5"></th>
+                    </tr>
+                    <tr>
+                        <th>提报时间</th>
+                        <th id="verifyDate1"></th>
+                        <th>提报时间</th>
+                        <th colspan="3" id="verifyDate3"></th>
+                        <th>提报时间</th>
+                        <th id="verifyDate5"></th>
+                    </tr>
+                    <tr>
+                        <th>审核人</th>
+                        <th id="verifyUser2"></th>
+                        <th>审核人</th>
+                        <th colspan="3" id="verifyUser4"></th>
+                        <th>审核人</th>
+                        <th id="submitUser"></th>
+                    </tr>
+                    <tr>
+                        <th>审核时间</th>
+                        <th id="verifyDate2"></th>
+                        <th>审核时间</th>
+                        <th colspan="3" id="verifyDate4"></th>
+                        <th>审核时间</th>
+                        <th id="updateTime"></th>
                     </tr>
                     </thead>
                     <tbody></tbody>
@@ -245,7 +278,7 @@
                         <div class="input-group handleStart">
                             <label><strong>故障级别：</strong></label> <select
                                 id="faultLevelModify" type="text" class="form-control"
-                                style="width: 200px;" autocomplete="off">
+                                style="width: 200px;" autocomplete="off" disabled="disabled">
                             <option></option>
                             <option>A</option>
                             <option>B</option>
@@ -262,7 +295,7 @@
                         <div class="input-group handleStart">
                             <label><strong>维修人员：</strong></label> <select
                                 id="repairUserModify" type="text" class="form-control"
-                                style="width: 200px;" multiple="multiple">
+                                style="width: 200px;">
                         </select>
                         </div>
                         <br>
@@ -276,7 +309,7 @@
                         <div class="input-group handleStart">
                             <label><strong>故障类别：</strong></label> <select
                                 id="faultTypeModify" type="text" class="form-control"
-                                style="width: 200px;">
+                                style="width: 200px;" disabled="disabled">
                             <option></option>
                         </select>
                         </div>

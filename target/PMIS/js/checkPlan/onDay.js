@@ -38,8 +38,9 @@ require(['../config'],
                 var user_name = window.parent.user.userName; // 登录人名字
                 var roleName = window.parent.user.roleName; // 登录人角色信息
                 var deptId = window.parent.user.deptId // 所属部门id
+                var sheetData = ''
                 var id;
-                let sheet_id = ''
+                var sheet_id = ''
                 var format = 'Y-m-d H:i:s';
                 var status;
                 CMethod.initDatetimepickerWithSecond("startTimeModify", null, format);
@@ -223,6 +224,7 @@ require(['../config'],
                                 status = sheetTrData.status
                                 id = sheetTrData.id
                                 sheet_id = sheetTrData.sheetId
+                                sheetData = sheetTrData
                             }
 
                         });
@@ -317,7 +319,7 @@ require(['../config'],
                         if (planTime < date) {
                             $("#alertMsgDelay").html("<font style='color:red'>延期时间小于当前时间</font>");
                             $("#alertMsgDelay").css('display', 'inline-block')
-                            CMethod.hideTimeout("alertMsgModify", "alertMsgDelay", 5000);
+                            CMethod.hideTimeout("alertMsgDelay", "alertMsgDelay", 5000);
                         }
                         var params = JSON.stringify({
                             id: id,
@@ -342,6 +344,41 @@ require(['../config'],
                             }
                         });
                     });
+
+                /**
+                 * 验证提交参数
+                 *
+                 */
+                function verifyParamsBeforeSubmit(data) {
+                    let startTime = data.startTime
+                    let endTime = data.endTime
+                    let status = data.status
+                    let date = new Date()
+                    if (startTime == '' || startTime == null) {
+                        $("#alertMsg")
+                            .html(
+                                '<span style="color:green;text-align:center"><strong>检修开始时间为空！</strong></span>');
+                        $("#infoAlert")
+                            .show();
+                        hideTimeout(
+                            "infoAlert",
+                            2000);
+                        return false;
+                    }
+                    if (status == 4 && endTime == '') {
+                        $("#alertMsg")
+                            .html(
+                                '<span style="color:green;text-align:center"><strong>检修结束时间为空！</strong></span>');
+                        $("#infoAlert")
+                            .show();
+                        hideTimeout(
+                            "infoAlert",
+                            2000);
+                        return false;
+                    }
+                    return true
+                }
+
                 /**
                  * 单据审核
                  */
@@ -360,6 +397,9 @@ require(['../config'],
                             } else if (status == 4) {//提交人员2
                                 verifyUser3 = user_id
                                 verifyDate3 = date
+                            }
+                            if (verifyParamsBeforeSubmit(sheetData) == false) {
+                                return true;
                             }
                             var params = JSON.stringify({
                                 id: id,

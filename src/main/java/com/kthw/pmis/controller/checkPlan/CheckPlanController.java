@@ -153,15 +153,21 @@ public class CheckPlanController {
         logger.info("根据sheetid显示检修计划");
         DataTable<PlanCheck> dt = new DataTable<PlanCheck>();
         String sheetId = request.getParameter("sheetId");
+        String detectDeviceName = request.getParameter("detectDeviceName");
         try {
             Map<String, Object> params = new HashMap<>();
             List<PlanCheck> list = new ArrayList<>();
+            //探测站名称
+            if (StringUtils.isNotBlank(detectDeviceName)) {
+                params.put("likeDetectDeviceName", detectDeviceName);
+            }
             //获取faultHandle表
             if (StringUtils.isNotBlank(sheetId)) {
                 params.put("eqSheetId", sheetId);
-                params.put("orderByClause", "update_time desc,status asc");
+                params.put("orderByClause", "plan_time desc,status asc");
                 list = planCheckMapper.selectByMap(params);
             }
+
             dt.setRecordsTotal(list.size());
             dt.setRecordsFiltered(list.size());
             dt.setData(list);
@@ -185,26 +191,42 @@ public class CheckPlanController {
         logger.info("新增检修计划");
         int code = 0;
         Map<String, Object> ret = new HashMap<>();
+        Map<String, Object> params = new HashMap<>();
         DetectDevice detectDevice = new DetectDevice();
         try {
-            List<PlanCheck> list = new ArrayList<>();
-            DataTable<PlanCheck> dt = new DataTable<PlanCheck>();
-            //新增planCheck表
-            Integer id = planCheckMapper.getMaxId();
-            if (id == null) {
-                id = 1;
-            } else {
-                id = id + 1;
+            if (planCheck != null&&StringUtils.isNotBlank(planCheck.getSheetId())) {
+                List<PlanCheck> list = new ArrayList<>();
+                DataTable<PlanCheck> dt = new DataTable<PlanCheck>();
+                //新增planCheck表
+                params.put("eqSheetId",planCheck.getSheetId());
+                params.put("eqDetectDeviceId",planCheck.getDetectDeviceId());
+                List<PlanCheck> records=planCheckMapper.selectByMap(params);//获取检修记录
+                if(records.size()==0
+                        ||(records.size()==1 && planCheck.getPlanType().equals("半月检"))
+                        ||planCheck.getPlanType().equals("临时检修")) {//记录为空或者有一次半月检才能增加
+
+                    Integer id = planCheckMapper.getMaxId();
+                    if (id == null) {
+                        id = 1;
+                    } else {
+                        id = id + 1;
+                    }
+                    planCheck.setId(id);
+                    planCheckMapper.insert(planCheck);
+                    detectDevice = detectDeviceMapper.selectByPrimaryKey(planCheck.getDetectDeviceId());
+                    detectDevice.setPlanCheckEnable((short) (detectDevice.getPlanCheckEnable().intValue() + 1));
+                    detectDeviceMapper.updateByPrimaryKeySelective(detectDevice);
+
+                    ret.put("code", code);
+                    ret.put("msg", ErrCode.getMessage(code));
+                    return ret;
+                }else {//当前探测站检修记录已存在，无法增加
+                    code=ErrCode.PLAN_CHECK_EXIST;
+                    ret.put("code", code);
+                    ret.put("msg", ErrCode.getMessage(code));
+                    return ret;
+                }
             }
-            planCheck.setId(id);
-            planCheck.setStatus((short) 1);
-            planCheckMapper.insert(planCheck);
-            detectDevice = detectDeviceMapper.selectByPrimaryKey(planCheck.getDetectDeviceId());
-            detectDevice.setPlanCheckEnable((short) (detectDevice.getPlanCheckEnable().intValue() + 1));
-            detectDeviceMapper.updateByPrimaryKeySelective(detectDevice);
-            ret.put("code", code);
-            ret.put("msg", ErrCode.getMessage(code));
-            return ret;
         } catch (Exception e) {
             logger.error("新增检修计划出错");
         }
@@ -280,6 +302,13 @@ public class CheckPlanController {
             //检修完成标志
             if (planCheck.getStatus() != null && planCheck.getStatus() == 6) {
                 PlanCheckSheet planCheckSheet = planCheckSheetMapper.selectByPrimaryKey(info.getSheetId());
+
+               //更新检修完成记录数
+                planCheckSheet.setCompleteCount(planCheckSheet.getCompleteCount()+1);
+                planCheckSheetMapper.updateByPrimaryKey(planCheckSheet);
+
+
+
                 PlanCheckSheet nextMonth = new PlanCheckSheet();
                 Integer id = planCheckMapper.getMaxId();
                 if (id == null) {

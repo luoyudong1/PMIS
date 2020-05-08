@@ -54,6 +54,7 @@ public class FaultReportController {
         String queryTime = request.getParameter("queryTime");
         String queryTime2 = request.getParameter("queryTime2");
         String type = request.getParameter("type");
+        String detectDeviceName = request.getParameter("detectDeviceName");
         try {
             Map<String, Object> params = new HashMap<>();
             List<FaultHandle> list = new ArrayList<>();
@@ -65,6 +66,9 @@ public class FaultReportController {
             params.put("eqCompleteFlag", Short.valueOf(completeFlag));
             if (StringUtils.isNotBlank(type)) {
                 params.put("eqType", type);
+            }
+            if (StringUtils.isNotBlank(detectDeviceName)) {
+                params.put("likeDetectDeviceName", '%'+detectDeviceName+'%');
             }
             params.put("queryTime", queryTime);
             params.put("queryTime2", queryTime2);
@@ -95,6 +99,7 @@ public class FaultReportController {
         String depotId = request.getParameter("depotId");
         String queryTime = request.getParameter("queryTime");
         String queryTime2 = request.getParameter("queryTime2");
+        String detectDeviceName = request.getParameter("detectDeviceName");
         try {
             Map<String, Object> params = new HashMap<>();
             List<FaultHandle> list = new ArrayList<>();
@@ -102,6 +107,9 @@ public class FaultReportController {
             if (StringUtils.isNotBlank(depotId)) {
                 List<Depot> childrens = depotHelper.getChildrens(Long.valueOf(depotId));
                 params.put("depotIdList", childrens);
+            }
+            if (StringUtils.isNotBlank(detectDeviceName)) {
+                params.put("likeDetectDeviceName", '%'+detectDeviceName+'%');
             }
             params.put("queryTime", queryTime);
             params.put("queryTime2", queryTime2);
@@ -130,8 +138,6 @@ public class FaultReportController {
         DataTable<FaultHandle> dt = new DataTable<FaultHandle>();
         String depotId = request.getParameter("depotId");
         String completeFlag = request.getParameter("completeFlag");
-        String queryTime = request.getParameter("queryTime");
-        String queryTime2 = request.getParameter("queryTime2");
         String type = request.getParameter("type");
         String finished = request.getParameter("finished");
         String dispatcher = request.getParameter("dispatcher");
@@ -151,7 +157,9 @@ public class FaultReportController {
             if (StringUtils.isNotBlank(type)) {
                 params.put("eqType", type);
             }
-
+            if (StringUtils.isNotBlank(completeFlag)) {
+                params.put("eqCompleteFlag",Short.valueOf(completeFlag));
+            }
             if (StringUtils.isNotBlank(dispatcher)) {
                 params.put("eqDispatcher", Integer.valueOf(dispatcher));
             }
@@ -418,9 +426,9 @@ public class FaultReportController {
         return null;
     }
     /**
-     * 修改故障预报
+     * 归档故障预报
      *
-     * @param faultHandle
+     * @param
      * @return
      */
     @ResponseBody

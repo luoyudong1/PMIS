@@ -73,7 +73,9 @@ require(['../config'],
                 $('#btn-search').click(function (e) {
                     sheetTable.ajax.reload();
                 });
-
+                $('#search_detect').click(function (e) {
+                    sheetDetailTable.ajax.reload();
+                });
                 /**
                  * 重置
                  */
@@ -151,7 +153,8 @@ require(['../config'],
                         url: config.basePath + "/detectManage/detectManage/listDetect",
                         type: 'get',
                         data: {
-                            "depotId": deptId
+                            depotId: deptId,
+                            faultEnable: 1
                         },
                         dataType: 'json',
                         success: function (result) {
@@ -304,6 +307,7 @@ require(['../config'],
                         type: 'GET',
                         data: function (d) {
                             d.sheetId = sheet_id
+                            d.detectDeviceName='%'+$('#detectDeviceName').val()+'%'
                         }
                     },
                     columns: [{
@@ -484,12 +488,13 @@ require(['../config'],
                             detectDeviceType: $('#detectDeviceAdd option:selected').attr("deviceTypeName"),
                             detectDepotId: $('#detectDeviceAdd option:selected').attr("depotId"),
                             detectDepotName: $('#detectDeviceAdd option:selected').attr("depotName"),
-                            dispatch: $('#detectDeviceAdd option:selected').attr("dispatch"),
+                            dispatcher: $('#detectDeviceAdd option:selected').attr("dispatcher"),
                             planTime: $('#planTimeAdd').val(),
                             createUser: user_id,
                             planType: $('#planTypeAdd').val(),
                             depotId: deptId,
-                            sheetId: sheet_id
+                            sheetId: sheet_id,
+                            status:1
                         });
                         $.ajax({
                             url: config.basePath + '/checkPlan/checkPlan/add',

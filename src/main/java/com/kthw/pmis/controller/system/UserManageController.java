@@ -118,6 +118,21 @@ public class UserManageController {
 		return ret;
 	}
 	@ResponseBody
+	@RequestMapping(value = "/updateDispatcher", method = { RequestMethod.POST })
+	public Map<String, Object> update(@RequestBody User user) {
+		logger.info("修改用户调度台信息");
+		int code = 0;
+		if (user != null && StringUtils.isNotBlank(user.getUser_id())) {
+			code = userService.updateUser(user);
+		} else {
+			code = ErrCode.INCOMPLETE_INFO;
+		}
+		Map<String, Object> ret = new HashMap<String, Object>();
+		ret.put("code", code);
+		ret.put("msg", ErrCode.getMessage(code));
+		return ret;
+	}
+	@ResponseBody
 	@RequestMapping(value = "/modifyPassWord", method = { RequestMethod.POST })
 	public Map<String, Object> modifyPassWord(@RequestBody User user) {
 		logger.info("修改用户密码");

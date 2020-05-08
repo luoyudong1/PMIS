@@ -43,7 +43,7 @@ public class CheckPlanSheetController {
     private DepotHelper depotHelper;
     @ResponseBody
     @RequestMapping(value = "/getAllSheets", method = {RequestMethod.GET})
-    public DataTable<PlanCheckSheet> sheetsList(HttpServletRequest request, Long depotId) {
+    public DataTable<PlanCheckSheet> sheetsList(HttpServletRequest request, Long depotId,Short flag) {
         logger.info("显示检修计划单据");
         List<PlanCheckSheet> list = new ArrayList<>();
         DataTable<PlanCheckSheet> dt = new DataTable<PlanCheckSheet>();
@@ -53,6 +53,9 @@ public class CheckPlanSheetController {
             if (depotId!=null) {
                 List<Depot> childrens = depotHelper.getChildrens(depotId);
                 params.put("depotIdList", childrens);
+            }
+            if(flag!=null){
+                params.put("eqFlag", flag);
             }
             params.put("orderByClause", "flag asc,update_time desc");
             list = planCheckSheetMapper.selectByMap(params);
@@ -127,10 +130,13 @@ public class CheckPlanSheetController {
             //修改faultHandle表
             if (planCheckSheet.getFlag() == 3) {
                 Map<String, Object> params = new HashMap<>();
-//                PlanCheck planCheck=planCheckSheetMapper.selectByPrimaryKey(planCheckSheet.getSheetId());
+                PlanCheckSheet info=planCheckSheetMapper.selectByPrimaryKey(planCheckSheet.getSheetId());
                 params.put("eqSheetId", planCheckSheet.getSheetId());
                 params.put("status", 2);
                 planCheckMapper.updateByMap(params);
+                //下个月自动生成
+                Calendar calendar = Calendar.getInstance();
+//                calendar.setTime();
             }
             planCheckSheet.setUpdateTime(new Timestamp(new Date().getTime()));
             int flag = planCheckSheetMapper.updateByPrimaryKeySelective(planCheckSheet);

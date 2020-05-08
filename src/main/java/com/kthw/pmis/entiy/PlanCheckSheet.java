@@ -79,6 +79,60 @@ public class PlanCheckSheet {
      *   tbl_plan_check_sheet.verify_user: 审核人
      */
     private String verifyUser;
+    private Integer total;
+    private Integer completeCount;
+    private Integer singleMonthCount;
+    private Integer biMonthCount;
+    private Integer temporaryCount;
+    private Integer halfMonthCount;
+
+    public Integer getTotal() {
+        return total;
+    }
+
+    public void setTotal(Integer total) {
+        this.total = total;
+    }
+
+    public Integer getHalfMonthCount() {
+        return halfMonthCount;
+    }
+
+    public void setHalfMonthCount(Integer halfMonthCount) {
+        this.halfMonthCount = halfMonthCount;
+    }
+
+    public Integer getCompleteCount() {
+        return completeCount;
+    }
+
+    public void setCompleteCount(Integer completeCount) {
+        this.completeCount = completeCount;
+    }
+
+    public Integer getSingleMonthCount() {
+        return singleMonthCount;
+    }
+
+    public void setSingleMonthCount(Integer singleMonthCount) {
+        this.singleMonthCount = singleMonthCount;
+    }
+
+    public Integer getBiMonthCount() {
+        return biMonthCount;
+    }
+
+    public void setBiMonthCount(Integer biMonthCount) {
+        this.biMonthCount = biMonthCount;
+    }
+
+    public Integer getTemporaryCount() {
+        return temporaryCount;
+    }
+
+    public void setTemporaryCount(Integer temporaryCount) {
+        this.temporaryCount = temporaryCount;
+    }
 
     /**
      * @return the value of tbl_plan_check_sheet.sheet_id

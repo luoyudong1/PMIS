@@ -14,6 +14,7 @@ import com.kthw.pmis.entiy.dto.DetectPartsDTO;
 import com.kthw.pmis.entiy.ext.ViewParts;
 import com.kthw.pmis.helper.DepotHelper;
 import com.kthw.pmis.mapper.common.*;
+import com.kthw.pmis.service.detectManage.DetectManageService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
@@ -64,27 +65,19 @@ public class DetectManageController {
     private StoreHouseMapper storeHouseMapper;
     @Autowired
     private PartsDictMapper partsDictMapper;
+    @Autowired
+    private DetectManageService detectManageService;
     @ResponseBody
     @RequestMapping(value = "/listDetect", method = {RequestMethod.GET})
-    public DataTable<DetectDeviceDTO> sheetsList(HttpServletRequest request) {
+    public DataTable<DetectDeviceDTO> sheetsList(HttpServletRequest request,Long depotId,Integer faultEnable) {
         logger.info("显示探测站");
         Map<String, Object> params=new HashMap<>();
-        String depotId = request.getParameter("depotId");
-        String faultEnable = request.getParameter("faultEnable");
-        logger.info("显示探测站"+faultEnable);
         List<DetectDeviceDTO> list = new ArrayList<>();
         DataTable<DetectDeviceDTO> dt = new DataTable<DetectDeviceDTO>();
         int total = 0;
         try {
-        //获取子部门
-            if (StringUtils.isNotBlank(depotId)) {
-                List<Depot> childrens = depotHelper.getChildrens(Long.valueOf(depotId));
-                params.put("depotIdList", childrens);
-            } if (StringUtils.isNotBlank(faultEnable)) {
-                params.put("eqFaultEnable", Integer.valueOf(faultEnable));
-            }
-            params.put("orderByClause","ddd.create_time desc");
-            list=detectDeviceMapper.listDetectDevice(params);
+        //获取部门下属探测站
+            list=detectManageService.listDetect(depotId,faultEnable);
             dt.setRecordsTotal(total);
             dt.setRecordsFiltered(total);
         } catch (Exception e) {

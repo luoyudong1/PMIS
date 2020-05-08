@@ -89,6 +89,7 @@ require(['../config'],
                         type: 'GET',
                         data: function (d) {
                             d.depotId=deptId
+                            d.detectDeviceName=$("#detectDeviceName").val();
                             d.queryTime = ($("#queryTime").val() == '' ? '' : $("#queryTime2").val() + " 00:00:01");
                             d.queryTime2 = ($("#queryTime2").val() == '' ? '' : $("#queryTime2").val() + " 23:59:59");
 

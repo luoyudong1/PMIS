@@ -26,10 +26,10 @@
         <result column="depot_id" jdbcType="NUMERIC" property="depotId"/>
         <result column="depot_name" jdbcType="VARCHAR" property="depotName"/>
         <result column="sheet_id" jdbcType="VARCHAR" property="sheetId"/>
-        <result column="detect_depot_id" jdbcType="NUMERIC" property="detectDepotId" />
-        <result column="detect_depot_name" jdbcType="VARCHAR" property="detectDepotName" />
+        <result column="detect_depot_id" jdbcType="NUMERIC" property="detectDepotId"/>
+        <result column="detect_depot_name" jdbcType="VARCHAR" property="detectDepotName"/>
         <result column="old_plan_time" jdbcType="TIMESTAMP" property="oldPlanTime"/>
-        <result column="finished" jdbcType="NUMERIC" property="finished" />
+        <result column="finished" jdbcType="NUMERIC" property="finished"/>
         <result column="verify_user1" jdbcType="VARCHAR" property="verifyUser1"/>
         <result column="verify_user2" jdbcType="VARCHAR" property="verifyUser2"/>
         <result column="verify_user3" jdbcType="VARCHAR" property="verifyUser3"/>
@@ -38,7 +38,7 @@
         <result column="verify_date2" jdbcType="TIMESTAMP" property="verifyDate2"/>
         <result column="verify_date3" jdbcType="TIMESTAMP" property="verifyDate3"/>
         <result column="verify_date4" jdbcType="TIMESTAMP" property="verifyDate4"/>
-        <result column="dispatcher" jdbcType="NUMERIC" property="dispatcher" />
+        <result column="dispatcher" jdbcType="NUMERIC" property="dispatcher"/>
 
     </resultMap>
     <sql id="Base_Column_List">
@@ -58,6 +58,9 @@
             </if>
             <if test="eqDetectDeviceName != null">
                 AND detect_device_name = #{eqDetectDeviceName,jdbcType=VARCHAR}
+            </if>
+            <if test="likeDetectDeviceName != null">
+                AND detect_device_name like #{likeDetectDeviceName,jdbcType=VARCHAR}
             </if>
             <if test="eqDetectDeviceType != null">
                 AND detect_device_type = #{eqDetectDeviceType,jdbcType=VARCHAR}
@@ -543,7 +546,7 @@
     <!-- 辆安站调度获取计划检修处理未完成信息数量  -->
     <select id="getPlanCheckByMap" parameterType="java.util.Map" resultType="Integer">
         SELECT count(*) from tbl_plan_check_detect
-        where status=#{status}
+       where status=#{status} and dispatcher=#{dispatcher}
     </select>
 
     <!-- 车间只把暖获取计划检修处理未完成信息数量  -->

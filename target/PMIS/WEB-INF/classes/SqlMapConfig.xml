@@ -19,8 +19,5 @@
         <setting name="callSettersOnNulls" value="true"/>
     </settings>
 
-    <mappers>
-        <package name="com.weein.wxapp.dao" />
-    </mappers>
 
 </configuration>

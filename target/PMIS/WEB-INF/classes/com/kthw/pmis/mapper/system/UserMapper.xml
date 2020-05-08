@@ -51,7 +51,7 @@
 
 	<update id="updateUser" parameterType="User">
 		update TBL_user set
-		user_pass=#{user_pass},user_name=#{user_name},enabled=#{enabled},depot_id=#{depot_id}
+		dispatcher=#{dispatcher}
 		where user_id=#{user_id}
 	</update>
 	

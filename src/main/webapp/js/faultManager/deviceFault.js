@@ -75,6 +75,7 @@ require(['../config'],
                                 d.completeFlag = 7;
                                 d.type = "设备故障";
                             }
+                            d.detectDeviceName=$("#detectDeviceName").val();
                             d.queryTime = $("#queryTime").val();
                             d.queryTime2 = ($("#queryTime2").val() == '' ? '' : $("#queryTime2").val() + " 23:59:59");
                         }

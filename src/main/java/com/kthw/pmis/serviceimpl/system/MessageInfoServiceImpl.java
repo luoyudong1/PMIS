@@ -245,12 +245,13 @@ public class MessageInfoServiceImpl implements MessageInfoService {
      */
 
     //集团调度员  获得故障预报未确认信息条数  获得故障开始处理未确认信息条数  获得故障结束未确认信息条数
-    private List<MessageInfo> getDispatchMessage(Long depotId) {
+    private List<MessageInfo> getDispatchMessage(Long depotId,Long dispatcher) {
         List<MessageInfo> list = new ArrayList<>();
         Map<String, Object> params = new HashMap<>();
         // 获得故障预报未确认信息条数
         params.clear();
         params.put("flag", Long.valueOf(2));
+        params.put("dispatcher", dispatcher);
         int noVerifyCount = faultHandleMapper.getFaultCheckByMap(params);
         if (noVerifyCount > 0) {
             MessageInfo messageInfo = new MessageInfo();
@@ -261,6 +262,7 @@ public class MessageInfoServiceImpl implements MessageInfoService {
         }
         //获得故障开始处理未确认信息条数
         params.put("flag", Long.valueOf(4));
+        params.put("dispatcher", dispatcher);
         noVerifyCount = faultHandleMapper.getFaultCheckByMap(params);
         if (noVerifyCount > 0) {
             MessageInfo messageInfo = new MessageInfo();
@@ -271,6 +273,7 @@ public class MessageInfoServiceImpl implements MessageInfoService {
         }
         //获得故障结束未确认信息条数
         params.put("flag", Long.valueOf(6));
+        params.put("dispatcher", dispatcher);
         noVerifyCount = faultHandleMapper.getFaultCheckByMap(params);
         if (noVerifyCount > 0) {
             MessageInfo messageInfo = new MessageInfo();
@@ -282,6 +285,7 @@ public class MessageInfoServiceImpl implements MessageInfoService {
 
         //获得检修开始未确认信息条数
         params.put("status", Long.valueOf(3));
+        params.put("dispatcher", dispatcher);
         noVerifyCount = planCheckMapper.getPlanCheckByMap(params);
         if (noVerifyCount > 0) {
             MessageInfo messageInfo = new MessageInfo();
@@ -292,6 +296,7 @@ public class MessageInfoServiceImpl implements MessageInfoService {
         }
         //获得检修结束未确认信息条数
         params.put("status", Long.valueOf(5));
+        params.put("dispatcher", dispatcher);
         noVerifyCount = planCheckMapper.getPlanCheckByMap(params);
         if (noVerifyCount > 0) {
             MessageInfo messageInfo = new MessageInfo();
@@ -358,6 +363,7 @@ public class MessageInfoServiceImpl implements MessageInfoService {
             String depotId = request.getParameter("depotId");
             String roleId = request.getParameter("roleId");      //    ZF:增加了用户权限参数
             String roleCode = request.getParameter("roleCode");   //ZF:增加了用户登录的系统编号
+            String dispatcher=request.getParameter("dispatcher"); //ZF:增加了调度员所选调度台
 
             switch (roleCode){
                 case "PMIS":      //用户登录的为配件系统
@@ -401,12 +407,12 @@ public class MessageInfoServiceImpl implements MessageInfoService {
                         switch (depot.getDepotLevel()) {                    //    ZF:按用户权限进行了二次分类获取信息
                             case 2://辆安站单据未接收信息
                                 if(roleId.equals("13")){ // 辆安站调度员
-                                    list.addAll(getDispatchMessage(Long.valueOf(depotId)));
+                                    list.addAll(getDispatchMessage(Long.valueOf(depotId),Long.valueOf(dispatcher)));
                                     break;
                                 }
                                 break;
-                            case 4://段单据未接收信息
-                            case 5://车间单据未接收信息
+                            case 3://车间单据未接收信息
+                            case 4://车间单据未接收信息
                                 if(roleId.equals("12")){   //车间值班员
                                     list.addAll(getDispatchEchoMessage(Long.valueOf(depotId)));
                                     break;

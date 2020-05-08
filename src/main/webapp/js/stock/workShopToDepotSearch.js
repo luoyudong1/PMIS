@@ -69,7 +69,7 @@ require(['../config'], function (config) {
                 	d.sendVerifyFlag = $('#verify_flag').val();
                 	d.queryTime = $("#queryTime").val();
 	                d.queryTime2 = ($("#queryTime2").val()==''? '':$("#queryTime2").val()+" 23:59:59");
-	                d.sourceDepotId=deptId;
+	                d.objectDepotId=deptId;
                 }
             },
             columns: [{

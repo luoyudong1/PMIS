@@ -248,18 +248,13 @@ function(config) {
 						type : 'get',
 						data : function(d) {
 							d.storeHouseId=sourceStoreHouseId
-							d.partsCode = '%'
-									+ $("#query_part_id").val()
+							d.partId = '%'
+									+ $("#query_part_id").val().trim()
 									+ '%';
-							d.devicePartsName = '%'
-									+ $("#query_part_name")
+							d.partCode = '%'
+									+ $("#query_part_code")
 											.val() + '%';
-							if (!sheetTrData.supplierName) {
-							} else {
-								d.supplierName = '%'
-										+ sheetTrData.supplierName
-										+ '%';
-							}
+
 
 						}
 					},
