@@ -30,16 +30,18 @@
                     <p id="alertMsg"></p>
                 </div>
                 <div class="pull-right">
+                    <label class="control-label">探测站:</label> <input
+                        class="form-control" id="detectDeviceName" style="width: 200px; font-size: 14px; font-weight: 600; color: #2e6da4; padding-bottom: 10px; display: inline-block;">
+
                     <label class="control-label">审核状态：</label> <select
                         id="verify_flag" class="form-control"
                         style="width: 108px; font-size: 14px; font-weight: 600; color: #2e6da4; display: inline-block; margin: 10px 5px 10px 0; padding-top: 3px;">
                     <option value=""></option>
-                    <option value="1">新建</option>
-                    <option value="2">预报待审核</option>
+                    <option value="2">预报审核中</option>
                     <option value="3">故障待处理</option>
                     <option value="4">故障处理开始待审核</option>
                     <option value="5">故障处理开始</option>
-                    <option value="6">故障处理结束待审核</option>
+                    <option value="6">故障结束待审核</option>
                     <option value="7">故障处理完成</option>
                 </select>
                     <button type="button" id="btn-search" class="btn btn-primary"

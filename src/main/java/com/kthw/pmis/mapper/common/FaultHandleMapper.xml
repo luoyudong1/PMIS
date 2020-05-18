@@ -75,6 +75,7 @@
             <if test="eqDetectDeviceName != null">
                 AND detect_device_name = #{eqDetectDeviceName,jdbcType=VARCHAR}
             </if>
+
             <if test="likeDetectDeviceName != null">
                 AND detect_device_name like #{likeDetectDeviceName,jdbcType=VARCHAR}
             </if>

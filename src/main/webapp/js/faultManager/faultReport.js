@@ -334,7 +334,9 @@ require(['../config'],
                         type: 'GET',
                         data: function (d) {
                             d.depotId = deptId;
-                            d.finished = 0
+                            d.finished = 0;
+                            d.completeFlag=$('#verify_flag').val()
+                            d.detectDeviceName=$('#detectDeviceName').val()
                         }
                     },
                     columns: [{
@@ -412,7 +414,6 @@ require(['../config'],
                                 str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popSheetModal" title="删除单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
 
                             }
-
                             // str += '<button id="exportExcel" type="button" class="btn btn-success btn-xs" title="导出"><span class="glyphicon glyphicon-download-alt"></span></button>';
                             return str;
                         }

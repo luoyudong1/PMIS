@@ -63,11 +63,10 @@
 		<!--t_commission_detail -->
 
 
-  		<!--<table tableName="tbl_parts_dict" domainObjectName="PartsDict"-->
+  		<!--<table tableName="tbl_fault_info" domainObjectName="FaultInfo"-->
  			<!--enableSelectByExample="false" enableDeleteByExample="false"-->
  			<!--enableCountByExample="false" enableUpdateByExample="false"-->
  			<!--selectByExampleQueryId="false">-->
- 			<!--<generatedKey column="id" sqlStatement="MYSQL" identity="true" />-->
  		<!--</table>-->
  		<!--<table tableName="tbl_plan_check_sheet" domainObjectName="PlanCheckSheet"-->
  			<!--enableSelectByExample="false" enableDeleteByExample="false"-->

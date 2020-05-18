@@ -37,6 +37,7 @@ com\kthw\pmis\_enum\VerifyFlagType.class
 com\kthw\common\shiro\ShiroUser.class
 com\kthw\pmis\model\TableView.class
 com\kthw\common\Utils.class
+com\kthw\pmis\helper\PlanCheckHelper.class
 com\kthw\pmis\mapper\entryAndOut\RepairOutMapper.class
 com\kthw\pmis\controller\entryAndOut\PreparePurchaseController.class
 com\kthw\pmis\entiy\dto\StockInfoCountDTO.class
@@ -48,6 +49,7 @@ com\kthw\pmis\mapper\common\DetectDeviceMapper.class
 com\kthw\pmis\controller\stock\PartsSearchController.class
 com\kthw\pmis\domain\Employee.class
 com\kthw\pmis\service\system\MessageInfoService.class
+com\kthw\pmis\serviceimpl\excel\JxlsExcelServiceImpl.class
 com\kthw\common\ImageUtil.class
 com\kthw\pmis\service\entryAndOut\ProduceEntryService.class
 com\kthw\common\shiro\SecurityConstants.class
@@ -60,6 +62,7 @@ com\kthw\pmis\model\system\Role.class
 com\kthw\pmis\entiy\ResponsibleUser.class
 com\kthw\pmis\util\excel\ExportExcelUtil.class
 com\kthw\common\shiro\AdminLoginToken.class
+com\kthw\pmis\util\plan\PlanCheckUtil.class
 com\kthw\pmis\controller\partsEntryAndOut\RepairFactoryController.class
 com\kthw\pmis\entiy\StoreHouse.class
 com\kthw\common\Page.class
@@ -76,9 +79,12 @@ com\kthw\pmis\mapper\common\SheetInfoMapper.class
 com\kthw\pmis\controller\repairManage\CheckOutController.class
 com\kthw\pmis\mapper\common\SheetDetailMapper.class
 com\kthw\pmis\model\system\LoginInfo.class
+com\kthw\pmis\service\excel\JxlsExcelService.class
 com\kthw\dispatcher\Route.class
+com\kthw\pmis\service\detectManage\DetectManageService.class
 com\kthw\pmis\serviceimpl\entryAndOut\RepairOutServiceImpl.class
 com\kthw\pmis\service\entryAndOut\ScrapOutService.class
+com\kthw\pmis\helper\FaultHandleHelper.class
 com\kthw\pmis\mapper\system\MessageInfoMapper.class
 com\kthw\pmis\model\system\MenuNode.class
 com\kthw\pmis\model\system\KtProductDict.class
@@ -113,6 +119,7 @@ com\kthw\pmis\controller\system\StoreHouseManageController.class
 com\kthw\pmis\controller\entryAndOut\ProduceEntryController.class
 com\kthw\common\MD5.class
 com\kthw\pmis\model\system\Function.class
+com\kthw\pmis\serviceimpl\checkPlan\CheckPlanServiceImpl.class
 com\kthw\pmis\controller\stock\RepairAndSparesController.class
 com\kthw\pmis\mapper\entryAndOut\RepairEntryMapper.class
 com\kthw\pmis\model\repairManage\RepairAllocateDetail.class
@@ -133,6 +140,7 @@ com\kthw\pmis\controller\stock\TestToDepotController.class
 com\kthw\pmis\mapper\common\DetectPartsMapper.class
 com\kthw\pmis\controller\stock\DepotToWorkShopController.class
 com\kthw\pmis\service\entryAndOut\PurchasePartsService.class
+com\kthw\pmis\task\CheckPlanTask.class
 com\kthw\pmis\entiy\ext\ViewParts.class
 com\kthw\pmis\entiy\dto\StockInfoDTO.class
 com\kthw\pmis\model\system\LuJu.class
@@ -203,6 +211,7 @@ com\kthw\common\MatrixToImageWriter.class
 com\kthw\pmis\model\system\StoreHouseInfo.class
 com\kthw\pmis\entiy\DeviceType.class
 com\kthw\dispatcher\Step.class
+com\kthw\pmis\service\checkPlan\CheckPlanService.class
 com\kthw\pmis\websocket\VehicleMonitorHandler.class
 com\kthw\pmis\controller\checkPlan\CheckPlanController.class
 com\kthw\pmis\entiy\PartsDict.class
@@ -237,6 +246,7 @@ com\kthw\pmis\entiy\DeviceModel.class
 com\kthw\aiplan\CalcPlan.class
 com\kthw\pmis\entiy\FaultHandle.class
 com\kthw\pmis\controller\detectProduce\PartsConsumeController.class
+com\kthw\pmis\serviceimpl\detectManage\DetectManageServiceImpl.class
 com\kthw\pmis\entiy\DetectDevice.class
 com\kthw\pmis\serviceimpl\stock\StockInfoServiceImpl.class
 com\kthw\common\web\EncodesFilter$1.class
@@ -249,11 +259,11 @@ com\kthw\common\base\AppCache.class
 com\kthw\common\UtilsDate.class
 com\kthw\pmis\entiy\SheetInfo.class
 com\kthw\pmis\model\system\Route.class
+com\kthw\pmis\entiy\bo\PlanCheckAddBO.class
 com\kthw\pmis\model\KeyInfo.class
 com\kthw\pmis\mapper\SequenceMapper.class
 com\kthw\pmis\mapper\system\PartsMapper.class
 com\kthw\pmis\serviceimpl\SequenceServiceImpl.class
-com\kthw\pmis\controller\ExportExcel\JxlsExcelController.class
 com\kthw\pmis\task\FaultHandleTask.class
 com\kthw\common\ExecutionTimeLoggingSpringAOP.class
 com\kthw\pmis\controller\system\UserManageController.class

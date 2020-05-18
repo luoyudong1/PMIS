@@ -340,7 +340,12 @@ public class MessageInfoServiceImpl implements MessageInfoService {
         //获得计划检修处理待结束未确认信息条数
         params.put("status", Long.valueOf(4));
         params.put("depotId", Long.valueOf(depotId));
-        noVerifyCount = planCheckMapper.getPlanCheckByMapDept(params);
+        if(depotId==6){
+            noVerifyCount = planCheckMapper.getPlanCheckByMapDept(params);
+        }else{
+            noVerifyCount = planCheckMapper.getWorkPlanCheckByMap(params);
+        }
+
         if (noVerifyCount > 0) {
             MessageInfo messageInfo = new MessageInfo();
             messageInfo.setMessage_info("计划检修待处理结束未确认信息为" + noVerifyCount + "条");

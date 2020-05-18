@@ -57,6 +57,7 @@
                         <th>审核时间</th>
                         <th>备注</th>
                         <th>状态</th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody></tbody>
@@ -67,7 +68,10 @@
                 <div style="height: 50px;">
                     <button type="button" class="btn btn-success pull-right"
                             id="add_sheetDetail" data-toggle="modal"
-                            data-target="#addSheetDetailModal">新增</button>
+                            data-target="#addSheetDetailModal">新增临时检修计划</button>
+                    <button type="button" class="btn btn-success pull-right"
+                            id="add_sheetDetail2" data-toggle="modal"
+                            data-target="#addModal" style="margin-outside: 5px;">新增检修计划</button>
                     <button type="button" id="search_detect" class="btn btn-primary pull-right">查询</button>
                     <input id="detectDeviceName" type="text" class="form-control pull-right" style="width: 200px;"/>
                     <label class="control-label pull-right">探测站：</label>
@@ -221,7 +225,70 @@
         </div>
     </div>
 </div>
-
+<!-- addSheetModal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+     aria-labelledby="addModal" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 1000px; overflow-x: auto;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">新增检修计划</h3>
+                <p id="alertMsgAdd2"
+                   style="position: absolute; left: 42%; top: 25px; width: 25%; height: 50px; display: none"></p>
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <div class="input-group">
+                            <label><strong>线&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;别：</strong></label>
+                            <select id="lineAdd2" class="form-control "
+                                    style="width: 200px;">
+                                <option></option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <label><strong>探测站类型：</strong></label>
+                            <select id="detectTypeAdd2" class="form-control "
+                                    style="width: 200px;">
+                                <option></option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <label><strong>探测站名称：</strong></label>
+                            <select id="detectDeviceAdd2" class="form-control "
+                                    style="width: 200px;">
+                                <option></option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <label><strong>检修计划类型：</strong></label> <input
+                                id="planTypeAdd2" type="text" class="form-control"
+                                style="width: 200px;" autocomplete="off" readonly/>
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <label><strong>计划检修时间：</strong></label> <input
+                                id="planTimeAdd2" type="text" class="form-control"
+                                placeholder="请输入计划检修时间" style="width: 200px;" autocomplete="off">
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <button id="btnAddSheetDetailOk2" data-dismiss="modal" type="submit"
+                            class="btn btn-primary">确定
+                    </button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- deletePartsModal -->
 <div class="modal fade" id="popModal" tabindex="-1" role="dialog"
      aria-labelledby="myPopModalLabel" aria-hidden="true">

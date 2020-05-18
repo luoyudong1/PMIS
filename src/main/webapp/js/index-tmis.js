@@ -4,9 +4,8 @@
 var currentModal = "";  //当前模块
 var currentParent = "";//左侧主菜单
 var curr_fun = "";//点击功能id
-var Msg_Clicked = 0;      // 消息已被点击查看的数量
-var Msg_numb = ["0", "0", "0", "0"];
-var Sub_count = ["0", "0", "0", "0"];
+var Sub_Msg = [1,1,1,1,1,1];
+var Sound_judge=true;
 var auths = {};
 require(['config'], function (config) {
 
@@ -62,7 +61,7 @@ require(['config'], function (config) {
                         user.roleId = result.roles.role_id;              //用户角色ID
                         user.roleCode = result.roles.role_code;            //用户角色CODE
                         user.menus = result.menus;                       //用户菜单
-                        user.dispatcher = result.dispatcher;                       //用户菜单
+                        user.dispatcher = result.dispatcher;                       //调度台
                         auths = result.auths;
                         user.idxUrl = result.idxUrl;//此处的idxUrl是功能id
                         window.self.user = user;   //dujun  2018-07-16
@@ -101,7 +100,7 @@ require(['config'], function (config) {
                             currentModal = result.menus[0].code;
                             currentParent = result.menus[0].children[0].code;
                             $("#navTop li[role='" + result.menus[0].code + "']").css("background-color", "#1ab394");
-                            $("#navTop li[role='" + result.menus[0].children[0].code + "'] a").css("color", "white");
+                            $("#side-menu li[role='" + result.menus[0].children[0].code + "'] a").css("color", "white");
                         }
                         $("#side-menu .memu_parent_" + currentModal).show();
                         $('#userName').text(user.userName); // 显示登录用户
@@ -130,6 +129,8 @@ require(['config'], function (config) {
             //右上角提示信息
             var msgInfos = function () {
 
+
+
                 $.ajax({
                     url: config.basePath + '/system/messageInfo/getMessageInfoList',
                     type: 'GET',
@@ -143,41 +144,52 @@ require(['config'], function (config) {
 //	            if($('#MsgInfoNumb').text() == null || result.data.length > $('#MsgInfoNumb').text()){
 //	            };
 
-                        $('#MegInfos').empty();
+
                         if (result != null && result.data.length > 0) {
                             var MsgInfos = result.data;
-                            var MsgNumb = 0;
-                            var id = 0;
-                            var judge = true;
-                            for (var i = 0; i < MsgInfos.length; i++) {
-                                //		$('#MegInfos').append("<li style='background: rgba(255,250,231,0.7);'><span style='color:red'>"+MsgInfos[i].message_info+"</span>")
-                                id = MsgInfos[i].message_id;
-                                if (MsgInfos[i].message_state != Msg_numb[id]) {
-                                    if (MsgInfos[i].message_state < Msg_numb[id]) {
-                                        judge = false;
-                                    }
-                                    Msg_numb[id] = MsgInfos[i].message_state;
-                                    Sub_count[id] = "0";
-                                    //被点击后的消息数
-                                    Msg_Clicked = Msg_Clicked + Msg_numb[id];
+                            var Msg_Count = 0;
+                            var Msg_Id = 0;
+                            var Sub_Msg_Count = 0;
+                            var Msg_Nmb=[0,0,0,0,0,0];
+                            for(var i = 0; i < MsgInfos.length; i++){
+                                if( $("#"+MsgInfos[i].message_id).attr("href")!=null){
+                                    Msg_Nmb[MsgInfos[i].message_id]= $("#"+MsgInfos[i].message_id).attr("href");
+                                    console.log("Msg_Nmb[Msg_Id]=============",Msg_Nmb[MsgInfos[i].message_id]);
                                 }
+                            }
+                            $('#MegInfos').empty();
+                            for (var i = 0; i < MsgInfos.length; i++) {
+                                Msg_Id = MsgInfos[i].message_id;
+                                Msg_Count = Msg_Count + MsgInfos[i].message_state;
+                                $('#MegInfos').append("<li> <a id='" + MsgInfos[i].message_id + "' href='" + MsgInfos[i].message_state + "' class='dropdown-item'> <div><i id='bell_"+MsgInfos[i].message_id+"' class='fa fa-bell fa-fw' style='color:red'></i> &nbsp&nbsp&nbsp&nbsp" + MsgInfos[i].message_info + "</div> </a></li>");  //显示提示信息
+                                if(MsgInfos[i].message_state > Msg_Nmb[Msg_Id]){
+                                    Sub_Msg[Msg_Id] = 1;
+                                }
+                                if(Sub_Msg[Msg_Id]==0){
+                                    $("#bell_"+Msg_Id).css("color","#000000");   //
+                                }
+                                Sub_Msg_Count=Sub_Msg_Count+Sub_Msg[Msg_Id];
 
-                                //实际消息数量
-                                MsgNumb = MsgNumb + MsgInfos[i].message_state;
-                                $('#MegInfos').append("<li> <a id='" + MsgInfos[i].message_id + "' href='" + MsgInfos[i].message_state + "' class='dropdown-item'> <div><i class='fa fa-bell fa-fw'></i> " + MsgInfos[i].message_info + "</div> </a></li>");  //显示提示信息
                             }
 
-                            $("#MsgInfoNumb").html(MsgNumb);
+                            $("#MsgInfoNumb").html(Msg_Count);
                             //$(".fa-bell").css("color","#f27459");
-                            if (Msg_Clicked > 0 && judge) {
+                            if (Sub_Msg_Count) {
                                 $("#wifi1").attr("class", "wifi-circle first");
                                 $("#wifi2").attr("class", "wifi-circle second");
                                 $("#wifi3").attr("class", "wifi-circle third");    //此处喇叭开始动态
 
-                                $('audio').remove();
-                                var audioElementHovertree = document.createElement('audio');
-                                audioElementHovertree.setAttribute('src', config.basePath + '/sound/message.mp3');
-                                audioElementHovertree.setAttribute('autoplay', 'autoplay'); //打开自动播放报警声音            //audioElement.load();
+                                if(Sound_judge){
+                                    $('audio').remove();
+                                    var audioElementHovertree = document.createElement('audio');
+                                    if(user.dispatcher==2){
+                                        audioElementHovertree.setAttribute('src', config.basePath + '/sound/message.mp3');
+                                    }else{
+                                        audioElementHovertree.setAttribute('src', config.basePath + '/sound/message.mp3');
+                                    }
+                                    audioElementHovertree.setAttribute('autoplay', 'autoplay'); //打开自动播放报警声音            //audioElement.load();
+                                }
+
                             } else {
                                 $("#wifi1").attr("class", "wifi-circle first-0");
                                 $("#wifi2").attr("class", "wifi-circle second-0");
@@ -187,9 +199,11 @@ require(['config'], function (config) {
                         } else {
                             $("#MsgInfoNumb").html(0);
                             //$(".fa-bell").css("color","#b9b1ab");
+                            $('#MegInfos').empty();
                             $("#wifi1").attr("class", "wifi-circle-0 first-0");
                             $("#wifi2").attr("class", "wifi-circle-0 second-0");
                             $("#wifi3").attr("class", "wifi-circle-0 third-0");    //此处喇叭动态结束，颜色复原
+
                         }
                     }
                 });
@@ -209,38 +223,37 @@ require(['config'], function (config) {
             //显示消息被选中
             $('#MegInfos').on('click', 'a', function (e) {
                 e.preventDefault();
-                //e.stopPropagation();
-                var subNmb = $(this).attr("href");
-                var msgId = $(this).attr("id");
+                Sound_judge=false;
+                var Msg_Id = $(this).attr("id");
                 switch (true) {
                     case user.deptId == 50:     //辆安站用户
                         switch (user.roleId) {
                             case 13:      //辆安站调度
-                                if (msgId == 0) {    //故障预报未确认信息
+                                if (Msg_Id == 0) {    //故障预报未确认信息
                                     $("#navTop li a").eq(0).click();
                                     var idxUrl = '457';
                                     currentParent = 'faultManager1';
                                     break;
                                 }
-                                if (msgId == 1) {   //故障处理开始未确认信息
+                                if (Msg_Id == 1) {   //故障处理开始未确认信息
                                     $("#navTop li a").eq(0).click();
                                     var idxUrl = '457';
                                     currentParent = 'faultManager1';
                                     break;
                                 }
-                                if (msgId == 2) {   //故障处理结束未确认信息
+                                if (Msg_Id == 2) {   //故障处理结束未确认信息
                                     $("#navTop li a").eq(0).click();
                                     var idxUrl = '457';
                                     currentParent = 'faultManager1';
                                     break;
                                 }
-                                if (msgId == 3) {   //计划检修开始未确认信息
+                                if (Msg_Id == 3) {   //计划检修开始未确认信息
                                     $("#navTop li a").eq(1).click();
                                     var idxUrl = '465';
                                     currentParent = 'checkPlan1';
                                     break;
                                 }
-                                if (msgId == 4) {   //计划检修结束未确认信息
+                                if (Msg_Id== 4) {   //计划检修结束未确认信息
                                     $("#navTop li a").eq(1).click();
                                     var idxUrl = '465';
                                     currentParent = 'checkPlan1';
@@ -251,19 +264,19 @@ require(['config'], function (config) {
                     case(user.deptId > 4 && user.deptId < 16):  //车间用户
                         switch (user.roleId) {
                             case 12:      //车间值班员
-                                if (msgId == 0) {    //车间未接收所调拨的单据
+                                if (Msg_Id == 0) {    //车间未接收所调拨的单据
                                     $("#navTop li a").eq(0).click();
                                     var idxUrl = '452';
                                     currentParent = 'faultManager1';
                                     break;
                                 }
-                                if (msgId == 1) {   //车间未接收所报废调拨的单据
+                                if (Msg_Id == 1) {   //车间未接收所报废调拨的单据
                                     $("#navTop li a").eq(0).click();
                                     var idxUrl = '452';
                                     currentParent = 'faultManager1';
                                     break;
                                 }
-                                if (msgId == 2) {   //车间未接收所报废调拨的单据
+                                if (Msg_Id == 2) {   //车间未接收所报废调拨的单据
                                     $("#navTop li a").eq(1).click();
                                     var idxUrl = '462';
                                     currentParent = 'checkPlan1';
@@ -273,12 +286,16 @@ require(['config'], function (config) {
                                 break;
                         }
                 }
+
+
+                $('#side-menu a[href="#' + currentParent + '"]').parent().removeClass('active');
                 $('#side-menu a[href="#' + currentParent + '"]').click();
+
                 nav.openTab(idxUrl);
-                if (Sub_count[msgId] == 0) {
-                    Msg_Clicked = Msg_Clicked - subNmb;
-                }
-                Sub_count[msgId] = '1';
+
+                $('iframe').attr('src',$('iframe').attr('src'));
+
+                Sub_Msg[Msg_Id] = 0;
                 msgInfos();
                 /**
                  $.ajax({
@@ -289,13 +306,18 @@ require(['config'], function (config) {
                 success: function (result) {
                     if(result.code == 0){msgInfos();}
                 }
-            });
+                });
                  **/
             });
 
             //每2.5分钟执行一次
             msgInfos();
-            window.setInterval(msgInfos, 150000);
+            window.setInterval(MsgInfos_Repeat, 150000);
+
+            function MsgInfos_Repeat(){
+                Sound_judge=true;
+                msgInfos();
+            }
 
             //显示主界面
             $('a[data-toggle="tab"]').on('shown.bs.tab', function () {
@@ -306,8 +328,13 @@ require(['config'], function (config) {
                 } else {
                     //功能id,功能的最顶层父级菜单url,功能url,功能名称
                     nav.createTab($(this).attr('href').substr(1), $(this).attr('role'), $(this).attr('data-parentrole'), $(this).text());
+                    console.log("i$(this).attr('href').substr(1)===="+$(this).attr('href').substr(1));
+                    console.log("$(this).attr('role')===="+$(this).attr('role'));
+                    console.log("$(this).attr('data-parentrole')===="+$(this).attr('data-parentrole'));
+                    console.log("$(this).text()===="+$(this).text());
                     if (newWindow != '' && newWindow != null) {
                         var hrefDom = newWindow.attr('href').substring(1)
+                        console.log("hrefDom===="+hrefDom);
                         nav.closeTab(hrefDom);
                     }
                     newWindow = $(this)
@@ -508,31 +535,30 @@ require(['config'], function (config) {
                 }
                 return ret;
             }
-        $('#dispatcher').change(function () {
-            user.dispatcher=$(this).val();
-            Msg_Clicked=0;      // 消息已被点击查看的数量
-            Msg_numb=["0","0","0","0"];
-            Sub_count=["0","0","0","0"];
-            msgInfos();
-            $.ajax({
-                async: false,
-                url: config.basePath + "/system/userManage/updateDispatcher",
-                type: 'POST',
-                contentType: 'application/json',
-                dataType: "json",
-                data: JSON.stringify({
-                    user_id: user.userId,
-                    dispatcher: $('#dispatcher').val()
-                }),
-                success: function (result) {
+            $('#dispatcher').change(function () {
+                user.dispatcher=$(this).val();
+                Sub_Msg = [1,1,1,1,1,1];
+                Sound_judge=true;
+                msgInfos();
+                $.ajax({
+                    async: false,
+                    url: config.basePath + "/system/userManage/updateDispatcher",
+                    type: 'POST',
+                    contentType: 'application/json',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        user_id: user.userId,
+                        dispatcher: $('#dispatcher').val()
+                    }),
+                    success: function (result) {
 
-                },
-                error: function (result) {
-                    alert(result.msg)
-                }
+                    },
+                    error: function (result) {
+                        alert(result.msg)
+                    }
+                })
+                $('iframe').attr('src',$('iframe').attr('src'));
             })
-            $('iframe').attr('src',$('iframe').attr('src'));
-        })
         }
     );
 

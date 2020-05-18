@@ -5,17 +5,17 @@ var currentModal="";  //当前模块
 var currentParent="";//左侧主菜单
 var curr_fun = "";//点击功能id
 var Msg_Clicked=0;      // 消息已被点击查看的数量
-var Msg_numb=["0","0","0","0"];
-var Sub_count=["0","0","0","0"];
+var Sub_Msg = [1,1,1,1,1,1];
+var Sound_judge=true;
 var auths = {};
 require(['config'], function (config) {
 
-	require(['jquery','common/nav','popper','toastr','pace','bootstrap','metisMenu','slimscroll','inspinia','common/dateFormat'], function ($,nav,Popper,toastr,pace) {
+    require(['jquery','common/nav','popper','toastr','pace','bootstrap','metisMenu','slimscroll','inspinia','common/dateFormat'], function ($,nav,Popper,toastr,pace) {
         var newWindow=''   //新窗口
         var oldWindow=''   //旧窗口
 
 
-		function init () {
+        function init () {
             //-------------------------------------------------------------------
             var user = {};
             var userRole=[];
@@ -24,7 +24,7 @@ require(['config'], function (config) {
                 var str = url.substr( 1 ); //substr()方法返回从参数值开始到结束的字符串；
                 var strs = str.split( "&" );
                 for ( var i = 0; i < strs.length; i++ ) {
-                       userRole[i]=  strs[ i ].split( "=" )[ 1 ];                       // theRequest[ (strs[ i ].split( "=" )[ 0 ]).toLowerCase() ] = ( strs[ i ].split( "=" )[ 1 ] );
+                    userRole[i]=  strs[ i ].split( "=" )[ 1 ];                       // theRequest[ (strs[ i ].split( "=" )[ 0 ]).toLowerCase() ] = ( strs[ i ].split( "=" )[ 1 ] );
                 }
                 console.log( userRole[0]);
             }
@@ -115,10 +115,7 @@ require(['config'], function (config) {
 
 
         //右上角提示信息
-        var msgInfos =function(){
-            console.log("user.deptId====="+user.deptId);
-            console.log("user.roleId========"+user.roleId);
-            console.log("user.roleCode========"+user.roleCode);
+        var msgInfos = function () {
             $.ajax({
                 url: config.basePath + '/system/messageInfo/getMessageInfoList',
                 type: 'GET',
@@ -131,43 +128,53 @@ require(['config'], function (config) {
 //	            if($('#MsgInfoNumb').text() == null || result.data.length > $('#MsgInfoNumb').text()){
 //	            };
 
-                    $('#MegInfos').empty();
+
                     if (result != null && result.data.length > 0) {
                         var MsgInfos = result.data;
-                        var MsgNumb = 0;
-                        var id=0;
-                        var judge= true;
-                        for(var i=0;i<MsgInfos.length;i++){
-                            //		$('#MegInfos').append("<li style='background: rgba(255,250,231,0.7);'><span style='color:red'>"+MsgInfos[i].message_info+"</span>")
-                            id=MsgInfos[i].message_id;
-                            if(MsgInfos[i].message_state != Msg_numb[id]){
-                                if(MsgInfos[i].message_state<Msg_numb[id]){
-                                    judge=false;
-                                }
-                                Msg_numb[id] = MsgInfos[i].message_state;
-                                Sub_count[id]="0";
-                                //被点击后的消息数
-                                Msg_Clicked= Msg_Clicked+Msg_numb[id];
+                        var Msg_Count = 0;
+                        var Msg_Id = 0;
+                        var Sub_Msg_Count = 0;
+                        var Msg_Nmb=[0,0,0,0,0,0];
+                        for(var i = 0; i < MsgInfos.length; i++){
+                            if( $("#"+MsgInfos[i].message_id).attr("href")!=null){
+                                Msg_Nmb[MsgInfos[i].message_id]= $("#"+MsgInfos[i].message_id).attr("href");
+                                console.log("Msg_Nmb[Msg_Id]=============",Msg_Nmb[MsgInfos[i].message_id]);
                             }
+                        }
+                        $('#MegInfos').empty();
+                        for (var i = 0; i < MsgInfos.length; i++) {
+                            Msg_Id = MsgInfos[i].message_id;
+                            Msg_Count = Msg_Count + MsgInfos[i].message_state;
+                            $('#MegInfos').append("<li> <a id='" + MsgInfos[i].message_id + "' href='" + MsgInfos[i].message_state + "' class='dropdown-item'> <div><i id='bell_"+MsgInfos[i].message_id+"' class='fa fa-bell fa-fw' style='color:red'></i> &nbsp&nbsp&nbsp&nbsp" + MsgInfos[i].message_info + "</div> </a></li>");  //显示提示信息
+                            if(MsgInfos[i].message_state > Msg_Nmb[Msg_Id]){
+                                Sub_Msg[Msg_Id] = 1;
+                            }
+                            if(Sub_Msg[Msg_Id]==0){
+                                $("#bell_"+Msg_Id).css("color","#000000");   //
+                            }
+                            Sub_Msg_Count=Sub_Msg_Count+Sub_Msg[Msg_Id];
 
-                            //实际消息数量
-                            MsgNumb=MsgNumb+MsgInfos[i].message_state;
-                            $('#MegInfos').append("<li> <a id='"+MsgInfos[i].message_id+"' href='"+MsgInfos[i].message_state+"' class='dropdown-item'> <div><i class='fa fa-bell fa-fw'></i> "+MsgInfos[i].message_info+"</div> </a></li>");  //显示提示信息
                         }
 
-                        $("#MsgInfoNumb").html(MsgNumb);
+                        $("#MsgInfoNumb").html(Msg_Count);
                         //$(".fa-bell").css("color","#f27459");
-                        if(Msg_Clicked>0&&judge) {
+                        if (Sub_Msg_Count) {
                             $("#wifi1").attr("class", "wifi-circle first");
                             $("#wifi2").attr("class", "wifi-circle second");
-                            $("#wifi3").attr("class", "wifi-circle third");    //此处喇叭图标开始动态
-                            $('audio').remove();
+                            $("#wifi3").attr("class", "wifi-circle third");    //此处喇叭开始动态
 
-                            var audioElementHovertree = document.createElement('audio');
-                            audioElementHovertree.setAttribute('src', config.basePath+'/sound/message.mp3');
-                            audioElementHovertree.setAttribute('autoplay', 'autoplay');    //打开自动播放报警声音            //audioElement.load();
+                            if(Sound_judge){
+                                $('audio').remove();
+                                var audioElementHovertree = document.createElement('audio');
+                                if(user.dispatcher==2){
+                                    audioElementHovertree.setAttribute('src', config.basePath + '/sound/message.mp3');
+                                }else{
+                                    audioElementHovertree.setAttribute('src', config.basePath + '/sound/message.mp3');
+                                }
+                                audioElementHovertree.setAttribute('autoplay', 'autoplay'); //打开自动播放报警声音            //audioElement.load();
+                            }
 
-                        }else {
+                        } else {
                             $("#wifi1").attr("class", "wifi-circle first-0");
                             $("#wifi2").attr("class", "wifi-circle second-0");
                             $("#wifi3").attr("class", "wifi-circle third-0");    //此处喇叭取消动态
@@ -176,9 +183,11 @@ require(['config'], function (config) {
                     } else {
                         $("#MsgInfoNumb").html(0);
                         //$(".fa-bell").css("color","#b9b1ab");
-                        $("#wifi1").attr("class","wifi-circle-0 first-0");
-                        $("#wifi2").attr("class","wifi-circle-0 second-0");
-                        $("#wifi3").attr("class","wifi-circle-0 third-0");    //此处喇叭动态结束，颜色复原
+                        $('#MegInfos').empty();
+                        $("#wifi1").attr("class", "wifi-circle-0 first-0");
+                        $("#wifi2").attr("class", "wifi-circle-0 second-0");
+                        $("#wifi3").attr("class", "wifi-circle-0 third-0");    //此处喇叭动态结束，颜色复原
+
                     }
                 }
             });
@@ -186,32 +195,31 @@ require(['config'], function (config) {
 
         //点击上方模块切换
         $("#navTop li a").click(function(){
-        	currentModal = $(this).parent().attr('role');
-        	$(this).parent().css("background-color","#1ab394");
-        	$(this).css("color","white");
-        	$(this).parent().siblings().css("background-color","");
-        	$(this).parent().siblings().find('a').css("color","");
-        	$("#side-menu ").children("li:gt(0)").hide();
-        	$("#side-menu .memu_parent_" + currentModal).slideDown();
+            currentModal = $(this).parent().attr('role');
+            $(this).parent().css("background-color","#1ab394");
+            $(this).css("color","white");
+            $(this).parent().siblings().css("background-color","");
+            $(this).parent().siblings().find('a').css("color","");
+            $("#side-menu ").children("li:gt(0)").hide();
+            $("#side-menu .memu_parent_" + currentModal).slideDown();
         });
 
         //显示消息被选中
         $('#MegInfos').on('click', 'a', function (e) {
             e.preventDefault();
-            //e.stopPropagation();
-            var subNmb=$(this).attr("href");
-            var msgId=$(this).attr("id");
+            Sound_judge=false;
+            var Msg_Id = $(this).attr("id");
             switch(true){
                 case user.deptId==3:     //机辆检测所用户
                     switch (user.roleId) {
                         case 2:      //库管人员
-                            if(msgId==0){    //所未接收车间返修的单据
+                            if(Msg_Id==0){    //所未接收车间返修的单据
                                 $("#navTop li a").eq(2).click();
                                 var idxUrl = '188';
                                 currentParent = 'stock5';
                                 break;
                             }
-                            if(msgId==1){   //未接收所内检修出库审核
+                            if(Msg_Id==1){   //未接收所内检修出库审核
                                 $("#navTop li a").eq(1).click();
                                 var idxUrl = '232';
                                 currentParent = 'repaireManage5';
@@ -219,19 +227,19 @@ require(['config'], function (config) {
                             }
                             break;
                         case 3:  //审核人员
-                            if(msgId==0){  //所未审核车间返修的单据
+                            if(Msg_Id==0){  //所未审核车间返修的单据
                                 $("#navTop li a").eq(2).click();
                                 var idxUrl = '189';
                                 currentParent = 'stock5';
                                 break;
                             }
-                            if(msgId==1){   //所未审核所配送到车间调拨的单据
+                            if(Msg_Id==1){   //所未审核所配送到车间调拨的单据
                                 $("#navTop li a").eq(2).click();
                                 var idxUrl = '180';
                                 currentParent = 'stock2';
                                 break;
                             }
-                            if(msgId==2){   //所未审核所报废配送到车间调拨的单据
+                            if(Msg_Id==2){   //所未审核所报废配送到车间调拨的单据
                                 $("#navTop li a").eq(0).click();
                                 var idxUrl = '152';
                                 currentParent = 'entryAndOut5';
@@ -239,7 +247,7 @@ require(['config'], function (config) {
                             }
                             break;
                         case 4:   //检修人员
-                            if(msgId==0) {   //所内未审核的送修单据为
+                            if(Msg_Id==0) {   //所内未审核的送修单据为
                                 $("#navTop li a").eq(0).click();
                                 var idxUrl = '162';
                                 currentParent = 'repaireManage1';
@@ -250,13 +258,13 @@ require(['config'], function (config) {
                 case(user.deptId>7&&user.deptId<16):  //车间用户
                     switch (user.roleId) {
                         case 6:      //车间录入人员
-                            if (msgId==0) {    //车间未接收所调拨的单据
+                            if (Msg_Id==0) {    //车间未接收所调拨的单据
                                 $("#navTop li a").eq(1).click();
                                 var idxUrl = '281';
                                 currentParent = 'stock8';
                                 break;
                             }
-                            if(msgId==1){   //车间未接收所报废调拨的单据
+                            if(Msg_Id==1){   //车间未接收所报废调拨的单据
                                 $("#navTop li a").eq(1).click();
                                 var idxUrl = '271';
                                 currentParent = 'stock7';
@@ -264,19 +272,19 @@ require(['config'], function (config) {
                             }
                             break;
                         case 7:
-                            if(msgId==0){  //车间未审核所调拨的单据
+                            if(Msg_Id==0){  //车间未审核所调拨的单据
                                 $("#navTop li a").eq(0).click();
                                 var idxUrl = '282';
                                 currentParent = 'stock8';
                                 break;
                             }
-                            if(msgId==1){   //车间未审核所报废调拨的单据
+                            if(Msg_Id==1){   //车间未审核所报废调拨的单据
                                 $("#navTop li a").eq(0).click();
                                 var idxUrl = '272';
                                 currentParent = 'stock7';
                                 break;
                             }
-                            if(msgId==2){   //车间未审核返修调拨的单据
+                            if(Msg_Id==2){   //车间未审核返修调拨的单据
                                 $("#navTop li a").eq(0).click();
                                 var idxUrl = '186';
                                 currentParent = 'stock4';
@@ -298,15 +306,17 @@ require(['config'], function (config) {
                 default:
                     break;
             }
-            $('#side-menu a[href="#'+currentParent+'"]').click();
+            $('#side-menu a[href="#' + currentParent + '"]').parent().removeClass('active');
+            $('#side-menu a[href="#' + currentParent + '"]').click();
+
             nav.openTab(idxUrl);
-            if(Sub_count[msgId]==0){
-                Msg_Clicked=Msg_Clicked-subNmb;
-            }
-            Sub_count[msgId]='1';
+
+            $('iframe').attr('src',$('iframe').attr('src'));
+
+            Sub_Msg[Msg_Id] = 0;
             msgInfos();
-/**
-            $.ajax({
+            /**
+             $.ajax({
                 url: config.basePath + '/system/messageInfo/updateMessageState',
                 type: 'POST',
                 data: $.param({message_id:$(this).attr('id').split("_")[1]}),
@@ -315,29 +325,34 @@ require(['config'], function (config) {
                     if(result.code == 0){msgInfos();}
                 }
             });
- **/
+             **/
         });
 
         //每10分钟执行一次
         msgInfos();
-        window.setInterval(msgInfos,500000);
+        window.setInterval(MsgInfos_Repeat, 10000);
+
+        function MsgInfos_Repeat(){
+            Sound_judge=true;
+            msgInfos();
+        }
 
         //显示主界面
         $('a[data-toggle="tab"]').on('shown.bs.tab', function () {
-        	curr_fun = $(this).attr('href').substr(5);
-        	if($(this).attr('data-parentrole') == 'dataAnalyse/deviceBi' || $(this).attr('data-parentrole') == 'dataAnalyse/vehTXDSFaultStatistics'){
-        	    window.open(config.basePath+'/pages/'+$(this).attr('data-parentrole')+'.html', '_blank');
-        		$("ul[id^='menu'] li a").removeClass('active');
-        	}else{
-	        	//功能id,功能的最顶层父级菜单url,功能url,功能名称
-	        	nav.createTab($(this).attr('href').substr(1), $(this).attr('role'), $(this).attr('data-parentrole'),$(this).text());
+            curr_fun = $(this).attr('href').substr(5);
+            if($(this).attr('data-parentrole') == 'dataAnalyse/deviceBi' || $(this).attr('data-parentrole') == 'dataAnalyse/vehTXDSFaultStatistics'){
+                window.open(config.basePath+'/pages/'+$(this).attr('data-parentrole')+'.html', '_blank');
+                $("ul[id^='menu'] li a").removeClass('active');
+            }else{
+                //功能id,功能的最顶层父级菜单url,功能url,功能名称
+                nav.createTab($(this).attr('href').substr(1), $(this).attr('role'), $(this).attr('data-parentrole'),$(this).text());
                 if(newWindow!=''&&newWindow!=null) {
                     var hrefDom = newWindow.attr('href').substring(1)
                     nav.closeTab(hrefDom);
                 }
                 newWindow=$(this)
 
-        	}
+            }
         });
 
         //关闭功能
@@ -361,7 +376,7 @@ require(['config'], function (config) {
             $("#user-index").empty();
             $.each(user.menus, function (idx, menu) {
                 $.each(menu.children, function (i, item) {
-                	$.each(item.children, function (j, item3) {
+                    $.each(item.children, function (j, item3) {
                         $('#user-index').append('<option value="' + item3.id + '">' + item3.name + '</option>')
                     });
                 });
@@ -373,7 +388,7 @@ require(['config'], function (config) {
             e.preventDefault();
             //判断修改首页是否与当前首页相同
             if(user.idxUrl == $('#user-index').val()){
-            	$('#updateModal').modal('show');
+                $('#updateModal').modal('show');
             }
             if (user.idxUrl != $('#user-index').val()) {
                 $.ajax({
@@ -389,7 +404,7 @@ require(['config'], function (config) {
                             alert(result.msg);
                         } else {
                             user.idxUrl = $('#user-index').val();
-                          //首页修改完成后自动刷新页面
+                            //首页修改完成后自动刷新页面
                             window.location.reload();
                         }
                     }
@@ -400,7 +415,7 @@ require(['config'], function (config) {
         $("#btnModifyPsOk").on('click', function (e) {
             e.preventDefault();
             if ($('#old-ps').val() == '' || $('#new-ps').val() == "" || $('#cf-ps').val() == "") {
-            	$('#noModal').modal('show');
+                $('#noModal').modal('show');
                 //清空密码输入框
                 $('#old-ps').val("");
                 $('#new-ps').val("");
@@ -408,7 +423,7 @@ require(['config'], function (config) {
                 return false;
             } else {
                 if ($('#new-ps').val() != $('#cf-ps').val()) {
-                	$('#noSameModal').modal('show');
+                    $('#noSameModal').modal('show');
                     //清空密码输入框
                     $('#old-ps').val("");
                     $('#new-ps').val("");
@@ -434,7 +449,7 @@ require(['config'], function (config) {
                                 $('#cf-ps').val("");
                                 return false;
                             } else {
-                            	$('#updatePassModal').modal('show');
+                                $('#updatePassModal').modal('show');
                                 //清空密码输入框
                                 $('#old-ps').val("");
                                 $('#new-ps').val("");
@@ -450,88 +465,88 @@ require(['config'], function (config) {
 
         //构建左侧小图标，二级菜单的
         function buildIcon(role){
-        	var ret="fa-th-large"; //默认
-        	switch(role){
-        	   case 'dispatchDirect':  //调度管理
-        		   ret = 'fa-recycle'; //图表
-        		   break;
-        	   case 'safeManage':  //风险管控
-        		   ret = 'fa-cogs'; //齿轮
-        		   break;
-        	   case 'safeManage2':  //隐患整改
-        		   ret = 'fa-wrench'; //扳手
-        		   break;
-        	   case 'safeManage3':  //信息追踪
-        		   ret = 'fa-mail-reply-all';
-        		   break;
-        	   case 'safeManage4':  //预警通知
-        		   ret = 'fa-bell'; //铃铛
-        		   break;
-        	   case 'safeManage5':  //干部考核
-        		   ret = 'fa-users'; //人员
-        		   break;
-        	   case 'safeManage6':  //应急处理
-        		   ret = 'fa-history';
-        		   break;
-        	   case 'constructManage3':  //施工计划
-        		   ret = 'fa-clone';
-        		   break;
-        	   case 'devManage':  //设备管理
-        		   ret = 'fa-tachometer';
-        		   break;
-        	   case 'devManage5':  //统计分析
-        		   ret = 'fa-bar-chart-o'; //图表
-        		   break;
-        	   case 'materialsManage1':  //出入库管理
-        		   ret = 'fa-archive';
-        		   break;
-        	   case 'materialsManage2':  //材料台账
-        		   ret = 'fa-film';
-        		   break;
-        	   case 'materialsManage3':  //统计报表
-        		   ret = 'fa-bar-chart-o'; //图表
-        		   break;
-        	   case 'taskReport1':  //生产报表
-        		   ret = 'fa-newspaper-o';
-        		   break;
-        	   case 'taskReport2':  //生产录入
-        		   ret = 'fa-pencil-square-o';
-        		   break;
-        	   case 'repairVehicleManager':  //检修车管理
-        		   ret = 'fa-gamepad';
-        		   break;
-        	   case 'focusVehTrack':  //重点车追踪
-        		   ret = 'fa-random'; //车辆
-        		   break;
-        	   case 'devManage4':  //临修管理
-        		   ret = 'fa-gavel';
-        		   break;
-        	   case 'devManage3':  //配件管理
-        		   ret = 'fa-shopping-bag';
-        		   break;
-        	   case 'devManage2':  //设备履历
-        		   ret = 'fa-server';
-        		   break;
-        	   case 'constructManage1':  //设备管理
-        		   ret = 'fa-puzzle-piece';
-        		   break;
-        	   case 'constructManage4':  //故障管理
-        		   ret = 'fa-minus-square';
-        		   break;
-        	   case 'constructManage2':  //天窗计划
-        		   ret = 'fa-building';
-        		   break;
-        	   case 'constructManage6':  //统计分析
-        		   ret = 'fa-bar-chart-o'; //图表
-        		   break;
-        	   case 'system1':  //用户权限
-        		   ret = 'fa-user-times';
-        		   break;
-        	   case 'basicDataManage':  //基础数据管理
-        		   ret = 'fa-keyboard-o'; //车辆
-        		   break;
-        	}
-        	return ret;
+            var ret="fa-th-large"; //默认
+            switch(role){
+                case 'dispatchDirect':  //调度管理
+                    ret = 'fa-recycle'; //图表
+                    break;
+                case 'safeManage':  //风险管控
+                    ret = 'fa-cogs'; //齿轮
+                    break;
+                case 'safeManage2':  //隐患整改
+                    ret = 'fa-wrench'; //扳手
+                    break;
+                case 'safeManage3':  //信息追踪
+                    ret = 'fa-mail-reply-all';
+                    break;
+                case 'safeManage4':  //预警通知
+                    ret = 'fa-bell'; //铃铛
+                    break;
+                case 'safeManage5':  //干部考核
+                    ret = 'fa-users'; //人员
+                    break;
+                case 'safeManage6':  //应急处理
+                    ret = 'fa-history';
+                    break;
+                case 'constructManage3':  //施工计划
+                    ret = 'fa-clone';
+                    break;
+                case 'devManage':  //设备管理
+                    ret = 'fa-tachometer';
+                    break;
+                case 'devManage5':  //统计分析
+                    ret = 'fa-bar-chart-o'; //图表
+                    break;
+                case 'materialsManage1':  //出入库管理
+                    ret = 'fa-archive';
+                    break;
+                case 'materialsManage2':  //材料台账
+                    ret = 'fa-film';
+                    break;
+                case 'materialsManage3':  //统计报表
+                    ret = 'fa-bar-chart-o'; //图表
+                    break;
+                case 'taskReport1':  //生产报表
+                    ret = 'fa-newspaper-o';
+                    break;
+                case 'taskReport2':  //生产录入
+                    ret = 'fa-pencil-square-o';
+                    break;
+                case 'repairVehicleManager':  //检修车管理
+                    ret = 'fa-gamepad';
+                    break;
+                case 'focusVehTrack':  //重点车追踪
+                    ret = 'fa-random'; //车辆
+                    break;
+                case 'devManage4':  //临修管理
+                    ret = 'fa-gavel';
+                    break;
+                case 'devManage3':  //配件管理
+                    ret = 'fa-shopping-bag';
+                    break;
+                case 'devManage2':  //设备履历
+                    ret = 'fa-server';
+                    break;
+                case 'constructManage1':  //设备管理
+                    ret = 'fa-puzzle-piece';
+                    break;
+                case 'constructManage4':  //故障管理
+                    ret = 'fa-minus-square';
+                    break;
+                case 'constructManage2':  //天窗计划
+                    ret = 'fa-building';
+                    break;
+                case 'constructManage6':  //统计分析
+                    ret = 'fa-bar-chart-o'; //图表
+                    break;
+                case 'system1':  //用户权限
+                    ret = 'fa-user-times';
+                    break;
+                case 'basicDataManage':  //基础数据管理
+                    ret = 'fa-keyboard-o'; //车辆
+                    break;
+            }
+            return ret;
         }
     });
 

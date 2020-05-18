@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 public class ExportExcelUtil {
+    private static String[] arr = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
 
     /**
      * 导出预采购单据
@@ -600,17 +601,17 @@ public class ExportExcelUtil {
             }
             // 报废原因
             cell = row.createCell(17);
-                cell.setCellValue(si.getScrapReason());
+            cell.setCellValue(si.getScrapReason());
             cell.setCellStyle(cell_style);
             // 检测结论
             cell = row.createCell(18);
-            if(si.getRepaireState()==null) {
+            if (si.getRepaireState() == null) {
                 cell.setCellValue("-");
-            }else if(si.getRepaireState()==0){
+            } else if (si.getRepaireState() == 0) {
                 cell.setCellValue("不合格");
-            }else if(si.getRepaireState()==1){
+            } else if (si.getRepaireState() == 1) {
                 cell.setCellValue("合格");
-            }else if(si.getRepaireState()==2){
+            } else if (si.getRepaireState() == 2) {
                 cell.setCellValue("报废");
             }
             cell.setCellStyle(cell_style);
@@ -631,39 +632,40 @@ public class ExportExcelUtil {
         cell = row.createCell(8);
         cell.setCellValue(quantityNum);
         cell.setCellStyle(cell_style);
+
         return wb;
     }
 
+
     /**
-     * 导出sheetDetail
+     * 导出检修计划
      *
      * @param sheetName
-     * @param title
      * @param list
      * @param wb
      * @return
      */
-    public static HSSFWorkbook exportPlanCheckExcel(String sheetName, String[] title,
-                                                      List<PlanCheck> list, PlanCheckSheet sheetInfo, HSSFWorkbook wb) {
+    public static HSSFWorkbook exportPlanCheckExcel(String sheetName,
+                                                    List<PlanCheck> list, PlanCheckSheet sheetInfo, HSSFWorkbook wb) {
         if (wb == null) {
             wb = new HSSFWorkbook();
         }
+        int beforeMonthDay = 0;//前一个月26号后剩下的天数
         HSSFSheet sheet = wb.createSheet(sheetName);
         // 设置样式信息
         HSSFCellStyle title_style = ExcelUtil.cellStyle(wb, 1);
         HSSFCellStyle top_style = ExcelUtil.cellStyle(wb, 2);
         HSSFCellStyle cell_style = ExcelUtil.cellStyle(wb, 3);
-
-        sheet.setColumnWidth(0, 256 * 5); // 序号
-        sheet.setColumnWidth(1, 256 * 25); // 关键配件名称
+        sheet.setColumnWidth(0, 256 * 25); // 序号
+        for (int j = 1; j < 32; j++) {
+            sheet.setColumnWidth(j, 256 * 8); // 序号
+        }
         // 设置标题
         HSSFRow row = sheet.createRow(0);
         row.setHeight((short) 750);
-        CellRangeAddress cra = new CellRangeAddress(0, 0, 0, title.length - 1);
+        CellRangeAddress cra = new CellRangeAddress(0, 0, 0, 32);
         sheet.addMergedRegion(cra); // 合并单元格
         HSSFCell cell;
-        HSSFFont font = wb.createFont();
-        HSSFCellStyle style = wb.createCellStyle();
         cell = row.createCell(0);
         cell.setCellValue(sheetName);
         HSSFFont font4 = wb.createFont();
@@ -676,71 +678,73 @@ public class ExportExcelUtil {
         style4.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中
         style4.setAlignment(HSSFCellStyle.ALIGN_CENTER);// 水平
         // 设置表头
+//探测站
         row = sheet.createRow(1);
-        row.setHeight((short) 600);
-        cell = row.createCell(0);
-        HSSFFont font6 = wb.createFont();
-        HSSFCellStyle style6 = wb.createCellStyle();
-        font6.setFontName("宋体");//设置字体名称
-        font6.setFontHeightInPoints((short) 11);//设置字号
-        font6.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD); // 字体增粗
-        style6.setFont(font6);
-        cell.setCellStyle(style6);
-        cell.setCellValue("单据编号：" + sheetInfo.getSheetId());
-
-        row = sheet.createRow(4);
         row.setHeight((short) 550);
-        Date date=new Date();
-        Calendar calendar1=Calendar.getInstance();
-        calendar1.setTime(date);
-        calendar1.set(Calendar.YEAR,sheetInfo.getYear());
-        calendar1.set(Calendar.MONTH,sheetInfo.getMonth());
-        calendar1.set(Calendar.DAY_OF_MONTH, calendar1.getActualMaximum(Calendar.DAY_OF_MONTH));
-        Calendar calendar2=Calendar.getInstance();
-        calendar2.setTime(date);
-        calendar2.set(Calendar.YEAR,sheetInfo.getYear());
-        calendar2.set(Calendar.MONTH,sheetInfo.getMonth());
-        calendar2.set(Calendar.DAY_OF_MONTH, 1);
-        HSSFRow row5 = sheet.createRow(5);
+        cell = row.createCell(0);
+        cell.setCellValue("");
+        cell.setCellStyle(top_style);
 
-        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy/MM/dd");
-        for (int i = 0; i < calendar1.get(Calendar.DAY_OF_MONTH); i++) {
-            cell = row.createCell(i);
-            cell.setCellValue("=TEXT(A"+i+1+","+"\"aaaa\""+")");
+        Date date = new Date();
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.setTime(date);
+        calendar1.set(Calendar.YEAR, sheetInfo.getYear());
+        calendar1.set(Calendar.MONTH, sheetInfo.getMonth() - 2);
+        calendar1.set(Calendar.DAY_OF_MONTH, calendar1.getActualMaximum(Calendar.DAY_OF_MONTH));
+        beforeMonthDay = calendar1.getActualMaximum(Calendar.DAY_OF_MONTH) - 26 + 1;
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTime(date);
+        calendar2.set(Calendar.YEAR, sheetInfo.getYear());
+        calendar2.set(Calendar.MONTH, sheetInfo.getMonth() - 2);
+        calendar2.set(Calendar.DAY_OF_MONTH, 26);
+        HSSFRow row2 = sheet.createRow(2);
+        row2.setHeight((short) 550);
+        cell = row2.createCell(0);
+        cell.setCellValue("探测站名称");
+        cell.setCellStyle(top_style);
+        for (int i = 26; i <= calendar1.get(Calendar.DAY_OF_MONTH); i++) {
+            cell = row.createCell(i-26+1);
+            cell.setCellValue(arr[calendar2.get(Calendar.DAY_OF_WEEK) - 1]);
             cell.setCellStyle(top_style);
-            cell = row5.createCell(i);
-            cell.setCellValue(dateFormat.format(calendar2.getTime()));
-            calendar2.set(Calendar.DAY_OF_MONTH, i+2);
+
+            cell = row2.createCell(i-26+1);
+            cell.setCellValue(calendar2.get(Calendar.MONTH) + 1 + "-" + calendar2.get(Calendar.DATE));
+            cell.setCellStyle(top_style);
+            calendar2.set(Calendar.DAY_OF_MONTH, i + 1);
+        }
+        calendar1.set(Calendar.MONTH, sheetInfo.getMonth() - 1);
+        calendar2.set(Calendar.MONTH, sheetInfo.getMonth() - 1);
+        calendar2.set(Calendar.DAY_OF_MONTH, 1);
+        for (int j = 1; j <= 25; j++) {
+            cell = row.createCell(j+beforeMonthDay);
+            cell.setCellValue(arr[calendar2.get(Calendar.DAY_OF_WEEK) - 1]);
+            cell.setCellStyle(top_style);
+
+            cell = row2.createCell(j+beforeMonthDay);
+            cell.setCellValue(calendar2.get(Calendar.MONTH) + 1 + "-" + calendar2.get(Calendar.DATE));
+            cell.setCellStyle(top_style);
+            calendar2.set(Calendar.DAY_OF_MONTH, j + 1);
+        }
+//
+
+        for (int i = 0; i < list.size(); i++) {
+            row = sheet.createRow(i + 3);
+            PlanCheck planCheck = list.get(i);
+            cell = row.createCell(0);
+            cell.setCellValue(planCheck.getDetectDeviceName());
+            cell.setCellStyle(top_style);
+
+            calendar2.setTime(planCheck.getPlanTime());
+            int day = calendar2.get(Calendar.DAY_OF_MONTH);
+            if (day >= 26) {//前一个月的26日之后
+                day = day - 25;
+            }else if (day < 26) {//这个月26日之前
+                day = day + beforeMonthDay;
+            }
+            cell = row.createCell(day);
+            cell.setCellValue(planCheck.getPlanType());
             cell.setCellStyle(top_style);
         }
-//        PlanCheck pl = null;
-//        int quantityNum = 0;
-//        for (int i = 0; i < list.size(); i++) {
-//            pl = list.get(i);
-//            row = sheet.createRow(i + 5);
-//            row.setHeight((short) 550);
-//            // 编号
-//            cell = row.createCell(0);
-//            cell.setCellValue(i + 1);
-//            cell.setCellStyle(cell_style);
-//
-//        }
-        // 设置总计
-//        row = sheet.createRow(list.size() + 5);
-//        row.setHeight((short) 550);
-//        for (int i = 0; i < title.length; i++) {
-//            cell = row.createCell(i);
-//            cell.setCellValue("");
-//            cell.setCellStyle(cell_style);
-//        }
-//        CellRangeAddress cra2 = new CellRangeAddress(list.size() + 6, list.size() + 7, 0, title.length - 4);
-//        sheet.addMergedRegion(cra2); // 合并单元格
-//        cell = row.createCell(0);
-//        cell.setCellValue("总计");
-//        cell.setCellStyle(cell_style);
-//        cell = row.createCell(8);
-////        cell.setCellValue(quantityNum);
-//        cell.setCellStyle(cell_style);
         return wb;
     }
 }

@@ -2,12 +2,19 @@ package com.kthw.pmis.controller.ExportExcel;
 
 import com.kthw.pmis.entiy.Depot;
 import com.kthw.pmis.entiy.FaultHandle;
+import com.kthw.pmis.entiy.PlanCheck;
+import com.kthw.pmis.entiy.PlanCheckSheet;
+import com.kthw.pmis.entiy.bo.PlanCheckExportBO;
 import com.kthw.pmis.entiy.dto.StockInfoCountDTO;
 import com.kthw.pmis.helper.DepotHelper;
 import com.kthw.pmis.mapper.common.FaultHandleMapper;
+import com.kthw.pmis.mapper.common.PlanCheckMapper;
+import com.kthw.pmis.mapper.common.PlanCheckSheetMapper;
 import com.kthw.pmis.mapper.common.StockInfo1Mapper;
+import com.kthw.pmis.util.excel.ExportExcelUtil;
 import net.sf.jxls.transformer.XLSTransformer;
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +41,10 @@ public class JxlsExcelController {
     private StockInfo1Mapper stockInfoMapper;
     @Autowired
     private DepotHelper depotHelper;
+    @Autowired
+    private PlanCheckSheetMapper planCheckSheetMapper;
+    @Autowired
+    private PlanCheckMapper planCheckMapper;
     private static final String CONTENT_TYPE = "application/vnd.ms-excel;charset=utf-8";
 
     private static final String templatePath = "excel/template.xls";
@@ -42,6 +53,7 @@ public class JxlsExcelController {
     private static final String exportFileName = "template.xls";
     private static final String exportStockInfoCountFileName = "库存信息统计.xls";
     private static final String exportFaultHandelFileName = "故障预报单据.xls";
+    private static final String exportPlanCheckFileName = "检修计划单据.xls";
     static {
         shetetNames.add("设备故障");
         shetetNames.add("2故障");
@@ -163,6 +175,33 @@ public class JxlsExcelController {
             in.close();
         } catch (Exception e) {
             logger.error("导出导出故障预报错误");
+            e.printStackTrace();
+        }
+    }
+
+    @RequestMapping(value = "/checkPlan/sheet/export/{sheetId}", method = {RequestMethod.GET})
+    @ResponseBody
+    public void exportCheckPlan(HttpServletRequest request, @PathVariable("sheetId") String sheetId, HttpServletResponse response) {
+        logger.info("导出检修计划");
+        Map<String, Object> params = new HashMap<>();
+        params.put("eqSheetId", sheetId);// 获取单据信息
+        PlanCheckSheet planCheckSheet=planCheckSheetMapper.selectByPrimaryKey(sheetId);
+        List<PlanCheck> planChecks = new ArrayList<>();// 获取单据对应的配件详情
+        planChecks = planCheckMapper.selectByMap(params);
+        String sheetName=planCheckSheet.getDepotName()+planCheckSheet.getYear()+"年"+planCheckSheet.getMonth()+"月"+"检修计划表";
+        try {
+            HSSFWorkbook wb = ExportExcelUtil.exportPlanCheckExcel(sheetName,  planChecks, planCheckSheet, null);
+            response.setContentType("application/vnd.ms-excel;charset=utf-8");
+            response.setHeader("Content-Disposition",
+                    "attachment;filename=" + new String((exportPlanCheckFileName + ".xls").getBytes(), "iso-8859-1"));
+            response.addHeader("Cache-Control", "no-cache");
+            response.addHeader("Pargam", "no-cache");
+            OutputStream os = response.getOutputStream();
+            wb.write(os);
+            os.flush();
+            os.close();
+        } catch (Exception e) {
+            logger.error("导出检修计划出错 :" + e);
             e.printStackTrace();
         }
     }

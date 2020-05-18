@@ -111,7 +111,7 @@ require(['../config'],
                                 else if (data == 3) {
                                     str = '<span style="color:blue;font-weight:bold;">检修开始待审核</span>';
                                 } else if (data == 4) {
-                                    str = '<span style="color:blue;font-weight:bold;">检修结开始</span>';
+                                    str = '<span style="color:blue;font-weight:bold;">检修开始</span>';
                                 }
                                 else if (data == 5) {
                                     str = '<span style="color:blue;font-weight:bold;">检修结束待审核</span>';

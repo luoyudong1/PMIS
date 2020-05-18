@@ -120,6 +120,14 @@ require(['../config'],
                             }
                         },
                     ],
+                    columnDefs: [{
+                        targets: 11,
+                        data: function (row) {
+                            var str = '';
+                            str += '<button id="exportExcel" type="button" class="btn btn-success btn-xs" title="导出"><span class="glyphicon glyphicon-download-alt"></span></button>';
+                            return str;
+                        }
+                    }],
                     ordering: false,
                     paging: true,
                     pageLength: 5,
@@ -317,6 +325,12 @@ require(['../config'],
                                 }
                             }
                         });
+                    });
+                /** 导出配件详情信息 */
+                $("#sheetTable tbody").on('click', '#exportExcel',
+                    function () {
+                        if(sheet_id!='')
+                            window.location.href = config.basePath + '/checkPlan/sheet/export/' + sheet_id;
                     });
                 /** *************** **/
                 sheetTable.on('draw.dt', function () {

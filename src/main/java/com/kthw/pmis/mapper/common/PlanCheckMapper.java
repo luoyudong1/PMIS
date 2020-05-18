@@ -26,10 +26,19 @@ public interface PlanCheckMapper {
 
     Integer getMaxId();//
 
-    int batchUpdate(List<PlanCheck> list);//
+    int batchUpdate(List<PlanCheck> list);//批量修改
+
+    int batchInsert(List<PlanCheck> list);//批量增加
 
     int getPlanCheckByMap(Map<String, Object> params);    // 辆安站调度获取计划检修处理未完成信息数量
 
-    int getPlanCheckByMapDept(Map<String, Object> params);    // 车间只把暖获取计划检修处理未完成信息数量
+    int getPlanCheckByMapDept(Map<String, Object> params);    // 段值班员（株洲）获取计划检修处理未完成信息数量
+
+    int getWorkPlanCheckByMap(Map<String, Object> params);   // 车间值班员获取计划检修处理未完成信息数量
+
+//
+//    int getPlanCheckBySegment(Map<String, Object> params);//段获取排序数据
+//
+//    int getPlanCheckByCenter(Map<String, Object> params);//集团获取排序数据
 
 }

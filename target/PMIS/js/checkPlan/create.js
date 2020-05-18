@@ -25,22 +25,7 @@ require(['../config'],
                     });
                 }
 
-                /**
-                 * 初始化时间框
-                 */
-                function initDatetimepickerLimitDate(id, date, startDate, endDate) {
-                    $.datetimepicker.setLocale('ch');
-                    $('#' + id).datetimepicker({
-                        value: date,
-                        format: 'Y-m-d',
-                        timepicker: false,
-                        // 关闭时间选项
-                        todayButton: true,
-                        // 关闭选择今天按钮
-                        startDate: startDate,
-                        endDate: endDate
-                    });
-                }
+
             });
 
         require(['jquery', 'bootstrap', 'common/dt', 'common/commonMethod', 'common/slider', 'common/dateFormat', 'common/select2', 'common/pinyin'],
@@ -59,14 +44,36 @@ require(['../config'],
                 var detectDeviceId;
                 var type;
                 var detectDevice;
-                var listDetect;
+                var listDetect;//获取的所有探测站
+                var displayListDetect;//显示的所有探测站
                 let lineSet = new Set();
                 let deviceTypeSet = new Set();
                 let sheet_id = '';
                 let date = new Date()
                 let sheetData;
-                CMethod.initDatetimepicker('planTimeAdd', date)
-                CMethod.initDatetimepicker('planTimeModify', date)
+                let year='';
+                let month='';
+                /**
+                 * 初始化时间框
+                 */
+                function initDatetimepicker(id, year,month,date) {
+                    let startDate=year+'-'+(month-1)+'-'+'26';
+                    let endDate=year+'-'+month+'-'+'25';
+                    $.datetimepicker.setLocale('ch');
+                    $('#' + id).datetimepicker({
+                        format: 'Y-m-d',
+                        value:date,
+                        startDate:startDate,
+                        endDate:endDate,
+                        minDate: startDate,
+                        maxDate: endDate,
+                        timepicker:false,
+                        todayButton: false
+                        // 关闭时间选项
+                    });
+                }
+
+
                 /**
                  * 查询
                  */
@@ -105,14 +112,18 @@ require(['../config'],
                 function initYearAdd() {
                     let date = new Date()
                     let year = parseInt(date.getFullYear().toString())
+                    let month = parseInt((date.getMonth() + 1).toString())
+                    date.setMonth(date.getMonth() + 1);
+                    let nextMonth = parseInt((date.getMonth() + 1).toString())
+                    let nextYear = parseInt(date.getFullYear().toString())
                     $('#yearAdd').empty()
-                    $('#yearAdd').append('<option>' + year + '</option>')
-                    $('#yearAdd').append('<option>' + year + 1 + '</option>')
+                    $('#yearAdd').append('<option>' + year + '-' + month + '</option>')
+                    $('#yearAdd').append('<option>' + nextYear + '-' + nextMonth + '</option>')
 
                 }
 
                 /**
-                 * 显示年份
+                 * 显示部门名称
                  */
                 function initDepotNameAdd() {
                     $.ajax({
@@ -139,45 +150,13 @@ require(['../config'],
                  * 显示探测站类型
                  */
                 function initDeviceTypeAdd() {
+                    $('#detectTypeAdd').empty()
+                    $('#detectTypeAdd').append('<option></option>')
                     for (let deviceType of deviceTypeSet) {
                         $('#detectTypeAdd').append('<option>' + deviceType + '</option>')
                     }
                 }
 
-                function getDetectDevice() {
-                    /**
-                     * 显示探测站
-                     */
-                    $.ajax({
-                        async: false,
-                        url: config.basePath + "/detectManage/detectManage/listDetect",
-                        type: 'get',
-                        data: {
-                            depotId: deptId,
-                            faultEnable: 1
-                        },
-                        dataType: 'json',
-                        success: function (result) {
-                            listDetect = result.data
-                            lineSet.clear()
-                            deviceTypeSet.clear()
-                            for (var i = 0; i < result.data.length; i++) {
-                                if (result.data[i].planCheckEnable == 0 || (result.data[i].planCheckEnable == 1 && result.data[i].planCheckType == "半月检")) {
-                                    lineSet.add(result.data[i].lineName)
-                                    deviceTypeSet.add(result.data[i].deviceTypeName)
-                                }
-                            }
-                            initLineAdd()
-                            initDeviceTypeAdd()
-                        },
-                        error: function (result) {
-                            console.log(result);
-                        }
-                    });
-                }
-
-                //获取探测站
-                getDetectDevice()
                 //初始化年份选择下拉框
                 initYearAdd()
                 //初始化部门名称
@@ -204,11 +183,13 @@ require(['../config'],
 
                     $("#detectDeviceAdd").empty()
                     $("#detectDeviceAdd").append('<option></option>')
+                    console.log(listDetect.length)
                     for (let i = 0; i < listDetect.length; i++) {
-                        if (listDetect[i].lineName == lineName && listDetect[i].deviceTypeName == detectType && listDetect[i].planCheckEnable == 0) {
+
+                        if (listDetect[i].lineName == lineName && listDetect[i].deviceTypeName == detectType) {
                             $("#detectDeviceAdd").append('<option value="' + listDetect[i].detectDeviceId + '" deviceTypeName="' +
                                 listDetect[i].deviceTypeName + '" planCheckType="' + listDetect[i].planCheckType + '" depotId="' +
-                                listDetect[i].depotId + '" depotName="' + listDetect[i].depotName +'" dispatcher="' + listDetect[i].dispatcher+ '">' + listDetect[i].detectDeviceName + '</option>');
+                                listDetect[i].depotId + '" depotName="' + listDetect[i].depotName + '" dispatcher="' + listDetect[i].dispatcher + '">' + listDetect[i].detectDeviceName + '</option>');
                         }
                     }
 
@@ -255,6 +236,9 @@ require(['../config'],
                             data: 'remark'
                         },
                         {
+                            data: 'total'
+                        },
+                        {
                             data: 'flag',
                             render: function (data) {
                                 var str = "-";
@@ -273,14 +257,13 @@ require(['../config'],
                         },
                     ],
                     columnDefs: [{
-                        targets: 11,
+                        targets: 12,
                         data: function (row) {
                             var str = '';
                             if (row.flag == 1 || row.flag == 4) {
                                 str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;' + '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;' + '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popSheetModal" title="删除单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
-                            } else {
-                                str += '';
                             }
+                            str += '<button id="exportExcel" type="button" class="btn btn-success btn-xs" title="导出"><span class="glyphicon glyphicon-download-alt"></span></button>';
                             return str;
                         }
                     }],
@@ -307,7 +290,7 @@ require(['../config'],
                         type: 'GET',
                         data: function (d) {
                             d.sheetId = sheet_id
-                            d.detectDeviceName='%'+$('#detectDeviceName').val()+'%'
+                            d.detectDeviceName = '%' + $('#detectDeviceName').val() + '%'
                         }
                     },
                     columns: [{
@@ -320,7 +303,7 @@ require(['../config'],
                         },
                         {
                             data: 'detectDeviceName'
-                        },  {
+                        }, {
                             data: 'detectDepotName'
                         }, {
                             data: 'detectDeviceType'
@@ -329,11 +312,25 @@ require(['../config'],
                             data: 'planTime'
                         },
                         {
-                            data: 'startTime'
+                            data: 'quarterCheck',
+                            render: function (data) {
+                                var str = "-";
+                                if (data == 1) {
+                                    str = "春整"
+                                } else if (data == 2) {
+                                    str = "秋整"
+                                }
+                                return str;
+                            }
                         }, {
-                            data: 'endTime'
-                        }, {
-                            data: 'checkRecord'
+                            data: 'projectCheck',
+                            render: function (data) {
+                                var str = "-";
+                                if (data == 1) {
+                                    str = "项修"
+                                }
+                                return str;
+                            }
                         }, {
                             data: 'planType'
                         }, {
@@ -363,11 +360,12 @@ require(['../config'],
                         },
                     ],
                     columnDefs: [{
-                        targets: 13,
+                        targets: 12,
                         data: function (row) {
                             var str = '';
                             if (row.status == 1 && completeFlag == 1) {
-                                str += '<a class="modifySheetDetail btn btn-info btn-xs" data-toggle="modal" href="#modifySheetDetailModal" title="修改"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;<a class="deleteParts btn btn-danger btn-xs" data-toggle="modal" href="#popModal" title="删除"><span class="glyphicon glyphicon-remove"></span></a>';
+                                str += '<a class="modifySheetDetail btn btn-info btn-xs" data-toggle="modal" href="#modifySheetDetailModal" title="修改"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;' +
+                                    '<a class="deleteParts btn btn-danger btn-xs" data-toggle="modal" href="#popModal" title="删除"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
                             } else {
                                 str += '-';
                             }
@@ -433,8 +431,8 @@ require(['../config'],
                             sheetId: $('#sheetIdAdd').val(),
                             depotName: $('#depotNameAdd').val(),
                             createUser: $('#createUserAdd').val(),
-                            year: $('#yearAdd').val(),
-                            month: $('#monthAdd').val(),
+                            year: $('#yearAdd :selected').text().substring(0, 4),
+                            month: $('#yearAdd :selected').text().substring(5),
                             depotId: deptId,
                             remark: $('#remarkAdd').val()
                         });
@@ -449,6 +447,7 @@ require(['../config'],
                                     alert(result.msg);
                                 } else {
                                     sheetTable.ajax.reload();
+                                    sheetDetailTable.ajax.reload();
                                     $("#alertMsg").html('<span style="color:green;text-align:center"><strong>单据信息添加成功！</strong></span>');
                                     $("#infoAlert").show();
                                     hideTimeout("infoAlert", 2000);
@@ -492,9 +491,11 @@ require(['../config'],
                             planTime: $('#planTimeAdd').val(),
                             createUser: user_id,
                             planType: $('#planTypeAdd').val(),
+                            quarterCheck: parseInt($('#quarter_checkAdd').val()),
+                            projectCheck: parseInt($('#project_checkAdd').val()),
                             depotId: deptId,
                             sheetId: sheet_id,
-                            status:1
+                            status: 1
                         });
                         $.ajax({
                             url: config.basePath + '/checkPlan/checkPlan/add',
@@ -506,7 +507,7 @@ require(['../config'],
                                 if (result.code != 0) {
                                     alert(result.msg);
                                 } else {
-                                    getDetectDevice()
+                                    sheetTable.ajax.reload()
                                     sheetDetailTable.ajax.reload();
                                     $('#detectTypeAdd option:first').prop("selected", true)
                                     $("#alertMsg").html('<span style="color:green;text-align:center"><strong>故障预报添加成功！</strong></span>');
@@ -542,6 +543,8 @@ require(['../config'],
                                 sheetDetailTable.ajax.reload()
                             }
                             sheetData = sheetTrData
+                            year=sheetTrData.year
+                            month=sheetTrData.month
                         });
                 /*******************************************************
                  * 单据点击事件
@@ -565,13 +568,45 @@ require(['../config'],
 
                         });
                 $('#addSheetDetailModal').on('show.bs.modal', function (e) {
+                    getDetect()
+                    initLineAdd()
+                    initDeviceTypeAdd();
                     $('#planTimeAdd').val('')
-
                     $('#planTypeAdd option:first').prop("selected", true)
                     $('#createUserAdd').val(user_id)
-                    $('#detectDeviceAdd option:first').prop("selected", true)
+                    $("#detectDeviceAdd").empty()
                     $('#lineAdd option:first').prop("selected", true)
+                    $('#project_checkAdd option:first').prop("selected", true)
+                    $('#quarter_checkAdd option:first').prop("selected", true)
+                    $('#detectTypeAdd option:first').prop("selected", true)
+
+                    initDatetimepicker('planTimeAdd',year,month,null)
                 })
+
+                /**
+                 * 获取当前单据可增加的探测站
+                 */
+                function getDetect() {
+                    $.ajax({
+                        async: false,
+                        url: config.basePath + '/checkPlan/sheet/getDetect',
+                        type: "get",
+                        data: {
+                            depotId: deptId,
+                            sheetId: sheet_id
+                        },
+                        contentType: 'application/json',
+                        dataType: "json",
+                        success: function (result) {
+
+                            listDetect = result.list;
+                            lineSet = result.lines;
+                            deviceTypeSet = result.detectDeviceType
+
+                        }
+                    });
+                }
+
                 /**
                  * 修改检修计划模态框
                  */
@@ -580,10 +615,16 @@ require(['../config'],
                         let tr = $(e.relatedTarget).parents('tr');
                         let data = sheetDetailTable.row(tr).data();
                         id = data.id;
+
+                        initDatetimepicker('planTimeModify',year,month,data.planTime)
                         $('#detectDeviceModify').val(data.detectDeviceName)
                         $('#detectTypeModify').val(data.detectDeviceType)
+                        $('#project_checkModify').val(data.projectCheck)
+                        $('#quarter_checkModify').val(data.quarterCheck)
                         $('#planTypeModify').val(data.planType)
                         $('#planTimeModify').val(data.planTime)
+
+
 
                     });
 
@@ -605,8 +646,10 @@ require(['../config'],
                         var params = JSON.stringify({
                             id: id,
                             planTime: $('#planTimeModify').val(),
+                            quarterCheck: parseInt($('#quarter_checkModify').val()),
+                            projectCheck:parseInt($('#project_checkModify').val()),
 
-                        });
+                    });
 
                         $.ajax({
                             url: config.basePath + '/checkPlan/checkPlan/update',
@@ -720,7 +763,6 @@ require(['../config'],
                                 } else {
                                     sheetTable.ajax.reload();
                                     sheetDetailTable.ajax.reload();
-                                    getDetectDevice()
                                     $("#alertMsg").html('<span style="color:green;text-align:center"><strong>检修单据删除成功！</strong></span>');
                                     $("#infoAlert").show();
                                     hideTimeout("infoAlert", 2000);
@@ -760,7 +802,7 @@ require(['../config'],
                                 } else {
                                     sheetTable.ajax.reload();
                                     sheetDetailTable.ajax.reload();
-                                    getDetectDevice()
+
                                     $("#alertMsg").html('<span style="color:green;text-align:center"><strong>检修计划删除成功！</strong></span>');
                                     $("#infoAlert").show();
                                     hideTimeout("infoAlert", 2000);
@@ -768,6 +810,12 @@ require(['../config'],
                             }
                         });
 
+                    });
+                /** 导出配件详情信息 */
+                $("#sheetTable tbody").on('click', '#exportExcel',
+                    function () {
+                    if(sheet_id!='')
+                        window.location.href = config.basePath + '/checkPlan/sheet/export/' + sheet_id;
                     });
                 /** *************** **/
                 sheetTable.on('draw.dt', function () {

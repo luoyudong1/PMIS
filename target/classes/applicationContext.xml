@@ -59,6 +59,6 @@
 			expression="execution(public * com.kthw.pmis.serviceimpl.*.*(..))" />
 		<aop:advisor id="executionTimeLoggingAdvisor" advice-ref="executionTimeLoggingSpringAop"
 			pointcut-ref="executionTimeLoggingPointcut" />
-	</aop:config>		
+	</aop:config>
 	<!-- aop:aspectj-autoproxy proxy-target-class="true" / -->
 </beans>

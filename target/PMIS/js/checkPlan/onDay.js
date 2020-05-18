@@ -75,8 +75,10 @@ require(['../config'],
                         type: 'GET',
                         data: function (d) {
                             d.depotId = deptId;
+                            d.status=$('#verify_flag').val()
                             d.queryTime = ($("#queryTime").val() == '' ? '' : $("#queryTime").val() + " 00:00:01");
                             d.queryTime2 = ($("#queryTime2").val() == '' ? '' : $("#queryTime2").val() + " 23:59:59");
+                            d.detectDeviceName=$('#detectDeviceName').val()
                         }
                     },
                     columns: [{
@@ -123,7 +125,7 @@ require(['../config'],
                                 else if (data == 3) {
                                     str = '<span style="color:blue;font-weight:bold;">检修开始待审核</span>';
                                 } else if (data == 4) {
-                                    str = '<span style="color:blue;font-weight:bold;">检修结开始</span>';
+                                    str = '<span style="color:blue;font-weight:bold;">检修开始</span>';
                                 }
                                 else if (data == 5) {
                                     str = '<span style="color:blue;font-weight:bold;">检修结束待审核</span>';
@@ -354,7 +356,7 @@ require(['../config'],
                     let endTime = data.endTime
                     let status = data.status
                     let date = new Date()
-                    if (startTime == '' || startTime == null) {
+                    if (startTime == null) {
                         $("#alertMsg")
                             .html(
                                 '<span style="color:green;text-align:center"><strong>检修开始时间为空！</strong></span>');
@@ -365,7 +367,7 @@ require(['../config'],
                             2000);
                         return false;
                     }
-                    if (status == 4 && endTime == '') {
+                    if (status >= 4 && endTime == null) {
                         $("#alertMsg")
                             .html(
                                 '<span style="color:green;text-align:center"><strong>检修结束时间为空！</strong></span>');
@@ -399,7 +401,7 @@ require(['../config'],
                                 verifyDate3 = date
                             }
                             if (verifyParamsBeforeSubmit(sheetData) == false) {
-                                return true;
+                                return;
                             }
                             var params = JSON.stringify({
                                 id: id,

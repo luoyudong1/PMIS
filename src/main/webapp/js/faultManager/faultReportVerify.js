@@ -253,6 +253,7 @@ require(['../config'],
                             d.finished = 0
                             d.dispatcher=$('#dispatcher', parent.document).val()
                             d.completeFlag=$('#verify_flag').val()
+                            d.detectDeviceName=$('#detectDeviceName').val()
                         }
                     },
                     columns: [{

@@ -194,4 +194,17 @@ public class DepotHelper {
             return null;
         }
     }
+    /**
+     * 获取所属车间
+     * @param depotId
+     * @return
+     */
+    public Depot getDepot(Long depotId){
+        Map<String, Object> params = new HashMap<>();
+        params.put("eqDepotId",depotId);
+        Depot depot = depotMapper.selectByPrimaryKey(depotId);
+
+            return depot;
+
+    }
 }

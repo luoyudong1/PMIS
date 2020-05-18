@@ -25,22 +25,6 @@ require(['../config'],
                     });
                 }
 
-                /**
-                 * 初始化时间框
-                 */
-                function initDatetimepickerLimitDate(id, date, startDate, endDate) {
-                    $.datetimepicker.setLocale('ch');
-                    $('#' + id).datetimepicker({
-                        value: date,
-                        format: 'Y-m-d',
-                        timepicker: false,
-                        // 关闭时间选项
-                        todayButton: true,
-                        // 关闭选择今天按钮
-                        startDate: startDate,
-                        endDate: endDate
-                    });
-                }
             });
 
         require(['jquery', 'bootstrap', 'common/dt', 'common/commonMethod', 'common/slider', 'common/dateFormat', 'common/select2', 'common/pinyin'],
@@ -60,13 +44,35 @@ require(['../config'],
                 var type;
                 var detectDevice;
                 var listDetect;
+                var listDetect2;
                 let lineSet = new Set();
+                let lineSet2 = new Set();
                 let deviceTypeSet = new Set();
+                let deviceTypeSet2 = new Set();
                 let sheet_id = '';
                 let date = new Date()
                 let sheetData;
-                CMethod.initDatetimepicker('planTimeAdd', date)
-                CMethod.initDatetimepicker('planTimeModify', date)
+                let year='';
+                let month='';
+                /**
+                 * 初始化时间框
+                 */
+                function initDatetimepicker(id, year,month,date) {
+                    let startDate=year+'-'+(month-1)+'-'+'26';
+                    let endDate=year+'-'+month+'-'+'25';
+                    $.datetimepicker.setLocale('ch');
+                    $('#' + id).datetimepicker({
+                        format: 'Y-m-d',
+                        value:date,
+                        startDate:startDate,
+                        endDate:endDate,
+                        minDate: startDate,
+                        maxDate: endDate,
+                        timepicker:false,
+                        todayButton: false
+                        // 关闭时间选项
+                    });
+                }
                 /**
                  * 查询
                  */
@@ -89,7 +95,7 @@ require(['../config'],
                 });
 
                 /**
-                 * 显示线别
+                 * 显示线别-临时检修
                  */
                 function initLineAdd() {
                     $('#lineAdd').empty()
@@ -98,52 +104,36 @@ require(['../config'],
                         $('#lineAdd').append('<option>' + line + '</option>')
                     }
                 }
-
                 /**
-                 * 显示年份
+                 * 显示线别-新增检修
                  */
-                function initYearAdd() {
-                    let date = new Date()
-                    let year = parseInt(date.getFullYear().toString())
-                    $('#yearAdd').empty()
-                    $('#yearAdd').append('<option>' + year + '</option>')
-                    $('#yearAdd').append('<option>' + year + 1 + '</option>')
-
+                function initLineAdd2() {
+                    $('#lineAdd2').empty()
+                    $('#lineAdd2').append('<option></option>')
+                    for (let line of lineSet2) {
+                        $('#lineAdd2').append('<option>' + line + '</option>')
+                    }
                 }
-
                 /**
-                 * 显示年份
-                 */
-                function initDepotNameAdd() {
-                    $.ajax({
-                        async: false,
-                        url: config.basePath + "/checkPlan/sheet/getDepotName",
-                        type: 'get',
-                        data: {
-                            "depotId": deptId
-                        },
-                        dataType: 'json',
-                        success: function (result) {
-
-                            $('#depotNameAdd').val(result.depotName)
-
-                        },
-                        error: function (result) {
-                            console.log(result);
-                        }
-                    });
-
-                }
-
-                /**
-                 * 显示探测站类型
+                 * 显示探测站类型-临时检修
                  */
                 function initDeviceTypeAdd() {
+                    $('#detectTypeAdd').empty()
+                    $('#detectTypeAdd').append('<option></option>')
                     for (let deviceType of deviceTypeSet) {
                         $('#detectTypeAdd').append('<option>' + deviceType + '</option>')
                     }
                 }
-
+                /**
+                 * 显示探测站类型-新增检修
+                 */
+                function initDeviceTypeAdd2() {
+                    $('#detectTypeAdd2').empty()
+                    $('#detectTypeAdd2').append('<option></option>')
+                    for (let deviceType of deviceTypeSet2) {
+                        $('#detectTypeAdd2').append('<option>' + deviceType + '</option>')
+                    }
+                }
                 function getDetectDevice() {
                     /**
                      * 显示探测站
@@ -176,10 +166,7 @@ require(['../config'],
 
                 //获取探测站
                 getDetectDevice()
-                //初始化年份选择下拉框
-                initYearAdd()
-                //初始化部门名称
-                initDepotNameAdd()
+
                 /**
                  * 线别改变事件
                  */
@@ -187,10 +174,17 @@ require(['../config'],
                     $("#detectTypeAdd option:first").prop("selected", true);
                 })
                 /**
+                 * 线别改变事件
+                 */
+                $("#lineAdd2").change(function () {
+                    $("#detectTypeAdd2 option:first").prop("selected", true);
+                })
+                /**
                  * 探测站改变事件
                  */
-                $("#detectDeviceAdd").change(function () {
-                    let planType = $("#detectDeviceAdd option:selected").attr("planCheckType");
+                $("#detectDeviceAdd2").change(function () {
+                    let planType = $("#detectDeviceAdd2 option:selected").attr("planCheckType");
+                    $("#planTypeAdd2").val(planType)
                 })
                 /**
                  * 探测站类型改变事件
@@ -206,6 +200,24 @@ require(['../config'],
                             $("#detectDeviceAdd").append('<option value="' + listDetect[i].detectDeviceId + '" deviceTypeName="' +
                                 listDetect[i].deviceTypeName + '" planCheckType="' + listDetect[i].planCheckType + '" depotId="' +
                                 listDetect[i].depotId + '" depotName="' + listDetect[i].depotName + '" dispatcher="' + listDetect[i].dispatcher + '">' + listDetect[i].detectDeviceName + '</option>');
+                        }
+                    }
+
+                })
+                /**
+                 * 探测站类型改变事件
+                 */
+                $("#detectTypeAdd2").change(function () {
+                    var lineName = $("#lineAdd2 option:selected").text();
+                    var detectType = $("#detectTypeAdd2 option:selected").text();
+
+                    $("#detectDeviceAdd2").empty()
+                    $("#detectDeviceAdd2").append('<option></option>')
+                    for (let i = 0; i < listDetect2.length; i++) {
+                        if (listDetect2[i].lineName == lineName && listDetect2[i].deviceTypeName == detectType) {
+                            $("#detectDeviceAdd2").append('<option value="' + listDetect2[i].detectDeviceId + '" deviceTypeName="' +
+                                listDetect2[i].deviceTypeName + '" planCheckType="' + listDetect2[i].planCheckType + '" depotId="' +
+                                listDetect2[i].depotId + '" depotName="' + listDetect2[i].depotName + '" dispatcher="' + listDetect2[i].dispatcher + '">' + listDetect2[i].detectDeviceName + '</option>');
                         }
                     }
 
@@ -270,6 +282,17 @@ require(['../config'],
                             }
                         },
                     ],
+                    columnDefs: [{
+                        targets: 11,
+                        data: function (row) {
+                            var str = '';
+                            if (row.flag == 1 || row.flag == 4) {
+                                str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;' + '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;' + '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popSheetModal" title="删除单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
+                            }
+                            str += '<button id="exportExcel" type="button" class="btn btn-success btn-xs" title="导出"><span class="glyphicon glyphicon-download-alt"></span></button>';
+                            return str;
+                        }
+                    }],
                     ordering: false,
                     paging: true,
                     pageLength: 5,
@@ -337,7 +360,7 @@ require(['../config'],
                                 else if (data == 3) {
                                     str = '<span style="color:blue;font-weight:bold;">检修开始待审核</span>';
                                 } else if (data == 4) {
-                                    str = '<span style="color:blue;font-weight:bold;">检修结开始</span>';
+                                    str = '<span style="color:blue;font-weight:bold;">检修开始</span>';
                                 }
                                 else if (data == 5) {
                                     str = '<span style="color:blue;font-weight:bold;">检修结束待审核</span>';
@@ -386,7 +409,7 @@ require(['../config'],
 
 
                 /**
-                 * 新增检修计划详情
+                 * 新增临时检修计划详情
                  */
                 $("#btnAddSheetDetailOk").on('click',
                     function (e) {
@@ -437,7 +460,68 @@ require(['../config'],
                                     getDetectDevice()
                                     sheetDetailTable.ajax.reload();
                                     $('#detectTypeAdd option:first').prop("selected", true)
-                                    $("#alertMsg").html('<span style="color:green;text-align:center"><strong>故障预报添加成功！</strong></span>');
+                                    $('#detectDeviceAdd option:first').prop("selected", true)
+                                    $("#alertMsg").html('<span style="color:green;text-align:center"><strong>检修计划添加成功！</strong></span>');
+                                    $("#infoAlert").show();
+                                    hideTimeout("infoAlert", 2000);
+                                }
+                            }
+                        });
+                    });
+                /**
+                 * 新增检修计划详情
+                 */
+                $("#btnAddSheetDetailOk2").on('click',
+                    function (e) {
+                        e.preventDefault();
+                        let date = new Date();
+                        let planTime = $("#planTimeAdd2").val()+" 23:59:59";
+                        if ($("#detectDeviceAdd2").val() == "") {
+                            $("#alertMsgAdd2").html("<font style='color:red'>探测站为空！请检查输入是否正确</font>");
+                            $("#alertMsgAdd2").css('display', 'inline-block')
+                            CMethod.hideTimeout("alertMsgAdd", "alertMsgAdd", 5000);
+                            return false;
+                        }
+                        if ($("#planTimeAdd2").val() == "") {
+                            $("#alertMsgAdd2").html("<font style='color:red'>检修时间为空！请检查输入是否正确</font>");
+                            $("#alertMsgAdd2").css('display', 'inline-block')
+                            CMethod.hideTimeout("alertMsgAdd", "alertMsgAdd", 5000);
+                            return false;
+                        } else if (Date.parse(planTime) <= date) {
+                            $("#alertMsgAdd2").html("<font style='color:red'>检修时间小于当前时间！请检查输入是否正确</font>");
+                            $("#alertMsgAdd2").css('display', 'inline-block')
+                            CMethod.hideTimeout("alertMsgAdd", "alertMsgAdd", 5000);
+                            return false;
+                        }
+                        var params = JSON.stringify({
+                            detectDeviceId: $('#detectDeviceAdd2').val(),
+                            detectDeviceName: $('#detectDeviceAdd2 option:selected').text(),
+                            detectDeviceType: $('#detectDeviceAdd2 option:selected').attr("deviceTypeName"),
+                            detectDepotId: $('#detectDeviceAdd2 option:selected').attr("depotId"),
+                            detectDepotName: $('#detectDeviceAdd2 option:selected').attr("depotName"),
+                            dispatcher: $('#detectDeviceAdd2 option:selected').attr("dispatcher"),
+                            planTime: $('#planTimeAdd2').val(),
+                            createUser: user_id,
+                            planType: $('#planTypeAdd2').val(),
+                            depotId: deptId,
+                            sheetId: sheet_id,
+                            status:2
+                        });
+                        $.ajax({
+                            url: config.basePath + '/checkPlan/checkPlan/add',
+                            type: "post",
+                            data: params,
+                            contentType: 'application/json',
+                            dataType: "json",
+                            success: function (result) {
+                                if (result.code != 0) {
+                                    alert(result.msg);
+                                } else {
+                                    getDetectDevice()
+                                    sheetDetailTable.ajax.reload();
+                                    $('#detectTypeAdd2 option:first').prop("selected", true)
+                                    $('#detectDeviceAdd2 option:first').prop("selected", true)
+                                    $("#alertMsg").html('<span style="color:green;text-align:center"><strong>临时检修计划添加成功！</strong></span>');
                                     $("#infoAlert").show();
                                     hideTimeout("infoAlert", 2000);
                                 }
@@ -465,7 +549,9 @@ require(['../config'],
                                 sheetDetailTable.ajax.reload()
                             }
                             sheetData = sheetTrData
-                        });
+                            year=sheetTrData.year
+                            month=sheetTrData.month
+                        } );
                 /*******************************************************
                  * 单据点击事件
                  ********************************************************/
@@ -487,13 +573,53 @@ require(['../config'],
                             }
 
                         });
+                /**
+                 * 新增检修计划详情-临时检修
+                 */
                 $('#addSheetDetailModal').on('show.bs.modal', function (e) {
                     $('#planTimeAdd').val('')
-
                     $('#createUserAdd').val(user_id)
                     $('#detectDeviceAdd option:first').prop("selected", true)
                     $('#lineAdd option:first').prop("selected", true)
+                    initDatetimepicker('planTimeAdd',year,month,null)
                 })
+                /**
+                 * 新增检修计划详情-新增检修
+                 */
+                $('#addModal').on('show.bs.modal', function (e) {
+                    getDetect()
+                    initLineAdd2()
+                    initDeviceTypeAdd2()
+                    $('#planTimeAdd2').val('')
+                    $('#createUserAdd2').val(user_id)
+                    $('#detectDeviceAdd2').empty()
+                    $('#lineAdd2 option:first').prop("selected", true)
+                    $('#detectTypeAdd2 option:first').prop("selected", true)
+                    initDatetimepicker('planTimeAdd2',year,month,null)
+                })
+                /**
+                 * 获取当前单据可增加的探测站
+                 */
+                function getDetect(){
+                    $.ajax({
+                        async:false,
+                        url: config.basePath + '/checkPlan/sheet/getDetect',
+                        type: "get",
+                        data: {
+                            depotId:deptId,
+                            sheetId:sheet_id
+                        },
+                        contentType: 'application/json',
+                        dataType: "json",
+                        success: function (result) {
+
+                            listDetect2=result.list;
+                            lineSet2=result.lines;
+                            deviceTypeSet2=result.detectDeviceType
+
+                        }
+                    });
+                }
                 /**
                  * 修改检修计划模态框
                  */
@@ -502,6 +628,7 @@ require(['../config'],
                         let tr = $(e.relatedTarget).parents('tr');
                         let data = sheetDetailTable.row(tr).data();
                         id = data.id;
+                        initDatetimepicker('planTimeModify',year,month,data.planTime)
                         $('#detectDeviceModify').val(data.detectDeviceName)
                         $('#detectTypeModify').val(data.detectDeviceType)
                         $('#planTypeModify').val(data.planType)
@@ -589,6 +716,12 @@ require(['../config'],
                             }
                         });
 
+                    });
+                /** 导出配件详情信息 */
+                $("#sheetTable tbody").on('click', '#exportExcel',
+                    function () {
+                        if(sheet_id!='')
+                            window.location.href = config.basePath + '/checkPlan/sheet/export/' + sheet_id;
                     });
                 /** *************** **/
                 sheetTable.on('draw.dt', function () {

@@ -124,9 +124,8 @@ require(['../config'],
                             var str = '';
                             if (row.flag == 2) {
                                 str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;' + '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;' + '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popSheetModal" title="回退单据"><span class="glyphicon glyphicon-backward"></span></a>&nbsp;&nbsp;';
-                            } else {
-                                str += '-';
                             }
+                            str += '<button id="exportExcel" type="button" class="btn btn-success btn-xs" title="导出"><span class="glyphicon glyphicon-download-alt"></span></button>';
                             return str;
                         }
                     }],
@@ -345,6 +344,12 @@ require(['../config'],
                             }
                         });
 
+                    });
+                /** 导出配件详情信息 */
+                $("#sheetTable tbody").on('click', '#exportExcel',
+                    function () {
+                        if(sheet_id!='')
+                        window.location.href = config.basePath + '/checkPlan/sheet/export/' + sheet_id;
                     });
                 /** *************** **/
                 sheetTable.on('draw.dt', function () {

@@ -4,6 +4,7 @@ import com.kthw.common.DataTable;
 import com.kthw.common.base.ErrCode;
 import com.kthw.pmis.entiy.*;
 import com.kthw.pmis.helper.DepotHelper;
+import com.kthw.pmis.helper.FaultHandleHelper;
 import com.kthw.pmis.mapper.common.*;
 import com.kthw.pmis.service.faultHandle.FaultHandleService;
 import org.apache.commons.lang.StringUtils;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -36,6 +38,8 @@ public class FaultReportController {
     private FaultHandleService faultHandleService;
     @Autowired
     private DepotHelper depotHelper;
+    @Autowired
+    private FaultHandleHelper faultHandleHelper;
     private static final Logger logger = LoggerFactory.getLogger(FaultReportController.class);
 
     /**
@@ -59,7 +63,9 @@ public class FaultReportController {
             Map<String, Object> params = new HashMap<>();
             List<FaultHandle> list = new ArrayList<>();
             //获取faultHandle表
+            Depot depot=null;
             if (StringUtils.isNotBlank(depotId)) {
+                depot=depotHelper.getDepot(Long.valueOf(depotId));
                 List<Depot> childrens = depotHelper.getChildrens(Long.valueOf(depotId));
                 params.put("depotIdList", childrens);
             }
@@ -75,6 +81,7 @@ public class FaultReportController {
             params.put("eqFinished", 1);
             params.put("orderByClause", "update_time desc,complete_flag asc");
             list = faultHandleMapper.selectByMap(params);
+            list=faultHandleHelper.sortNewList(list,depot);
             dt.setRecordsTotal(list.size());
             dt.setRecordsFiltered(list.size());
             dt.setData(list);
@@ -141,13 +148,16 @@ public class FaultReportController {
         String type = request.getParameter("type");
         String finished = request.getParameter("finished");
         String dispatcher = request.getParameter("dispatcher");
+        String detectDeviceName = request.getParameter("detectDeviceName");
         try {
+            Depot depot=null;
             Map<String, Object> params = new HashMap<>();
             List<FaultHandle> list = new ArrayList<>();
             //获取faultHandle表
             if (StringUtils.isNotBlank(depotId)) {
-                params.put("eqDepotId", Long.valueOf(depotId));
-
+                depot=depotHelper.getDepot(Long.valueOf(depotId));
+                List<Depot> childrens = depotHelper.getChildrens(Long.valueOf(depotId));
+                params.put("depotIdList", childrens);
             } else if (!StringUtils.isNotBlank(depotId)) {
                 params.put("gtCompleteFlag", 1);
             }
@@ -157,6 +167,9 @@ public class FaultReportController {
             if (StringUtils.isNotBlank(type)) {
                 params.put("eqType", type);
             }
+            if (StringUtils.isNotBlank(detectDeviceName)) {
+                params.put("likeDetectDeviceName", "%"+detectDeviceName+"%");
+            }
             if (StringUtils.isNotBlank(completeFlag)) {
                 params.put("eqCompleteFlag",Short.valueOf(completeFlag));
             }
@@ -165,6 +178,7 @@ public class FaultReportController {
             }
             params.put("orderByClause", "update_time desc,complete_flag asc");
             list.addAll(faultHandleMapper.selectByMap(params));
+            list=faultHandleHelper.sortNewList(list,depot);
             dt.setRecordsTotal(list.size());
             dt.setRecordsFiltered(list.size());
             dt.setData(list);
@@ -235,7 +249,9 @@ public class FaultReportController {
                     Date endTime = info.getHandleEndTime();
                     long diff = endTime.getTime() - startTime.getTime();
                     //计算小时
-                    float hours = (float) (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
+                    Float hours = (float) diff  / (1000 * 60 * 60);
+                    //保留两位小数
+                    hours = new BigDecimal(hours.toString()).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
                     faultHandle.setFaultStopTime(hours);
                 }
             }

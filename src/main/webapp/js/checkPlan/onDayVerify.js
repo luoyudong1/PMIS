@@ -52,12 +52,26 @@ require(['../config'],
                  * 重置
                  */
                 $('#btn-reset').click(function (e) {
-                    $('#sheet_id').val('');
-                    $('#verify_flag').val('');
-                    var now = new Date();
-                    now.setDate(1);
-                    $('#queryTime').val(formatDateBy(now.getTime(), 'yyyy-MM-dd'));
-                    $('#queryTime2').val(formatDateBy(new Date(), 'yyyy-MM-dd'));
+                    $.ajax({
+                        async: false,
+                        url: config.basePath + "/checkPlan/checkPlan/finished",
+                        type: 'get',
+                        data: {},
+                        dataType: 'json',
+                        success: function (result) {
+                            if (result.code != 0) {
+                                alert(result.msg);
+                            } else {
+                                sheetTable.ajax.reload();
+                                $("#alertMsg").html('<span style="color:green;text-align:center"><strong>检修计划归档成功！</strong></span>');
+                                $("#infoAlert").show();
+                                hideTimeout("infoAlert", 2000);
+                            }
+                        },
+                        error: function (result) {
+                            console.log(result);
+                        }
+                    });
                 });
 
 
@@ -70,10 +84,11 @@ require(['../config'],
                         url: config.basePath + '/checkPlan/checkPlan/listOnDay',
                         type: 'GET',
                         data: function (d) {
-                            d.depotId = deptId
                             d.dispatcher=$('#dispatcher', parent.document).val()
                             d.queryTime = ($("#queryTime").val() == '' ? '' : $("#queryTime").val() + " 00:00:01");
                             d.queryTime2 = ($("#queryTime2").val() == '' ? '' : $("#queryTime2").val() + " 23:59:59");
+                            d.detectDeviceName=$('#detectDeviceName').val()
+                            d.status=$('#verify_flag').val()
                         }
                     },
                     columns: [{
@@ -120,7 +135,7 @@ require(['../config'],
                                 else if (data == 3) {
                                     str = '<span style="color:blue;font-weight:bold;">检修开始待审核</span>';
                                 } else if (data == 4) {
-                                    str = '<span style="color:blue;font-weight:bold;">检修结开始</span>';
+                                    str = '<span style="color:blue;font-weight:bold;">检修开始</span>';
                                 }
                                 else if (data == 5) {
                                     str = '<span style="color:blue;font-weight:bold;">检修结束待审核</span>';

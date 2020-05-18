@@ -186,6 +186,24 @@ public class PlanCheck {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date verifyDate4;
     private Integer dispatcher;
+    private Integer quarterCheck;
+    private Integer projectCheck;
+
+    public Integer getQuarterCheck() {
+        return quarterCheck;
+    }
+
+    public void setQuarterCheck(Integer quarterCheck) {
+        this.quarterCheck = quarterCheck;
+    }
+
+    public Integer getProjectCheck() {
+        return projectCheck;
+    }
+
+    public void setProjectCheck(Integer projectCheck) {
+        this.projectCheck = projectCheck;
+    }
 
     public Integer getDispatcher() {
         return dispatcher;
