@@ -41,6 +41,7 @@ require(['../config'],
                 let sheet_id = ''
                 var format = 'Y-m-d H:i:s';
                 var status;
+                let detectDeviceId='';
                 /**
                  * 查询
                  */
@@ -118,7 +119,10 @@ require(['../config'],
                             data: 'endTime'
                         }, {
                             data: 'checkRecord'
-                        }, {
+                        },
+                        {
+                            data: 'repairUser'
+                        },{
                             data: 'planType'
                         }, {
                             data: 'remark'
@@ -147,7 +151,7 @@ require(['../config'],
                         },
                     ],
                     columnDefs: [{
-                        targets: 14,
+                        targets: 15,
                         data: function (row) {
                             var str = '-';
                             if (row.status == 3 || row.status == 5) {
@@ -155,7 +159,9 @@ require(['../config'],
                                 str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
                                 str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popBackSheetModal" title="回退"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
                             }
-
+                            if (row.status !=2) {
+                                str += '<a class="btn btn-primary btn-xs undoSheet"data-toggle="modal" href="#popSheetUndoModal"  title="重置" > <span class="glyphicon glyphicon-repeat"></span></a>&nbsp;&nbsp;'
+                            }
                             return str;
                         }
                     }],
@@ -163,6 +169,14 @@ require(['../config'],
                     paging: true,
                     pageLength: 10,
                     serverSide: false,
+                    fnCreatedRow: function (row, data) {
+                        // row : tr dom
+                        // data: row data
+                        // dataIndex:row data‘s index
+                        if (data.status== 3||data.status== 5) {
+                            $(row).css('color','red')
+                        }
+                    },
                     drawCallback: function (settings) {
                         var api = this.api();
                         var startIndex = api.context[0]._iDisplayStart; // 获取到本页开始的条数
@@ -171,7 +185,40 @@ require(['../config'],
                         });
                     },
                 });
+                /**
+                 * 获取检修人员
+                 */
+                function getRepairUser(data) {
+                    var ret = '';
+                    $.ajax({
+                        async: false,
+                        url: config.basePath + "/faultHandle/faultReport/getRepairPerson",
+                        type: 'get',
+                        data: {detectDeviceId: data},
+                        dataType: 'json',
+                        success: function (result) {
+                            ret = result;
+                        },
+                        error: function (result) {
+                            console.log(result);
+                        }
+                    });
+                    return ret;
+                }
 
+                /**
+                 * 初始化检修人员下拉框
+                 */
+                function initRepairUser() {
+                    if (detectDeviceId != null) {
+                        let result = getRepairUser(detectDeviceId)
+                        $("#repairUserModify").empty()
+                        $("#repairUserModify").append('<option></option>')
+                        for (var i = 0; i < result.length; i++) {
+                            $("#repairUserModify").append('<option value="' + result[i].id + '">' + result[i].name + '</option>');
+                        }
+                    }
+                }
                 /**
                  * 修改检修计划
                  */
@@ -187,6 +234,10 @@ require(['../config'],
                         $('#startTimeModify').val(data.startTime)
                         $('#endTimeModify').val(data.endTime)
                         $('#checkRecordModify').val(data.checkRecord)
+                        initRepairUser()
+                        if (data.repairUser != null) {//如果检修人员不为空
+                            $('#repairUserModify option:contains("' + data.repairUser + '")').prop("selected", true);
+                        }
                         $('#remarkModify').val(data.remark)
                         initModifyModal()
                     });
@@ -235,6 +286,7 @@ require(['../config'],
                                 status = sheetTrData.status
                                 id = sheetTrData.id
                                 sheet_id = sheetTrData.sheetId
+                                detectDeviceId=sheetTrData.detectDeviceId
                             }
 
                         });
@@ -348,6 +400,34 @@ require(['../config'],
                                 } else {
                                     sheetTable.ajax.reload();
                                     $("#alertMsg").html('<span style="color:green;text-align:center"><strong>延期成功！</strong></span>');
+                                    $("#infoAlert").show();
+                                    hideTimeout("infoAlert", 2000);
+                                }
+                            }
+                        });
+                    });
+                /**
+                 * 重置按钮事件
+                 */
+                $("#btnPopUndoSheetOk").on('click',
+                    function (e) {
+                        e.preventDefault();
+                        var params = JSON.stringify({
+                            id: id,
+                            sheetId: sheet_id,
+                        });
+                        $.ajax({
+                            url: config.basePath + '/checkPlan/checkPlan/undo',
+                            type: "post",
+                            data: params,
+                            contentType: 'application/json',
+                            dataType: "json",
+                            success: function (result) {
+                                if (result.code != 0) {
+                                    alert(result.msg);
+                                } else {
+                                    sheetTable.ajax.reload();
+                                    $("#alertMsg").html('<span style="color:green;text-align:center"><strong>重置成功！</strong></span>');
                                     $("#infoAlert").show();
                                     hideTimeout("infoAlert", 2000);
                                 }

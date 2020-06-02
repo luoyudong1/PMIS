@@ -98,6 +98,9 @@ require(['../config'],
                             data: 'haultStartTime'
                         },
                         {
+                            data: 'handleEndTime'
+                        },
+                        {
                             data: 'faultStopTime'
                         },
                         {

@@ -4,30 +4,49 @@
 require(['../config'],
     function (config) {
 
-        require(['datetimepicker'],
+        require(['datetimepicker2'],
             function () {
                 var date = new Date();
-                initDatetimepicker("queryTime", date);
-                initDatetimepicker("queryTime2", date);
-                initDatetimepicker("planTimeDelay", date);
-
+                $.fn.datetimepicker.dates['zh-CN'] = {
+                    days: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
+                    daysShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+                    daysMin: ["日", "一", "二", "三", "四", "五", "六", "日"],
+                    months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+                    monthsShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+                    today: "今天",
+                    suffix: [],
+                    meridiem: ["上午", "下午"]
+                };
                 /**
                  * 初始化时间框
                  */
-                function initDatetimepicker(id, date) {
-                    $.datetimepicker.setLocale('ch');
+                function initDatetimepicker(id, date,format) {
                     $('#' + id).datetimepicker({
-                        value: date,
-                        format: 'Y-m-d',
-                        timepicker: false,
-                        // 关闭时间选项
-                        todayButton: true
-                        // 关闭选择今天按钮
+                        format: format,
+                        // timepicker: false,
+                        // forceParse:false,
+                        // // 关闭时间选项
+                        autoclose: true,
+                        startView: 3, //这里就设置了默认视图为年视图
+                        minView: 3, //设置最小视图为年视图
+                        language:'zh-CN'
+
                     });
                 }
+                function getDay() {
+                    var today = new Date();
+                    var oYear = today.getFullYear();
+                    var oMoth = (today.getMonth() + 1).toString();
+                    if (oMoth.length <= 1)
+                        oMoth = '0' + oMoth;
+                    console.log(oYear + '-' + oMoth)
+                    return oYear + '-' + oMoth;
+                }
+                initDatetimepicker("queryTime", date,'yyyy-mm');
+                $('#queryTime').val(getDay())
             });
 
-        require(['jquery', 'bootstrap', 'common/dt', 'common/commonMethod', 'common/slider', 'common/dateFormat', 'common/select2', 'common/pinyin'],
+        require(['jquery','bootstrap', 'common/dt', 'common/commonMethod', 'common/slider', 'common/dateFormat', 'common/select2', 'common/pinyin'],
             function ($, bootstrap, dataTable, CMethod) {
 
                 var user_id = window.parent.user.userId; // 登录人ID
@@ -37,6 +56,26 @@ require(['../config'],
                 var id;
                 let sheet_id = ''
                 var status;
+                var date=new Date()
+                /**
+                 * 初始化时间框
+                 */
+                function initDatetimepicker(id, date,format) {
+                    $.datetimepicker.setLocale('ch');
+                    $('#' + id).datetimepicker({
+                        startDate: date.getFullYear()+'-'+date.getMonth(),
+                        format: format,
+                        timepicker: false,
+                        // forceParse:false,
+                        // // 关闭时间选项
+                        autoclose: true,
+                        todayButton:true,
+                        // // 关闭选择今天按钮
+                    });
+                }
+                initDatetimepicker("planTimeDelay",date,'Y-m-d');
+
+
                 /**
                  * 查询
                  */
@@ -44,18 +83,16 @@ require(['../config'],
                     sheetTable.ajax.reload();
                 });
 
-                /**
-                 * 重置
-                 */
-                $('#btn-reset').click(function (e) {
-                    $('#sheet_id').val('');
-                    $('#verify_flag').val('');
-                    var now = new Date();
-                    now.setDate(1);
-                    $('#queryTime').val(formatDateBy(now.getTime(), 'yyyy-MM-dd'));
-                    $('#queryTime2').val(formatDateBy(new Date(), 'yyyy-MM-dd'));
-                });
-
+                // /**
+                //  * 重置
+                //  */
+                // $('#btn-reset').click(function (e) {
+                //     $('#sheet_id').val('');
+                //     $('#verify_flag').val('');
+                //     var now = new Date();
+                //     now.setDate(1);
+                //     $('#queryTime').val(formatDateBy(now.getTime(), 'yyyy-MM'));
+                // });
 
                 /**
                  * 初始化检修单据详情
@@ -67,6 +104,8 @@ require(['../config'],
                         type: 'GET',
                         data: function (d) {
                             d.depotId = deptId
+                            d.year=$('#queryTime').val().substring(0,4)
+                            d.month=$('#queryTime').val().substring(5,7)
                         }
                     },
                     columns: [{
@@ -209,7 +248,15 @@ require(['../config'],
                         cell.innerHTML = i + 1;
                     });
                 });
-
+                /**
+                 * 定时隐藏alert框
+                 */
+                function hideTimeout(id, ms) {
+                    var time = setTimeout(function () {
+                            $("#" + id).hide();
+                        },
+                        ms)
+                }
             });
     })
 ;

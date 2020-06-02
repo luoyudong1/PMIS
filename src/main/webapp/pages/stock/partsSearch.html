@@ -17,6 +17,7 @@
     <link href="../../css/animate.css" rel="stylesheet">
     <link href="../../css/style.css" rel="stylesheet">
     <link href="../../css/vehicle.css" rel="stylesheet">
+    <script type="text/javascript" src="../../js/jquery-3.1.1.min.js"></script>
 </head>
 <body class="gray-bg dashbard-1">
 <div class="container-fluid">
@@ -63,6 +64,7 @@
                         <th>资产属性</th>
                         <th>价格</th>
                         <th>所在仓库</th>
+                        <th>所属探测站</th>
                         <th>添加时间</th>
                         <th>修改时间</th>
                     </tr>
@@ -102,7 +104,27 @@
 <div class="back-top">
     <a href="#">回顶部</a>
 </div>
-<script src="../../js/require.js"
-        data-main="../../js/stock/partsSearch"></script>
+<script type="text/javascript">
+    let _version = '1.0.0';
+
+    function setVersion(version) {
+        document.write('<script type="text/javascript" src="../../js/require.js?v=' + version+ '" data-main="../../js/stock/partsSearch"><\/script>');
+    }
+
+    $.ajax({
+        url: '/getJsVersion',
+        type: 'get',
+        async: false,
+        success: function (data) {
+            if (data) {
+                _version = data;
+            }
+            setVersion(_version);
+        },
+        error: function () {
+            setVersion(_version);
+        }
+    });
+</script>
 </body>
 </html>

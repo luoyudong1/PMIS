@@ -160,4 +160,11 @@
       <include refid="ByMap_Where_Clause" />
     </if>
   </update>
+
+  <select id="selectByParent" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_depot_dict
+    where parent_id = #{parentId,jdbcType=NUMERIC}
+  </select>
 </mapper>

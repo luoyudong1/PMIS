@@ -281,11 +281,11 @@ require(['../config'],
                             {
                                 data: null
                             }, {
-                                data: 'partId',
-                                render: function (data) {
-
-                                    return '<input type="checkbox" class="chk" />'
-                                }
+                                data: 'partId',bVisible:false
+                                // render: function (data) {
+                                //
+                                //     return '<input type="checkbox" class="chk" />'
+                                // }
                             }, {
                                 data: 'partId'
                             }, {
@@ -332,20 +332,11 @@ require(['../config'],
                                 }
 
                             }, {
-                                data: 'usedStationId'
+                                data: 'usedStationId',bVisible:false
                             }, {
                                 data: 'usedStationName'
                             }, {
-                                data: 'faultDate',
-                                render: function (data) {
-                                    if (data > 0) {
-                                        return formatDateBy(
-                                            data,
-                                            'yyyy-MM-dd');
-                                    } else {
-                                        return '-';
-                                    }
-                                }
+                                data: 'faultDate'
                             }, {
                                 data: 'faultInfo'
                             }, {
@@ -617,7 +608,6 @@ require(['../config'],
                         $('#deviceModelNameAdd').val('');
                         $('#partCodeAdd').val('');
                         $('#part_idAdd').val('');
-                        $('#warrantyAdd').val('');
                         $('#usedStationAdd').val('');
                         $('#faultInfoDateAdd').val('');
                         $('#faultInfoAdd').val('');
@@ -649,6 +639,22 @@ require(['../config'],
                 $("#btnAddSheetDetailOk").on('click',
                     function (e) {
                         e.preventDefault();
+                        if($('#warrantyAdd').val()==""){
+                            $("#alertMsgAdd").html("<font style='color:red'>质保期为空</font>");
+                            $("#alertMsgAdd").css('display', 'inline-block')
+                            CMethod.hideTimeout("alertMsgAdd", "alertMsgAdd", 5000);
+                            return false;
+                        } if($('#faultDateAdd').val()==""){
+                            $("#alertMsgAdd").html("<font style='color:red'>故障发生时间为空</font>");
+                            $("#alertMsgAdd").css('display', 'inline-block')
+                            CMethod.hideTimeout("alertMsgAdd", "alertMsgAdd", 5000);
+                            return false;
+                        }if($('#faultInfoAdd').val()==""){
+                            $("#alertMsgAdd").html("<font style='color:red'>故障现象为空</font>");
+                            $("#alertMsgAdd").css('display', 'inline-block')
+                            CMethod.hideTimeout("alertMsgAdd", "alertMsgAdd", 5000);
+                            return false;
+                        }
                         var params = JSON.stringify({
                             sheetId: sheet_id2,
                             partCode: $('#partCodeAdd').val(),
@@ -883,9 +889,9 @@ require(['../config'],
                     partCode='%'+$('#query_part_code').val()+'%'
                         tblPartsInfo.ajax.reload();
                     });
-                $("#btnPopPartsOk").click(function () {
-                    batchCreateSheetDetail(1);
-                })
+                // $("#btnPopPartsOk").click(function () {
+                //     batchCreateSheetDetail(1);
+                // })
 
                 /**
                  * 点击当前配件 获取配件
@@ -968,7 +974,7 @@ require(['../config'],
 //        	}
 //        })
 
-                $("tblPartsInfo tbody").on("click", "tr",
+                $("#tblPartsInfo tbody").on("click", "tr",
                     function () {
                         $(this).addClass('success').siblings().removeClass('success');
                         var trData = tblPartsInfo.row(this).data();
@@ -976,14 +982,13 @@ require(['../config'],
                         $("#part_nameAdd").val(trData.devicePartsName);
                         $("#deviceModelNameAdd").val(trData.deviceModelName);
                         $("#partCodeAdd").val(trData.partCode);
-                        $("#warrantyAdd").val(trData.warranty);
                         $("#part_idAdd").val(trData.partId);
                         usedStationId = trData.usedStationId;
                         $("#usedStationAdd").val(trData.usedStationName);
                         $("#faultInfoDateAdd").val(formatDateBy(trData.faultDate, 'yyyy-MM-dd'));
                         $("#faultInfoAdd").val(trData.faultInfo);
                         $("#remarkAdd").val(trData.remark);
-//            $('#partsModal').modal('hide');
+                        $('#partsModal').modal('hide');
                     });
                 $("#modifySheetDetailModal").on('show.bs.modal',
                     function (e) {

@@ -3,6 +3,8 @@ package com.kthw.pmis.helper;
 import com.kthw.pmis.entiy.Depot;
 import com.kthw.pmis.entiy.FaultHandle;
 import com.kthw.pmis.entiy.PlanCheck;
+import com.kthw.pmis.mapper.common.FaultHandleMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,7 +12,8 @@ import java.util.List;
 
 @Component("faultHandleHelper")
 public class FaultHandleHelper {
-
+    @Autowired
+    private FaultHandleMapper faultHandleMapper;
     public List<FaultHandle> sortNewList(List<FaultHandle> list, Depot depot) {
         short completeFlag1;
         short completeFlag2;
@@ -45,4 +48,7 @@ public class FaultHandleHelper {
         }
         return newList;
     }
+
+
+
 }

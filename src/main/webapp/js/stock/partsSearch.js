@@ -35,7 +35,6 @@ require(['../config'], function (config) {
          * 重置
          */
         $('#btn-reset').click(function (e) {
-            $('#supplier_name').val('');
             $('#part_id').val('');
             $('#part_code').val('');
             $('#part_name').val('');
@@ -49,46 +48,7 @@ require(['../config'], function (config) {
             $('#queryTime2').val(formatDateBy(new Date(), 'yyyy-MM-dd'));
         });
 
-        /**
-         * 初始化供货商下拉框
-         */
-        $.ajax({
-            async: false,
-            url: config.basePath + "/entryAndOut/purchaseParts/getAllsuppliers",
-            data: {
-                "action": "all"
-            },
-            dataType: 'json',
-            success: function (result) {
-                for (var i = 0; i < result.data.length; i++) {
-                    $("#supplier_name").append('<option value="' + result.data[i].supplier_id + '">' + result.data[i].supplier_name + '</option>');
-                }
-            },
-            error: function (result) {
-                console.log(result);
-            }
-        });
 
-        /**初始化配件名称下拉框
-         *
-         */
-        $.ajax({
-            async: false,
-            url: config.basePath + "/system/partsManage/getAllDeviceName",
-            data: {
-                "action": "all"
-            },
-            dataType: 'json',
-            success: function (result) {
-                for (var i = 0; i < result.data.length; i++) {
-                    $("#part_name").append('<option value="' + result.data[i].device_parts_id + '" deviceNameCode="' + result.data[i].device_parts_code + '">' + result.data[i].device_parts_name + '</option>');
-                    //$("#partName").append('<option value="'+result.data[i].device_name+'" deviceNameCode="'+result.data[i].device_name_code+'">'+result.data[i].device_name+'</option>');
-                }
-            },
-            error: function (result) {
-                console.log(result);
-            }
-        });
         var sheetDetailInfoTable = dataTable('sheetDetailInfoTable', {
             bAutoWidth: false,
             ajax: {
@@ -110,6 +70,7 @@ require(['../config'], function (config) {
                 {data: 'assetAttributesName'},
                 {data: 'purchasePrice'},
                 {data: 'storehouseName'},
+                {data: 'detectDeviceName'},
                 {
                     data: 'createTime',
                     render: function (data) {
@@ -218,28 +179,6 @@ require(['../config'], function (config) {
             },
         });
 
-        /**
-         * 时间加载
-         */
-        function loadDate(id, date) {
-            $.datetimepicker.setLocale('ch');
-            $('#' + id).datetimepicker({
-                value: date,
-                format: 'Y-m-d',
-                timepicker: false, // 关闭时间选项
-                todayButton: true
-                // 关闭选择今天按钮
-            });
-        }
-
-        /**
-         * 定时隐藏alert框
-         */
-        function hideTimeout(id, ms) {
-            var time = setTimeout(function () {
-                $("#" + id).hide();
-            }, ms)
-        }
 
     });
 });

@@ -263,17 +263,19 @@
 							</div>
 							<br>
 							<div class="input-group">
-								<span style="color: red">*</span><label><strong>故障发生日期：</strong></label>
-								<input id="faultDate" type="text"
-									class="form-control"
-									style="width: 200px;" />
+								<span style="color: red">*</span><label><strong>配件故障现象：</strong></label>
+								<input id="faultInfo" type="text"
+									   class="form-control"
+									   style="width: 200px;" list="faultInfoList" autocomplete="off"/>
+								<datalist id="faultInfoList">
+								</datalist>
 							</div>
 							<br>
 							<div class="input-group">
-								<span style="color: red">*</span><label><strong>配件故障现象：</strong></label>
-								<input id="faultInfo" type="text"
+								<span style="color: red">*</span><label><strong>故障发生日期：</strong></label>
+								<input id="faultDate" type="text"
 									class="form-control"
-									style="width: 200px;" />
+									style="width: 200px;" autocomplete="off"/>
 							</div>
 							<br>
 							<div class="input-group">
@@ -352,15 +354,15 @@
 							</div>
 							<br>
 							<div class="input-group">
-								<span style="color: red">*</span><label><strong>故障发生日期：</strong></label>
-								<input id="faultDateModify" type="text"
-									class="form-control"
-									style="width: 200px; " />
+								<span style="color: red">*</span><label><strong>配件故障现象：</strong></label>
+								<input id="faultInfoModify" type="text"
+									   class="form-control"
+									   style="width: 200px; " list="faultInfoList" autocomplete="off"/>
 							</div>
 							<br>
 							<div class="input-group">
-								<span style="color: red">*</span><label><strong>配件故障现象：</strong></label>
-								<input id="faultInfoModify" type="text"
+								<span style="color: red">*</span><label><strong>故障发生日期：</strong></label>
+								<input id="faultDateModify" type="text"
 									class="form-control"
 									style="width: 200px; " />
 							</div>

@@ -40,6 +40,8 @@ public class FaultReportController {
     private DepotHelper depotHelper;
     @Autowired
     private FaultHandleHelper faultHandleHelper;
+    @Autowired
+    private FaultInfoMapper faultInfoMapper;
     private static final Logger logger = LoggerFactory.getLogger(FaultReportController.class);
 
     /**
@@ -88,6 +90,54 @@ public class FaultReportController {
             dt.setDraw(Integer.parseInt(request.getParameter("draw") == null ? "0" : request.getParameter("draw")) + 1);
         } catch (Exception e) {
             logger.error("显示故障预报出错");
+        }
+        return dt;
+
+    }
+    /**
+     * 显示申诉故障预报表
+     *
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/listAppeal", method = RequestMethod.GET)
+    public DataTable<FaultHandle> listAppeal(HttpServletRequest request) {
+        logger.info("显示申诉故障预报表");
+        DataTable<FaultHandle> dt = new DataTable<FaultHandle>();
+        String depotId = request.getParameter("depotId");
+        String queryTime = request.getParameter("queryTime");
+        String queryTime2 = request.getParameter("queryTime2");
+        String type = request.getParameter("type");
+        String detectDeviceName = request.getParameter("detectDeviceName");
+        try {
+            Map<String, Object> params = new HashMap<>();
+            List<FaultHandle> list = new ArrayList<>();
+            //获取faultHandle表
+            Depot depot=null;
+            if (StringUtils.isNotBlank(depotId)) {
+                depot=depotHelper.getDepot(Long.valueOf(depotId));
+                List<Depot> childrens = depotHelper.getChildrens(Long.valueOf(depotId));
+                params.put("depotIdList", childrens);
+            }
+            params.put("gtAppealFlag", 0);
+            if (StringUtils.isNotBlank(type)) {
+                params.put("eqType", type);
+            }
+            if (StringUtils.isNotBlank(detectDeviceName)) {
+                params.put("likeDetectDeviceName", '%'+detectDeviceName+'%');
+            }
+            params.put("queryTime", queryTime);
+            params.put("queryTime2", queryTime2);
+            params.put("orderByClause", "update_time desc,complete_flag asc");
+            list = faultHandleMapper.selectByMap(params);
+            list=faultHandleHelper.sortNewList(list,depot);
+            dt.setRecordsTotal(list.size());
+            dt.setRecordsFiltered(list.size());
+            dt.setData(list);
+            dt.setDraw(Integer.parseInt(request.getParameter("draw") == null ? "0" : request.getParameter("draw")) + 1);
+        } catch (Exception e) {
+            logger.error("显示申诉故障预报出错");
         }
         return dt;
 
@@ -222,7 +272,67 @@ public class FaultReportController {
         return ret;
 
     }
+    /**
+     * 拆分故障
+     *
+     * @param faultHandle
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/updatePartOfFault", method = RequestMethod.POST)
+    public Map<String, Object> updatePartOfFault(@RequestBody FaultHandle faultHandle) {
+        logger.info("拆分故障");
+        int code = 0;
+        Map<String, Object> ret = new HashMap<>();
+        try {
+            Date oldStartTime=new Date();
+            Date oldEndTime=new Date();
 
+            //获取旧的faultHandle表
+           FaultHandle old=faultHandleMapper.selectByPrimaryKey(faultHandle.getId());
+            oldStartTime=old.getHaultStartTime();
+            oldEndTime=old.getHandleEndTime();
+            String type=old.getType();
+            //新增部分故障
+            FaultHandle newFault=new FaultHandle();
+            newFault=old;
+            String id=faultHandleService.getMaxId(old.getId().substring(0,6));
+            newFault.setId(id);
+            long diff = faultHandle.getHandleEndTime().getTime()-oldStartTime.getTime();
+            Float hours = (float) diff  / (1000 * 60 * 60);
+            //保留两位小数
+            hours = new BigDecimal(hours.toString()).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
+            //新增部分故障
+            newFault.setFaultStopTime(hours);
+            newFault.setHaultStartTime(oldStartTime);
+            newFault.setHandleEndTime(faultHandle.getHandleEndTime());
+            newFault.setType(faultHandle.getType());
+            faultHandleMapper.insert(newFault);
+
+           //修改旧的故障信息
+            diff = oldEndTime.getTime() -  faultHandle.getHandleEndTime().getTime();
+            //计算小时
+            hours = (float) diff  / (1000 * 60 * 60);
+            //保留两位小数
+            hours = new BigDecimal(hours.toString()).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
+            old.setFaultStopTime(hours);
+            old.setType(type);
+            old.setId(faultHandle.getId());
+            old.setHaultStartTime(faultHandle.getHandleEndTime());
+            old.setHandleEndTime(oldEndTime);
+            faultHandleMapper.updateByPrimaryKeySelective(old);
+            ret.put("code", code);
+            ret.put("msg", ErrCode.getMessage(code));
+            return ret;
+        } catch (Exception e) {
+            logger.error("拆分故障出错");
+        }
+        code = ErrCode.ADD_ERROR;
+        ret.put("code", code);
+        ret.put("msg", ErrCode.getMessage(code));
+        return ret;
+
+    }
     /**
      * 修改故障预报
      *
@@ -427,7 +537,29 @@ public class FaultReportController {
         return detectDevice;
 
     }
+    /**
+     * 获取探测站最近发生的故障
+     *
+     * @param
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/getFaultInfo", method = RequestMethod.GET)
+    public List<FaultHandle> getFaultInfo(Integer detectDeviceId, String type) {
+        logger.info("获取探测站最近发生的故障");
+        Map<String, Object> params = new HashMap<>();
+        List<FaultHandle> list= new ArrayList<>();
+        try {
+            params.put("eqDetectDeviceId",detectDeviceId);
+            params.put("orderByClause", "update_time desc limit 7");
+            list = faultHandleMapper.selectByMap(params);
 
+        } catch (Exception e) {
+            logger.error("获取探测站最近发生的故障");
+        }
+        return list;
+
+    }
     @ResponseBody
     @RequestMapping(value = "/getMaxSheetId", method = {RequestMethod.GET})
     public synchronized String getMaxSheetId(@RequestParam String sheet_id, HttpServletRequest request) {
@@ -468,5 +600,26 @@ public class FaultReportController {
         return ret;
 
     }
-
+    /**
+     * 获取故障现象
+     * @param deviceType 设备类型 AEI,THDS
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/getFaultInfo", method = {RequestMethod.POST})
+    public List<FaultInfo> getFaultInfo(@RequestParam("deviceType") String deviceType) {
+        logger.info("获取故障现象");
+        List<FaultInfo> list=new ArrayList<>();
+        Map<String,Object> params=new HashMap<>();
+        System.out.println(deviceType);
+        try {
+            if(StringUtils.isNotBlank(deviceType)){
+                params.put("eqDeviceType",deviceType);
+            }
+            list=faultInfoMapper.selectByMap(params);
+        } catch (Exception e) {
+            logger.error("获取故障现象error");
+        }
+        return list;
+    }
 }

@@ -15,6 +15,7 @@
     <link href="../css/plugins/toastr/toastr.min.css" rel="stylesheet">
     <link href="../css/animate.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
+ <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
     <style type="text/css">
         #navTabs i:HOVER {
             cursor: pointer;
@@ -94,7 +95,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" id="quit2"> <i class="fa fa-sign-out"></i>注 销</a>
+                        <a href="#" id="quit2"> <i class="fa fa-sign-out"></i>返回主页</a>
                     </li>
                 </ul>
 
@@ -240,7 +241,27 @@
         </div>
     </div>
 </div>
-<script src="../js/require.js" data-main="../js/index-tmis"></script>
+<script type="text/javascript">
+    let _version = '1.0.0';
 
+    function setVersion(version) {
+        document.write('<script type="text/javascript" src="../js/require.js?v=' + version+ '" data-main="../js/index-tmis"><\/script>');
+    }
+
+    $.ajax({
+        url: '/PMIS/getJsVersion',
+        type: 'get',
+        async: false,
+        success: function (data) {
+            if (data) {
+                _version = data;
+            }
+            setVersion(_version);
+        },
+        error: function () {
+            setVersion(_version);
+        }
+    });
+</script>
 </body>
 </html>

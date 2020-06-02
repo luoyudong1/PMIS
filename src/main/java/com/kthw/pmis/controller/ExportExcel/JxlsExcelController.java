@@ -1,16 +1,11 @@
 package com.kthw.pmis.controller.ExportExcel;
 
-import com.kthw.pmis.entiy.Depot;
-import com.kthw.pmis.entiy.FaultHandle;
-import com.kthw.pmis.entiy.PlanCheck;
-import com.kthw.pmis.entiy.PlanCheckSheet;
+import com.kthw.pmis.entiy.*;
 import com.kthw.pmis.entiy.bo.PlanCheckExportBO;
+import com.kthw.pmis.entiy.dto.SheetDetailDTO;
 import com.kthw.pmis.entiy.dto.StockInfoCountDTO;
 import com.kthw.pmis.helper.DepotHelper;
-import com.kthw.pmis.mapper.common.FaultHandleMapper;
-import com.kthw.pmis.mapper.common.PlanCheckMapper;
-import com.kthw.pmis.mapper.common.PlanCheckSheetMapper;
-import com.kthw.pmis.mapper.common.StockInfo1Mapper;
+import com.kthw.pmis.mapper.common.*;
 import com.kthw.pmis.util.excel.ExportExcelUtil;
 import net.sf.jxls.transformer.XLSTransformer;
 import org.apache.commons.lang.StringUtils;
@@ -30,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -45,6 +41,8 @@ public class JxlsExcelController {
     private PlanCheckSheetMapper planCheckSheetMapper;
     @Autowired
     private PlanCheckMapper planCheckMapper;
+    @Autowired
+    private SheetDetailMapper sheetDetailMapper;
     private static final String CONTENT_TYPE = "application/vnd.ms-excel;charset=utf-8";
 
     private static final String templatePath = "excel/template.xls";
@@ -54,6 +52,7 @@ public class JxlsExcelController {
     private static final String exportStockInfoCountFileName = "库存信息统计.xls";
     private static final String exportFaultHandelFileName = "故障预报单据.xls";
     private static final String exportPlanCheckFileName = "检修计划单据.xls";
+    private static final String exportCheckRepairFileName = "所内检修记录.xls";
     static {
         shetetNames.add("设备故障");
         shetetNames.add("2故障");
@@ -121,7 +120,36 @@ public class JxlsExcelController {
             logger.error("导出仓库配件数量错误");
         }
     }
-
+    @RequestMapping(value = "/stockInfo/export", method = {RequestMethod.GET})
+    @ResponseBody
+    public void exportCount(HttpServletRequest request, HttpServletResponse response) {
+        logger.info("导出仓库配件数量");
+        //模拟数据
+        try {
+            Map<String, Object> params = new HashMap<>();
+            List<StockInfoCountDTO> list = stockInfoMapper.countParts(params);
+            Map<String, Object> map = new HashMap<>();
+            map.put("list", list);
+            XLSTransformer transformer = new XLSTransformer();
+            OutputStream out = null;
+            InputStream in = null;
+            response.setContentType(CONTENT_TYPE);
+            response.setHeader("Content-Disposition",
+                    "attachment;filename=" + new String((exportStockInfoCountFileName).getBytes(), "iso-8859-1"));
+            response.addHeader("Pargam", "no-cache");
+            response.addHeader("Cache-Control", "no-cache");
+            in = this.getClass().getClassLoader().getResourceAsStream("excel/exportStockInfoCount.xls");   //得到文档的路径
+            Workbook workbook = transformer.transformXLS(in, map);
+            out = response.getOutputStream();
+            //将内容写入输出流并把缓存的内容全部发出去
+            workbook.write(out);
+            out.flush();
+            out.close();
+            in.close();
+        } catch (Exception e) {
+            logger.error("导出仓库配件数量错误");
+        }
+    }
     @RequestMapping(value = "/faultHandle/exportExcel/{depotId}", method = {RequestMethod.GET})
     @ResponseBody
     public void exportFaultHandle(HttpServletRequest request, @PathVariable("depotId") Long depotId, HttpServletResponse response) {
@@ -202,6 +230,75 @@ public class JxlsExcelController {
             os.close();
         } catch (Exception e) {
             logger.error("导出检修计划出错 :" + e);
+            e.printStackTrace();
+        }
+    }
+
+    @RequestMapping(value = "/repairManage/check/export/{sheetId}/{partCode}", method = {RequestMethod.GET})
+    @ResponseBody
+    public void exportCheckRepair(HttpServletRequest request, @PathVariable("sheetId") String sheetId,@PathVariable("partCode") String partCode, HttpServletResponse response) {
+        logger.info("导出所内检修记录");
+        Map<String, Object> params = new HashMap<>();
+        params.put("eqSheetId", sheetId);// 获取单据信息
+        params.put("eqPartCode", partCode);// 获取单据信息
+        try {
+            SimpleDateFormat sd=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            List<SheetDetailDTO> list =new ArrayList<>();
+            list=sheetDetailMapper.selectWithParts(params);
+            SheetDetailDTO sheetDetail=list.get(0);
+            Map<String,Object> map = new HashMap<>();
+            map.put("checkedDate", sd.format(sheetDetail.getCheckedDate()));
+            map.put("devicePartsName", sheetDetail.getDevicePartsName());
+            map.put("deviceModelName", sheetDetail.getDeviceModelName());
+            map.put("deviceTypeName", sheetDetail.getDeviceTypeName());
+            map.put("supplierName", sheetDetail.getSupplierName());
+            map.put("partId", sheetDetail.getPartId());
+            map.put("partCode", sheetDetail.getPartCode());
+            map.put("assetAttributesName", sheetDetail.getAssetAttributesName());
+            if(sheetDetail.getPartState()==1){
+                map.put("partState", "新购");
+            }else if(sheetDetail.getPartState()==2){
+                map.put("partState", "送修");
+            }else if(sheetDetail.getPartState()==3){
+                map.put("partState", "初始化在探测站");
+            }else if(sheetDetail.getPartState()==4){
+                map.put("partState", "初始化在备品库");
+            }else if(sheetDetail.getPartState()==5){
+                map.put("partState", "初始化在送修库");
+            }
+            map.put("faultInfo", sheetDetail.getFaultInfo());
+            map.put("prepareCheck", sheetDetail.getPrepareCheck());
+            map.put("machineCheck", sheetDetail.getMachineCheck());
+            map.put("replaceComponentCheck", sheetDetail.getReplaceComponentCheck());
+            map.put("copyMachineStartTime", sd.format(sheetDetail.getCopyMachineStartTime()));
+            map.put("copyMachineEndTime", sd.format(sheetDetail.getCopyMachineEndTime()));
+            map.put("copyMachineCheck", sheetDetail.getCopyMachineCheck());
+            if(sheetDetail.getRepaireState()==0){
+                map.put("repaireState", "不合格");
+            }else  if(sheetDetail.getRepaireState()==1){
+                map.put("repaireState", "合格");
+            }else  if(sheetDetail.getRepaireState()==2){
+                map.put("repaireState", "报废");
+            }
+            map.put("checkedUserId", sheetDetail.getCheckedUserId());
+            XLSTransformer transformer = new XLSTransformer();
+            OutputStream out = null;
+            InputStream in = null;
+            response.setContentType(CONTENT_TYPE);
+            response.setHeader("Content-Disposition",
+                    "attachment;filename=" + new String((exportCheckRepairFileName).getBytes(), "iso-8859-1"));
+            response.addHeader("Pargam", "no-cache");
+            response.addHeader("Cache-Control", "no-cache");
+            in = this.getClass().getClassLoader().getResourceAsStream("excel/checkRepair.xls");   //得到文档的路径
+            Workbook workbook = transformer.transformXLS(in, map);
+            out = response.getOutputStream();
+            //将内容写入输出流并把缓存的内容全部发出去
+            workbook.write(out);
+            out.flush();
+            out.close();
+            in.close();
+        } catch (Exception e) {
+            logger.error("导出所内检修记录出错 :" + e);
             e.printStackTrace();
         }
     }

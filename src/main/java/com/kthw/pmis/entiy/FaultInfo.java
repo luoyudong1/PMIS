@@ -2,7 +2,7 @@ package com.kthw.pmis.entiy;
 
 /**
  *
- * @mbg.generated do_not_delete_during_merge 2020-05-18 15:16:30
+ * @mbg.generated do_not_delete_during_merge 2020-05-18 17:27:22
  */
 public class FaultInfo {
     /**

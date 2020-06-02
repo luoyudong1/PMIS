@@ -33,7 +33,7 @@
 	<!-- 定义html文件的位置 --> 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/pages/"/>
-		<property name="suffix" value=".html"/>
+		<property name="suffix" value=".html?v=0.0.4"/>
 	</bean>
 	
 			

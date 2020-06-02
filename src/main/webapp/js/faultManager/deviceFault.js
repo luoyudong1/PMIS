@@ -7,8 +7,8 @@ require(['../config'],
         require(['datetimepicker'],
             function () {
                 let date = new Date();
-                let preMonth=new Date();
-                preMonth.setMonth(date.getMonth()-1)
+                let preMonth = new Date();
+                preMonth.setMonth(date.getMonth() - 1)
                 initDatetimepicker("queryTime", preMonth);
                 initDatetimepicker("queryTime2", date);
 
@@ -71,11 +71,11 @@ require(['../config'],
                                 d.depotId = deptId;
                                 d.completeFlag = 7;
                                 d.type = "设备故障";
-                            }else {
+                            } else {
                                 d.completeFlag = 7;
                                 d.type = "设备故障";
                             }
-                            d.detectDeviceName=$("#detectDeviceName").val();
+                            d.detectDeviceName = $("#detectDeviceName").val();
                             d.queryTime = $("#queryTime").val();
                             d.queryTime2 = ($("#queryTime2").val() == '' ? '' : $("#queryTime2").val() + " 23:59:59");
                         }
@@ -95,6 +95,9 @@ require(['../config'],
                         },
                         {
                             data: 'haultStartTime'
+                        },
+                        {
+                            data: 'handleEndTime'
                         },
                         {
                             data: 'faultStopTime'
@@ -117,27 +120,32 @@ require(['../config'],
                             data: 'faultType'
                         },
                         {
-                            data: 'completeFlag',
-                            render: function (data) {
-                                var str = "-";
-                                if (data == 1) {
-                                    str = '<span style="color:red;font-weight:bold;">新建</span>';
-                                } else if (data == 2) {
-                                    str = '<span style="color:blue;font-weight:bold;">预报待审核</span>';
-                                } else if (data == 3) {
-                                    str = '<span style="color:blue;font-weight:bold;">故障待处理</span>';
+                            data: 'haultStartTime',
+                            render: function (data, type, row, meta) {
+                                var date = new Date()
+                                var startTime = new Date(Date.parse(data))
+                                var endTime = new Date(Date.parse(row.handleEndTime))
+
+                                if (row.handleEndTime != '') {
+                                    date = endTime
                                 }
-                                else if (data == 4) {
-                                    str = '<span style="color:blue;font-weight:bold;">故障处理开始待审核</span>';
+                                var diff = (date.getTime() - startTime.getTime()) / (3600 * 1000)
+                                if (row.type == '设备故障') {
+                                    if (row.faultLevelType == 'A' && diff > 48) {
+                                        return '<span style="color:red;font-weight:bold;">超时</span>'
+                                    } else if (row.faultLevelType == 'B') {
+                                        if (startTime.getHours() > 8 && startTime.getHours() < 18 && diff > 6) {
+                                            return '<span style="color:red;font-weight:bold;">超时</span>'
+                                        } else if (diff > 12) {
+                                            return '<span style="color:red;font-weight:bold;">超时</span>'
+                                        }
+
+                                    } else if (row.faultLevelType == 'C' && diff > 72) {
+                                        return '<span style="color:red;font-weight:bold;">超时</span>'
+                                    }
                                 }
-                                else if (data == 5) {
-                                    str = '<span style="color:blue;font-weight:bold;">故障处理开始</span>';
-                                } else if (data == 6) {
-                                    str = '<span style="color:blue;font-weight:bold;">故障处理结束待审核</span>';
-                                } else if (data == 7) {
-                                    str = '<span style="color:black;font-weight:bold;">故障处理完成</span>';
-                                }
-                                return str;
+
+                                return '-'
                             }
                         },
                     ],

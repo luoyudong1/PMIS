@@ -60,6 +60,12 @@ public class ShiroDbRealm extends AuthorizingRealm {
                 AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user.getUser_id(), password, getName());
                 doGetAuthorizationInfo(SecurityUtils.getSubject().getPrincipals());//因为在验证后不自动调用doGetAuthorizationInfo,所以采用此方法
                 setSession("AUTH_USER", user);
+                if(user.getUser_role()==12||user.getUser_role()==13)
+				{
+					setSessionTimeOut(72000000);}
+                else {
+					setSessionTimeOut(3600000);
+				}
                 return authenticationInfo;
             } else {
 		        throw new IncorrectCredentialsException();
@@ -119,6 +125,15 @@ public class ShiroDbRealm extends AuthorizingRealm {
             }
         }
     }
+	private void setSessionTimeOut(Integer time) {
+		Subject currentUser = SecurityUtils.getSubject();
+		if (null != currentUser) {
+			Session session = currentUser.getSession();
+			if (null != session) {
+				session.setTimeout(time);
+			}
+		}
+	}
 	private Session getSession(Object key) {
 		Subject currentUser = SecurityUtils.getSubject();
 		if (null != currentUser) {

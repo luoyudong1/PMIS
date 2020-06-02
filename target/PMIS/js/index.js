@@ -51,6 +51,7 @@ require(['config'], function (config) {
                     user.roleId = result.roles.role_id;              //用户角色ID
                     user.roleCode=result.roles.role_code;            //用户角色CODE
                     user.menus = result.menus;                       //用户菜单
+                    user.jsVersion = result.jsVersion;               //js版本
                     auths = result.auths;
                     user.idxUrl = result.idxUrl;//此处的idxUrl是功能id
                     window.self.user=user;   //dujun  2018-07-16
@@ -94,7 +95,7 @@ require(['config'], function (config) {
                     $("#side-menu .memu_parent_" + currentModal).show();
                     $('#userName').text(user.userName); // 显示登录用户
                     $('#roleName').text(user.roleName); // 显示登录用户角色
-                    $('#quit1,#quit2').attr('href', config.basePath + '/logout');
+                    $('#quit1,#quit2').attr('href', config.basePath + '/returnlog');
                 },
                 error : function(msg) {
 
@@ -330,7 +331,7 @@ require(['config'], function (config) {
 
         //每10分钟执行一次
         msgInfos();
-        window.setInterval(MsgInfos_Repeat, 10000);
+        window.setInterval(MsgInfos_Repeat, 150000);
 
         function MsgInfos_Repeat(){
             Sound_judge=true;

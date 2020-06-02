@@ -58,8 +58,7 @@ public class PartsSearchController {
 		String length = request.getParameter("length");
 		if(StringUtils.isNotBlank(partId)||StringUtils.isNotBlank(partCode)) {
 		
-		
-		//params.put("eqSheetId", sheetId);
+
 		params.put("eqPartId", partId);
 		params.put("eqPartCode", partCode);
 		params.put("length", length);

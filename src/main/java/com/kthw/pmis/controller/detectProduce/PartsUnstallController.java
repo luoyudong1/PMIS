@@ -169,7 +169,7 @@ public class PartsUnstallController {
                         stockInfo.setWarranty(sheetDetail.getWarranty());//是否质保期
                         stockInfo.setEnabled((short) 1);
                         list.add(stockInfo);
-
+                        //更新探测站设备状态
                         DetectParts detectPart=new DetectParts();
                         detectPart.setDetectPartsId(sheetDetail.getDetectPartsId());
                         detectPart.setEnabled((short)1);
@@ -177,9 +177,17 @@ public class PartsUnstallController {
                         detectPartsList.add(detectPart);
 
                     }
+                    //更新探测站设备状态
                     detectPartsMapper.batchUpdate(detectPartsList);
                     // 批量更新库存
                     stockInfoMapper.batchUpdateByPartsId(list);
+                    //新建安装单据
+//                    params.clear();
+//                    params.put("eqDepotId",info.getDepotId());
+//                    params.put("eqSheetType",SheetInfoType.PARTSINSTALLATION.getId());
+//                    params.put("eqDeviceId",info.getDeviceId());
+//                    params.put("eqSendVerifyFlag",info.getSendVerifyFlag());
+//                    List<SheetInfo> sheetInfos= sheetInfoMapper.selectByMap(params);
                 }
                 sheetInfoMapper.updateByPrimaryKeySelective(sheetInfo);
             }

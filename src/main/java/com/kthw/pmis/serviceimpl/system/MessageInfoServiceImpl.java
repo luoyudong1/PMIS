@@ -228,7 +228,7 @@ public class MessageInfoServiceImpl implements MessageInfoService {
             int i=0;
             for (String detectDevice : detectDeviceList) {
                 MessageInfo messageInfo = new MessageInfo();
-                messageInfo.setMessage_info("探测站" + detectDevice + "有配件未安装");
+                messageInfo.setMessage_info(detectDevice + "有配件未安装");
                 messageInfo.setMessage_state(1);
                 messageInfo.setMessage_id(i);
                 i++;
@@ -434,6 +434,41 @@ public class MessageInfoServiceImpl implements MessageInfoService {
         return list;
     }
 
+    //根据部门获取提示信息
+    @Override
+    public List<MessageInfo> getHintBydepotId(HttpServletRequest request) {
+
+        List<MessageInfo> list = new ArrayList<>();
+        Map<String, Object> params = new HashMap<>();
+        try {
+            String depotId = request.getParameter("depotId");
+            if (StringUtils.isNotBlank(depotId)) {
+                Depot depot = depotMapper.selectByPrimaryKey(Long.valueOf(depotId));
+                switch (depot.getDepotLevel()) {                    //    ZF:按用户权限进行了二次分类获取信息
+                    case 2://检测所单据未接收提示
+                        list.addAll(getTestMessage(Long.valueOf(depotId)));// 机辆所库管员
+                        list.addAll(getTestMessageRole(Long.valueOf(depotId)));//机辆所审核员
+                        list.addAll(getFixMessage(Long.valueOf(depotId)));//机辆所检修员
+                        break;
+                    case 4://车间单据未接收信息
+                        list.addAll(getWorkShopMessage(Long.valueOf(depotId)));//车间录入员
+                        list.addAll(getWorkShopMessageRole(Long.valueOf(depotId))); //车间审核员
+                        List<Depot> depots=depotMapper.selectByParent(Long.valueOf(depotId));//获得所有班组DEPOT编号
+                        for(int i=0;i<depots.size();i++){
+                            list.addAll(getDepotMessage(Long.valueOf(depots.get(i).getDepotId())));//获得班组探测站配件未安装信息
+                        }
+                        break;
+                    case 5:
+                        list.addAll(getDepotMessage(Long.valueOf(depotId)));//班组探测站配件未安装信息
+                        break;
+                }
+            }
+
+        } catch (Exception e) {
+            logger.error("getMessageBydepotId error: ", e);
+        }
+        return list;
+    }
 
     @Override
     public int insertMessageInfo(List<MessageInfo> list) {

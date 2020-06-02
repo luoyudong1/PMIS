@@ -188,6 +188,15 @@ public class PlanCheck {
     private Integer dispatcher;
     private Integer quarterCheck;
     private Integer projectCheck;
+    private String repairUser;
+
+    public String getRepairUser() {
+        return repairUser;
+    }
+
+    public void setRepairUser(String repairUser) {
+        this.repairUser = repairUser;
+    }
 
     public Integer getQuarterCheck() {
         return quarterCheck;

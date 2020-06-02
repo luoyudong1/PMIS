@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>车间调拨到所接收</title>
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet"
@@ -92,7 +92,7 @@
                     <span style="font-size: 15px; font-weight: bolder;">配件详情</span>
                     <button type="button" class="btn btn-success pull-right"
                             id="add_sheetDetail" data-toggle="modal"
-                            data-target="#partsModal"
+                            data-target="#addSheetDetailModal"
                             style="height: 30px; padding-top: 4px; margin: 10px 0 10px 5px; display: none;">新增
                     </button>
                 </div>
@@ -295,7 +295,7 @@
                         <div class="input-group">
                             <span style="color: red">*</span><label><strong>&nbsp;&nbsp;是否质保期：</strong></label>
                             <select id="warrantyAdd" class="form-control"
-                                    style="width: 200px;" disabled="disabled">
+                                    style="width: 200px;">
                                 <option value=""></option>
                                 <option value="0">否</option>
                                 <option value="1">是</option>
@@ -318,7 +318,7 @@
                             <span style="color: red">*</span><label><strong>配件故障现象：</strong></label>
                             <input id="faultInfoAdd" type="text"
                                    class="form-control"
-                                   style="width: 200px; font-size: 14px; font-weight: 600; color: #2e6da4; padding-bottom: 10px;" />
+                                   style="width: 200px; font-size: 14px; font-weight: 600; color: #2e6da4; padding-bottom: 10px;"/>
                         </div>
                         <br>
                         <div class="input-group">
@@ -384,7 +384,7 @@
                         <div class="input-group">
                             <span style="color: red">*</span><label><strong>&nbsp;&nbsp;是否质保期：</strong></label>
                             <select id="warrantyModify" class="form-control"
-                                    style="width: 200px;" disabled="disabled">
+                                    style="width: 200px;">
                                 <option value=""></option>
                                 <option value="0">否</option>
                                 <option value="1">是</option>
@@ -400,7 +400,7 @@
                         <div class="input-group">
                             <label><strong>故障发生日期：</strong></label>
                             <input id="faultInfoDateModify" type="text"
-                                   class="form-control " style="width: 200px;" >
+                                   class="form-control " style="width: 200px;">
                         </div>
                         <br>
                         <div class="input-group">
@@ -547,7 +547,7 @@
                         <thead>
                         <tr style="background-color: #DFE2E6; color: #333333">
                             <th>序号</th>
-                            <th>选择</th>
+                            <th style="display: none">选择</th>
                             <th>配件编号</th>
                             <th>配件出厂编码</th>
                             <th>配件名称</th>
@@ -558,7 +558,7 @@
                             <th>资产属性</th>
                             <th>配件属性</th>
                             <th>是否质保期</th>
-                            <th>使用探测站ID</th>
+                            <th style="display: none">使用探测站ID</th>
                             <th>使用探测站名称</th>
                             <th>故障发生日期</th>
                             <th>故障现象</th>

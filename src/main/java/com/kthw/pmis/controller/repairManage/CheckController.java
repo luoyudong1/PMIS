@@ -202,7 +202,6 @@ public class CheckController {
         DataTable<SheetDetailDTO> dt = new DataTable<SheetDetailDTO>();
         List<SheetDetailDTO> data = new ArrayList<SheetDetailDTO>();
         String sheetId = request.getParameter("sheetId");
-        System.out.println("显示所内送检单据配件详情" + sheetId);
         // 为空直接返回
         if (sheetId == null || sheetId == "") {
             dt.setData(data);
@@ -218,6 +217,34 @@ public class CheckController {
 
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/getCheckSheetDetails", method = {RequestMethod.GET})
+    public DataTable<SheetDetailDTO> getCheckSheetDetails(HttpServletRequest request) {
+        logger.info("显示所内送检单据配件详情");
+        DataTable<SheetDetailDTO> dt = new DataTable<SheetDetailDTO>();
+        int total=0;
+        List<SheetDetailDTO> list = new ArrayList<SheetDetailDTO>();
+        Map<String, Object> params = new HashMap<>();
+        String partId = request.getParameter("partId");
+        String partCode = request.getParameter("partCode");
+        // 为空直接返回
+        if(StringUtils.isNotBlank(partId)||StringUtils.isNotBlank(partCode)) {
+
+
+            params.put("eqPartId", partId);
+            params.put("eqPartCode", partCode);
+            params.put("sheetType", (short) SheetInfoType.CHECKIN.getId());
+            params.put("orderByClause", "si.add_date desc");
+            total=sheetDetailMapper.getParamsCount(params);
+            list=sheetDetailMapper.selectWithParts(params);
+        }
+        dt.setRecordsFiltered(total);
+        dt.setRecordsTotal(total);
+        dt.setData(list);
+        dt.setDraw(Integer.parseInt(request.getParameter("draw") == null ? "0" : request.getParameter("draw")) + 1);
+        return dt;
+
+    }
     /**
      * 修改所内送修配件详情表
      *

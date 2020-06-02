@@ -236,7 +236,10 @@ require(['../config'],
                             data: 'remark'
                         },
                         {
-                            data: 'total'
+                            data: 'total',
+                            render:function (data, type, row, meta ) {
+                                return row.completeCount+"/"+data
+                            }
                         },
                         {
                             data: 'flag',
@@ -257,16 +260,17 @@ require(['../config'],
                         },
                     ],
                     columnDefs: [{
-                        targets: 12,
-                        data: function (row) {
-                            var str = '';
-                            if (row.flag == 1 || row.flag == 4) {
-                                str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;' + '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;' + '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popSheetModal" title="删除单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
+                            targets: 12,
+                            data: function (row) {
+                                var str = '';
+                                if (row.flag == 1 || row.flag == 4) {
+                                    str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改单据"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;' + '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;' + '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popSheetModal" title="删除单据"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
+                                }
+                                str += '<button id="exportExcel" type="button" class="btn btn-success btn-xs" title="导出"><span class="glyphicon glyphicon-download-alt"></span></button>';
+                                return str;
                             }
-                            str += '<button id="exportExcel" type="button" class="btn btn-success btn-xs" title="导出"><span class="glyphicon glyphicon-download-alt"></span></button>';
-                            return str;
-                        }
-                    }],
+
+                }],
                     ordering: false,
                     paging: true,
                     pageLength: 5,
@@ -364,10 +368,10 @@ require(['../config'],
                         data: function (row) {
                             var str = '';
                             if (row.status == 1 && completeFlag == 1) {
-                                str += '<a class="modifySheetDetail btn btn-info btn-xs" data-toggle="modal" href="#modifySheetDetailModal" title="修改"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;' +
-                                    '<a class="deleteParts btn btn-danger btn-xs" data-toggle="modal" href="#popModal" title="删除"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
-                            } else {
-                                str += '-';
+                                str += '<a class="modifySheetDetail btn btn-info btn-xs" data-toggle="modal" href="#modifySheetDetailModal" title="修改"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
+                                if (row.planType == "双月检") {
+                                    str += '<a class="deleteParts btn btn-danger btn-xs" data-toggle="modal" href="#popModal" title="删除"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;';
+                                }
                             }
                             return str;
 

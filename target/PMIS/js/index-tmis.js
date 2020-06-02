@@ -105,7 +105,7 @@ require(['config'], function (config) {
                         $("#side-menu .memu_parent_" + currentModal).show();
                         $('#userName').text(user.userName); // 显示登录用户
                         $('#roleName').text(user.roleName); // 显示登录用户角色
-                        $('#quit1,#quit2').attr('href', config.basePath + '/logout');
+                        $('#quit1,#quit2').attr('href', config.basePath + '/returnlog');
                         initDispatcherLi()
                     },
                     error: function (msg) {

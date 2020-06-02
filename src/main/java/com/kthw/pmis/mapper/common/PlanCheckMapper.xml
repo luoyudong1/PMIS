@@ -41,14 +41,14 @@
         <result column="dispatcher" jdbcType="NUMERIC" property="dispatcher"/>
         <result column="quarter_check" jdbcType="NUMERIC" property="quarterCheck"/>
         <result column="project_check" jdbcType="NUMERIC" property="projectCheck"/>
-
+        <result column="repair_user" jdbcType="VARCHAR" property="repairUser"/>
     </resultMap>
     <sql id="Base_Column_List">
     id, detect_device_id, detect_device_name, detect_device_type, plan_time, start_time, 
     end_time, check_record, plan_type, remark, create_time, update_time, create_user, 
     verify_user, delay, status, delay_count, next_plan_enable, check_user, overdue, overdue_reason, 
     depot_id, depot_name, sheet_id,detect_depot_id,detect_depot_name,old_plan_time,verify_user1,
-    verify_user2,verify_user3,verify_user4,verify_date1,verify_date2,verify_date3,verify_date4,finished,dispatcher,quarter_check,project_check
+    verify_user2,verify_user3,verify_user4,verify_date1,verify_date2,verify_date3,verify_date4,finished,dispatcher,quarter_check,project_check,repair_user
   </sql>
     <sql id="ByMap_Where_Clause">
         <where>
@@ -272,6 +272,9 @@
             </if>
             <if test="projectCheck != null">
                 project_check = #{projectCheck,jdbcType=NUMERIC},
+            </if>
+            <if test="repairUser != null">
+                repair_user = #{repairUser,jdbcType=VARCHAR},
             </if>
         </set>
     </sql>
@@ -561,13 +564,13 @@
             (id, detect_device_id, detect_device_name,
             detect_device_type, plan_time, plan_type,
             status,sheet_id,detect_depot_id,
-            detect_depot_name,dispatcher)
+            detect_depot_name,dispatcher,finished)
             values (#{item.id,jdbcType=INTEGER}, #{item.detectDeviceId,jdbcType=NUMERIC},
             #{item.detectDeviceName,jdbcType=VARCHAR},#{item.detectDeviceType,jdbcType=VARCHAR},
             #{item.planTime,jdbcType=TIMESTAMP}, #{item.planType,jdbcType=VARCHAR},
             #{item.status,jdbcType=NUMERIC},
             #{item.sheetId,jdbcType=VARCHAR},#{item.detectDepotId,jdbcType=NUMERIC},
-            #{item.detectDepotName,jdbcType=VARCHAR},#{item.dispatcher,jdbcType=NUMERIC})
+            #{item.detectDepotName,jdbcType=VARCHAR},#{item.dispatcher,jdbcType=NUMERIC},#{item.finished,jdbcType=NUMERIC})
         </foreach>
     </insert>
     <!-- 辆安站调度获取计划检修处理未完成信息数量  -->

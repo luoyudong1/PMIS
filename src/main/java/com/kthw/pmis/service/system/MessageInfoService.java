@@ -24,4 +24,7 @@ public interface MessageInfoService {
     //获取消息
     List<MessageInfo> getMessageBydepotId(HttpServletRequest request);
 
+    //获取提示信息
+    List<MessageInfo> getHintBydepotId(HttpServletRequest request);
+
 }

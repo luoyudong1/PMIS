@@ -101,6 +101,11 @@ require(['../config'],
                             data: 'remark'
                         },
                         {
+                            data: 'total',
+                            render:function (data, type, row, meta ) {
+                                return row.completeCount+"/"+data
+                            }
+                        }, {
                             data: 'flag',
                             render: function (data) {
                                 var str = "-";
@@ -119,7 +124,7 @@ require(['../config'],
                         },
                     ],
                     columnDefs: [{
-                        targets: 11,
+                        targets: 12,
                         data: function (row) {
                             var str = '';
                             if (row.flag == 2) {

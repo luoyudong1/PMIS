@@ -43,6 +43,7 @@ require(['../config'],
                 var sheet_id = ''
                 var format = 'Y-m-d H:i:s';
                 var status;
+                let detectDeviceId = ''
                 CMethod.initDatetimepickerWithSecond("startTimeModify", null, format);
                 CMethod.initDatetimepickerWithSecond("endTimeModify", null, format);
                 /**
@@ -75,10 +76,10 @@ require(['../config'],
                         type: 'GET',
                         data: function (d) {
                             d.depotId = deptId;
-                            d.status=$('#verify_flag').val()
+                            d.status = $('#verify_flag').val()
                             d.queryTime = ($("#queryTime").val() == '' ? '' : $("#queryTime").val() + " 00:00:01");
                             d.queryTime2 = ($("#queryTime2").val() == '' ? '' : $("#queryTime2").val() + " 23:59:59");
-                            d.detectDeviceName=$('#detectDeviceName').val()
+                            d.detectDeviceName = $('#detectDeviceName').val()
                         }
                     },
                     columns: [{
@@ -108,7 +109,9 @@ require(['../config'],
                             data: 'endTime'
                         }, {
                             data: 'checkRecord'
-                        }, {
+                        },  {
+                            data: 'repairUser'
+                        },{
                             data: 'planType'
                         }, {
                             data: 'remark'
@@ -137,9 +140,9 @@ require(['../config'],
                         },
                     ],
                     columnDefs: [{
-                        targets: 14,
+                        targets: 15,
                         data: function (row) {
-                            var str = '-';
+                            var str = '';
                             if (row.status == 2) {
                                 str = '<a class="delaySheet btn btn-info btn-xs" data-toggle="modal" href="#delaySheetModal" title="延期"><span class="glyphicon glyphicon-time"></span></a>&nbsp;&nbsp;'
                             }
@@ -147,13 +150,25 @@ require(['../config'],
                                 str += '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
                                 str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
                             }
+                            if (row.status !=2) {
+                                str += '<a class="btn btn-primary btn-xs undoSheet"data-toggle="modal" href="#popSheetUndoModal"  title="重置" > <span class="glyphicon glyphicon-repeat"></span></a>&nbsp;&nbsp;'
+                            }
                             return str;
+
                         }
                     }],
                     ordering: false,
                     paging: true,
                     pageLength: 10,
                     serverSide: false,
+                    fnCreatedRow: function (row, data) {
+                        // row : tr dom
+                        // data: row data
+                        // dataIndex:row data‘s index
+                        if (data.status== 2||data.status== 4) {
+                            $(row).css('color','red')
+                        }
+                    },
                     drawCallback: function (settings) {
                         var api = this.api();
                         var startIndex = api.context[0]._iDisplayStart; // 获取到本页开始的条数
@@ -162,6 +177,41 @@ require(['../config'],
                         });
                     },
                 });
+
+                /**
+                 * 获取检修人员
+                 */
+                function getRepairUser(data) {
+                    var ret = '';
+                    $.ajax({
+                        async: false,
+                        url: config.basePath + "/faultHandle/faultReport/getRepairPerson",
+                        type: 'get',
+                        data: {detectDeviceId: data},
+                        dataType: 'json',
+                        success: function (result) {
+                            ret = result;
+                        },
+                        error: function (result) {
+                            console.log(result);
+                        }
+                    });
+                    return ret;
+                }
+
+                /**
+                 * 初始化检修人员下拉框
+                 */
+                function initRepairUser() {
+                    if (detectDeviceId != null) {
+                        let result = getRepairUser(detectDeviceId)
+                        $("#repairUserModify").empty()
+                        $("#repairUserModify").append('<option></option>')
+                        for (var i = 0; i < result.length; i++) {
+                            $("#repairUserModify").append('<option value="' + result[i].id + '">' + result[i].name + '</option>');
+                        }
+                    }
+                }
 
                 /**
                  * 修改检修计划
@@ -178,17 +228,29 @@ require(['../config'],
                         $('#startTimeModify').val(data.startTime)
                         $('#endTimeModify').val(data.endTime)
                         $('#checkRecordModify').val(data.checkRecord)
+                        initRepairUser()
+                        if (data.repairUser != null&&data.repairUser != '') {//如果检修人员不为空
+                            $('#repairUserModify option:contains("' + data.repairUser + '")').prop("selected", true);
+                        }
                         $('#remarkModify').val(data.remark)
                         initModifyModal()
                     });
 
                 function initModifyModal() {
-                    if (status == 2 || status == 3) {
+                    if (status == 4 || status == 5) {
+                        $('.checkEnd').each(function () {
+                            $(this).show()
+                        })
+                    }
+                    else if (status == 2 || status == 3) {
                         $('.checkEnd').each(function () {
                             $(this).hide()
                         })
                     }
-                    if (status > 3) {
+                    if (status <= 3) {
+                        $('#startTimeModify').attr("readOnly", false)
+                    }
+                    else{
                         $('#startTimeModify').attr("readOnly", true)
                     }
 
@@ -227,6 +289,7 @@ require(['../config'],
                                 id = sheetTrData.id
                                 sheet_id = sheetTrData.sheetId
                                 sheetData = sheetTrData
+                                detectDeviceId = sheetTrData.detectDeviceId
                             }
 
                         });
@@ -290,6 +353,7 @@ require(['../config'],
                             startTime: $('#startTimeModify').val(),
                             endTime: $('#endTimeModify').val(),
                             checkRecord: $('#checkRecordModify').val(),
+                            repairUser: $('#repairUserModify option:selected').text(),
                             remark: $('#remarkModify').val(),
                         });
                         $.ajax({
@@ -346,7 +410,34 @@ require(['../config'],
                             }
                         });
                     });
-
+                /**
+                 * 重置按钮事件
+                 */
+                $("#btnPopUndoSheetOk").on('click',
+                    function (e) {
+                        e.preventDefault();
+                        var params = JSON.stringify({
+                            id: id,
+                            sheetId: sheet_id,
+                        });
+                        $.ajax({
+                            url: config.basePath + '/checkPlan/checkPlan/undo',
+                            type: "post",
+                            data: params,
+                            contentType: 'application/json',
+                            dataType: "json",
+                            success: function (result) {
+                                if (result.code != 0) {
+                                    alert(result.msg);
+                                } else {
+                                    sheetTable.ajax.reload();
+                                    $("#alertMsg").html('<span style="color:green;text-align:center"><strong>重置成功！</strong></span>');
+                                    $("#infoAlert").show();
+                                    hideTimeout("infoAlert", 2000);
+                                }
+                            }
+                        });
+                    });
                 /**
                  * 验证提交参数
                  *
@@ -355,6 +446,7 @@ require(['../config'],
                     let startTime = data.startTime
                     let endTime = data.endTime
                     let status = data.status
+                    let repairUser = data.repairUser
                     let date = new Date()
                     if (startTime == null) {
                         $("#alertMsg")
@@ -368,6 +460,17 @@ require(['../config'],
                         return false;
                     }
                     if (status >= 4 && endTime == null) {
+                        $("#alertMsg")
+                            .html(
+                                '<span style="color:green;text-align:center"><strong>检修结束时间为空！</strong></span>');
+                        $("#infoAlert")
+                            .show();
+                        hideTimeout(
+                            "infoAlert",
+                            2000);
+                        return false;
+                    }
+                    else if (status >= 4 && repairUser == null) {
                         $("#alertMsg")
                             .html(
                                 '<span style="color:green;text-align:center"><strong>检修结束时间为空！</strong></span>');

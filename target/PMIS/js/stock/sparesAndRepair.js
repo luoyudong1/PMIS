@@ -52,6 +52,8 @@ require(['../config'],
                 var sourceStoreHouseName = ''; // 保留点击的原仓库名称
                 var sendVerifyFlag = ''
                 var objectStoreHouseName = ''
+                var faultInfoList=''
+                var detectDeviceId=''
                 /**
                  * 查询
                  */
@@ -119,6 +121,24 @@ require(['../config'],
                         console.log(result);
                     }
                 });
+                function getFaultInfo() {
+                    $.ajax({
+                        async: false,
+                        url: config.basePath
+                            + "/faultHandle/faultReport/getFaultInfo",
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {"detectDeviceId": detectDeviceId},
+                        success: function (result) {
+                            faultInfoList=result
+
+                        },
+                        error: function (result) {
+                            console.log(result);
+                        }
+                    });
+
+                }
                 /**
                  *  /**
                  * 初始化探测站下拉框
@@ -281,14 +301,7 @@ require(['../config'],
                         }, {
                             data: 'assetAttributesName'
                         }, {
-                            data: 'faultDate',
-                            render: function (data) {
-                                if (data > 0) {
-                                    return formatDateBy(data, 'yyyy-MM-dd');
-                                } else {
-                                    return '-';
-                                }
-                            }
+                            data: 'faultDate'
                         }, {
                             data: 'faultInfo'
                         }, {
@@ -399,14 +412,7 @@ require(['../config'],
                                 }
                             }
                         }, {
-                            data: 'faultDate',
-                            render: function (data) {
-                                if (data > 0) {
-                                    return formatDateBy(data, 'yyyy-MM-dd');
-                                } else {
-                                    return '-';
-                                }
-                            }
+                            data: 'faultDate'
                         }, {
                             data: 'faultInfo'
                         }, {
@@ -638,6 +644,7 @@ require(['../config'],
                             usedStationName: $('#detectDeviceAdd option:selected').text(),
                             faultDate: $('#faultDateAdd').val(),
                             faultInfo: $('#faultInfoAdd').val(),
+                            partState:2,
                             remark:$('#remarkAdd').val()
                         });
                         $.ajax({

@@ -52,7 +52,10 @@
         <result column="verify_date4" jdbcType="TIMESTAMP" property="verifyDate4"/>
         <result column="verify_date5" jdbcType="TIMESTAMP" property="verifyDate5"/>
         <result column="dispatcher" jdbcType="NUMERIC" property="dispatcher"/>
-
+        <result column="fault_responsible" jdbcType="VARCHAR" property="faultResponsible"/>
+        <result column="fault_responsible_remark" jdbcType="VARCHAR" property="faultResponsibleRemark"/>
+        <result column="appeal_flag" jdbcType="NUMERIC" property="appealFlag"/>
+        <result column="appeal_reason" jdbcType="VARCHAR" property="appealReason"/>
     </resultMap>
     <sql id="Base_Column_List">
     id, detect_device_id, detect_device_name, detect_device_type, hault_start_time, hault_end_time,
@@ -63,6 +66,7 @@
     responsible_user, notice_user, responsible_depot, submit_user, maintenance_time,
     check_info, fault_info_detail, segment_depot,line_name,finished,detect_depot_id,verify_user1,
     verify_user2,verify_user3,verify_user4,verify_user5,verify_date1,verify_date2,verify_date3,verify_date4,verify_date5,dispatcher
+    ,fault_responsible,fault_responsible_remark,appeal_flag,appeal_reason
   </sql>
     <sql id="ByMap_Where_Clause">
         <where>
@@ -189,6 +193,18 @@
             </if>
             <if test="eqDispatcher != null">
                 AND dispatcher = #{eqDispatcher,jdbcType=NUMERIC}
+            </if>
+            <if test="eqFaultResponsible != null">
+                AND fault_responsible= #{eqFaultResponsible,jdbcType=VARCHAR}
+            </if>
+            <if test="eqFaultResponsibleRemark != null">
+                AND fault_responsible_remark = #{eqFaultResponsibleRemark,jdbcType=VARCHAR}
+            </if>
+            <if test="eqAppealFlag != null">
+                AND appeal_flag = #{eqAppealFlag,jdbcType=NUMERIC}
+            </if>
+            <if test="gtAppealFlag != null">
+                AND appeal_flag > #{gtAppealFlag,jdbcType=NUMERIC}
             </if>
             <if test="ltCompleteFlag != null">
                 AND complete_flag &lt; #{ltCompleteFlag ,jdbcType=NUMERIC}
@@ -360,6 +376,18 @@
             </if>
             <if test="dispatcher != null">
                 dispatcher = #{dispatcher,jdbcType=NUMERIC},
+            </if>
+            <if test="faultResponsible != null">
+                fault_responsible = #{faultResponsible,jdbcType=VARCHAR},
+            </if>
+            <if test="faultResponsibleRemark != null">
+                fault_responsible_remark = #{faultResponsibleRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="appealFlag != null">
+                appeal_flag= #{appealFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="appealReason != null">
+                appeal_reason= #{appealReason,jdbcType=VARCHAR},
             </if>
         </set>
     </sql>

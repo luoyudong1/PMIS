@@ -2,16 +2,13 @@ package com.kthw.pmis.controller.checkPlan;
 
 import com.kthw.common.DataTable;
 import com.kthw.common.base.ErrCode;
-import com.kthw.pmis.controller.faultHandle.FaultReportController;
 import com.kthw.pmis.entiy.*;
-import com.kthw.pmis.helper.CheckHelper;
 import com.kthw.pmis.helper.DepotHelper;
 import com.kthw.pmis.helper.PlanCheckHelper;
-import com.kthw.pmis.mapper.common.DetectDeviceMapper;
+import com.kthw.pmis.mapper.common.FaultInfoMapper;
 import com.kthw.pmis.mapper.common.PlanCheckMapper;
 import com.kthw.pmis.mapper.common.PlanCheckSheetMapper;
 import com.kthw.pmis.service.checkPlan.CheckPlanService;
-import com.kthw.pmis.service.planCheckSheet.PlanCheckSheetService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -122,24 +119,26 @@ public class CheckPlanController {
      */
     @ResponseBody
     @RequestMapping(value = "/listUnfulfilled", method = RequestMethod.GET)
-    public DataTable<PlanCheck> listUnfulfilled(HttpServletRequest request) {
+    public DataTable<PlanCheck> listUnfulfilled(HttpServletRequest request,Long depotId,Integer year,Integer month) {
         logger.info("显示未兑现检修计划");
         DataTable<PlanCheck> dt = new DataTable<PlanCheck>();
-        String depotId = request.getParameter("depotId");
         try {
             Map<String, Object> params = new HashMap<>();
             List<PlanCheck> list = new ArrayList<>();
             //获取当日检修计划
-            if (StringUtils.isNotBlank(depotId)) {
+            if (depotId!=null) {
                 //获取未开始的检修计划
                 //前一天
-                Date date = new Date();
+                Date date=new Date();
                 Calendar calendar = Calendar.getInstance();
-                calendar.setTime(date);
-                calendar.add(Calendar.DAY_OF_MONTH, -1);
+                calendar.set(year,month-2,26,0,0,0);
 
-                List<Depot> childrens = depotHelper.getChildrens(Long.valueOf(depotId));
+                List<Depot> childrens = depotHelper.getChildrens(depotId);
                 params.put("depotIdList", childrens);
+                params.put("queryTime", calendar.getTime());
+
+                calendar.setTime(date);
+                calendar.set(Calendar.DATE,calendar.get(Calendar.DATE)-1);
                 params.put("queryTime2", calendar.getTime());
                 params.put("eqStatus", (short) 2);
                 params.put("orderByClause", "update_time desc,status asc");
@@ -235,23 +234,23 @@ public class CheckPlanController {
                     PlanCheckSheet planCheckSheet = planCheckSheetMapper.selectByPrimaryKey(planCheck.getSheetId());
                     switch (planCheck.getPlanType()) {
                         case "半月检":
-                            if (planCheckSheet.getHalfMonthCount()!=null)
+                            if (planCheckSheet.getHalfMonthCount() != null)
                                 planCheckSheet.setHalfMonthCount(planCheckSheet.getHalfMonthCount() + 1);
                             break;
                         case "月检":
-                            if (planCheckSheet.getSingleMonthCount()!=null)
+                            if (planCheckSheet.getSingleMonthCount() != null)
                                 planCheckSheet.setSingleMonthCount(planCheckSheet.getSingleMonthCount() + 1);
                             break;
                         case "双月检":
-                            if (planCheckSheet.getBiMonthCount()!=null)
+                            if (planCheckSheet.getBiMonthCount() != null)
                                 planCheckSheet.setBiMonthCount(planCheckSheet.getBiMonthCount() + 1);
                             break;
                         case "临时检修":
-                            if (planCheckSheet.getTemporaryCount()!=null)
+                            if (planCheckSheet.getTemporaryCount() != null)
                                 planCheckSheet.setTemporaryCount(planCheckSheet.getTemporaryCount() + 1);
                             break;
                     }
-                    planCheckSheet.setTotal(planCheckSheet.getTotal() +1);
+                    planCheckSheet.setTotal(planCheckSheet.getTotal() + 1);
                     planCheckSheetMapper.updateByPrimaryKeySelective(planCheckSheet);
 
                     ret.put("code", code);
@@ -300,6 +299,48 @@ public class CheckPlanController {
             return ret;
         } catch (Exception e) {
             logger.error("延期检修计划出错");
+            code = ErrCode.DELAY_ERROR;
+            ret.put("code", code);
+            ret.put("msg", ErrCode.getMessage(code));
+        }
+        return ret;
+
+    }
+
+    /**
+     * 重置检修计划
+     *
+     * @param planCheck
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/undo", method = RequestMethod.POST)
+    public Map<String, Object> undo(@RequestBody PlanCheck planCheck) {
+        logger.info("重置检修计划");
+        int code = 0;
+        Map<String, Object> ret = new HashMap<>();
+        try {
+            PlanCheck info = planCheckMapper.selectByPrimaryKey(planCheck.getId());
+            info.setStatus((short) 2);
+            info.setStartTime(null);
+            info.setEndTime(null);
+            info.setVerifyDate1(null);
+            info.setVerifyDate2(null);
+            info.setVerifyDate3(null);
+            info.setVerifyDate4(null);
+            info.setVerifyUser(null);
+            info.setVerifyUser1(null);
+            info.setVerifyUser2(null);
+            info.setVerifyUser3(null);
+            info.setVerifyUser4(null);
+            info.setCheckRecord(null);
+            info.setRemark(null);
+            planCheckMapper.updateByPrimaryKey(info);
+            ret.put("code", code);
+            ret.put("msg", ErrCode.getMessage(code));
+            return ret;
+        } catch (Exception e) {
+            logger.error("重置检修计划出错");
             code = ErrCode.DELAY_ERROR;
             ret.put("code", code);
             ret.put("msg", ErrCode.getMessage(code));
@@ -382,19 +423,19 @@ public class CheckPlanController {
             PlanCheckSheet planCheckSheet = planCheckSheetMapper.selectByPrimaryKey(info.getSheetId());
             switch (info.getPlanType()) {
                 case "半月检":
-                    if (planCheckSheet.getHalfMonthCount()!=null&&planCheckSheet.getHalfMonthCount() > 1)
+                    if (planCheckSheet.getHalfMonthCount() != null && planCheckSheet.getHalfMonthCount() > 1)
                         planCheckSheet.setHalfMonthCount(planCheckSheet.getHalfMonthCount() - 1);
                     break;
                 case "月检":
-                    if (planCheckSheet.getSingleMonthCount()!=null&&planCheckSheet.getSingleMonthCount() > 1)
+                    if (planCheckSheet.getSingleMonthCount() != null && planCheckSheet.getSingleMonthCount() > 1)
                         planCheckSheet.setSingleMonthCount(planCheckSheet.getSingleMonthCount() - 1);
                     break;
                 case "双月检":
-                    if (planCheckSheet.getBiMonthCount()!=null&&planCheckSheet.getBiMonthCount() > 1)
+                    if (planCheckSheet.getBiMonthCount() != null && planCheckSheet.getBiMonthCount() > 1)
                         planCheckSheet.setBiMonthCount(planCheckSheet.getBiMonthCount() - 1);
                     break;
                 case "临时检修":
-                    if (planCheckSheet.getTemporaryCount()!=null&&planCheckSheet.getTemporaryCount() > 1)
+                    if (planCheckSheet.getTemporaryCount() != null && planCheckSheet.getTemporaryCount() > 1)
                         planCheckSheet.setTemporaryCount(planCheckSheet.getTemporaryCount() - 1);
                     break;
             }
@@ -436,4 +477,5 @@ public class CheckPlanController {
         return ret;
 
     }
+
 }

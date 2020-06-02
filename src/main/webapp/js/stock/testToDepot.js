@@ -12,7 +12,6 @@ require(['../config'],
                 initDatetimepicker("queryTime", date);
                 initDatetimepicker("queryTime2", new Date());
                 initDatetimepicker("purchaseOrRepairedDateAdd", new Date());
-                initDatetimepicker("purchaseOrRepairedDateModify", new Date());
 
                 /**
                  * 初始化时间框
@@ -45,6 +44,7 @@ require(['../config'],
                 var sheetTrData = ''; // 保留点击的单号信息
                 var partCode = '';
                 var partId = '';
+                let sendVerifyFlag=''
                 /**
                  * 查询
                  */
@@ -622,13 +622,13 @@ require(['../config'],
                         if ($("#part_idAdd").val() == "") {
                             $("#alertMsgPartsAdd").html("<font style='color:red'>配件编码为空</font>");
                             $("#alertMsgPartsAdd").css('display', 'inline-block')
-                            timer = CMethod.hideTimeout("alertMsgPartsAdd", "alertMsgPartsAdd", 5000);
+                             CMethod.hideTimeout("alertMsgPartsAdd", "alertMsgPartsAdd", 5000);
                             return false;
                         }
                         if ($("#partCodeAdd").val() == "") {
                             $("#alertMsgPartsAdd").html("<font style='color:red'>配件出厂编码空</font>");
                             $("#alertMsgPartsAdd").css('display', 'inline-block')
-                            timer = CMethod.hideTimeout("alertMsgPartsAdd", "alertMsgPartsAdd", 5000);
+                            CMethod.hideTimeout("alertMsgPartsAdd", "alertMsgPartsAdd", 5000);
                             return false;
                         }
                         var params = JSON.stringify({

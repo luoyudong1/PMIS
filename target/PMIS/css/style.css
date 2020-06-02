@@ -22,6 +22,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.topDiv{
+  margin-top: 20px;
+}
+.trBackground{
+  background-color: red;
+}
 .glyphicon-asterisk:before {
   content: "\002a";
 }

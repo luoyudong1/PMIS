@@ -16,7 +16,7 @@
 	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
 		<!-- session的失效时长，单位毫秒 1小时: 3600000, 站点设置以 6小时 为主：21600000 -->
 		<!-- 设置全局会话超时时间，默认30分钟，即如果30分钟内没有访问会话将过期 1800000 -->
-		<property name="globalSessionTimeout" value="1800000"/>
+		<property name="globalSessionTimeout" value="72000000"/>
 		<!-- 删除失效的session -->
 		<property name="deleteInvalidSessions" value="true"/>
 		<!-- 是否开启会话验证器，默认是开启的 -->

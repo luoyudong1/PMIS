@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>5T综合管理信息系统</title>
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <meta HTTP-EQUIV="expires" CONTENT="0">
+    <meta name="description" content="User login page" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <!-- bootstrap & fontawesome -->
+
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="./css/fonts.googleapis.com.css" /> -->
+    <link rel="stylesheet" href="../css/plugins/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../css/ace.min.css" />
+    <link rel="stylesheet" href="../css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link href="../css/plugins/toastr/toastr.min.css" rel="stylesheet">
+ <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+    <style>
+        a i:hover{
+            cursor:pointer;
+            color: white;
+            font-weight: 600;
+        }
+        a:hover{
+            cursor:pointer;
+        }
+        .func-right span:hover{
+            cursor:pointer;
+        }
+        .hide{
+            display: none;
+        }
+        .admin-hide{
+            display: none;
+        }
+    </style>
+
+
+</head>
+
+<body>
+<div class="my-container">
+
+    <div class="my-header">
+        <div class="my-logo"><a href="#"><img src="../img/title.png" alt="logo"></a></div>
+        <div class="handle-list">
+            <ul>
+                <li><a href="http://10.160.99.45:8081/download/ChromePortable.zip" download="ChromePortable.zip" target="_blank"><i class="fa fa-download" ></i></a><span>IE下载</span></li>
+                <li id="btnSet" class="admin-hide"><a ><i class="fa fa-gear"></i></a><span>系统设置</span></li>
+                <li class="hide"><a href="#userInfo" data-toggle="modal"><i class="fa fa-edit"></i></a><span>密码修改</span></li>
+                <li id="btnQuit" class="hide"><a ><i class="fa fa-sign-out"></i></a><span>注&nbsp销&nbsp&nbsp</span></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="marq">
+        <marquee onmouseout="start()" onmouseover="stop()" behavior="scroll" scrollamount="3" direction="left" style="word-wrap:normal" >
+            <span class="c-red" id="unViewNum"></span>
+        </marquee>
+    </div>
+
+    <div class="loginWraper my-height-670">
+        <div class="func">
+
+
+            <div class="func-left">
+
+                <div class="form-head">
+                    <i class="fa fa-coffee green" style="color: green"></i><span class="my-pb-6 ">用户登录</span>
+                    <span class="my-login-tip " ></span>
+                </div>
+
+
+                <form id="login_form" class="form form-horizontal" action="#" method="post" >
+                    <div class="hide">
+                        <div class="login_show_p">
+                            <i class="ace-icon fa fa-user" style="font-size:20px"></i>&nbsp;
+                            <label id="loginName" class="login_show_l"></label>
+                        </div>
+                        <div class="login_show_p">
+                            <i class="ace-icon fa fa-building" style="font-size: 20px"></i>&nbsp;
+                            <label id="depotName" class="login_show_l"></label>
+                        </div>
+                        <div class="login_show_p">
+                            <i class="ace-icon fa fa-unlock-alt" style="font-size:20px"></i>&nbsp;
+                            <label id="userRole" class="login_show_l"></label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+
+            <div class="func-right">
+                <div>
+                      <span class="mgR" >
+                        <a  id="repair"  style="background-color: #0065ff">
+                            <i class="fa fa-wrench"></i><span>5T关键配件检修配送系统</span>
+                        </a>
+                      </span>
+                    <span  class="mgR" >
+                        <a  id="dispatch" style="background-color: #fe9900">
+                            <i class="fa fa-cogs" ></i><span>5T设备信息管理系统</span>
+                        </a>
+                      </span>
+
+                    <span class="mgT mgR" id="case" >
+                        <a style="background-color: #339a99" >
+                            <i class="fa fa-camera" ></i><span>5T动态检测</span>
+                        </a>
+                      </span>
+
+                    <span class="mgT mgR" id="ab" >
+                        <a style="background-color: #cc0001" >
+                            <i class="fa fa-twitter-square" ></i><span>5综合评价发布</span>
+                        </a>
+                      </span>
+                </div>
+            </div>
+
+            <div class="func-side">
+                <div class="other-web"></div>
+
+            </div>
+        </div>
+
+
+        <div class="func">
+            <div class="notice">
+                <div class="notice-con">
+
+                    <div class="notice-left">
+                        <div class="notice-head">
+                            <div>
+                                <i class=""></i>
+                                <span></span>
+                                <a ><i class=""></i></a>
+                            </div>
+                        </div>
+                        <div class="notice-list">
+                            <ul id="notice-ul"></ul>
+                        </div>
+                    </div>
+
+                    <div class="notice-right">
+                        <div class="notice-head">
+                            <div>
+                                <i class=""></i>
+                                <span></span>
+                                <a ><i class=""></i></a>
+                            </div>
+                        </div>
+                        <div class="notice-list">
+                            <ul id="telegram-ul"></ul>
+                        </div>
+                    </div>
+
+                    <div class="notice-side">
+                        <div class="notice-head">
+                            <div>
+                                <i class=""></i>
+                                <span></span>
+                                <a ><i class=""></i></a>
+                            </div>
+                        </div>
+                        <div class="notice-list">
+                            <ul id="notice-side-ul"></ul>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="my-footer"><img src="../img/tiehui.jpg" style="height: 18px"><span style="margin-left: 15px;margin-bottom: 10px">广铁集团车辆部机辆检测所  @2020 </span></div>
+    </div>
+
+
+</div>
+
+<div class="modal fade" id="userInfo" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel">用户信息</h3>
+                <button type="button" class="close" title="关闭" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="position: relative;">
+                    <div class="col-md-4 col-sm-12 offset-md-1">
+                        <h4 style="margin-bottom: 30px">基本信息</h4>
+                        <div class="form-group">
+                            <label class="control-label"><strong>用户名称：</strong></label>
+                            <span class="text-muted" id="user-name"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><strong>用户部门：</strong></label>
+                            <span class="text-danger" id="user-dept"></span>
+                        </div>
+                        <!--
+                                                    <div class="form-group">
+                                                        <label class="control-label"><strong>用户首页：</strong></label>
+                                                        <select id="user-index" class="form-control"></select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <span class="text-muted">修改登陆后的首页显示</span>
+                                                        <button id="subIdx" data-dismiss="modal" class="btn btn-primary pull-right">修改</button>
+                                                    </div>
+                        -->
+                    </div>
+                    <div class="hidden-xs hidden-sm" style="position: absolute; height: 100%; border-left: 1px solid #EEE; left: 50%;"></div>
+                    <div class="col-md-4 col-sm-12 offset-md-2">
+                        <h4 style="margin-bottom: 30px;">修改密码</h4>
+                        <div class="form-group">
+                            <label class="control-label"><strong>原密码：</strong></label>
+                            <input id="old-ps" type="password" class="form-control" placeholder="请输入用户原来的密码" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><strong>新密码：</strong></label>
+                            <input id="new-ps" type="password" class="form-control" placeholder="请输入用户新密码" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><strong>确认密码：</strong></label>
+                            <input id="cf-ps" type="password" class="form-control" placeholder="请再次输入用户新密码" />
+                        </div>
+                        <div class="form-group">
+                            <span class="text-muted">快速修改密码</span>
+                            <button id="btnModifyPsOk"  class="btn btn-primary pull-right">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- updateModal -->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel">
+    <div class="modal-dialog modal-sm" style="width: 350px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="updateModalLabel">修改登录后首页显示提示</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="关闭">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-danger" style="font-weight: bold;">您选择要修改的首页与当前首页相同！</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- updateModal -->
+<div class="modal fade" id="updatePassModal" tabindex="-1" role="dialog" aria-labelledby="updatePassModalLabel">
+    <div class="modal-dialog modal-sm" style="width: 350px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="updatePassModalLabel">修改密码提示</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="关闭">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-danger" style="font-weight: bold;">修改密码成功！</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- noModal -->
+<div class="modal fade" id="noModal" tabindex="-1" role="dialog" aria-labelledby="noModalLabel">
+    <div class="modal-dialog modal-sm" style="width: 350px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">修改密码提示</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="关闭">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-danger" style="font-weight: bold;">密码信息不完整，请重新输入！</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- noModal -->
+<div class="modal fade" id="noSameModal" tabindex="-1" role="dialog" aria-labelledby="noModalLabel">
+    <div class="modal-dialog modal-sm" style="width: 350px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">修改密码提示</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="关闭">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-danger" style="font-weight: bold;">两次输入的新密码不相同，请重新输入！</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    let _version = '1.0.0';
+
+    function setVersion(version) {
+        document.write('<script type="text/javascript" src="../js/require.js?v=' + version+ '" data-main="../js/logined"><\/script>');
+    }
+
+    $.ajax({
+        url: '/PMIS/getJsVersion',
+        type: 'get',
+        async: false,
+        success: function (data) {
+            if (data) {
+                _version = data;
+            }
+            setVersion(_version);
+        },
+        error: function () {
+            setVersion(_version);
+        }
+    });
+</script>
+</body>
+</html>

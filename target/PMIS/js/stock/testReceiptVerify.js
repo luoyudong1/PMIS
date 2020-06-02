@@ -259,16 +259,7 @@ columns: [
 },{
 	data: 'usedStationName'
 },{
-	data:'faultDate',
-	render : function(data) {
-		if (data > 0) {
-			return formatDateBy(
-					data,
-					'yyyy-MM-dd');
-		} else {
-			return '-';
-		}
-	}
+	data:'faultDate'
 },{
 	data:'faultInfo'
 },{

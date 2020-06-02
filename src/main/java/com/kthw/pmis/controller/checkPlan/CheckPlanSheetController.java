@@ -255,12 +255,6 @@ public class CheckPlanSheetController {
             if (list.size() > 0) {
                 //删除单据下的全部探测站检修计划
                 planCheckMapper.deleteBySheetId(planCheckSheet.getSheetId());
-//                for (PlanCheck planCheck : list) {
-//                    //回退探测站的检修计划创建标志
-//                    detectDevice = detectDeviceMapper.selectByPrimaryKey(planCheck.getDetectDeviceId());
-//                    detectDevice.setPlanCheckEnable((short) (detectDevice.getPlanCheckEnable().intValue() - 1));
-//                    detectDeviceMapper.updateByPrimaryKeySelective(detectDevice);
-//                }
             }
             int flag = planCheckSheetMapper.deleteByPrimaryKey(planCheckSheet.getSheetId());
             if (flag == 0) {

@@ -20,12 +20,11 @@ require(
                 var newDate = new Date();
                 var sendVerifyFlag = '';
                 var sheet_id2 = '';
+                var part_code = '';
                 var user_id = window.parent.user.userId; // 登录人ID
                 var user_name = window.parent.user.userName; // 登录人名字
                 var deptId = window.parent.user.deptId; // 登录人部门id
-                var sheetTrData = '';// 保留点击的单号信息
                 var sourceStoreHouseName = '';// 保留点击的源仓库
-                var sourceStoreHouseId = '';// 保留点击的源仓库
                 var sheetTrData = '';// 保留点击的单号信息
                 var sheetDetailTable;// 保留点击的单号信息
                 var sheetDetailParams = "";
@@ -33,12 +32,8 @@ require(
                 var date = new Date();
                 date.setDate("1");
                 date.setMonth(date.getMonth() - 1)
-                CMethod.initDatetimepicker('queryTimeBegin', date);
-                CMethod.initDatetimepicker('queryTimeEnd', new Date());
                 CMethod.initDatetimepicker('queryTime', date);
                 CMethod.initDatetimepicker('queryTime2', new Date());
-                CMethod.initDatetimepicker("faultInfoDateAdd", new Date());
-                CMethod.initDatetimepicker("faultInfoDateModify", new Date());
 
                 /**
                  * 查询
@@ -48,7 +43,6 @@ require(
                     sheetDetailTable.column(0).search('');
                     sheetDetailTable.clear().draw();
                     sheetId = '';
-                    verifyFlag = '';
                 });
 
                 /**
@@ -283,6 +277,14 @@ require(
                                 return str;
                             }
                         }],
+                        columnDefs: [{
+                            targets: 19,
+                            data: function (row) {
+                                var str = '';
+                                str += '<button id="exportRecordExcel" type="button" class="btn btn-success btn-xs" title="导出"><span class="glyphicon glyphicon-download-alt"></span></button>';
+                                return str;
+                            }
+                        }],
                         ordering: false,
                         paging: true,
                         pageLength: 5,
@@ -330,17 +332,6 @@ require(
 
 
 
-                // 定义一个变量用于存储选中复选框的值
-                var sel_a2 = [];
-
-                // 响应刷新按钮
-                $('#btnRefresh').click(function () {
-                    $("#part_id_sel").val("");
-                    $("#part_name_sel").val("");
-                    location.reload();
-                });
-
-
                 /** 导出配件详情信息 */
                 $("#sheetTable tbody").on('click', '#exportExcel',
                     function () {
@@ -354,12 +345,16 @@ require(
                         window.location.href = config.basePath + '/exportExcel/exportCheckInfo?' + params;
                     });
 
+                /** 导出配件详情信息 */
+                $("#sheetDetailTable tbody").on('click', '#exportRecordExcel',
+                    function () {
+                        var tr = $(this).closest('tr');
+                        var sheetDetail = sheetDetailTable.row(tr).data();
+                        sheet_id =sheetDetail.sheetId;
+                        part_code =sheetDetail.partCode;
+                        window.location.href = config.basePath + '/repairManage/check/export/' + sheet_id+'/'+part_code;
+                    });
 
-                function hideTimeout(id, ms) {
-                    var time = setTimeout(function () {
-                        $("#" + id).hide();
-                    }, ms)
-                }
 
                 sheetTable.on('draw.dt', function () {
                     //给第一列编号

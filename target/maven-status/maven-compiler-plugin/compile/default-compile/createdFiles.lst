@@ -14,9 +14,11 @@ com\kthw\pmis\helper\PartsStaticsHelper.class
 com\kthw\pmis\service\system\UserService.class
 com\kthw\pmis\model\entryAndOut\AssetAttribute.class
 com\kthw\pmis\websocket\TXDSMessageSend.class
+com\kthw\pmis\mapper\common\FaultInfoMapper.class
 com\kthw\pmis\helper\SheetDetailHelper.class
 com\kthw\pmis\serviceimpl\repairManage\RepairServiceImpl.class
 com\kthw\common\ChineseCharToEn.class
+com\kthw\pmis\entiy\FaultInfo.class
 com\kthw\pmis\model\system\Permission.class
 com\kthw\pmis\service\system\CommonService.class
 com\kthw\pmis\controller\entryAndOut\RepairOutController.class
@@ -73,12 +75,14 @@ com\kthw\pmis\serviceimpl\entryAndOut\RepairEntryServiceImpl.class
 com\kthw\pmis\serviceimpl\system\PartsServiceImpl.class
 com\kthw\common\PeriodConstants.class
 com\kthw\common\Role.class
+com\kthw\pmis\entiy\bo\PlanCheckExportBO.class
 com\kthw\pmis\controller\report\AccumulativeStatisticsController.class
 com\kthw\pmis\entiy\Depot.class
 com\kthw\pmis\mapper\common\SheetInfoMapper.class
 com\kthw\pmis\controller\repairManage\CheckOutController.class
 com\kthw\pmis\mapper\common\SheetDetailMapper.class
 com\kthw\pmis\model\system\LoginInfo.class
+com\kthw\pmis\helper\SystemConfig.class
 com\kthw\pmis\service\excel\JxlsExcelService.class
 com\kthw\dispatcher\Route.class
 com\kthw\pmis\service\detectManage\DetectManageService.class
@@ -158,6 +162,7 @@ com\kthw\pmis\controller\stock\SparesToWorkShopController.class
 com\kthw\pmis\controller\report\ComprehensiveStatisticsController.class
 com\kthw\aiplan\DynamicVehInfo.class
 com\kthw\pmis\model\system\Parts.class
+com\kthw\pmis\controller\detectManage\DeviceManageController.class
 com\kthw\pmis\mapper\common\PartsDictMapper.class
 com\kthw\pmis\controller\stock\TestReceiptController.class
 com\kthw\pmis\controller\detectManage\DetectManageController.class
@@ -221,6 +226,7 @@ com\kthw\pmis\controller\checkPlan\CheckPlanSheetController.class
 com\kthw\pmis\mapper\system\CommonMapper.class
 com\kthw\common\ServletUtils.class
 com\kthw\pmis\service\entryAndOut\PreparePurchaseService.class
+com\kthw\pmis\entiy\dto\DetectManageDTO.class
 com\kthw\pmis\service\InitDictionaryService.class
 com\kthw\pmis\model\entryAndOut\SheetDetail.class
 com\kthw\pmis\controller\entryAndOut\PurchasePartsController.class
@@ -264,6 +270,7 @@ com\kthw\pmis\model\KeyInfo.class
 com\kthw\pmis\mapper\SequenceMapper.class
 com\kthw\pmis\mapper\system\PartsMapper.class
 com\kthw\pmis\serviceimpl\SequenceServiceImpl.class
+com\kthw\pmis\controller\ExportExcel\JxlsExcelController.class
 com\kthw\pmis\task\FaultHandleTask.class
 com\kthw\common\ExecutionTimeLoggingSpringAOP.class
 com\kthw\pmis\controller\system\UserManageController.class

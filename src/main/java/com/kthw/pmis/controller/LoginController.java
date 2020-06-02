@@ -3,6 +3,7 @@ package com.kthw.pmis.controller;
 import com.kthw.common.base.BaseController;
 import com.kthw.common.base.ErrCode;
 import com.kthw.pmis.entiy.Depot;
+import com.kthw.pmis.helper.SystemConfig;
 import com.kthw.pmis.mapper.common.DepotMapper;
 import com.kthw.pmis.model.system.Role;
 import com.kthw.pmis.model.system.User;
@@ -31,6 +32,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 /**
@@ -46,10 +48,12 @@ public class LoginController extends BaseController {
     private UserService userService;
     @Autowired
     private DepotMapper depotMapper;
+    @Autowired
+    private SystemConfig systemConfig;
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String getLoginPage(HttpSession session) {
-        User user=(User)session.getAttribute("AUTH_USER");      //ZF.add
+        User user=(User)session.getAttribute("AUTH_USER");//ZF.add
         if (user != null) {
             Role role =userService.getRoleByUserRole(user.getUser_role());
             switch (role.getRole_code()){
@@ -65,6 +69,8 @@ public class LoginController extends BaseController {
         } else {
             return "login";
         }
+
+
     }
 
     private List<Session> getLoginedSession() {
@@ -93,59 +99,57 @@ private void clear(List<Session> list){
     @ResponseBody
     @RequestMapping(value = "login", method = {RequestMethod.POST})
     public Map<String, Object> login(@RequestBody Map<String, String> params, HttpServletRequest request) {
-        String userId = params.get("userid");
-        String password = params.get("password");
-        String remember = params.get("remember");
-        Map<String, Object> rtmap = new HashMap<String, Object>();
-        Map<String, Object> ret = new HashMap<String, Object>();        //ZFF.ADD
-        int errCode = 0;
-        logger.info("login user is: " + userId + " ip:" + request.getRemoteAddr());
-        if (StringUtils.isNotBlank(userId) && StringUtils.isNotBlank(password)) {
-            Subject currentUser = SecurityUtils.getSubject();
-            List<Session> list = getLoginedSession();
-            for (Session session : list) {
-                User user = (User) session.getAttribute("AUTH_USER");
-                if (user != null) {
-                    String loginUserId = user.getUser_id();
-                    if(loginUserId.equals(userId)){
-                        session.stop();
-                        break;
+        Map<String, Object> ret = new HashMap<String, Object>(); //ZFF.ADD
+        String read=params.get("read");
+        if(read.equals("true")){
+            String version=systemConfig.jsVersion;
+            String update=systemConfig.jsDate;
+            String updateTime=systemConfig.jsTime;
+            ret.put("version", version);
+            ret.put("update", update);
+            ret.put("updateTime",updateTime);
+        }else{
+            String userId = params.get("userid");
+            String password = params.get("password");
+            String remember = params.get("remember");
+            Map<String, Object> rtmap = new HashMap<String, Object>();
+            int errCode = 0;
+            logger.info("login user is: " + userId + " ip:" + request.getRemoteAddr());
+            if (StringUtils.isNotBlank(userId) && StringUtils.isNotBlank(password)) {
+                Subject currentUser = SecurityUtils.getSubject();
+                List<Session> list = getLoginedSession();
+                for (Session session : list) {
+                    User user = (User) session.getAttribute("AUTH_USER");
+                    if (user != null) {
+                        String loginUserId = user.getUser_id();
+                        if(loginUserId.equals(userId)){
+                            session.stop();
+                            break;
+                        }
                     }
                 }
-            }
-            UsernamePasswordToken token = new UsernamePasswordToken(userId, password);
-            if ("checked".equals(remember)) {
-                token.setRememberMe(true);
-            }
-            try {
-                currentUser.login(token);
-                UserLog record = new UserLog(userId, request.getRemoteAddr(), new Date());
-                userService.login(record);
-            } catch (UnknownAccountException e) {
-                errCode = ErrCode.USER_NOT_EXIST;
-            } catch (IncorrectCredentialsException e) {
-                errCode = ErrCode.PASSWORD_ERROR;
-            } catch (Exception e) {
-                logger.error("login error: ", e);
-                errCode = ErrCode.DB_ERROR;
-            }
+                UsernamePasswordToken token = new UsernamePasswordToken(userId, password);
+                if ("checked".equals(remember)) {
+                    token.setRememberMe(true);
+                }
+                try {
+                    currentUser.login(token);
+                    UserLog record = new UserLog(userId, request.getRemoteAddr(), new Date());
+                    userService.login(record);
+                } catch (UnknownAccountException e) {
+                    errCode = ErrCode.USER_NOT_EXIST;
+                } catch (IncorrectCredentialsException e) {
+                    errCode = ErrCode.PASSWORD_ERROR;
+                } catch (Exception e) {
+                    logger.error("login error: ", e);
+                    errCode = ErrCode.DB_ERROR;
+                }
 
-        } else {
-            errCode = ErrCode.USER_PASSWORD_FORMAT_ERROR;
-        }
-        //rtmap.put("errCode", errCode);
-        //rtmap.put("message", ErrCode.getMessage(errCode));
-        //String result = GsonUtils.object2Json(rtmap);
-        //return result;
-        ret.put("errCode", errCode);
-        ret.put("message", ErrCode.getMessage(errCode));
-        if(errCode==0){
-            User user = userService.getUserById(userId);
-            Depot depot = depotMapper.selectByPrimaryKey(Long.valueOf(user.getDepot_id()));
-            List<UserRole> roles = userService.getUserRole(userId);
-            ret.put("user_name",user.getUser_name());
-            ret.put("depotName",depot.getDepotName());
-            ret.put("roles",roles);
+            } else {
+                errCode = ErrCode.USER_PASSWORD_FORMAT_ERROR;
+            }
+            ret.put("errCode", errCode);
+            ret.put("message", ErrCode.getMessage(errCode));
         }
 
         return ret;
@@ -170,4 +174,72 @@ private void clear(List<Session> list){
         response.sendRedirect("login");
     }
 
+    @ResponseBody
+    @RequestMapping(value = "returnlog", method = {RequestMethod.GET})
+    public void returnlog(HttpServletResponse response, HttpSession httpSession) throws IOException {
+        Subject subject = SecurityUtils.getSubject();
+        if (subject != null) {
+            try {
+                User user = (User) httpSession.getAttribute("AUTH_USER");
+                if (user != null) {
+                    logger.info(" 返回登录页:" + user.getUser_id());
+                    user.setLogin_status(1);
+                    userService.updateUser_Index(user);
+                    response.sendRedirect("./pages/logined.html?logined="+user.getLogin_status());
+                }
+
+            } catch (Exception e) {
+                logger.error("logout error: ", e);
+            }
+        }else{
+
+            response.sendRedirect("login");
+        }
+
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "logined", method = { RequestMethod.POST })
+    public Map<String, Object> logined(HttpServletResponse response, HttpSession httpSession) throws IOException {
+        Map<String, Object> ret = new HashMap<String, Object>();        //ZFF.ADD
+        User user = (User) httpSession.getAttribute("AUTH_USER");
+        if(user!=null){
+            try{
+                logger.info("login user is: ============" + user.getUser_id());
+                Depot depot = depotMapper.selectByPrimaryKey(Long.valueOf(user.getDepot_id()));
+                List<UserRole> roles = userService.getUserRole(user.getUser_id());
+                ret.put("depotId",user.getDepot_id());
+                ret.put("user_name",user.getUser_name());
+                ret.put("depotName",depot.getDepotName());
+                ret.put("roles",roles);
+            }catch (Exception e) {
+                logger.error("logout error: ", e);
+            }
+        }else{
+            response.sendRedirect("login");
+        }
+
+        return ret;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "loginAgain", method = { RequestMethod.GET })
+    public boolean loginAgain(HttpSession httpSession) throws IOException {
+        boolean ret;
+        User user = (User) httpSession.getAttribute("AUTH_USER");
+        if(user!=null){
+            ret=true;
+        }else{
+            ret=false;
+        }
+        return ret;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "getJsVersion", method = { RequestMethod.GET })
+    public String getJsVersion(HttpServletResponse response){
+
+        return systemConfig.jsVersion;
+    }
 }

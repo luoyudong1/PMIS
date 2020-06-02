@@ -268,6 +268,7 @@ public class TestToDepotController {
 			stockInfo.setStorehouseId((short) StoreHouseEnum.TEST_DELIVERY.getId());
 			stockInfo.setPartIdSeq(sheetDetail.getPartId());
 			stockInfo.setEnabled((short)0);//不可用
+			stockInfo.setWarranty(sheetDetail.getWarranty());
 			stockInfoMapper.updateByPrimaryKeySelective(stockInfo);
 			sheetDetailMapper.insert(sheetDetail);
 

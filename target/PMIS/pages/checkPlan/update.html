@@ -17,6 +17,7 @@
     <link href="../../css/animate.css" rel="stylesheet">
     <link href="../../css/style.css" rel="stylesheet">
     <link href="../../css/vehicle.css" rel="stylesheet">
+    <script type="text/javascript" src="../../js/jquery-3.1.1.min.js"></script>
 </head>
 <body class="gray-bg dashbard-1">
 <div class="container-fluid">
@@ -56,6 +57,7 @@
                         <th>审核人</th>
                         <th>审核时间</th>
                         <th>备注</th>
+                        <th>完成数/总数</th>
                         <th>状态</th>
                         <th>操作</th>
                     </tr>
@@ -359,7 +361,27 @@
         </div>
     </div>
 </div>
-<script src="../../js/require.js"
-        data-main="../../js/checkPlan/update"></script>
+<script type="text/javascript">
+    let _version = '1.0.0';
+
+    function setVersion(version) {
+        document.write('<script type="text/javascript" src="../../js/require.js?v=' + version+ '" data-main="../../js/checkPlan/update"><\/script>');
+    }
+
+    $.ajax({
+        url: '/PMIS/getJsVersion',
+        type: 'get',
+        async: false,
+        success: function (data) {
+            if (data) {
+                _version = data;
+            }
+            setVersion(_version);
+        },
+        error: function () {
+            setVersion(_version);
+        }
+    });
+</script>
 </body>
 </html>

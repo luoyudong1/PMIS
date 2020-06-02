@@ -31,6 +31,7 @@ define(function () {
             'jquery-mousewheel': 'lib/jquery.mousewheel.min',
             'datetimepicker': 'lib/jquery.datetimepicker.full.min',
             'datetimepicker2': 'lib/bootstrap-datetimepicker.min',
+            'datetimepicker2.zn-ch': 'lib/bootstrap-datetimepicker.zn-ch',
             'pace':'plugins/pace/pace.min',
             'ajaxfileupload':'ajaxfileupload',
             'toastr':'plugins/toastr/toastr.min',

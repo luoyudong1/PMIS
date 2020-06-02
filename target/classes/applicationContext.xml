@@ -11,12 +11,14 @@
 	http://www.springframework.org/schema/aop/spring-aop.xsd
 	http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx.xsd">
-
+	<!--舍弃单独引入配置文件-->
 	<!-- Database Configuration -->
-	<bean id="mappings"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations" value="classpath:jdbc.properties"></property>
-	</bean>
+	<!--<bean id="mappings"-->
+		<!--class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+		<!--<property name="locations" value="classpath:jdbc.properties"></property>-->
+	<!--</bean>-->
+	<!--统一引入管理配置文件-->
+	<context:property-placeholder location="classpath:*.properties"/>
 	<!-- DataSource DBCP2 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
@@ -46,6 +48,7 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.kthw.pmis.mapper" />
 	</bean>
+	<!-- 加载配置文件 -->
 	<context:component-scan base-package="com.kthw.pmis">
 		<!-- 扫描符合@Service @Repository的类 -->
         <context:exclude-filter type="annotation"

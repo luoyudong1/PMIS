@@ -73,5 +73,13 @@ MessageInfoController extends BaseController {
         return ret;
     }
 
+    @RequestMapping(value = "getHintInfoList", method = {RequestMethod.GET})
+    @ResponseBody
+    public TableView<MessageInfo> getHintInfoList(HttpServletRequest request) {
+
+        TableView<MessageInfo> view = new TableView<MessageInfo>();
+        view.setData(messageInfoService.getHintBydepotId(request));
+        return view;
+    }
 
 }

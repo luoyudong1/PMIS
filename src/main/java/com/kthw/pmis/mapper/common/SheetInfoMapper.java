@@ -15,7 +15,7 @@ public interface SheetInfoMapper {
 
     SheetInfo selectByPrimaryKey(String sheetId);
 
-    List<SheetInfoExt> selectByMap(Map<String, Object> params);
+    List<SheetInfo> selectByMap(Map<String, Object> params);
 
     int updateByPrimaryKeySelective(SheetInfo record);
 

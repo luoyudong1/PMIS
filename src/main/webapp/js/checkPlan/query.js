@@ -103,6 +103,12 @@ require(['../config'],
                             data: 'remark'
                         },
                         {
+                            data: 'total',
+                            render:function (data, type, row, meta ) {
+                                return row.completeCount+"/"+data
+                            }
+                        },
+                        {
                             data: 'flag',
                             render: function (data) {
                                 var str = "-";
@@ -121,7 +127,7 @@ require(['../config'],
                         },
                     ],
                     columnDefs: [{
-                        targets: 11,
+                        targets: 12,
                         data: function (row) {
                             var str = '';
                             str += '<button id="exportExcel" type="button" class="btn btn-success btn-xs" title="导出"><span class="glyphicon glyphicon-download-alt"></span></button>';

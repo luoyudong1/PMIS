@@ -51,6 +51,7 @@ require(['../config'],
                 let deviceTypeSet2 = new Set();
                 let sheet_id = '';
                 let date = new Date()
+                var detectDepotId=''
                 let sheetData;
                 let year='';
                 let month='';
@@ -143,7 +144,7 @@ require(['../config'],
                         url: config.basePath + "/detectManage/detectManage/listDetect",
                         type: 'get',
                         data: {
-                            depotId: deptId,
+                            depotId: detectDepotId,
                             faultEnable: 1
                         },
                         dataType: 'json',
@@ -265,6 +266,11 @@ require(['../config'],
                             data: 'remark'
                         },
                         {
+                            data: 'total',
+                            render:function (data, type, row, meta ) {
+                                return row.completeCount+"/"+data
+                            }
+                        }, {
                             data: 'flag',
                             render: function (data) {
                                 var str = "-";
@@ -283,7 +289,7 @@ require(['../config'],
                         },
                     ],
                     columnDefs: [{
-                        targets: 11,
+                        targets: 12,
                         data: function (row) {
                             var str = '';
                             if (row.flag == 1 || row.flag == 4) {
@@ -547,10 +553,12 @@ require(['../config'],
                                 completeFlag = sheetTrData.flag
                                 sheet_id = sheetTrData.sheetId
                                 sheetDetailTable.ajax.reload()
+
+                                sheetData = sheetTrData
+                                year = sheetTrData.year
+                                month = sheetTrData.month
+                                detectDepotId = sheetTrData.depotId
                             }
-                            sheetData = sheetTrData
-                            year=sheetTrData.year
-                            month=sheetTrData.month
                         } );
                 /*******************************************************
                  * 单据点击事件

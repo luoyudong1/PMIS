@@ -267,6 +267,42 @@ public class FaultHandle {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date verifyDate5;
     private Integer dispatcher;
+    private String faultResponsible;
+    private String faultResponsibleRemark;
+    private Integer appealFlag;
+    private String appealReason;
+
+    public Integer getAppealFlag() {
+        return appealFlag;
+    }
+
+    public void setAppealFlag(Integer appealFlag) {
+        this.appealFlag = appealFlag;
+    }
+
+    public String getAppealReason() {
+        return appealReason;
+    }
+
+    public void setAppealReason(String appealReason) {
+        this.appealReason = appealReason;
+    }
+
+    public String getFaultResponsible() {
+        return faultResponsible;
+    }
+
+    public void setFaultResponsible(String faultResponsible) {
+        this.faultResponsible = faultResponsible;
+    }
+
+    public String getFaultResponsibleRemark() {
+        return faultResponsibleRemark;
+    }
+
+    public void setFaultResponsibleRemark(String faultResponsibleRemark) {
+        this.faultResponsibleRemark = faultResponsibleRemark;
+    }
 
     public Integer getDispatcher() {
         return dispatcher;

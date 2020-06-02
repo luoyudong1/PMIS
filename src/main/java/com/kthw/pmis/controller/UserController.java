@@ -2,6 +2,7 @@ package com.kthw.pmis.controller;
 
 import com.kthw.common.Utils;
 import com.kthw.common.base.ErrCode;
+import com.kthw.pmis.helper.SystemConfig;
 import com.kthw.pmis.mapper.system.UserMapper;
 import com.kthw.pmis.model.system.*;
 import com.kthw.pmis.service.system.UserService;
@@ -31,9 +32,6 @@ public class UserController {
 
     @Autowired
     UserService userService;
-
-    @Autowired
-    private UserMapper userMapper;
 
 
     @ResponseBody
@@ -82,7 +80,6 @@ public class UserController {
         ret.put("idxUrl", user.getIdx_url());//用户首页
         return ret;
     }
-
     @ResponseBody
     @RequestMapping(value = "/modifyIdxUrl", method = { RequestMethod.POST })
     public Map<String, Object> modifyIdxUrl(@RequestParam(value = "userId") String userId,

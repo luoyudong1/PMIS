@@ -152,33 +152,7 @@ $.ajax({
 								console.log(result);
 							}
 						});
-						/**
-						 * 初始化资产属性下拉框
-						 */
-						$
-								.ajax({
-									async : false,
-									url : config.basePath
-											+ "/entryAndOut/purchaseParts/getAllAssetAttributes",
-									data : {
-										"action" : "all"
-									},
-									dataType : 'json',
-									success : function(result) {
-										for (var i = 0; i < result.data.length; i++) {
-											$("#assetAttributesNameAdd")
-													.append(
-															'<option value="'
-																	+ result.data[i].asset_attributes_id
-																	+ '">'
-																	+ result.data[i].asset_attributes_name
-																	+ '</option>');
-										}
-									},
-									error : function(result) {
-										console.log(result);
-									}
-								});
+
 
 						/**
 						 * 初始化入库单据

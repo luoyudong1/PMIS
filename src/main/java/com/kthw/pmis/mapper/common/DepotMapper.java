@@ -20,4 +20,6 @@ public interface DepotMapper {
     int updateByPrimaryKey(Depot record);
 
     int updateByMap(Map<String, Object> params);
+
+    List<Depot> selectByParent(Long parentId);
 }
