@@ -80,6 +80,7 @@ require(['config'], function (config) {
                     var version=result.version;
                     var update=result.update;
                     var updateTime=result.updateTime;
+                    console.log("Time==="+updateTime);
                     $('#unViewNum').text("提示：系统于 "+update+" "+updateTime+" 更新为 "+version+" 版本，如操作出现异常，请清除浏览器缓存、重启后使用。");
                 },
                 error: function(msg){

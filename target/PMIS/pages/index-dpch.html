@@ -245,11 +245,11 @@
     let _version = '1.0.0';
 
     function setVersion(version) {
-        document.write('<script type="text/javascript" src="../js/require.js?v=' + version+ '" data-main="../js/index-tmis"><\/script>');
+        document.write('<script type="text/javascript" src="../js/require.js?v=' + version+ '" data-main="../js/index-tmis.js?v=' + version+ '"><\/script>');
     }
 
     $.ajax({
-        url: '/PMIS/getJsVersion',
+        url: '../getJsVersion',
         type: 'get',
         async: false,
         success: function (data) {

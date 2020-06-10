@@ -317,7 +317,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h3 class="modal-title" id="modifySheetDetailModalLabel">修改配送配件</h3>
-					<p id="alertMsgAdd"
+					<p id="alertMsgModify"
 						style="position: absolute; left: 42%; top: 25px; width: 25%; height: 50px; display: none"></p>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
@@ -402,7 +402,7 @@
 		<div class="modal-dialog" style="max-width: 800px; overflow-x: auto;">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h3 class="modal-title" id="myPopSheetModalLabel">删除单据提示</h3>
+					<h3 class="modal-title" id="myPopSheetLabel">删除单据提示</h3>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
 				</div>
@@ -550,7 +550,29 @@
 			</div>
 		</div>
 	</div>
-	<script src="../../js/require.js"
-		data-main="../../js/stock/depotReceipt"></script>
+	<script type="text/javascript" src="../../js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript">
+        let _version = '1.0.0';
+
+        function setVersion(version) {
+            document.write('<script type="text/javascript" src="../../js/require.js?v=' + version + '" ' +
+                'data-main="../../js/stock/depotReceipt.js?v=' + version + '"><\/script>');
+        }
+
+        $.ajax({
+            url: '/PMIS/getJsVersion',
+            type: 'get',
+            async: false,
+            success: function (data) {
+                if (data) {
+                    _version = data;
+                }
+                setVersion(_version);
+            },
+            error: function () {
+                setVersion(_version);
+            }
+        });
+	</script>
 </body>
 </html>

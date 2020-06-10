@@ -30,13 +30,16 @@
         <result column="plan_check_enable" jdbcType="NUMERIC" property="planCheckEnable" />
         <result column="fault_enable" jdbcType="NUMERIC" property="faultEnable" />
         <result column="dispatcher" jdbcType="NUMERIC" property="dispatcher" />
+        <result column="work_shop_name" jdbcType="VARCHAR" property="workShopName" />
+        <result column="segment_name" jdbcType="VARCHAR" property="segmentName" />
 
     </resultMap>
     <sql id="Base_Column_List">
     detect_device_id, detect_device_name, depot_id, device_type_id, supplier_id, device_model_id,
     enabled, storehouse_id, create_time, update_time, user_name, remark, line_name, electric_type,
     electric_name, net_connect_type, net_connect_name, approval_doc, location_pic, trackside_pic,
-    outdoor_pic, indoor_pic, interior_pic, device_location,plan_check_type,plan_check_enable,fault_enable,dispatcher
+    outdoor_pic, indoor_pic, interior_pic, device_location,plan_check_type,plan_check_enable,
+    fault_enable,dispatcher,work_shop_name,segment_name
   </sql>
     <sql id="ByMap_Where_Clause">
         <where>
@@ -123,6 +126,12 @@
             </if>
             <if test="eqDispatcher != null">
                 AND dispatcher = #{eqDispatcher,jdbcType=NUMERIC}
+            </if>
+            <if test="eqWorkShopName != null">
+                AND work_shop_name = #{eqWorkShopName,jdbcType=VARCHAR}
+            </if>
+            <if test="eqSegmentName != null">
+                AND segment_name = #{eqSegmentName,jdbcType=VARCHAR}
             </if>
         </where>
     </sql>

@@ -1,6 +1,7 @@
 package com.kthw.pmis.serviceimpl.detectManage;
 
 import com.kthw.pmis.entiy.Depot;
+import com.kthw.pmis.entiy.DetectDevice;
 import com.kthw.pmis.entiy.dto.DetectDeviceDTO;
 import com.kthw.pmis.helper.DepotHelper;
 import com.kthw.pmis.mapper.common.DetectDeviceMapper;
@@ -34,6 +35,12 @@ private DepotHelper depotHelper;
         }
         params.put("orderByClause","ddd.detect_device_id asc");
         list=detectDeviceMapper.listDetectDevice(params);
+        return list;
+    }
+
+    @Override
+    public List<DetectDevice> selectByMap(Map<String, Object> params) {
+        List<DetectDevice> list=detectDeviceMapper.selectByMap(params);
         return list;
     }
 }

@@ -2,10 +2,12 @@ package com.kthw.pmis.controller.ExportExcel;
 
 import com.kthw.pmis.entiy.*;
 import com.kthw.pmis.entiy.bo.PlanCheckExportBO;
+import com.kthw.pmis.entiy.dto.DetectDeviceDTO;
 import com.kthw.pmis.entiy.dto.SheetDetailDTO;
 import com.kthw.pmis.entiy.dto.StockInfoCountDTO;
 import com.kthw.pmis.helper.DepotHelper;
 import com.kthw.pmis.mapper.common.*;
+import com.kthw.pmis.service.detectManage.DetectManageService;
 import com.kthw.pmis.util.excel.ExportExcelUtil;
 import net.sf.jxls.transformer.XLSTransformer;
 import org.apache.commons.lang.StringUtils;
@@ -34,6 +36,8 @@ public class JxlsExcelController {
     @Autowired
     private FaultHandleMapper faultHandleMapper;
     @Autowired
+    private DetectManageService detectManageService;
+    @Autowired
     private StockInfo1Mapper stockInfoMapper;
     @Autowired
     private DepotHelper depotHelper;
@@ -44,21 +48,22 @@ public class JxlsExcelController {
     @Autowired
     private SheetDetailMapper sheetDetailMapper;
     private static final String CONTENT_TYPE = "application/vnd.ms-excel;charset=utf-8";
-
-    private static final String templatePath = "excel/template.xls";
-    private static final List<String> shetetNames=new ArrayList<>();
+    private static final List<String> shetetNames = new ArrayList<>();
 
     private static final String exportFileName = "template.xls";
     private static final String exportStockInfoCountFileName = "库存信息统计.xls";
     private static final String exportFaultHandelFileName = "故障预报单据.xls";
     private static final String exportPlanCheckFileName = "检修计划单据.xls";
     private static final String exportCheckRepairFileName = "所内检修记录.xls";
+    private static final String exportDetectRankFileName = "探测站排名.xls";
+
     static {
         shetetNames.add("设备故障");
         shetetNames.add("2故障");
         shetetNames.add("3故障");
         shetetNames.add("4故障");
     }
+
     @RequestMapping(value = "/export", method = {RequestMethod.GET})
     @ResponseBody
     public void export(HttpServletRequest request, HttpServletResponse response) {
@@ -120,6 +125,7 @@ public class JxlsExcelController {
             logger.error("导出仓库配件数量错误");
         }
     }
+
     @RequestMapping(value = "/stockInfo/export", method = {RequestMethod.GET})
     @ResponseBody
     public void exportCount(HttpServletRequest request, HttpServletResponse response) {
@@ -150,6 +156,7 @@ public class JxlsExcelController {
             logger.error("导出仓库配件数量错误");
         }
     }
+
     @RequestMapping(value = "/faultHandle/exportExcel/{depotId}", method = {RequestMethod.GET})
     @ResponseBody
     public void exportFaultHandle(HttpServletRequest request, @PathVariable("depotId") Long depotId, HttpServletResponse response) {
@@ -157,9 +164,9 @@ public class JxlsExcelController {
         //模拟数据
         try {
             Map<String, Object> params = new HashMap<>();
-            params.put("eqFinished", (short)0);
+            params.put("eqFinished", (short) 0);
             //获取faultHandle表
-            if (depotId!=null) {
+            if (depotId != null) {
                 List<Depot> childrens = depotHelper.getChildrens(depotId);
                 params.put("depotIdList", childrens);
             }
@@ -171,7 +178,7 @@ public class JxlsExcelController {
             List<FaultHandle> list_net = faultHandleMapper.selectByMap(params);
             params.put("eqType", "信息故障");
             List<FaultHandle> list_info = faultHandleMapper.selectByMap(params);
-            Map<String,List<FaultHandle>> map = new HashMap<>();
+            Map<String, List<FaultHandle>> map = new HashMap<>();
             ArrayList<List> objects = new ArrayList<List>();//添加数据到objects中
             map.put("list", list_device);
             map.put("list1", list_electric);
@@ -191,7 +198,7 @@ public class JxlsExcelController {
             response.addHeader("Cache-Control", "no-cache");
             in = this.getClass().getClassLoader().getResourceAsStream("excel/faultHandle.xls");   //得到文档的路径
             //一个xls文件多个sheet
-            Workbook workbook = transformer.transformMultipleSheetsList(in,objects,shetetNames,"xxx",map,0);
+            Workbook workbook = transformer.transformMultipleSheetsList(in, objects, shetetNames, "xxx", map, 0);
             workbook.removeSheetAt(4);
             workbook.removeSheetAt(4);
             workbook.removeSheetAt(4);
@@ -213,12 +220,12 @@ public class JxlsExcelController {
         logger.info("导出检修计划");
         Map<String, Object> params = new HashMap<>();
         params.put("eqSheetId", sheetId);// 获取单据信息
-        PlanCheckSheet planCheckSheet=planCheckSheetMapper.selectByPrimaryKey(sheetId);
+        PlanCheckSheet planCheckSheet = planCheckSheetMapper.selectByPrimaryKey(sheetId);
         List<PlanCheck> planChecks = new ArrayList<>();// 获取单据对应的配件详情
         planChecks = planCheckMapper.selectByMap(params);
-        String sheetName=planCheckSheet.getDepotName()+planCheckSheet.getYear()+"年"+planCheckSheet.getMonth()+"月"+"检修计划表";
+        String sheetName = planCheckSheet.getDepotName() + planCheckSheet.getYear() + "年" + planCheckSheet.getMonth() + "月" + "检修计划表";
         try {
-            HSSFWorkbook wb = ExportExcelUtil.exportPlanCheckExcel(sheetName,  planChecks, planCheckSheet, null);
+            HSSFWorkbook wb = ExportExcelUtil.exportPlanCheckExcel(sheetName, planChecks, planCheckSheet, null);
             response.setContentType("application/vnd.ms-excel;charset=utf-8");
             response.setHeader("Content-Disposition",
                     "attachment;filename=" + new String((exportPlanCheckFileName + ".xls").getBytes(), "iso-8859-1"));
@@ -236,17 +243,17 @@ public class JxlsExcelController {
 
     @RequestMapping(value = "/repairManage/check/export/{sheetId}/{partCode}", method = {RequestMethod.GET})
     @ResponseBody
-    public void exportCheckRepair(HttpServletRequest request, @PathVariable("sheetId") String sheetId,@PathVariable("partCode") String partCode, HttpServletResponse response) {
+    public void exportCheckRepair(HttpServletRequest request, @PathVariable("sheetId") String sheetId, @PathVariable("partCode") String partCode, HttpServletResponse response) {
         logger.info("导出所内检修记录");
         Map<String, Object> params = new HashMap<>();
         params.put("eqSheetId", sheetId);// 获取单据信息
         params.put("eqPartCode", partCode);// 获取单据信息
         try {
-            SimpleDateFormat sd=new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            List<SheetDetailDTO> list =new ArrayList<>();
-            list=sheetDetailMapper.selectWithParts(params);
-            SheetDetailDTO sheetDetail=list.get(0);
-            Map<String,Object> map = new HashMap<>();
+            SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            List<SheetDetailDTO> list = new ArrayList<>();
+            list = sheetDetailMapper.selectWithParts(params);
+            SheetDetailDTO sheetDetail = list.get(0);
+            Map<String, Object> map = new HashMap<>();
             map.put("checkedDate", sd.format(sheetDetail.getCheckedDate()));
             map.put("devicePartsName", sheetDetail.getDevicePartsName());
             map.put("deviceModelName", sheetDetail.getDeviceModelName());
@@ -255,15 +262,15 @@ public class JxlsExcelController {
             map.put("partId", sheetDetail.getPartId());
             map.put("partCode", sheetDetail.getPartCode());
             map.put("assetAttributesName", sheetDetail.getAssetAttributesName());
-            if(sheetDetail.getPartState()==1){
+            if (sheetDetail.getPartState() == 1) {
                 map.put("partState", "新购");
-            }else if(sheetDetail.getPartState()==2){
+            } else if (sheetDetail.getPartState() == 2) {
                 map.put("partState", "送修");
-            }else if(sheetDetail.getPartState()==3){
+            } else if (sheetDetail.getPartState() == 3) {
                 map.put("partState", "初始化在探测站");
-            }else if(sheetDetail.getPartState()==4){
+            } else if (sheetDetail.getPartState() == 4) {
                 map.put("partState", "初始化在备品库");
-            }else if(sheetDetail.getPartState()==5){
+            } else if (sheetDetail.getPartState() == 5) {
                 map.put("partState", "初始化在送修库");
             }
             map.put("faultInfo", sheetDetail.getFaultInfo());
@@ -273,11 +280,11 @@ public class JxlsExcelController {
             map.put("copyMachineStartTime", sd.format(sheetDetail.getCopyMachineStartTime()));
             map.put("copyMachineEndTime", sd.format(sheetDetail.getCopyMachineEndTime()));
             map.put("copyMachineCheck", sheetDetail.getCopyMachineCheck());
-            if(sheetDetail.getRepaireState()==0){
+            if (sheetDetail.getRepaireState() == 0) {
                 map.put("repaireState", "不合格");
-            }else  if(sheetDetail.getRepaireState()==1){
+            } else if (sheetDetail.getRepaireState() == 1) {
                 map.put("repaireState", "合格");
-            }else  if(sheetDetail.getRepaireState()==2){
+            } else if (sheetDetail.getRepaireState() == 2) {
                 map.put("repaireState", "报废");
             }
             map.put("checkedUserId", sheetDetail.getCheckedUserId());
@@ -299,6 +306,60 @@ public class JxlsExcelController {
             in.close();
         } catch (Exception e) {
             logger.error("导出所内检修记录出错 :" + e);
+            e.printStackTrace();
+        }
+    }
+
+
+    @RequestMapping(value = "/detectRank/{depotId}", method = {RequestMethod.GET})
+    @ResponseBody
+    public void exportDetectRank(HttpServletRequest request, @PathVariable("depotId") Long depotId, HttpServletResponse response) {
+        logger.info("导出探测站排名");
+        //模拟数据
+        try {
+            Map<String, Object> params = new HashMap<>();
+            params.put("eqFinished", (short) 0);
+            //获取faultHandle表
+            if (depotId != null) {
+                Depot depot = depotHelper.getDepot(depotId);
+                if (depot != null) {
+                    switch (depot.getDepotLevel()) {
+                        case (short)5:
+                            params.put("eqDepotId", depot.getDepotId());//班组
+                            break;
+                        case (short)4:
+                            params.put("eqWorkShopName", depot.getDepotName());//车间
+                            break;
+                        case (short)3:
+                            params.put("eqSegmentName", depot.getDepotName());//车辆段
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                Map<String, Object> map = new HashMap<>();
+                List<DetectDevice> list = detectManageService.selectByMap(params);
+                map.put("list", list);
+                XLSTransformer transformer = new XLSTransformer();
+                OutputStream out = null;
+                InputStream in = null;
+                response.setContentType(CONTENT_TYPE);
+                response.setHeader("Content-Disposition",
+                        "attachment;filename=" + new String((exportDetectRankFileName).getBytes(), "iso-8859-1"));
+                response.addHeader("Pargam", "no-cache");
+                response.addHeader("Cache-Control", "no-cache");
+                in = this.getClass().getClassLoader().getResourceAsStream("excel/detectRank.xls");   //得到文档的路径
+                //一个xls文件多个sheet
+                Workbook workbook = transformer.transformXLS(in, map);
+                out = response.getOutputStream();
+                //将内容写入输出流并把缓存的内容全部发出去
+                workbook.write(out);
+                out.flush();
+                out.close();
+                in.close();
+            }
+        } catch (Exception e) {
+            logger.error("导出探测站排名错误");
             e.printStackTrace();
         }
     }

@@ -271,6 +271,93 @@ public class FaultHandle {
     private String faultResponsibleRemark;
     private Integer appealFlag;
     private String appealReason;
+    private String adjustReason;
+    private String adjustSubmitUser;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date adjustSubmitDate;
+    private String appealSubmitUser;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date appealSubmitDate;
+    private String appealVerifyUser;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date appealVerifyDate;
+    private String appealDocUrl;
+    private String appealVerifyRemark;
+
+    public String getAdjustReason() {
+        return adjustReason;
+    }
+
+    public void setAdjustReason(String adjustReason) {
+        this.adjustReason = adjustReason;
+    }
+
+    public String getAdjustSubmitUser() {
+        return adjustSubmitUser;
+    }
+
+    public void setAdjustSubmitUser(String adjustSubmitUser) {
+        this.adjustSubmitUser = adjustSubmitUser;
+    }
+
+    public Date getAdjustSubmitDate() {
+        return adjustSubmitDate;
+    }
+
+    public void setAdjustSubmitDate(Date adjustSubmitDate) {
+        this.adjustSubmitDate = adjustSubmitDate;
+    }
+
+    public String getAppealSubmitUser() {
+        return appealSubmitUser;
+    }
+
+    public void setAppealSubmitUser(String appealSubmitUser) {
+        this.appealSubmitUser = appealSubmitUser;
+    }
+
+    public Date getAppealSubmitDate() {
+        return appealSubmitDate;
+    }
+
+    public void setAppealSubmitDate(Date appealSubmitDate) {
+        this.appealSubmitDate = appealSubmitDate;
+    }
+
+    public String getAppealVerifyUser() {
+        return appealVerifyUser;
+    }
+
+    public void setAppealVerifyUser(String appealVerifyUser) {
+        this.appealVerifyUser = appealVerifyUser;
+    }
+
+    public Date getAppealVerifyDate() {
+        return appealVerifyDate;
+    }
+
+    public void setAppealVerifyDate(Date appealVerifyDate) {
+        this.appealVerifyDate = appealVerifyDate;
+    }
+
+    public String getAppealDocUrl() {
+        return appealDocUrl;
+    }
+
+    public void setAppealDocUrl(String appealDocUrl) {
+        this.appealDocUrl = appealDocUrl;
+    }
+
+    public String getAppealVerifyRemark() {
+        return appealVerifyRemark;
+    }
+
+    public void setAppealVerifyRemark(String appealVerifyRemark) {
+        this.appealVerifyRemark = appealVerifyRemark;
+    }
 
     public Integer getAppealFlag() {
         return appealFlag;

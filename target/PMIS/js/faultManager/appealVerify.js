@@ -39,26 +39,13 @@ require(['../config'],
                 var roleName = window.parent.user.roleName; // 登录人角色信息
                 var deptId = window.parent.user.deptId // 所属部门id
                 var id;
-                var completeFlag;
+                var appealFlag;
                 var format = 'Y-m-d H:i:s';
                 var detectDeviceId;
                 var type;
                 var detectDevice;
                 var sheetData;
                 var deviceType
-                CMethod.initDatetimepickerWithSecond("haultStartTimeAdd", null, format);
-                CMethod.initDatetimepickerWithSecond("haultEndTimeAdd", null, format);
-                CMethod.initDatetimepickerWithSecond("faultHandleStartTimeAdd", null, format);
-                CMethod.initDatetimepickerWithSecond("faultHandleEndTimeAdd", null, format);
-                CMethod.initDatetimepickerWithSecond("haultStartTimeModify", null, format);
-                CMethod.initDatetimepickerWithSecond("haultEndTimeModify", null, format);
-                CMethod.initDatetimepickerWithSecond("faultHandleStartTimeModify", null, format);
-                CMethod.initDatetimepickerWithSecond("faultHandleEndTimeModify", null, format);
-                CMethod.initDatetimepickerWithSecond("reportTimeAdd", new Date(), format);
-                CMethod.initDatetimepickerWithSecond("noticeTimeModify", null, format);
-                CMethod.initDatetimepickerWithSecond("planOutageStartTimeModify", null, format);
-                CMethod.initDatetimepickerWithSecond("planOutageEndTimeModify", null, format);
-                CMethod.initDatetimepickerWithSecond("maintenanceTimeModify", null, format);
                 /**
                  * 查询
                  */
@@ -75,171 +62,7 @@ require(['../config'],
                     initDatetimepicker("queryTime", date);
                     initDatetimepicker("queryTime2", date);
                 });
-                /**
-                 * 显示故障类别
-                 */
-                $.ajax({
-                    async: false,
-                    url: config.basePath + "/faultHandle/faultReport/getFaultType",
-                    type: 'get',
-                    dataType: 'json',
-                    success: function (result) {
-                        for (var i = 0; i < result.length; i++) {
-                            $("#faultTypeModify").append('<option value="' + result[i].id + '">' + result[i].name + '</option>');
-                        }
-                    },
-                    error: function (result) {
-                        console.log(result);
-                    }
-                });
-                /**
-                 * 获取故障现像
-                 */
-                function getFaultInfo(data) {
-                    var ret = '';
-                    $.ajax({
-                        async: false,
-                        url: config.basePath + "/faultHandle/faultReport/getFaultInfo",
-                        type: 'post',
-                        data: {"deviceType": data},
-                        dataType: 'json',
-                        success: function (result) {
-                            ret = result;
-                        },
-                        error: function (result) {
-                            console.log(result);
-                        }
-                    });
-                    return ret;
-                }
-                /**
-                 * 获取探测站维修人员和责任部门
-                 */
-                $('#detectDeviceModify').change(function (e) {
-                    if ($('#detectDeviceModify').val() != '') {
-                        let data = $('#detectDeviceModify').val()
-                        let responsibleDepot = getResponsibleDepot(data)
-                        let responsibleSegment = getResponsibleSegment(data)
-                        let result = getDetectRepairPerson(data)
-                        $('#repairUserModify').empty()
-                        $('#noticeUserModify').empty()
-                        $('#responsibleDepotModify').val(responsibleDepot)
-                        $('#segmentDepotModify').val(responsibleSegment)
-                        for (var i = 0; i < result.length; i++) {
-                            $("#repairUserModify").append('<option></option>');
-                            $("#repairUserModify").append('<option value="' + result[i].id + '">' + result[i].name + '</option>');
-                            $("#noticeUserModify").append('<option></option>');
-                            $("#noticeUserModify").append('<option value="' + result[i].id + '">' + result[i].name + '</option>');
-                        }
 
-                    }
-                })
-
-
-                function initRepairUserModify(detectDeviceId) {
-                    if (detectDeviceId != '') {
-                        var data = detectDeviceId
-                        var result = getDetectRepairPerson(data)
-                        $('#repairUserModify').empty()
-                        $('#noticeUserModify').empty()
-                        for (var i = 0; i < result.length; i++) {
-                            $("#repairUserModify").append('<option></option>');
-                            $("#repairUserModify").append('<option value="' + result[i].id + '">' + result[i].name + '</option>');
-                            $("#noticeUserModify").append('<option></option>');
-                            $("#noticeUserModify").append('<option value="' + result[i].id + '">' + result[i].name + '</option>');
-                        }
-                    }
-                    var result = getResponsibleUnit(data)
-                    if (type == "电力故障") {
-                        $('#responsibleUnitModify').val(result.electricName)
-                    } else {
-                        $('#responsibleUnitModify').val(result.netConnectName)
-                    }
-                }
-
-                /**
-                 * 获取维修人员
-                 * @param data
-                 * @returns {string}
-                 */
-                function getDetectRepairPerson(data) {
-                    var ret = '';
-                    $.ajax({
-                        async: false,
-                        url: config.basePath + "/faultHandle/faultReport/getRepairPerson",
-                        type: 'get',
-                        data: {detectDeviceId: data},
-                        dataType: 'json',
-                        success: function (result) {
-                            ret = result;
-                        },
-                        error: function (result) {
-                            console.log(result);
-                        }
-                    });
-                    return ret;
-                }
-
-                /**
-                 * 获取责任部门
-                 * @param data
-                 * @returns {string}
-                 */
-                function getResponsibleDepot(data) {
-                    let ret = '';
-                    $.ajax({
-                        async: false,
-                        url: config.basePath + "/faultHandle/faultReport/getResponsibleDepot",
-                        type: 'get',
-                        data: {detectDeviceId: data},
-                        success: function (result) {
-                            ret = result;
-                        },
-                        error: function (result) {
-                            console.log(result);
-                        }
-                    });
-                    return ret;
-                }
-                /**
-                 * 获取责任单位
-                 */
-                function getResponsibleUnit(detectDeviceId) {
-                    $.ajax({
-                        async: false,
-                        url: config.basePath + "/faultHandle/faultReport/getResponsibleUnit",
-                        type: 'get',
-                        data: {detectDeviceId: detectDeviceId},
-                        dataType: 'json',
-                        success: function (result) {
-                            detectDevice = result
-                        },
-                        error: function (result) {
-                            console.log(result);
-                        }
-
-                    });
-                    return detectDevice
-                }
-                /**
-                 * 获取责任部门
-                 */
-                function getResponsibleSegment(detectDeviceId) {
-                    $.ajax({
-                        async: false,
-                        url: config.basePath + "/faultHandle/faultReport/getResponsibleSegment",
-                        type: 'get',
-                        data: {detectDeviceId: detectDeviceId},
-                        success: function (result) {
-                            detectDevice = result
-                        },
-                        error: function (result) {
-                            console.log(result);
-                        }
-
-                    });
-                    return detectDevice
-                }
 
                 /**
                  * 初始化入库单据
@@ -292,6 +115,15 @@ require(['../config'],
                         }, {
                             data: 'appealReason'
                         }, {
+                            data: 'appealDocUrl',
+                            render:function (data) {
+                                if(data!=null) {
+                                    return '<button id="downloadDoc" docUrl="'+data+'" type="button" class="btn btn-success btn-xs" title="附件下载"><span class="glyphicon glyphicon-download"></span></button>'
+                                }else {
+                                    return '-'
+                                }
+                            }
+                        }, {
                             data: 'faultType'
                         },
                         {
@@ -310,11 +142,13 @@ require(['../config'],
                         },
                     ],
                     columnDefs: [{
-                        targets: 17,
+                        targets: 18,
                         data: function (row) {
-                            let str = '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="修改"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
-                            str += '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#popSheetVerifyModal" title="提交" > <span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
-                            str += '<a class="deleteSheet btn btn-danger btn-xs" data-toggle="modal" href="#popBackSheetModal" title="回退单据"><span class="glyphicon glyphicon-backward"></span></a>&nbsp;&nbsp;';
+                            var str=''
+                            if(row.appealFlag==1) {
+                                str+= '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#popSheetVerifyModal" title="同意"><span class="glyphicon glyphicon-ok"></span></a>&nbsp;&nbsp;'
+                                str+= '<a class="btn btn-primary btn-xs openCmdDetail" data-toggle="modal" href="#modifySheetModal" title="不同意" > <span class="glyphicon glyphicon-backward"></span></a>&nbsp;&nbsp;'
+                            }
                             return str;
                         }
                     }],
@@ -322,6 +156,11 @@ require(['../config'],
                     paging: true,
                     pageLength: 10,
                     serverSide: false,
+                    fnCreatedRow: function (row, data) {
+                        if (data.appealFlag== 2) {
+                            $(row).css('color','red')
+                        }
+                    },
                     drawCallback: function (settings) {
                         var api = this.api();
                         var startIndex = api.context[0]._iDisplayStart; // 获取到本页开始的条数
@@ -329,6 +168,11 @@ require(['../config'],
                             cell.innerHTML = startIndex + i + 1;
                         });
                     },
+                });
+                /** 导出配件详情信息*/
+                $("#sheetTable tbody").on('click', '#downloadDoc',
+                    function () {
+                    window.location.href = config.basePath + '/faultHandle/faultReport/download/' + $(this).attr("docUrl");
                 });
                 /*******************************************************
                  * 单据点击事件
@@ -348,7 +192,7 @@ require(['../config'],
                                     .row(tr).data();
                                 id = sheetTrData.id
                                 detectDeviceId = sheetTrData.detectDeviceId
-                                completeFlag = sheetTrData.completeFlag
+                                appealFlag  = sheetTrData.appealFlag
                                 type = sheetTrData.type;
                                 sheetData = sheetTrData
                                 deviceType=sheetTrData.detectDeviceType
@@ -366,91 +210,10 @@ require(['../config'],
                  * 校验参数
                  */
                 function verifyParmasByCompleteFlag() {
-                    let handleStartTime = $('#faultHandleStartTimeModify').val()
-                    let handleEndTime = $('#faultHandleEndTimeModify').val()
-                    let noticeTimeModify = $('#noticeTimeModify').val()
-                    let responsibleUserModify = $('#responsibleUserModify').val()
-                    let checkInfoModify = $('#checkInfoModify').val()
-                    let handleInfo = $('#handleInfoModify').val()
-                    let repairUserModify = $('#repairUserModify option:selected').text()
-                    let faultTypeModify = $('#faultTypeModify option:selected').text()
-                    let faultLevelModify = $('#faultLevelModify option:selected').text()
-                    let haultStartTime = $('#haultStartTimeModify').val()
-                    let typeModify = $('#typeModify option:selected').text()
-                    let date = new Date()
-                    if (haultStartTime == '') {
-                        $("#alertMsgSheetModify").html("<font style='color:red'>故障发生时间为空！</font>");
-                        $("#alertMsgSheetModify").css('display', 'inline-block')
-                        CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
-                        return false;
-                    }
-                    if (Date.parse(haultStartTime) > date) {
-                        $("#alertMsgSheetModify").html("<font style='color:red'>故障发生时间大于当前时间！</font>");
-                        $("#alertMsgSheetModify").css('display', 'inline-block')
-                        CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
-                        return false;
-                    }
-                    if (typeModify=='设备故障'&& handleStartTime == '') {
-                        $("#alertMsgSheetModify").html("<font style='color:red'>故障处理开始时间为空！</font>");
-                        $("#alertMsgSheetModify").css('display', 'inline-block')
-                        CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
-                        return false;
-                    }
-                    else if (typeModify=='设备故障'&& Date.parse(handleStartTime) > date) {
-                        $("#alertMsgSheetModify").html("<font style='color:red'>故障处理开始时间大于当前时间！</font>");
-                        $("#alertMsgSheetModify").css('display', 'inline-block')
-                        CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
-                        return false;
-                    } else if (Date.parse(handleStartTime) < Date.parse(haultStartTime)) {
-                        $("#alertMsgSheetModify").html("<font style='color:red'>故障处理开始时间小于故障发生时间！</font>");
-                        $("#alertMsgSheetModify").css('display', 'inline-block')
-                        CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
-                        return false;
-                    } else if ( handleEndTime == '') {
-                        $("#alertMsgSheetModify").html("<font style='color:red'>故障处理结束时间为空！</font>");
-                        $("#alertMsgSheetModify").css('display', 'inline-block')
-                        CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
-                        return false;
-                    }
-                    else if (typeModify=='设备故障'&& Date.parse(handleEndTime) < Date.parse(handleStartTime)) {
-                        $("#alertMsgSheetModify").html("<font style='color:red'>故障处理结束时间小于开始时间！</font>");
-                        $("#alertMsgSheetModify").css('display', 'inline-block')
-                        CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
-                        return false;
-                    } else if (typeModify=='设备故障'&& handleInfo == '') {
-                        $("#alertMsgSheetModify").html("<font style='color:red'>处理情况为空！</font>");
-                        $("#alertMsgSheetModify").css('display', 'inline-block')
-                        CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
-                        return false;
-                    }else if (typeModify=='设备故障'&& faultLevelModify == '') {
-                        $("#alertMsgSheetModify").html("<font style='color:red'>故障级别为空！</font>");
-                        $("#alertMsgSheetModify").css('display', 'inline-block')
-                        CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
-                        return false;
-                    }
-                    else if (typeModify=='设备故障'&& faultTypeModify == '') {
-                        $("#alertMsgSheetModify").html("<font style='color:red'>故障类别为空！</font>");
-                        $("#alertMsgSheetModify").css('display', 'inline-block')
-                        CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
-                        return false;
-                    }
-                    else if (typeModify=='设备故障'&& repairUserModify == '') {
-                        $("#alertMsgSheetModify").html("<font style='color:red'>维修人员为空！</font>");
-                        $("#alertMsgSheetModify").css('display', 'inline-block')
-                        CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
-                        return false;
-                    }  else if (typeModify!='设备故障'&& noticeTimeModify == '') {
-                        $("#alertMsgSheetModify").html("<font style='color:red'>通知时间为空！</font>");
-                        $("#alertMsgSheetModify").css('display', 'inline-block')
-                        CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
-                        return false;
-                    } else if (typeModify!='设备故障'&& responsibleUserModify== '') {
-                        $("#alertMsgSheetModify").html("<font style='color:red'>责任人为空！</font>");
-                        $("#alertMsgSheetModify").css('display', 'inline-block')
-                        CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
-                        return false;
-                    } else if (checkInfoModify == '') {
-                        $("#alertMsgSheetModify").html("<font style='color:red'>现场设备诊断情况为空！</font>");
+
+                    let remark = $('#appealVerifyRemarkModify').val()
+                    if (remark== '') {
+                        $("#alertMsgSheetModify").html("<font style='color:red'>不同意理由为空为空！</font>");
                         $("#alertMsgSheetModify").css('display', 'inline-block')
                         CMethod.hideTimeout("alertMsgSheetModify", "alertMsgSheetModify", 5000);
                         return false;
@@ -467,46 +230,12 @@ require(['../config'],
                         if (verifyParmasByCompleteFlag() == false) {
                             return false
                         }
-                        var planOutageStartTime = verifyTime($('#planOutageStartTimeModify').val())
-                        var planOutageEndTime = verifyTime($('#planOutageEndTimeModify').val())
-                        var handleStartTime = verifyTime($('#faultHandleStartTimeModify').val())
-                        var handleEndTime = verifyTime($('#faultHandleEndTimeModify').val())
-                        var noticeTime = verifyTime($('#noticeTimeModify').val())
-                        var maintenanceTime = verifyTime($('#maintenanceTimeModify').val())
-                        let type = $('#typeModify option:selected').text()
-                        let responsibleUnit = $('#responsibleUnitModify').val()
-                        let faultResponsible =$('#faultResponsible option:selected').text()
-                        let faultResponsibleRemark = $('#faultResponsibleRemarkModify').val()
-                        if (type == "设备故障") {
-                            responsibleUnit = ""
-                        }else{
-                            faultResponsible="非责任故障"
-                            faultResponsibleRemark=""
-                        }
                         var params = JSON.stringify({
                             id: id,
-                            faultLevelType: $('#faultLevelModify option:selected').text(),
-                            handleStartTime: handleStartTime,
-                            handleEndTime: handleEndTime,
-                            maintenanceTime: maintenanceTime,
-                            checkInfo: $('#checkInfoModify').val(),
-                            faultInfoDetail: $('#faultInfoDetailModify').val(),
-                            faultInfo: $('#faultInfoModify option:selected').text(),
-                            handleInfo: $('#handleInfoModify').text(),
-                            repairPerson: $('#repairUserModify option:selected').text(),
-                            noticeUser: $('#noticeUserModify option:selected').text(),
-                            faultType: $('#faultTypeModify option:selected').text(),
-                            faultResponsible: faultResponsible,
-                            faultResponsibleRemark: faultResponsibleRemark ,
-                            telegraphNumber: $('#telegraphNumberModify').val(),
-                            noticeTime: noticeTime,
-                            type: type,
-                            responsibleUnit: responsibleUnit,
-                            responsibleUser: $('#responsibleUserModify').val(),
-                            remark: $('#remarkModify').val(),
-                            telegraphNumber: $('#telegraphNumberModify').val(),
-                            planOutageStartTime: planOutageStartTime,
-                            planOutageEndTime: planOutageEndTime,
+                            appealFlag:-1,
+                            appealVerifyUser:user_id,
+                            appealVerifyDate:new Date().getTime(),
+                            appealVerifyRemark:$('#appealVerifyRemarkModify').val()
 
                         });
                         $.ajax({
@@ -530,17 +259,6 @@ require(['../config'],
 
                     });
                 /**
-                 *故障现像修改初始化
-                 */
-                function initFaultInfoModify(){
-                    let result=getFaultInfo(deviceType)
-                    $("#faultInfoModify").empty()
-                    $("#faultInfoModify").append('<option></option>')
-                    for (var i = 0; i < result.length; i++) {
-                        $("#faultInfoModify").append('<option value="' + result[i].id + '">' + result[i].faultInfo + '</option>');
-                    }
-                }
-                /**
                  * 修改故障预报表
                  */
                 $('#modifySheetModal').on('show.bs.modal',
@@ -553,90 +271,9 @@ require(['../config'],
                         $('#detectDeviceModify').val(data.detectDeviceName)
                         $('#haultStartTimeModify').val(data.haultStartTime)
                         $('#appealReasonModify').val(data.appealReason)
-                        initFaultInfoModify()
-                        $('#remarkModify').val(data.remark)
-                        $('#haultEndTimeModify').val(formatDateBy(data.haultEndTime, 'yyyy-MM-dd HH:mm:ss'))
-                        $('#faultLevelModify').val(data.faultLevelType)
-                        $('#reportTimeModify').val(data.forecastFaultTime)
-                        if (data.faultInfo != null&&data.faultInfo != '') {//如果故障现像不为空
-                            $('#faultInfoModify option:contains("' + data.faultInfo + '")').prop("selected", true);
-                        }
-                        $('#faultInfoDetailModify').val(data.faultInfoDetail)
-                        $('#maintenanceTimeModify').val(data.maintenanceTime)
-                        $('#segmentDutyUserModify').val(data.segmentDutyUser)
-                        $('#segmentDepotModify').val(data.segmentDepot)
-                        $('#handleInfoModify').val(data.handleInfo)
-                        $('#faultHandleStartTimeModify').val(data.handleStartTime)
-                        $('#faultHandleEndTimeModify').val(data.handleEndTime)
-                        $('#responsibleUserModify').val(data.responsibleUser)
-                        $('#responsibleDepotModify').val(data.responsibleDepot)
-                        $('#detectDeviceModify').val( data.detectDeviceName )
-                        $('#telegraphNumberModify').val(data.telegraphNumber)
-                        $('#noticeTimeModify').val(data.noticeTime)
-                        $('#responsibleUnitModify').val(data.responsibleUnit)
-                        $('#planOutageStartTimeModify').val(data.planOutageStartTime)
-                        $('#planOutageEndTimeModify').val(data.planOutageEndTime)
-                        if (data.faultType != "") {
-                            $('#faultTypeModify option:contains("' + data.faultType + '")').prop("selected", true);
-                        }
-                        initRepairUserModify(detectDeviceId)
-                        if (data.repairPerson != null && data.repairPerson != '') {
-                            $('#repairUserModify option:contains("' + data.repairPerson + '")').prop("selected", true);
-                        }
-                        if (data.noticeUser != null && data.noticeUser != '') {
-                            $('#noticeUserModify option:contains("' + data.noticeUser + '")').prop("selected", true);
-                        }
-                        initModifyModal()
+                        $('#appealVerifyRemarkModify').text('')
+
                     });
-                /**
-                 * 改变修改故障预报模态框
-                 */
-                function initModifyModal() {
-                    let typeModify=$('#typeModify option:selected').text()
-
-                    /**
-                     * 隐藏非设备故障填写项
-                     */
-                    if (typeModify!='设备故障' ) {
-                        $('.hideDiv').show()
-                        $('.faultResponsible').show()
-                    } else {
-                        $('.hideDiv').hide()
-                        $('.faultResponsible').hide()
-                    }
-                    /**
-                     * 显示或隐藏非责任故障备注
-                     */
-                    displayFaultResponsibleRemark()
-                    /**
-                     * 隐藏通知责任人填写
-                     */
-                        $('#noticeUserModify').attr("disabled", true)
-
-                }
-
-                /**
-                 * 显示或隐藏非责任故障备注
-                 */
-                function displayFaultResponsibleRemark(){
-                    let faultResponsible=$('#faultResponsibleModify option:selected').text()
-                    if(faultResponsible=="非责任故障"){
-                        $('#faultResponsibleRemarkModify').show()
-                    }else {
-                        $('#faultResponsibleRemarkModify').hide()
-                    }
-                }
-                /**
-                 *故障日表类别改变事件
-                 */
-                $('#typeModify').change(function (e) {
-                    initModifyModal()
-                })
-
-                $('#faultResponsibleModify').change(function (e) {
-                    displayFaultResponsibleRemark()
-                })
-
                 /**
                  * 提交入库单据
                  */
@@ -662,43 +299,14 @@ require(['../config'],
                     .on(
                         'click',
                         function (e) {
-                            if (sheetData.completeFlag == 3 && sheetData.handleStartTime == '') {
-                                $('#popSheetVerifyModal').modal('hide')
-                                $("#alertMsg").html('<span style="color:green;text-align:center"><strong>故障处理开始时间为空！</strong></span>');
-                                $("#infoAlert")
-                                    .show();
-                                hideTimeout(
-                                    "infoAlert",
-                                    2000);
-                                return false;
-                            }
-                            if (sheetData.completeFlag == 5 && sheetData.handleEndTime == '') {
-                                $('#popSheetVerifyModal').modal('hide')
-                                $("#alertMsg").html('<span style="color:green;text-align:center"><strong>故障处理结束时间为空！</strong></span>');
-                                $("#infoAlert")
-                                    .show();
-                                hideTimeout(
-                                    "infoAlert",
-                                    2000);
-                                return false;
-                            }
-                            if (sheetData.completeFlag == 5&&sheetData.type=='设备故障' && sheetData.handleInfo == '') {
-                                $('#popSheetVerifyModal').modal('hide')
-                                $("#alertMsg").html('<span style="color:green;text-align:center"><strong>故障处理情况为空！</strong></span>');
-                                $("#infoAlert")
-                                    .show();
-                                hideTimeout(
-                                    "infoAlert",
-                                    2000);
-                                return false;
-                            }
                             var params = JSON.stringify({
                                 id: id,
+                                appealVerifyUser:user_id,
                                 appealFlag: 2,
                             });
                             $.ajax({
                                 url: config.basePath
-                                    + '/faultHandle/faultReport/update',
+                                    + '/faultHandle/faultReport/agree',
                                 type: "post",
                                 data: params,
                                 contentType: 'application/json',
@@ -722,45 +330,6 @@ require(['../config'],
                             });
 
                         });
-                /**
-                 * 回退单据
-                 */
-                $('#popBackSheetModal').on('show.bs.modal',
-                    function (e) {
-                        var tr = $(e.relatedTarget).parents('tr');
-                        var data = sheetTable.row(tr).data();
-                        $('#backSheetText').text('确定要回退该故障预报单据（' + data.id + '）？');
-                        $('#backSheetId').val(data.id);
-                    });
-                /**
-                 * 点击回退确定按钮
-                 */
-                $('#btnPopBackSheetOk').on('click',
-                    function (e) {
-                        e.preventDefault();
-                        var params = JSON.stringify({
-                            id: $('#backSheetId').val(),
-                            completeFlag: completeFlag - 1
-                        });
-                        $.ajax({
-                            url: config.basePath + '/faultHandle/faultReport/update',
-                            type: 'POST',
-                            data: params,
-                            contentType: 'application/json',
-                            dataType: 'json',
-                            success: function (result) {
-                                if (result.code != 0) {
-                                    alert(result.msg);
-                                } else {
-                                    sheetTable.ajax.reload();
-                                    $("#alertMsg").html('<span style="color:green;text-align:center"><strong>故障预报单据回退成功！</strong></span>');
-                                    $("#infoAlert").show();
-                                    hideTimeout("infoAlert", 2000);
-                                }
-                            }
-                        });
-
-                    });
                 /**
                  * 定时隐藏alert框
                  */

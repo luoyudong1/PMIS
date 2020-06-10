@@ -42,6 +42,7 @@
 				/img/**=anon
 				/images/**=anon
 				/login=anon
+				/getJsVersion=anon
 				<!--下载资料-->
 				/download/**=anon
 				<!--大数据BI展示-->

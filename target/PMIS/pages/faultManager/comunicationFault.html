@@ -60,6 +60,7 @@
                         <th rowspan="2">探测站名称</th>
                         <th rowspan="2">探测站类别</th>
                         <th rowspan="2">停机开始时间</th>
+                        <th rowspan="2">停机结束时间</th>
                         <th rowspan="2">故障停时</th>
                         <th rowspan="2">故障现像</th>
                         <th rowspan="2">A/B/C分类</th>
@@ -88,7 +89,28 @@
 <div class="back-top">
     <a href="#">回顶部</a>
 </div>
-<script src="../../js/require.js"
-        data-main="../../js/faultManager/comunicationFault"></script>
+<script type="text/javascript" src="../../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    let _version = '1.0.0';
+
+    function setVersion(version) {
+        document.write('<script type="text/javascript" src="../../js/require.js?v=' + version + '" data-main="../../js/faultManager/comunicationFault.js?v=' + version+ '"><\/script>');
+    }
+
+    $.ajax({
+        url: '/PMIS/getJsVersion',
+        type: 'get',
+        async: false,
+        success: function (data) {
+            if (data) {
+                _version = data;
+            }
+            setVersion(_version);
+        },
+        error: function () {
+            setVersion(_version);
+        }
+    });
+</script>
 </body>
 </html>

@@ -139,13 +139,13 @@
                         <div class="input-group">
                             <label><strong>检修开始时间：</strong></label> <input
                                 id="startTimeModify" type="text" class="form-control"
-                                placeholder="请输入计划检修时间" style="width: 200px;" autocomplete="off">
+                                placeholder="请输入检修开始时间" style="width: 200px;" autocomplete="off">
                         </div>
                         <br>
                         <div class="input-group checkEnd">
                             <label><strong>检修结束时间：</strong></label> <input
                                 id="endTimeModify" type="text" class="form-control"
-                                placeholder="请输入计划检修时间" style="width: 200px;" autocomplete="off">
+                                placeholder="请输入检修结束时间" style="width: 200px;" autocomplete="off">
                         </div>
                         <br>
                         <div class="input-group checkEnd">
@@ -362,7 +362,7 @@
     let _version = '1.0.0';
 
     function setVersion(version) {
-        document.write('<script type="text/javascript" src="../../js/require.js?v=' + version+ '" data-main="../../js/checkPlan/onDay"><\/script>');
+        document.write('<script type="text/javascript" src="../../js/require.js?v=' + version+ '" data-main="../../js/checkPlan/onDay.js?v='+version+'"><\/script>');
     }
 
     $.ajax({

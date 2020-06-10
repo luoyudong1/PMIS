@@ -155,6 +155,24 @@ public class DetectDevice {
     private Short  planCheckEnable;
     private Integer  faultEnable;
     private Integer  dispatcher;
+    private String workShopName;
+    private String segmentName;
+
+    public String getWorkShopName() {
+        return workShopName;
+    }
+
+    public void setWorkShopName(String workShopName) {
+        this.workShopName = workShopName;
+    }
+
+    public String getSegmentName() {
+        return segmentName;
+    }
+
+    public void setSegmentName(String segmentName) {
+        this.segmentName = segmentName;
+    }
 
     public Integer getDispatcher() {
         return dispatcher;

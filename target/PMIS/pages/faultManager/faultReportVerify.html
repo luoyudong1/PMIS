@@ -84,7 +84,7 @@
                         <th rowspan="2">探测站类别</th>
                         <th colspan="4">故障预报基本信息</th>
                         <th colspan="5">故障处理基本信息</th>
-                        <th rowspan="2">提交人员</th>
+                        <th rowspan="2">确认人员</th>
                         <th rowspan="2">状态</th>
                         <th rowspan="2">故障超时</th>
                         <th rowspan="2">操作</th>
@@ -254,8 +254,8 @@
                         </div>
                         <br>
                         <div class="input-group preReport">
-                            <label><strong>故障现像：</strong></label> <select
-                                id="faultInfoModify" type="text" class="form-control"
+                            <label><strong>故障现象：</strong></label> <select
+                                id="faultInfoModify"  type="text" class="form-control"
                                 style="width: 120px;"></select>
                         </div>
                         <br>
@@ -582,11 +582,11 @@
     let _version = '1.0.0';
 
     function setVersion(version) {
-        document.write('<script type="text/javascript" src="../../js/require.js?v=' + version + '" data-main="../../js/faultManager/faultReportVerify"><\/script>');
+        document.write('<script type="text/javascript" src="../../js/require.js?v=' + version + '" data-main="../../js/faultManager/faultReportVerify.js?v=' + version+ '"><\/script>');
     }
 
     $.ajax({
-        url: '/PMIS/getJsVersion',
+        url: '../../getJsVersion',
         type: 'get',
         async: false,
         success: function (data) {

@@ -91,7 +91,7 @@
 		<div class="modal-dialog" style="max-width:800px;overflow-x:auto;">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h3 class="modal-title" id="myPopSheetModalLabel">单据审核提示</h3>
+					<h3 class="modal-title" id="myPopSheetLabel">单据审核提示</h3>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
 				</div>
@@ -132,6 +132,30 @@
 			</div>
 		</div>
 	</div>
-	<script src="../../js/require.js" data-main="../../js/entryAndOut/produceEntryVerify"></script>
+
+	<script type="text/javascript" src="../../js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript">
+        let _version = '1.0.0';
+
+        function setVersion(version) {
+            document.write('<script type="text/javascript" src="../../js/require.js?v=' + version+ '" ' +
+                'data-main="../../js/entryAndOut/produceEntryVerify.js?v='+version+'"><\/script>');
+        }
+
+        $.ajax({
+            url: '/PMIS/getJsVersion',
+            type: 'get',
+            async: false,
+            success: function (data) {
+                if (data) {
+                    _version = data;
+                }
+                setVersion(_version);
+            },
+            error: function () {
+                setVersion(_version);
+            }
+        });
+	</script>
 </body>
 </html>

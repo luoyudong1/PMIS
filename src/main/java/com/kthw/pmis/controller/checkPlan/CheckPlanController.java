@@ -9,6 +9,7 @@ import com.kthw.pmis.mapper.common.FaultInfoMapper;
 import com.kthw.pmis.mapper.common.PlanCheckMapper;
 import com.kthw.pmis.mapper.common.PlanCheckSheetMapper;
 import com.kthw.pmis.service.checkPlan.CheckPlanService;
+import com.mysql.jdbc.CacheAdapter;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -137,8 +138,13 @@ public class CheckPlanController {
                 params.put("depotIdList", childrens);
                 params.put("queryTime", calendar.getTime());
 
-                calendar.setTime(date);
-                calendar.set(Calendar.DATE,calendar.get(Calendar.DATE)-1);
+
+                calendar.add(Calendar.MONTH,1);
+                calendar.set(Calendar.DATE,25);
+                if(date.getTime()<calendar.getTime().getTime()){
+                    calendar.setTime(date);
+                    calendar.set(Calendar.DATE,calendar.get(Calendar.DATE)-1);
+                }
                 params.put("queryTime2", calendar.getTime());
                 params.put("eqStatus", (short) 2);
                 params.put("orderByClause", "update_time desc,status asc");

@@ -77,17 +77,17 @@ require(['config'], function (config) {
                 "depotId": depotId,
             },
             success: function (result) {
-
+                var hintInfo="";
                 if (result != null && result.data.length > 0) {
                     var HintInfos = result.data;
-                    var hintInfo="";
                     for(var i = 0; i < HintInfos.length; i++){
                             hintInfo=hintInfo+HintInfos[i].message_info+"; ";
                     }
+                    $('#unViewNum').text("提示："+hintInfo);
                 } else {
-
+                    $('#unViewNum').text("");
                 }
-                $('#unViewNum').text("提示："+hintInfo);
+
             }
         });
 

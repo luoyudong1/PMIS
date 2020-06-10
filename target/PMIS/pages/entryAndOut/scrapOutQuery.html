@@ -102,7 +102,31 @@
 	<div class="back-top">
 		<a href="#">回顶部</a>
 	</div>
-	<script src="../../js/require.js"
-		data-main="../../js/entryAndOut/scrapOutQuery"></script>
+
+	<script type="text/javascript" src="../../js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript">
+        let _version = '1.0.0';
+
+        function setVersion(version) {
+            document.write('<script type="text/javascript" src="../../js/require.js?v=' + version+ '" ' +
+                'data-main="../../js/entryAndOut/scrapOutQuery.js?v='+version+'"><\/script>');
+        }
+
+        $.ajax({
+            url: '/PMIS/getJsVersion',
+            type: 'get',
+            async: false,
+            success: function (data) {
+                if (data) {
+                    _version = data;
+                }
+                setVersion(_version);
+            },
+            error: function () {
+                setVersion(_version);
+            }
+        });
+	</script>
+
 </body>
 </html>

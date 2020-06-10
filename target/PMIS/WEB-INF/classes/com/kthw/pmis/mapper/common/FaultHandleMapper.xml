@@ -56,6 +56,15 @@
         <result column="fault_responsible_remark" jdbcType="VARCHAR" property="faultResponsibleRemark"/>
         <result column="appeal_flag" jdbcType="NUMERIC" property="appealFlag"/>
         <result column="appeal_reason" jdbcType="VARCHAR" property="appealReason"/>
+        <result column="adjust_reason" jdbcType="VARCHAR" property="adjustReason"/>
+        <result column="adjust_submit_user" jdbcType="VARCHAR" property="adjustSubmitUser"/>
+        <result column="adjust_submit_date" jdbcType="TIMESTAMP" property="adjustSubmitDate"/>
+        <result column="appeal_submit_user" jdbcType="VARCHAR" property="appealSubmitUser"/>
+        <result column="appeal_submit_date" jdbcType="TIMESTAMP" property="appealSubmitDate"/>
+        <result column="appeal_verify_user" jdbcType="VARCHAR" property="appealVerifyUser"/>
+        <result column="appeal_verify_date" jdbcType="TIMESTAMP" property="appealVerifyDate"/>
+        <result column="appeal_doc_url" jdbcType="VARCHAR" property="appealDocUrl"/>
+        <result column="appeal_verify_remark" jdbcType="VARCHAR" property="appealVerifyRemark"/>
     </resultMap>
     <sql id="Base_Column_List">
     id, detect_device_id, detect_device_name, detect_device_type, hault_start_time, hault_end_time,
@@ -66,7 +75,9 @@
     responsible_user, notice_user, responsible_depot, submit_user, maintenance_time,
     check_info, fault_info_detail, segment_depot,line_name,finished,detect_depot_id,verify_user1,
     verify_user2,verify_user3,verify_user4,verify_user5,verify_date1,verify_date2,verify_date3,verify_date4,verify_date5,dispatcher
-    ,fault_responsible,fault_responsible_remark,appeal_flag,appeal_reason
+    ,fault_responsible,fault_responsible_remark,appeal_flag,appeal_reason,adjust_reason,adjust_submit_user,
+    adjust_submit_date,appeal_submit_user,appeal_submit_date,appeal_verify_user,appeal_verify_date,
+    appeal_doc_url,appeal_verify_remark
   </sql>
     <sql id="ByMap_Where_Clause">
         <where>
@@ -388,6 +399,33 @@
             </if>
             <if test="appealReason != null">
                 appeal_reason= #{appealReason,jdbcType=VARCHAR},
+            </if>
+            <if test="adjustReason != null">
+                adjust_reason= #{adjustReason,jdbcType=VARCHAR},
+            </if>
+            <if test="adjustSubmitUser != null">
+                adjust_submit_user= #{adjustSubmitUser,jdbcType=VARCHAR},
+            </if>
+            <if test="adjustSubmitDate != null">
+                adjust_submit_date= #{adjustSubmitDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="appealSubmitUser != null">
+                appeal_submit_user= #{appealSubmitUser,jdbcType=VARCHAR},
+            </if>
+            <if test="appealSubmitDate != null">
+                appeal_submit_date= #{appealSubmitDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="appealVerifyUser != null">
+                appeal_verify_user= #{appealVerifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="appealVerifyDate != null">
+                appeal_verify_date= #{appealVerifyDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="appealDocUrl != null">
+                appeal_doc_url= #{appealDocUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="appealVerifyRemark != null">
+                appeal_verify_remark= #{appealVerifyRemark,jdbcType=VARCHAR},
             </if>
         </set>
     </sql>

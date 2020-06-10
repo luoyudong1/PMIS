@@ -25,7 +25,7 @@ require(['config'], function (config) {
                     for (var i = 0; i < strs.length; i++) {
                         userRole[i] = strs[i].split("=")[1];                       // theRequest[ (strs[ i ].split( "=" )[ 0 ]).toLowerCase() ] = ( strs[ i ].split( "=" )[ 1 ] );
                     }
-                    console.log(userRole[0]);
+                    console.log("userRole[0]"+userRole[0]);
                 }
 
                 /**
@@ -328,13 +328,8 @@ require(['config'], function (config) {
                 } else {
                     //功能id,功能的最顶层父级菜单url,功能url,功能名称
                     nav.createTab($(this).attr('href').substr(1), $(this).attr('role'), $(this).attr('data-parentrole'), $(this).text());
-                    console.log("i$(this).attr('href').substr(1)===="+$(this).attr('href').substr(1));
-                    console.log("$(this).attr('role')===="+$(this).attr('role'));
-                    console.log("$(this).attr('data-parentrole')===="+$(this).attr('data-parentrole'));
-                    console.log("$(this).text()===="+$(this).text());
                     if (newWindow != '' && newWindow != null) {
                         var hrefDom = newWindow.attr('href').substring(1)
-                        console.log("hrefDom===="+hrefDom);
                         nav.closeTab(hrefDom);
                     }
                     newWindow = $(this)

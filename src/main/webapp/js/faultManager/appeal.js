@@ -115,7 +115,7 @@ require(['../config'],
                         }, {
                             data: 'handleEndTime'
                         }, {
-                            data: 'repairPerson'
+                            data: 'appealVerifyRemark'
                         }, {
                             data: 'faultType'
                         },
@@ -127,6 +127,8 @@ require(['../config'],
                                     str = '<span style="color:blue;font-weight:bold;">申诉中</span>';
                                 } else if (data == 2) {
                                     str = '<span style="color:black;font-weight:bold;">申诉成功</span>';
+                                } else if (data == -1) {
+                                    str = '<span style="color:red;font-weight:bold;">申诉失败</span>';
                                 } else {
                                     str = '-';
                                 }
@@ -138,7 +140,7 @@ require(['../config'],
                         targets: 17,
                         data: function (row) {
                             var str = ''
-                            if (row.appealFlag != 1) {
+                            if (row.appealFlag != 1&&row.appealFlag != 2) {
                                 str = '<a class="modifySheet btn btn-info btn-xs" data-toggle="modal" href="#modifySheetModal" title="申诉"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;'
                             }
                             return str;
@@ -148,6 +150,11 @@ require(['../config'],
                     paging: true,
                     pageLength: 10,
                     serverSide: false,
+                    fnCreatedRow: function (row, data) {
+                        if (data.appealFlag== 1) {
+                            $(row).css('color','red')
+                        }
+                    },
                     drawCallback: function (settings) {
                         var api = this.api();
                         var startIndex = api.context[0]._iDisplayStart; // 获取到本页开始的条数
@@ -162,18 +169,19 @@ require(['../config'],
                 $("#btnModifySheetOk").on('click',
                     function (e) {
                         e.preventDefault();
-                        var params = JSON.stringify({
-                            id: id,
-                            appealFlag: 1,
-                            appealReason: $('#appealReasonModify').val(),
-
-                        });
+                        var data=new FormData();
+                        data.append('id',id)
+                        data.append('appealFlag',1)
+                        data.append('appealReason',$('#appealReasonModify').val())
+                        data.append('appealSubmitUser',user_id)
+                        data.append('file', $('#file')[0].files[0])
                         $.ajax({
-                            url: config.basePath + '/faultHandle/faultReport/update',
+                            url: config.basePath + '/faultHandle/faultReport/appeal',
                             type: 'POST',
-                            data: params,
-                            contentType: 'application/json',
-                            dataType: "json",
+                            data: data,
+                            cache: false,
+                            processData: false,
+                            contentType: false,
                             success: function (result) {
                                 if (result.code != 0) {
                                     alert(result.msg);

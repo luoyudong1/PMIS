@@ -17,6 +17,7 @@
     <link href="../../css/animate.css" rel="stylesheet">
     <link href="../../css/style.css" rel="stylesheet">
     <link href="../../css/vehicle.css" rel="stylesheet">
+    <script type="text/javascript" src="../../js/jquery-3.1.1.min.js"></script>
 </head>
 <body class="gray-bg dashbard-1">
 <div class="container-fluid">
@@ -65,7 +66,7 @@
                         <th rowspan="2">A/B/C分类</th>
                         <th rowspan="2">处理情况</th>
                         <th colspan="4">故障处理基本情况</th>
-                        <th rowspan="2">维修人员</th>
+                        <th rowspan="2">不同意原因</th>
                         <th rowspan="2">故障类别</th>
                         <th rowspan="2">状态</th>
                         <th rowspan="2">操作</th>
@@ -126,6 +127,10 @@
                         </div>
                         <br>
                         <div class="input-group preReport">
+                            附件：<input type="file" id="file" multiple="multiple">
+                        </div>
+                        <br>
+                        <div class="input-group preReport">
                             <label><strong>申诉原因：</strong></label> <textarea
                                 id="appealReasonModify" type="text" class="form-control"
                                 placeholder="请输入申诉原因" style="width: 200px;height:100px;" autocomplete="off">
@@ -146,7 +151,27 @@
 <div class="back-top">
     <a href="#">回顶部</a>
 </div>
-<script src="../../js/require.js"
-        data-main="../../js/faultManager/appeal"></script>
+<script type="text/javascript">
+    let _version = '1.0.0';
+
+    function setVersion(version) {
+        document.write('<script type="text/javascript" src="../../js/require.js?v=' + version + '" data-main="../../js/faultManager/appeal.js?v=' + version+ '"><\/script>');
+    }
+
+    $.ajax({
+        url: '../../getJsVersion',
+        type: 'get',
+        async: false,
+        success: function (data) {
+            if (data) {
+                _version = data;
+            }
+            setVersion(_version);
+        },
+        error: function () {
+            setVersion(_version);
+        }
+    });
+</script>
 </body>
 </html>

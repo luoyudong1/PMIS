@@ -90,6 +90,7 @@ require(['../config'],
                             d.queryTime2 = ($("#queryTime2").val() == '' ? '' : $("#queryTime2").val() + " 23:59:59");
                             d.detectDeviceName=$('#detectDeviceName').val()
                             d.status=$('#verify_flag').val()
+                            d.depotId=deptId
                         }
                     },
                     columns: [{
