@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kthw.pmis.mapper.common.DetectScoreMapper">
+  <resultMap id="BaseResultMap" type="com.kthw.pmis.entiy.DetectScore">
+    <id column="detect_device_id" jdbcType="INTEGER" property="detectDeviceId" />
+    <result column="detect_device_name" jdbcType="VARCHAR" property="detectDeviceName" />
+    <result column="detect_device_type" jdbcType="VARCHAR" property="detectDeviceType" />
+    <result column="year" jdbcType="INTEGER" property="year" />
+    <result column="month" jdbcType="INTEGER" property="month" />
+    <result column="stop_time" jdbcType="REAL" property="stopTime" />
+    <result column="day_fault_count" jdbcType="INTEGER" property="dayFaultCount" />
+    <result column="night_fault_count" jdbcType="INTEGER" property="nightFaultCount" />
+    <result column="total_fault_count" jdbcType="INTEGER" property="totalFaultCount" />
+    <result column="stop_time_deduction" jdbcType="REAL" property="stopTimeDeduction" />
+    <result column="deduction_table_url" jdbcType="VARCHAR" property="deductionTableUrl" />
+    <result column="table_deduction" jdbcType="REAL" property="tableDeduction" />
+    <result column="fault_unreport_dedution" jdbcType="REAL" property="faultUnreportDedution" />
+    <result column="not_enough_time_dedution1" jdbcType="REAL" property="notEnoughTimeDedution1" />
+    <result column="unreport_dedution1" jdbcType="REAL" property="unreportDedution1" />
+    <result column="uncheck_dedution1" jdbcType="REAL" property="uncheckDedution1" />
+    <result column="not_enough_time_dedution2" jdbcType="REAL" property="notEnoughTimeDedution2" />
+    <result column="unreport_dedution2" jdbcType="REAL" property="unreportDedution2" />
+    <result column="uncheck_dedution2" jdbcType="REAL" property="uncheckDedution2" />
+    <result column="not_enough_time_dedution3" jdbcType="REAL" property="notEnoughTimeDedution3" />
+    <result column="unreport_dedution3" jdbcType="REAL" property="unreportDedution3" />
+    <result column="uncheck_dedution3" jdbcType="REAL" property="uncheckDedution3" />
+    <result column="interrupt_delay_time" jdbcType="REAL" property="interruptDelayTime" />
+    <result column="unreport_dedution4" jdbcType="REAL" property="unreportDedution4" />
+    <result column="should_score" jdbcType="REAL" property="shouldScore" />
+    <result column="real_score" jdbcType="REAL" property="realScore" />
+    <result column="rank" jdbcType="INTEGER" property="rank" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    detect_device_id, detect_device_name, detect_device_type, year, month, stop_time, 
+    day_fault_count, night_fault_count, total_fault_count, stop_time_deduction, deduction_table_url, 
+    table_deduction, fault_unreport_dedution, not_enough_time_dedution1, unreport_dedution1, 
+    uncheck_dedution1, not_enough_time_dedution2, unreport_dedution2, uncheck_dedution2, 
+    not_enough_time_dedution3, unreport_dedution3, uncheck_dedution3, interrupt_delay_time, 
+    unreport_dedution4, should_score, real_score, rank
+  </sql>
+  <sql id="ByMap_Where_Clause">
+    <where>
+      <if test="eqDetectDeviceId != null">
+        AND detect_device_id = #{eqDetectDeviceId,jdbcType=INTEGER}
+      </if>
+      <if test="eqDetectDeviceName != null">
+        AND detect_device_name = #{eqDetectDeviceName,jdbcType=VARCHAR}
+      </if>
+      <if test="eqDetectDeviceType != null">
+        AND detect_device_type = #{eqDetectDeviceType,jdbcType=VARCHAR}
+      </if>
+      <if test="eqYear != null">
+        AND year = #{eqYear,jdbcType=INTEGER}
+      </if>
+      <if test="eqMonth != null">
+        AND month = #{eqMonth,jdbcType=INTEGER}
+      </if>
+      <if test="eqStopTime != null">
+        AND stop_time = #{eqStopTime,jdbcType=REAL}
+      </if>
+      <if test="eqDayFaultCount != null">
+        AND day_fault_count = #{eqDayFaultCount,jdbcType=INTEGER}
+      </if>
+      <if test="eqNightFaultCount != null">
+        AND night_fault_count = #{eqNightFaultCount,jdbcType=INTEGER}
+      </if>
+      <if test="eqTotalFaultCount != null">
+        AND total_fault_count = #{eqTotalFaultCount,jdbcType=INTEGER}
+      </if>
+      <if test="eqStopTimeDeduction != null">
+        AND stop_time_deduction = #{eqStopTimeDeduction,jdbcType=REAL}
+      </if>
+      <if test="eqDeductionTableUrl != null">
+        AND deduction_table_url = #{eqDeductionTableUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="eqTableDeduction != null">
+        AND table_deduction = #{eqTableDeduction,jdbcType=REAL}
+      </if>
+      <if test="eqFaultUnreportDedution != null">
+        AND fault_unreport_dedution = #{eqFaultUnreportDedution,jdbcType=REAL}
+      </if>
+      <if test="eqNotEnoughTimeDedution1 != null">
+        AND not_enough_time_dedution1 = #{eqNotEnoughTimeDedution1,jdbcType=REAL}
+      </if>
+      <if test="eqUnreportDedution1 != null">
+        AND unreport_dedution1 = #{eqUnreportDedution1,jdbcType=REAL}
+      </if>
+      <if test="eqUncheckDedution1 != null">
+        AND uncheck_dedution1 = #{eqUncheckDedution1,jdbcType=REAL}
+      </if>
+      <if test="eqNotEnoughTimeDedution2 != null">
+        AND not_enough_time_dedution2 = #{eqNotEnoughTimeDedution2,jdbcType=REAL}
+      </if>
+      <if test="eqUnreportDedution2 != null">
+        AND unreport_dedution2 = #{eqUnreportDedution2,jdbcType=REAL}
+      </if>
+      <if test="eqUncheckDedution2 != null">
+        AND uncheck_dedution2 = #{eqUncheckDedution2,jdbcType=REAL}
+      </if>
+      <if test="eqNotEnoughTimeDedution3 != null">
+        AND not_enough_time_dedution3 = #{eqNotEnoughTimeDedution3,jdbcType=REAL}
+      </if>
+      <if test="eqUnreportDedution3 != null">
+        AND unreport_dedution3 = #{eqUnreportDedution3,jdbcType=REAL}
+      </if>
+      <if test="eqUncheckDedution3 != null">
+        AND uncheck_dedution3 = #{eqUncheckDedution3,jdbcType=REAL}
+      </if>
+      <if test="eqInterruptDelayTime != null">
+        AND interrupt_delay_time = #{eqInterruptDelayTime,jdbcType=REAL}
+      </if>
+      <if test="eqUnreportDedution4 != null">
+        AND unreport_dedution4 = #{eqUnreportDedution4,jdbcType=REAL}
+      </if>
+      <if test="eqShouldScore != null">
+        AND should_score = #{eqShouldScore,jdbcType=REAL}
+      </if>
+      <if test="eqRealScore != null">
+        AND real_score = #{eqRealScore,jdbcType=REAL}
+      </if>
+      <if test="eqRank != null">
+        AND rank = #{eqRank,jdbcType=INTEGER}
+      </if>
+    </where>
+  </sql>
+  <sql id="ByMap_Set_Clause">
+    <set>
+      <if test="detectDeviceName != null">
+        detect_device_name = #{detectDeviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="detectDeviceType != null">
+        detect_device_type = #{detectDeviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        year = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null">
+        month = #{month,jdbcType=INTEGER},
+      </if>
+      <if test="stopTime != null">
+        stop_time = #{stopTime,jdbcType=REAL},
+      </if>
+      <if test="dayFaultCount != null">
+        day_fault_count = #{dayFaultCount,jdbcType=INTEGER},
+      </if>
+      <if test="nightFaultCount != null">
+        night_fault_count = #{nightFaultCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalFaultCount != null">
+        total_fault_count = #{totalFaultCount,jdbcType=INTEGER},
+      </if>
+      <if test="stopTimeDeduction != null">
+        stop_time_deduction = #{stopTimeDeduction,jdbcType=REAL},
+      </if>
+      <if test="deductionTableUrl != null">
+        deduction_table_url = #{deductionTableUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tableDeduction != null">
+        table_deduction = #{tableDeduction,jdbcType=REAL},
+      </if>
+      <if test="faultUnreportDedution != null">
+        fault_unreport_dedution = #{faultUnreportDedution,jdbcType=REAL},
+      </if>
+      <if test="notEnoughTimeDedution1 != null">
+        not_enough_time_dedution1 = #{notEnoughTimeDedution1,jdbcType=REAL},
+      </if>
+      <if test="unreportDedution1 != null">
+        unreport_dedution1 = #{unreportDedution1,jdbcType=REAL},
+      </if>
+      <if test="uncheckDedution1 != null">
+        uncheck_dedution1 = #{uncheckDedution1,jdbcType=REAL},
+      </if>
+      <if test="notEnoughTimeDedution2 != null">
+        not_enough_time_dedution2 = #{notEnoughTimeDedution2,jdbcType=REAL},
+      </if>
+      <if test="unreportDedution2 != null">
+        unreport_dedution2 = #{unreportDedution2,jdbcType=REAL},
+      </if>
+      <if test="uncheckDedution2 != null">
+        uncheck_dedution2 = #{uncheckDedution2,jdbcType=REAL},
+      </if>
+      <if test="notEnoughTimeDedution3 != null">
+        not_enough_time_dedution3 = #{notEnoughTimeDedution3,jdbcType=REAL},
+      </if>
+      <if test="unreportDedution3 != null">
+        unreport_dedution3 = #{unreportDedution3,jdbcType=REAL},
+      </if>
+      <if test="uncheckDedution3 != null">
+        uncheck_dedution3 = #{uncheckDedution3,jdbcType=REAL},
+      </if>
+      <if test="interruptDelayTime != null">
+        interrupt_delay_time = #{interruptDelayTime,jdbcType=REAL},
+      </if>
+      <if test="unreportDedution4 != null">
+        unreport_dedution4 = #{unreportDedution4,jdbcType=REAL},
+      </if>
+      <if test="shouldScore != null">
+        should_score = #{shouldScore,jdbcType=REAL},
+      </if>
+      <if test="realScore != null">
+        real_score = #{realScore,jdbcType=REAL},
+      </if>
+      <if test="rank != null">
+        rank = #{rank,jdbcType=INTEGER},
+      </if>
+    </set>
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_detect_score
+    where detect_device_id = #{detectDeviceId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_detect_score
+    <if test="_parameter != null">
+      <include refid="ByMap_Where_Clause" />
+      <if test="orderByClause != null">
+        order by ${orderByClause}
+      </if>
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_detect_score
+    where detect_device_id = #{detectDeviceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kthw.pmis.entiy.DetectScore">
+    insert into tbl_detect_score (detect_device_id, detect_device_name, 
+      detect_device_type, year, month, 
+      stop_time, day_fault_count, night_fault_count, 
+      total_fault_count, stop_time_deduction, deduction_table_url, 
+      table_deduction, fault_unreport_dedution, not_enough_time_dedution1, 
+      unreport_dedution1, uncheck_dedution1, not_enough_time_dedution2, 
+      unreport_dedution2, uncheck_dedution2, not_enough_time_dedution3, 
+      unreport_dedution3, uncheck_dedution3, interrupt_delay_time, 
+      unreport_dedution4, should_score, real_score, 
+      rank)
+    values (#{detectDeviceId,jdbcType=INTEGER}, #{detectDeviceName,jdbcType=VARCHAR}, 
+      #{detectDeviceType,jdbcType=VARCHAR}, #{year,jdbcType=INTEGER}, #{month,jdbcType=INTEGER}, 
+      #{stopTime,jdbcType=REAL}, #{dayFaultCount,jdbcType=INTEGER}, #{nightFaultCount,jdbcType=INTEGER}, 
+      #{totalFaultCount,jdbcType=INTEGER}, #{stopTimeDeduction,jdbcType=REAL}, #{deductionTableUrl,jdbcType=VARCHAR}, 
+      #{tableDeduction,jdbcType=REAL}, #{faultUnreportDedution,jdbcType=REAL}, #{notEnoughTimeDedution1,jdbcType=REAL}, 
+      #{unreportDedution1,jdbcType=REAL}, #{uncheckDedution1,jdbcType=REAL}, #{notEnoughTimeDedution2,jdbcType=REAL}, 
+      #{unreportDedution2,jdbcType=REAL}, #{uncheckDedution2,jdbcType=REAL}, #{notEnoughTimeDedution3,jdbcType=REAL}, 
+      #{unreportDedution3,jdbcType=REAL}, #{uncheckDedution3,jdbcType=REAL}, #{interruptDelayTime,jdbcType=REAL}, 
+      #{unreportDedution4,jdbcType=REAL}, #{shouldScore,jdbcType=REAL}, #{realScore,jdbcType=REAL}, 
+      #{rank,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kthw.pmis.entiy.DetectScore">
+    insert into tbl_detect_score
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="detectDeviceId != null">
+        detect_device_id,
+      </if>
+      <if test="detectDeviceName != null">
+        detect_device_name,
+      </if>
+      <if test="detectDeviceType != null">
+        detect_device_type,
+      </if>
+      <if test="year != null">
+        year,
+      </if>
+      <if test="month != null">
+        month,
+      </if>
+      <if test="stopTime != null">
+        stop_time,
+      </if>
+      <if test="dayFaultCount != null">
+        day_fault_count,
+      </if>
+      <if test="nightFaultCount != null">
+        night_fault_count,
+      </if>
+      <if test="totalFaultCount != null">
+        total_fault_count,
+      </if>
+      <if test="stopTimeDeduction != null">
+        stop_time_deduction,
+      </if>
+      <if test="deductionTableUrl != null">
+        deduction_table_url,
+      </if>
+      <if test="tableDeduction != null">
+        table_deduction,
+      </if>
+      <if test="faultUnreportDedution != null">
+        fault_unreport_dedution,
+      </if>
+      <if test="notEnoughTimeDedution1 != null">
+        not_enough_time_dedution1,
+      </if>
+      <if test="unreportDedution1 != null">
+        unreport_dedution1,
+      </if>
+      <if test="uncheckDedution1 != null">
+        uncheck_dedution1,
+      </if>
+      <if test="notEnoughTimeDedution2 != null">
+        not_enough_time_dedution2,
+      </if>
+      <if test="unreportDedution2 != null">
+        unreport_dedution2,
+      </if>
+      <if test="uncheckDedution2 != null">
+        uncheck_dedution2,
+      </if>
+      <if test="notEnoughTimeDedution3 != null">
+        not_enough_time_dedution3,
+      </if>
+      <if test="unreportDedution3 != null">
+        unreport_dedution3,
+      </if>
+      <if test="uncheckDedution3 != null">
+        uncheck_dedution3,
+      </if>
+      <if test="interruptDelayTime != null">
+        interrupt_delay_time,
+      </if>
+      <if test="unreportDedution4 != null">
+        unreport_dedution4,
+      </if>
+      <if test="shouldScore != null">
+        should_score,
+      </if>
+      <if test="realScore != null">
+        real_score,
+      </if>
+      <if test="rank != null">
+        rank,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="detectDeviceId != null">
+        #{detectDeviceId,jdbcType=INTEGER},
+      </if>
+      <if test="detectDeviceName != null">
+        #{detectDeviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="detectDeviceType != null">
+        #{detectDeviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null">
+        #{month,jdbcType=INTEGER},
+      </if>
+      <if test="stopTime != null">
+        #{stopTime,jdbcType=REAL},
+      </if>
+      <if test="dayFaultCount != null">
+        #{dayFaultCount,jdbcType=INTEGER},
+      </if>
+      <if test="nightFaultCount != null">
+        #{nightFaultCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalFaultCount != null">
+        #{totalFaultCount,jdbcType=INTEGER},
+      </if>
+      <if test="stopTimeDeduction != null">
+        #{stopTimeDeduction,jdbcType=REAL},
+      </if>
+      <if test="deductionTableUrl != null">
+        #{deductionTableUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tableDeduction != null">
+        #{tableDeduction,jdbcType=REAL},
+      </if>
+      <if test="faultUnreportDedution != null">
+        #{faultUnreportDedution,jdbcType=REAL},
+      </if>
+      <if test="notEnoughTimeDedution1 != null">
+        #{notEnoughTimeDedution1,jdbcType=REAL},
+      </if>
+      <if test="unreportDedution1 != null">
+        #{unreportDedution1,jdbcType=REAL},
+      </if>
+      <if test="uncheckDedution1 != null">
+        #{uncheckDedution1,jdbcType=REAL},
+      </if>
+      <if test="notEnoughTimeDedution2 != null">
+        #{notEnoughTimeDedution2,jdbcType=REAL},
+      </if>
+      <if test="unreportDedution2 != null">
+        #{unreportDedution2,jdbcType=REAL},
+      </if>
+      <if test="uncheckDedution2 != null">
+        #{uncheckDedution2,jdbcType=REAL},
+      </if>
+      <if test="notEnoughTimeDedution3 != null">
+        #{notEnoughTimeDedution3,jdbcType=REAL},
+      </if>
+      <if test="unreportDedution3 != null">
+        #{unreportDedution3,jdbcType=REAL},
+      </if>
+      <if test="uncheckDedution3 != null">
+        #{uncheckDedution3,jdbcType=REAL},
+      </if>
+      <if test="interruptDelayTime != null">
+        #{interruptDelayTime,jdbcType=REAL},
+      </if>
+      <if test="unreportDedution4 != null">
+        #{unreportDedution4,jdbcType=REAL},
+      </if>
+      <if test="shouldScore != null">
+        #{shouldScore,jdbcType=REAL},
+      </if>
+      <if test="realScore != null">
+        #{realScore,jdbcType=REAL},
+      </if>
+      <if test="rank != null">
+        #{rank,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kthw.pmis.entiy.DetectScore">
+    update tbl_detect_score
+    <include refid="ByMap_Set_Clause" />
+    where detect_device_id = #{detectDeviceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kthw.pmis.entiy.DetectScore">
+    update tbl_detect_score
+    set detect_device_name = #{detectDeviceName,jdbcType=VARCHAR},
+      detect_device_type = #{detectDeviceType,jdbcType=VARCHAR},
+      year = #{year,jdbcType=INTEGER},
+      month = #{month,jdbcType=INTEGER},
+      stop_time = #{stopTime,jdbcType=REAL},
+      day_fault_count = #{dayFaultCount,jdbcType=INTEGER},
+      night_fault_count = #{nightFaultCount,jdbcType=INTEGER},
+      total_fault_count = #{totalFaultCount,jdbcType=INTEGER},
+      stop_time_deduction = #{stopTimeDeduction,jdbcType=REAL},
+      deduction_table_url = #{deductionTableUrl,jdbcType=VARCHAR},
+      table_deduction = #{tableDeduction,jdbcType=REAL},
+      fault_unreport_dedution = #{faultUnreportDedution,jdbcType=REAL},
+      not_enough_time_dedution1 = #{notEnoughTimeDedution1,jdbcType=REAL},
+      unreport_dedution1 = #{unreportDedution1,jdbcType=REAL},
+      uncheck_dedution1 = #{uncheckDedution1,jdbcType=REAL},
+      not_enough_time_dedution2 = #{notEnoughTimeDedution2,jdbcType=REAL},
+      unreport_dedution2 = #{unreportDedution2,jdbcType=REAL},
+      uncheck_dedution2 = #{uncheckDedution2,jdbcType=REAL},
+      not_enough_time_dedution3 = #{notEnoughTimeDedution3,jdbcType=REAL},
+      unreport_dedution3 = #{unreportDedution3,jdbcType=REAL},
+      uncheck_dedution3 = #{uncheckDedution3,jdbcType=REAL},
+      interrupt_delay_time = #{interruptDelayTime,jdbcType=REAL},
+      unreport_dedution4 = #{unreportDedution4,jdbcType=REAL},
+      should_score = #{shouldScore,jdbcType=REAL},
+      real_score = #{realScore,jdbcType=REAL},
+      rank = #{rank,jdbcType=INTEGER}
+    where detect_device_id = #{detectDeviceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByMap" parameterType="java.util.Map">
+    update tbl_detect_score
+    <if test="_parameter != null">
+      <include refid="ByMap_Set_Clause" />
+      <include refid="ByMap_Where_Clause" />
+    </if>
+  </update>
+
+  <insert id="batchInsert" parameterType="java.util.List">
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+      insert into tbl_detect_score (detect_device_id, detect_device_name,
+      detect_device_type, year, month,
+      stop_time, day_fault_count, night_fault_count,
+      total_fault_count, stop_time_deduction, deduction_table_url,
+      table_deduction, fault_unreport_dedution, not_enough_time_dedution1,
+      unreport_dedution1, uncheck_dedution1, not_enough_time_dedution2,
+      unreport_dedution2, uncheck_dedution2, not_enough_time_dedution3,
+      unreport_dedution3, uncheck_dedution3, interrupt_delay_time,
+      unreport_dedution4, should_score, real_score,
+      rank)
+      values (#{item.detectDeviceId,jdbcType=INTEGER}, #{item.detectDeviceName,jdbcType=VARCHAR},
+      #{item.detectDeviceType,jdbcType=VARCHAR}, #{item.year,jdbcType=INTEGER}, #{item.month,jdbcType=INTEGER},
+      #{item.stopTime,jdbcType=REAL}, #{item.dayFaultCount,jdbcType=INTEGER}, #{item.nightFaultCount,jdbcType=INTEGER},
+      #{item.totalFaultCount,jdbcType=INTEGER}, #{item.stopTimeDeduction,jdbcType=REAL}, #{item.deductionTableUrl,jdbcType=VARCHAR},
+      #{item.tableDeduction,jdbcType=REAL}, #{item.faultUnreportDedution,jdbcType=REAL}, #{item.notEnoughTimeDedution1,jdbcType=REAL},
+      #{item.unreportDedution1,jdbcType=REAL}, #{item.uncheckDedution1,jdbcType=REAL}, #{item.notEnoughTimeDedution2,jdbcType=REAL},
+      #{item.unreportDedution2,jdbcType=REAL}, #{item.uncheckDedution2,jdbcType=REAL}, #{item.notEnoughTimeDedution3,jdbcType=REAL},
+      #{item.unreportDedution3,jdbcType=REAL}, #{item.uncheckDedution3,jdbcType=REAL}, #{item.interruptDelayTime,jdbcType=REAL},
+      #{item.unreportDedution4,jdbcType=REAL}, #{item.shouldScore,jdbcType=REAL}, #{item.realScore,jdbcType=REAL},
+      #{item.rank,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+</mapper>
