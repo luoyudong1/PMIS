@@ -325,7 +325,9 @@ public class AddPartsController {
                 stockInfo.setPartIdSeq(sheetDetail.getPartId());
                 stockInfo.setSheetId(sheetDetail.getSheetId());
                 stockInfo.setPurchaseDate(date);
+                if(info.getAssetAttributesId()!=null)
                 stockInfo.setAssetAttributesId(info.getAssetAttributesId());
+                if(sheetDetail.getUnitPrice()!=null)
                 stockInfo.setPurchasePrice(sheetDetail.getUnitPrice());
                 stockInfo.setPartsState((short) 1);//配件属性为新购
                 stockInfo.setWarranty(sheetDetail.getWarranty());//新购是质保期

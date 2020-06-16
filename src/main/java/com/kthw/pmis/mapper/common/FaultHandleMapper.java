@@ -35,5 +35,4 @@ public interface FaultHandleMapper {
     int getFaultCheckByMapDepot(Map<String, Object> params);  //段值班员获取故障预报处理未完成信息数量
 
 
-
 }

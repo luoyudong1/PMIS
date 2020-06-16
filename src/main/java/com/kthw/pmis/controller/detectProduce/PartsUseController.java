@@ -498,6 +498,7 @@ public class PartsUseController {
         DataTable<DetectDevice> dt = new DataTable<DetectDevice>();
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("eqDepotId", detectDevice.getDepotId());//仓库类型
+        params.put("eqDeviceTypeId", 1);//仓库类型
         //获取收货库
         list = detectDeviceMapper.selectByMap(params);
         //返回dataTable参数

@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kthw.pmis.entiy.dto.DetectDeviceDTO;
 import com.kthw.pmis.model.stock.StockInfo;
+import com.kthw.pmis.service.detectManage.DetectManageService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
@@ -69,6 +71,8 @@ public class PartsUnstallController {
     private DepotMapper depotMapper;
     @Autowired
     private DepotHelper depotHelper;
+    @Autowired
+    private DetectManageService detectManageService;
 
     @ResponseBody
     @RequestMapping(value = "/getAllSheets", method = {RequestMethod.GET})
@@ -182,12 +186,6 @@ public class PartsUnstallController {
                     // 批量更新库存
                     stockInfoMapper.batchUpdateByPartsId(list);
                     //新建安装单据
-//                    params.clear();
-//                    params.put("eqDepotId",info.getDepotId());
-//                    params.put("eqSheetType",SheetInfoType.PARTSINSTALLATION.getId());
-//                    params.put("eqDeviceId",info.getDeviceId());
-//                    params.put("eqSendVerifyFlag",info.getSendVerifyFlag());
-//                    List<SheetInfo> sheetInfos= sheetInfoMapper.selectByMap(params);
                 }
                 sheetInfoMapper.updateByPrimaryKeySelective(sheetInfo);
             }
@@ -487,29 +485,6 @@ public class PartsUnstallController {
         return list.get(0);
     }
 
-    /**
-     * 根据部门获取用户所拥有的探测站
-     *
-     * @param
-     * @param request
-     * @return StockInfoDTO
-     */
-    @ResponseBody
-    @RequestMapping(value = "/getAllDetectByDepot", method = {RequestMethod.POST})
-    public DataTable<DetectDevice> getAllDetectByDepot(@RequestBody DetectDevice detectDevice,
-                                                       HttpServletRequest request) {
-        logger.info("获取所有探测站");
-        List<DetectDevice> list = new ArrayList<DetectDevice>();
-        DataTable<DetectDevice> dt = new DataTable<DetectDevice>();
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("eqDepotId", detectDevice.getDepotId());//部门id
-        //获取收货库
-        list = detectDeviceMapper.selectByMap(params);
-        //返回dataTable参数
-        dt.setData(list);
-        dt.setDraw(Integer.parseInt(request.getParameter("draw") == null ? "0" : request.getParameter("draw")) + 1);
-        return dt;
-    }
 
     /**
      * 根据部门id获取用户部门信息
@@ -594,6 +569,35 @@ public class PartsUnstallController {
         return dt;
     }
 
+    /**
+     * 获取非AEI探测站
+     * @param request
+     * @param depotId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/listDetect", method = {RequestMethod.GET})
+    public DataTable<DetectDevice> sheetsList(HttpServletRequest request, Long depotId) {
+        logger.info("显示班组故障拆卸探测站");
+        Map<String, Object> params=new HashMap<>();
+        List<DetectDevice> list = new ArrayList<>();
+        DataTable<DetectDevice> dt = new DataTable<DetectDevice>();
+        int total = 0;
+        try {
+            params.put("eqDepotId",depotId);
+            params.put("eqDeviceTypeId",1);
+            //获取部门下属探测站
+            list=detectManageService.selectByMap(params);
+            dt.setRecordsTotal(total);
+            dt.setRecordsFiltered(total);
+        } catch (Exception e) {
+            logger.error("listDetect error" + request);
+        }
+        dt.setData(list);
+        dt.setDraw(Integer.parseInt(request.getParameter("draw") == null ? "0" : request.getParameter("draw")) + 1);
+        return dt;
+
+    }
     // ExcelUtil导出报表
     @RequestMapping(value = "/exportSheetInfo", method = {RequestMethod.GET})
     @ResponseBody

@@ -85,16 +85,15 @@ require(
                 /**
                  * 初始化探测站下拉框
                  */
-                var detectParams = JSON.stringify({
-                    depotId: deptId,
-                })
                 $
                     .ajax({
+                        async:false,
                         url: config.basePath
-                            + "/detectProduce/partsUnstall/getAllDetectByDepot",
-                        contentType: 'application/json',
-                        data: detectParams,
-                        type: 'POST',
+                            + "/detectProduce/partsUnstall/listDetect",
+                        data: {
+                            depotId: deptId,
+                        },
+                        type: 'GET',
                         dataType: 'json',
                         success: function (result) {
                             for (var i = 0; i < result.data.length; i++) {

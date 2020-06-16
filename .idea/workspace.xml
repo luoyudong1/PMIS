@@ -14,321 +14,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9f7f428-680b-4eaa-9857-05133197aa52" name="Default Changelist" comment="故障预报">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/checkPlan/EntryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/service/file/FileService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/excel/detectRank.xls" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/checkPlan/entry.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/checkPlan/entryVerify.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/analysis/monthlyStatistics.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/analysis/overviewStatistics.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/entry.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/entryVerify.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/analysis/DetectScoreController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/DetectDeviceWithDepot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectScoreMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/service/analysis/DetectScoreService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/serviceimpl/analysis/DetectScoreServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/analysis/monthlyStatistics.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../JXLS-1" beforeDir="false" afterPath="$PROJECT_DIR$/../JXLS-1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../PMIS4.rar" beforeDir="false" afterPath="$PROJECT_DIR$/../PMIS4.rar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core.rar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src.rar" beforeDir="false" afterPath="$PROJECT_DIR$/src.rar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/ExportExcel/JxlsExcelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/ExportExcel/JxlsExcelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/checkPlan/CheckPlanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/checkPlan/CheckPlanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/faultHandle/FaultReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/faultHandle/FaultReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/DetectDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/DetectDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/FaultHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/FaultHandle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChangeLog.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectProduce/PartsUnstallController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectProduce/PartsUnstallController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectProduce/PartsUseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectProduce/PartsUseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/partsEntryAndOut/AddPartsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/partsEntryAndOut/AddPartsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/SheetDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/SheetDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectDeviceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectDeviceMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/FaultHandleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/FaultHandleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/FaultHandleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/FaultHandleMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/service/detectManage/DetectManageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/service/detectManage/DetectManageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/serviceimpl/detectManage/DetectManageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kthw/pmis/serviceimpl/detectManage/DetectManageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/applicationContext-shiro.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/applicationContext-shiro.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/checkPlan/onDayVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/checkPlan/onDayVerify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/faultManager/appeal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/faultManager/appeal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/faultManager/appealVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/faultManager/appealVerify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReport.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReportVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReportVerify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/faultManager/update.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/faultManager/update.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/index-tmis.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/index-tmis.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/logined.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/logined.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/onDay.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/onDay.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/onDayQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/onDayQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/onDayVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/onDayVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/query.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/query.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/unfulfilled.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/unfulfilled.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/verify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/checkPlan/verify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/detectManage/detectManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/detectManage/detectManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/detectManage/deviceManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/detectManage/deviceManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsConsume.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsConsume.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsUnstall.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsUnstall.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsUnstallQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsUnstallQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsUnstallSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsUnstallSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsUnstallVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsUnstallVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsUse.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsUse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsUseQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsUseQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsUseSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsUseSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsUseVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/detectProduce/partsUseVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/detectResume/detectResume.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/detectResume/detectResume.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/preparePurchase.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/preparePurchase.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/preparePurchaseQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/preparePurchaseQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/preparePurchaseSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/preparePurchaseSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/preparePurchaseVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/preparePurchaseVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/produceEntry.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/produceEntry.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/produceEntryQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/produceEntryQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/produceEntrySearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/produceEntrySearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/produceEntryVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/produceEntryVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/purchaseParts.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/purchaseParts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/purchasePartsQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/purchasePartsQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/purchasePartsSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/purchasePartsSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/purchasePartsVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/purchasePartsVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/purchaseToDelivery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/purchaseToDelivery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/purchaseToDeliveryQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/purchaseToDeliveryQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairEntry.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairEntry.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairEntryQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairEntryQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairEntrySearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairEntrySearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairEntryVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairEntryVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairOut.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairOut.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairOutQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairOutQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairOutSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairOutSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairOutVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/repairOutVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/scrapOut.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/scrapOut.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/scrapOutQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/scrapOutQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/scrapOutSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/scrapOutSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/scrapOutVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/scrapOutVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/faultManager/appeal.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/faultManager/appeal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/faultManager/appealVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/faultManager/appealVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/faultManager/comunicationFault.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/faultManager/comunicationFault.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/faultManager/faultReport.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/faultManager/faultReport.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/faultManager/faultReportVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/faultManager/faultReportVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/faultManager/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/faultManager/update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/increate/purchaseParts.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/increate/purchaseParts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/index-dpch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/index-dpch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/index-set.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/index-set.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/logined.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/logined.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/partsEntryAndOut/addParts.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/partsEntryAndOut/addParts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/partsEntryAndOut/addPartsQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/partsEntryAndOut/addPartsQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/partsEntryAndOut/factoryReturn.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/partsEntryAndOut/factoryReturn.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/partsEntryAndOut/factoryReturnQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/partsEntryAndOut/factoryReturnQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/partsEntryAndOut/repairFactory.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/partsEntryAndOut/repairFactory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/partsEntryAndOut/repairFactoryQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/partsEntryAndOut/repairFactoryQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/checkParts.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/checkParts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/checkPartsQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/checkPartsQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/checkPartsSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/checkPartsSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/checkPartsVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/checkPartsVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/repairIn.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/repairIn.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/repairInQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/repairInQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/repairInSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/repairInSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/repairInVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/repairInVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/repairOut.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/repairOut.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/repairOutQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/repairOutQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/repairOutSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/repairOutSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/repairOutVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/repairManage/repairOutVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/report/accumulativeStatistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/report/accumulativeStatistics.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/report/comprehensiveStatics.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/report/comprehensiveStatics.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/report/depotToTestStaticts.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/report/depotToTestStaticts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/report/purchaseStatistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/report/purchaseStatistics.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/report/sectionalStatistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/report/sectionalStatistics.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotReceipt.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotReceipt.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotReceiptQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotReceiptQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotReceiptSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotReceiptSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotReceiptVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotReceiptVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotToTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotToTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotToTestQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotToTestQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotToTestSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotToTestSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotToTestVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotToTestVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotToWorkShop.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/depotToWorkShop.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/detectToWorkShop.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/detectToWorkShop.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/detectToWorkShopQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/detectToWorkShopQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/partsSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/partsSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/repairAndSpares.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/repairAndSpares.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/repairAndSparesQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/repairAndSparesQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/scrapReceipt.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/scrapReceipt.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/scrapReceiptQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/scrapReceiptQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/scrapReceiptSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/scrapReceiptSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/scrapReceiptVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/scrapReceiptVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/sparesAndRepair.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/sparesAndRepair.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/sparesAndRepairQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/sparesAndRepairQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/sparesToWorkShop.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/sparesToWorkShop.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/sparesToWorkShopQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/sparesToWorkShopQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/stockInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/stockInfo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/stockInfoManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/stockInfoManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/testReceipt.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/testReceipt.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/testReceiptQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/testReceiptQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/testReceiptSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/testReceiptSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/testReceiptVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/testReceiptVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/testToDepot.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/testToDepot.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/testToDepotQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/testToDepotQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/testToDepotSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/testToDepotSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/testToDepotVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/testToDepotVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopReceipt.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopReceipt.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopReceiptQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopReceiptQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopReceiptSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopReceiptSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopReceiptVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopReceiptVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopToDepot.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopToDepot.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopToDepotQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopToDepotQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopToDepotSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopToDepotSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopToDepotVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopToDepotVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/system/authManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/system/authManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/system/operationManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/system/operationManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/system/partsManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/system/partsManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/system/roleManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/system/roleManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/system/userManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/system/userManage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/detectProduce/partsUnstall.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/detectProduce/partsUnstall.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/analysis/monthlyStatistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/analysis/monthlyStatistics.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/PMIS.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/applicationContext-shiro.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/applicationContext-shiro.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/checkPlan/CheckPlanController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/checkPlan/CheckPlanController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/faultHandle/FaultReportController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/faultHandle/FaultReportController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/FaultHandle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/FaultHandle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/FaultHandleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/FaultHandleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/checkPlan/onDayVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/checkPlan/onDayVerify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/faultManager/appeal.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/faultManager/appeal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/faultManager/appealVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/faultManager/appealVerify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/faultManager/faultReport.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/faultManager/faultReport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/faultManager/faultReportVerify.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/faultManager/faultReportVerify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/faultManager/update.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/faultManager/update.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/index-tmis.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/index-tmis.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/js/logined.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/logined.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/checkPlan/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/checkPlan/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/checkPlan/onDay.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/checkPlan/onDay.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/checkPlan/onDayQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/checkPlan/onDayQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/checkPlan/onDayVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/checkPlan/onDayVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/checkPlan/query.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/checkPlan/query.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/checkPlan/unfulfilled.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/checkPlan/unfulfilled.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/checkPlan/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/checkPlan/update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/checkPlan/verify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/checkPlan/verify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectManage/detectManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectManage/detectManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectManage/deviceManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectManage/deviceManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsConsume.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsConsume.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstall.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstall.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstallQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstallQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstallSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstallSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstallVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUnstallVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUse.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUseQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUseQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUseSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUseSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUseVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectProduce/partsUseVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/detectResume/detectResume.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/detectResume/detectResume.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchase.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchase.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchaseQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchaseQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchaseSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchaseSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchaseVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/preparePurchaseVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntry.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntry.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntryQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntryQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntrySearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntrySearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntryVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/produceEntryVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchaseParts.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchaseParts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchasePartsQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchasePartsQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchasePartsSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchasePartsSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchasePartsVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchasePartsVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchaseToDelivery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchaseToDelivery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchaseToDeliveryQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/purchaseToDeliveryQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntry.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntry.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntryQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntryQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntrySearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntrySearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntryVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairEntryVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOut.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOut.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOutQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOutQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOutSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOutSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOutVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/repairOutVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOut.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOut.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOutQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOutQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOutSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOutSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOutVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/entryAndOut/scrapOutVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/faultManager/appeal.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/faultManager/appeal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/faultManager/appealVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/faultManager/appealVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/faultManager/comunicationFault.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/faultManager/comunicationFault.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/faultManager/faultReport.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/faultManager/faultReport.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/faultManager/faultReportVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/faultManager/faultReportVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/faultManager/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/faultManager/update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/increate/purchaseParts.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/increate/purchaseParts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/index-dpch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/index-dpch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/index-set.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/index-set.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/logined.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/logined.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/addParts.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/addParts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/addPartsQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/addPartsQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/factoryReturn.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/factoryReturn.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/factoryReturnQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/factoryReturnQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/repairFactory.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/repairFactory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/repairFactoryQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/partsEntryAndOut/repairFactoryQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkParts.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkParts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkPartsQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkPartsQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkPartsSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkPartsSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkPartsVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/checkPartsVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairIn.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairIn.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairInQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairInQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairInSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairInSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairInVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairInVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOut.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOut.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOutQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOutQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOutSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOutSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOutVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/repairManage/repairOutVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/report/accumulativeStatistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/report/accumulativeStatistics.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/report/comprehensiveStatics.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/report/comprehensiveStatics.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/report/depotToTestStaticts.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/report/depotToTestStaticts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/report/purchaseStatistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/report/purchaseStatistics.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/report/sectionalStatistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/report/sectionalStatistics.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceipt.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceipt.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceiptQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceiptQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceiptSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceiptSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceiptVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotReceiptVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTestQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTestQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTestSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTestSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTestVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToTestVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToWorkShop.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/depotToWorkShop.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/detectToWorkShop.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/detectToWorkShop.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/detectToWorkShopQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/detectToWorkShopQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/partsSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/partsSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/repairAndSpares.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/repairAndSpares.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/repairAndSparesQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/repairAndSparesQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceipt.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceipt.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceiptQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceiptQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceiptSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceiptSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceiptVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/scrapReceiptVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/sparesAndRepair.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/sparesAndRepair.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/sparesAndRepairQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/sparesAndRepairQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/sparesToWorkShop.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/sparesToWorkShop.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/sparesToWorkShopQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/sparesToWorkShopQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/stockInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/stockInfo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/stockInfoManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/stockInfoManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceipt.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceipt.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceiptQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceiptQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceiptSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceiptSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceiptVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/testReceiptVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepot.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepot.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepotQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepotQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepotSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepotSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepotVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/testToDepotVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceipt.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceipt.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceiptQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceiptQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceiptSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceiptSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceiptVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopReceiptVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepot.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepot.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepotQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepotQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepotSearch.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepotSearch.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepotVerify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/stock/workShopToDepotVerify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/system/authManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/system/authManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/system/operationManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/system/operationManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/system/partsManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/system/partsManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/system/roleManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/system/roleManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/system/userManage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/system/userManage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/applicationContext-shiro.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/applicationContext-shiro.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kthw/pmis/controller/checkPlan/CheckPlanController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kthw/pmis/controller/checkPlan/CheckPlanController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kthw/pmis/controller/faultHandle/FaultReportController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kthw/pmis/controller/faultHandle/FaultReportController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kthw/pmis/entiy/FaultHandle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kthw/pmis/entiy/FaultHandle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kthw/pmis/mapper/common/FaultHandleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kthw/pmis/mapper/common/FaultHandleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/detectProduce/PartsUnstallController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/detectProduce/PartsUnstallController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/partsEntryAndOut/AddPartsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/controller/partsEntryAndOut/AddPartsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/SheetDetail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/entiy/SheetDetail.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/WEB-INF/classes/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUnstall.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/js/detectProduce/partsUnstall.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/PMIS/pages/analysis/monthlyStatistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/PMIS/pages/analysis/monthlyStatistics.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kthw/pmis/controller/detectProduce/PartsUnstallController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kthw/pmis/controller/partsEntryAndOut/AddPartsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kthw/pmis/controller/partsEntryAndOut/AddPartsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kthw/pmis/entiy/SheetDetail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kthw/pmis/entiy/SheetDetail.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/jdbc.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/applicationContext-shiro.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/applicationContext-shiro.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/jdbc.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SpringBootDemo" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBootDemo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../java-design-patterns" beforeDir="false" afterPath="$PROJECT_DIR$/../java-design-patterns" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../mybatis" beforeDir="false" afterPath="$PROJECT_DIR$/../mybatis" afterDir="false" />
@@ -361,9 +90,9 @@
     <session id="1241442851">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="195" />
+          <entry key="project.closed" value="198" />
           <entry key="project.open.time.1" value="12" />
-          <entry key="project.open.time.10" value="2" />
+          <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.11" value="3" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="1" />
@@ -375,10 +104,10 @@
           <entry key="project.open.time.23" value="7" />
           <entry key="project.open.time.24" value="10" />
           <entry key="project.open.time.25" value="15" />
-          <entry key="project.open.time.26" value="25" />
+          <entry key="project.open.time.26" value="28" />
           <entry key="project.open.time.27" value="34" />
           <entry key="project.open.time.28" value="31" />
-          <entry key="project.open.time.29" value="18" />
+          <entry key="project.open.time.29" value="20" />
           <entry key="project.open.time.3" value="10" />
           <entry key="project.open.time.30" value="24" />
           <entry key="project.open.time.31" value="9" />
@@ -398,7 +127,7 @@
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="283" />
+          <entry key="project.opened" value="289" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -416,20 +145,20 @@
           <entry key="css" value="15" />
           <entry key="dtd" value="2" />
           <entry key="gif" value="7" />
-          <entry key="html" value="1052" />
+          <entry key="html" value="1054" />
           <entry key="ico" value="5" />
-          <entry key="java" value="2342" />
+          <entry key="java" value="2373" />
           <entry key="jpg" value="21" />
-          <entry key="js" value="1604" />
+          <entry key="js" value="1615" />
           <entry key="plan" value="1" />
           <entry key="png" value="172" />
-          <entry key="properties" value="36" />
+          <entry key="properties" value="37" />
           <entry key="readme" value="1" />
           <entry key="rnc" value="6" />
           <entry key="svg" value="1" />
           <entry key="ts" value="1" />
           <entry key="txt" value="1" />
-          <entry key="xml" value="457" />
+          <entry key="xml" value="467" />
           <entry key="xsl" value="1" />
         </counts>
       </usages-collector>
@@ -438,44 +167,44 @@
           <entry key="CLASS" value="15" />
           <entry key="CSS" value="15" />
           <entry key="DTD" value="2" />
-          <entry key="HTML" value="1052" />
+          <entry key="HTML" value="1054" />
           <entry key="Image" value="205" />
-          <entry key="JAVA" value="2342" />
-          <entry key="JavaScript" value="1604" />
+          <entry key="JAVA" value="2373" />
+          <entry key="JavaScript" value="1615" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Properties" value="36" />
+          <entry key="Properties" value="37" />
           <entry key="RNG Compact" value="6" />
           <entry key="SVG" value="1" />
           <entry key="TypeScript" value="1" />
           <entry key="UML" value="10" />
-          <entry key="XML" value="459" />
+          <entry key="XML" value="469" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="22" />
           <entry key="dummy" value="48" />
-          <entry key="html" value="8522" />
-          <entry key="java" value="45638" />
-          <entry key="js" value="33600" />
+          <entry key="html" value="8547" />
+          <entry key="java" value="48456" />
+          <entry key="js" value="33698" />
           <entry key="properties" value="106" />
           <entry key="readme" value="7" />
           <entry key="txt" value="29" />
-          <entry key="xml" value="7291" />
+          <entry key="xml" value="7434" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="25" />
-          <entry key="HTML" value="8523" />
-          <entry key="JAVA" value="45638" />
-          <entry key="JavaScript" value="33596" />
+          <entry key="HTML" value="8548" />
+          <entry key="JAVA" value="48456" />
+          <entry key="JavaScript" value="33694" />
           <entry key="Markdown" value="7" />
           <entry key="PLAIN_TEXT" value="77" />
           <entry key="Properties" value="106" />
-          <entry key="SQL" value="287" />
-          <entry key="XML" value="7004" />
+          <entry key="SQL" value="292" />
+          <entry key="XML" value="7142" />
         </counts>
       </usages-collector>
     </session>
@@ -483,73 +212,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/serviceimpl/analysis/DetectScoreServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" lean-forward="true" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/checkPlan/CheckPlanSheetController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="52" column="46" lean-forward="true" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/DetectDevice.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
-              <caret line="160" column="37" selection-start-line="160" selection-start-column="37" selection-end-line="160" selection-end-column="37" />
+            <state relative-caret-position="427">
+              <caret line="152" column="34" selection-start-line="152" selection-start-column="34" selection-end-line="152" selection-end-column="34" />
               <folding>
-                <element signature="e#3685#3686#0" expanded="true" />
-                <element signature="e#3741#3742#0" expanded="true" />
-                <element signature="e#3789#3790#0" expanded="true" />
-                <element signature="e#3827#3828#0" expanded="true" />
-                <element signature="e#3861#3862#0" expanded="true" />
-                <element signature="e#3915#3916#0" expanded="true" />
-                <element signature="e#3961#3962#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectDeviceMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="133" column="67" selection-start-line="133" selection-start-column="67" selection-end-line="133" selection-end-column="67" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/ExportExcel/JxlsExcelController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="330" column="54" lean-forward="true" selection-start-line="330" selection-start-column="40" selection-end-line="330" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/service/detectManage/DetectManageService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -564,10 +233,129 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/js/checkPlan/onDayVerify.js">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectPartsMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1564">
-              <caret line="92" column="44" selection-start-line="92" selection-start-column="44" selection-end-line="92" selection-end-column="44" />
+            <state relative-caret-position="191">
+              <caret line="137" column="13" lean-forward="true" selection-start-line="137" selection-start-column="13" selection-end-line="137" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReport.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="259">
+              <caret line="108" column="40" lean-forward="true" selection-start-line="108" selection-start-column="23" selection-end-line="108" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectManage/DeviceManageController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="71" column="19" lean-forward="true" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectProduce/PartsUnstallController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="486" selection-start-line="486" selection-end-line="486" />
+              <folding>
+                <element signature="e#25708#25722#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/js/detectProduce/partsUnstall.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="106">
+              <caret line="86" column="19" selection-start-line="86" selection-start-column="19" selection-end-line="86" selection-end-column="19" />
+              <folding>
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="e#151#157#0" expanded="true" />
+                <element signature="e#157#163#0" expanded="true" />
+                <element signature="e#320#326#0" expanded="true" />
+                <element signature="e#326#332#0" expanded="true" />
+                <element signature="e#484#490#0" expanded="true" />
+                <element signature="e#490#496#0" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/js/detectProduce/partsUse.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="112" column="90" selection-start-line="112" selection-start-column="71" selection-end-line="112" selection-end-column="90" />
+              <folding>
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="e#151#157#0" expanded="true" />
+                <element signature="e#157#163#0" expanded="true" />
+                <element signature="e#320#326#0" expanded="true" />
+                <element signature="e#326#332#0" expanded="true" />
+                <element signature="e#484#490#0" expanded="true" />
+                <element signature="e#490#496#0" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectProduce/PartsUseController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="344">
+              <caret line="500" column="34" selection-start-line="500" selection-start-column="34" selection-end-line="500" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="21">
+              <caret line="40" column="71" selection-start-line="40" selection-start-column="71" selection-end-line="40" selection-end-column="71" />
             </state>
           </provider>
         </entry>
@@ -579,37 +367,15 @@
       <list>
         <option value="XML" />
         <option value="XSLT Stylesheet" />
-        <option value="Interface" />
-        <option value="JavaScript File" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>show.b</find>
-      <find>deviceType=</find>
-      <find>sheetTable</find>
-      <find>deviceType</find>
-      <find>initFaultInfoModify()</find>
-      <find>detectDeviceType</find>
-      <find>faultInfoModify</find>
-      <find>faultTypeModify</find>
-      <find>/d</find>
-      <find>/appeal</find>
-      <find>appealReason</find>
-      <find>btnPopSheetVerifyOk</find>
-      <find>appeal</find>
-      <find>ag</find>
-      <find>upda</find>
-      <find>/appea</find>
-      <find>new Date</find>
-      <find>new Date()</find>
-      <find>usr</find>
-      <find>show.bs</find>
-      <find>conta</find>
-      <find>popSheetVerifyModal</find>
       <find>show</find>
       <find>popSheetUpdateModal</find>
       <find>#checkInfo</find>
@@ -618,6 +384,28 @@
       <find>queryT</find>
       <find>6</find>
       <find>/update</find>
+      <find>batchInsert</find>
+      <find>insert</find>
+      <find>partC</find>
+      <find>partCode</find>
+      <find>setPurchasePrice</find>
+      <find>/she</find>
+      <find>batch</find>
+      <find>/add</find>
+      <find>/addParts/c</find>
+      <find>/addParts/she</find>
+      <find>selectBy</find>
+      <find>listDe</find>
+      <find>stopT</find>
+      <find>delete</find>
+      <find>deleteByDetectDeviceId</find>
+      <find>listDetectParts</find>
+      <find>listDet</find>
+      <find>eqFa</find>
+      <find>eqDepotId</find>
+      <find>/li</find>
+      <find>/lis</find>
+      <find>getAllDetectByDepot</find>
     </findStrings>
     <replaceStrings>
       <replace>/entryAndOut/repairOut</replace>
@@ -658,22 +446,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/sparesToWorkShopQuery.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/stockInfo.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/stockInfoManage.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/testReceipt.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/testReceiptQuery.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/testReceiptSearch.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/testReceiptVerify.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/testToDepot.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/testToDepotQuery.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/testToDepotSearch.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/testToDepotVerify.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopReceipt.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopReceiptQuery.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopReceiptSearch.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopReceiptVerify.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopToDepot.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopToDepotQuery.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopToDepotSearch.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/stock/workShopToDepotVerify.html" />
@@ -701,14 +473,30 @@
         <option value="$PROJECT_DIR$/src/main/webapp/js/checkPlan/onDayVerify.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/checkPlan/CheckPlanController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReport.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pages/analysis/monthlyStatistics.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/analysis/overviewStatistics.html" />
         <option value="$PROJECT_DIR$/src/main/resources/config.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/DetectDevice.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/serviceimpl/detectManage/DetectManageServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/service/detectManage/DetectManageService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/ExportExcel/JxlsExcelController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/FaultHandleMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/SheetDetail.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/partsEntryAndOut/AddPartsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectScoreMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectScoreMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectDeviceMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/DetectDeviceWithDepot.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/service/analysis/DetectScoreService.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/analysis/monthlyStatistics.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/js/analysis/monthlyStatistics.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/analysis/DetectScoreController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/serviceimpl/analysis/DetectScoreServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/jdbc.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/service/detectManage/DetectManageService.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/js/detectProduce/partsUnstall.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectProduce/PartsUseController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectProduce/PartsUnstallController.java" />
       </list>
     </option>
   </component>
@@ -747,11 +535,22 @@
           <item name="PMIS Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
         </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="PMIS Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="PMIS Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+          <item name="mybatis-generator" type="36feed69:MavenProjectsStructure$PluginNode" />
+        </path>
       </expand>
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="85" />
     <option name="y" value="25" />
     <option name="width" value="1750" />
@@ -763,8 +562,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -826,7 +623,7 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="pmis" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="ExportExcel" type="462c0819:PsiDirectoryNode" />
+              <item name="analysis" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
@@ -835,16 +632,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="pmis" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pmis" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
               <item name="detectManage" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -854,7 +642,46 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="pmis" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="detectProduce" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pmis" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pmis" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pmis" type="462c0819:PsiDirectoryNode" />
               <item name="serviceimpl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pmis" type="462c0819:PsiDirectoryNode" />
+              <item name="serviceimpl" type="462c0819:PsiDirectoryNode" />
+              <item name="analysis" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
@@ -903,7 +730,44 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="analysis" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="checkPlan" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="detectManage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="detectProduce" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PMIS4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="faultManager" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PMIS4" type="b2602c69:ProjectViewProjectNode" />
@@ -914,6 +778,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -921,7 +787,7 @@
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1591776118513" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1592213446358" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../PMIS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -932,21 +798,21 @@
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\resources\excel" />
-      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\resources" />
-      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\mapper\common" />
-      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\service\system" />
-      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\serviceimpl\system" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.kthw.pmis.controller.stock" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\resources\excel" />
       <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4" />
       <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\webapp\download\tools" />
       <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\controller\system" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.kthw.pmis.controller.stock" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\mapper\common" />
+      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\resources\excel" />
+      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\resources" />
+      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\service\system" />
+      <recent name="D:\360安全浏览器下载\PMIS (1)\PMIS4\src\main\java\com\kthw\pmis\serviceimpl\system" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1371,6 +1237,12 @@
       <workItem from="1591665392932" duration="3931000" />
       <workItem from="1591682766647" duration="8476000" />
       <workItem from="1591751848766" duration="5048000" />
+      <workItem from="1591838267965" duration="596000" />
+      <workItem from="1591861729740" duration="1938000" />
+      <workItem from="1591926123978" duration="4106000" />
+      <workItem from="1592184510074" duration="5726000" />
+      <workItem from="1592201573513" duration="9308000" />
+      <workItem from="1592288734311" duration="5443000" />
     </task>
     <task id="LOCAL-00001" summary="检修计划">
       <created>1585624421503</created>
@@ -1466,7 +1338,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1646143000" />
+    <option name="totallyTimeSpent" value="1673260000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1478,7 +1350,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <layout>
       <window_info id="Structure" order="0" sideWeight="0.50211865" side_tool="true" weight="0.23324397" />
       <window_info id="Designer" order="1" />
@@ -1487,10 +1359,10 @@
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Web" order="6" sideWeight="0.45957446" side_tool="true" weight="0.25201073" />
-      <window_info content_ui="combo" id="Project" order="7" sideWeight="0.54042554" visible="true" weight="0.3163539" />
+      <window_info active="true" content_ui="combo" id="Project" order="7" sideWeight="0.54042554" visible="true" weight="0.34383377" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
-      <window_info active="true" anchor="bottom" x="22" y="125" width="1492" height="574" id="Run" order="2" sideWeight="0.49932975" type="SLIDING" visible="true" weight="0.89219856" />
+      <window_info anchor="bottom" x="22" y="125" width="1492" height="574" id="Run" order="2" sideWeight="0.49932975" type="SLIDING" weight="0.89219856" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.83687943" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1511,7 +1383,7 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Database" order="6" weight="0.3297587" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.013404826" />
-      <window_info anchor="right" id="Maven Projects" order="8" visible="true" weight="0.122654155" />
+      <window_info anchor="right" id="Maven Projects" order="8" visible="true" weight="0.07707775" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1548,7 +1420,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/partsEntryAndOut/AddPartsController.java</url>
-          <line>505</line>
+          <line>507</line>
           <properties class="com.kthw.pmis.controller.partsEntryAndOut.AddPartsController" method="exportSheetInfo">
             <option name="EMULATED" value="true" />
           </properties>
@@ -1790,6 +1662,12 @@
           <properties />
           <option name="timeStamp" value="109" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/serviceimpl/analysis/DetectScoreServiceImpl.java</url>
+          <line>145</line>
+          <properties />
+          <option name="timeStamp" value="111" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/main/webapp/js/stock/stockInfo.js</url>
           <line>94</line>
@@ -1833,221 +1711,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/system/roleManage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="161" column="44" selection-start-line="161" selection-start-column="44" selection-end-line="161" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/system/operationManage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="124" lean-forward="true" selection-start-line="124" selection-end-line="147" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/system/authManage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="168" column="10" lean-forward="true" selection-start-line="168" selection-start-column="10" selection-end-line="168" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/faultManager/appealVerify.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2397" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/system/partsManage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="277" column="49" selection-start-line="277" selection-start-column="49" selection-end-line="277" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/faultHandle/FaultReportController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="336" column="31" selection-start-line="336" selection-start-column="25" selection-end-line="336" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/FaultHandleMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7">
-          <caret line="77" column="106" selection-start-line="77" selection-start-column="106" selection-end-line="77" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/faultManager/appeal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="132" column="31" lean-forward="true" selection-start-line="132" selection-start-column="31" selection-end-line="132" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/faultManager/update.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-493">
-          <caret line="209" column="56" selection-start-line="209" selection-start-column="56" selection-end-line="209" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/faultManager/update.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3196">
-          <caret line="188" column="49" selection-start-line="188" selection-start-column="49" selection-end-line="188" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/preparePurchase.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9061">
-          <caret line="533" column="148" selection-start-line="533" selection-start-column="148" selection-end-line="533" selection-end-column="148" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/produceEntrySearch.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/produceEntryVerify.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/stock/partsSearch.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1411">
-          <caret line="83" column="39" selection-start-line="83" selection-start-column="39" selection-end-line="83" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/websocket/TXDSMessageSend.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/produceEntryQuery.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/preparePurchaseQuery.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/preparePurchaseSearch.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/preparePurchaseVerify.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/entryAndOut/produceEntry.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/websocket/VehicleMonitorHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReportVerify.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="606" column="25" lean-forward="true" selection-start-line="602" selection-start-column="24" selection-end-line="606" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/checkPlan/unfulfilled.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="37" column="29" lean-forward="true" selection-start-line="32" selection-start-column="19" selection-end-line="37" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/PlanCheckMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="142" column="30" selection-start-line="142" selection-start-column="22" selection-end-line="142" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/checkPlan/onDay.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="141" column="54" selection-start-line="141" selection-start-column="54" selection-end-line="141" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/checkPlan/onDayVerify.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="146" column="54" selection-start-line="146" selection-start-column="54" selection-end-line="146" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/checkPlan/unfulfilled.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/checkPlan/onDayQuery.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/checkPlan/verify.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="207" column="52" selection-start-line="207" selection-start-column="51" selection-end-line="207" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/checkPlan/update.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="61" column="60" selection-start-line="61" selection-start-column="59" selection-end-line="61" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/checkPlan/entry.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="55" column="29" lean-forward="true" selection-start-line="52" selection-start-column="19" selection-end-line="55" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/checkPlan/entryVerify.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="55" column="29" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/checkPlan/onDay.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="78" column="62" lean-forward="true" selection-start-line="78" selection-start-column="27" selection-end-line="78" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/js/checkPlan/entry.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5882">
           <caret line="346" column="79" selection-start-line="346" selection-start-column="72" selection-end-line="346" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReport.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14739">
-          <caret line="867" column="80" selection-start-line="867" selection-start-column="80" selection-end-line="867" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/analysis/monthlyStatistics.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="16" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -2062,13 +1729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1887">
           <caret line="111" column="62" selection-start-line="111" selection-start-column="62" selection-end-line="111" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/checkPlan/CheckPlanController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="54" column="57" selection-start-line="54" selection-start-column="57" selection-end-line="54" selection-end-column="57" />
         </state>
       </provider>
     </entry>
@@ -2089,6 +1749,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/Depot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="59" column="17" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/checkPlan/CheckPlanSheetController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/ExportExcel/JxlsExcelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5134">
+          <caret line="330" column="54" selection-start-line="330" selection-start-column="40" selection-end-line="330" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1105">
+          <caret line="65" column="4" selection-start-line="65" selection-start-column="4" selection-end-line="69" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/service/InitDictionaryService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/service/SequenceService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/FaultHandleMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/PlanCheckMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="30" column="19" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/partsEntryAndOut/addParts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10438">
+          <caret line="614" column="49" selection-start-line="614" selection-start-column="49" selection-end-line="614" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/js/checkPlan/onDayVerify.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1564">
@@ -2096,47 +1826,159 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectScoreMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" lean-forward="true" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="476">
+          <caret line="31" column="11" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/checkPlan/CheckPlanSheetController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/PlanCheckMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="52" column="46" lean-forward="true" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
+        <state relative-caret-position="621">
+          <caret line="574" column="13" selection-start-line="560" selection-start-column="2" selection-end-line="574" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectScoreMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="485" column="11" lean-forward="true" selection-start-line="485" selection-start-column="11" selection-end-line="485" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/stock/DepotToTestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="351" column="21" selection-start-line="351" selection-start-column="21" selection-end-line="351" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/SheetDetail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="158" column="30" selection-start-line="158" selection-start-column="22" selection-end-line="158" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/partsEntryAndOut/AddPartsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1288">
+          <caret line="315" column="12" lean-forward="true" selection-start-line="315" selection-start-column="12" selection-end-line="315" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/DetectScore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="305" column="42" selection-start-line="305" selection-start-column="37" selection-end-line="305" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/DetectDevice.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="160" column="37" selection-start-line="160" selection-start-column="37" selection-end-line="160" selection-end-column="37" />
-          <folding>
-            <element signature="e#3685#3686#0" expanded="true" />
-            <element signature="e#3741#3742#0" expanded="true" />
-            <element signature="e#3789#3790#0" expanded="true" />
-            <element signature="e#3827#3828#0" expanded="true" />
-            <element signature="e#3861#3862#0" expanded="true" />
-            <element signature="e#3915#3916#0" expanded="true" />
-            <element signature="e#3961#3962#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="408">
+          <caret line="156" column="32" lean-forward="true" selection-start-line="156" selection-start-column="32" selection-end-line="156" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/DetectDeviceWithDepot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="40" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/service/analysis/DetectScoreService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectDeviceMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        <state relative-caret-position="536">
+          <caret line="37" column="57" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="57" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/service/detectManage/DetectManageService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/checkPlan/CheckPlanController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+        <state relative-caret-position="391">
+          <caret line="52" column="32" lean-forward="true" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/checkPlan/unfulfilled.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="44" column="33" lean-forward="true" selection-end-line="156" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/analysis/DetectScoreController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="58" column="67" selection-start-line="58" selection-start-column="67" selection-end-line="58" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/analysis/monthlyStatistics.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="99" selection-start-line="39" selection-start-column="99" selection-end-line="39" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/checkPlan/unfulfilled.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="25" selection-end-line="261" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="49" lean-forward="true" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectPartsMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DeviceTypeMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DeviceTypeMapper.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectManage/DetectManageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/serviceimpl/analysis/DetectScoreServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="152" column="34" selection-start-line="152" selection-start-column="34" selection-end-line="152" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2147,28 +1989,180 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/entiy/Depot.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectPartsMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="59" column="17" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
-          <folding>
-            <element signature="e#883#884#0" expanded="true" />
-            <element signature="e#916#917#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="191">
+          <caret line="137" column="13" lean-forward="true" selection-start-line="137" selection-start-column="13" selection-end-line="137" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/ExportExcel/JxlsExcelController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectProduce/PartsConsumeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="330" column="54" lean-forward="true" selection-start-line="330" selection-start-column="40" selection-end-line="330" selection-end-column="54" />
+        <state relative-caret-position="17">
+          <caret line="388" column="20" selection-start-line="388" selection-start-column="20" selection-end-line="388" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/service/detectManage/DetectManageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/mapper/common/DetectDeviceMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="133" column="67" selection-start-line="133" selection-start-column="67" selection-end-line="133" selection-end-column="67" />
+        <state relative-caret-position="21">
+          <caret line="40" column="71" selection-start-line="40" selection-start-column="71" selection-end-line="40" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/analysis/monthlyStatistics.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="e#147#153#0" expanded="true" />
+            <element signature="e#153#159#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/checkPlan/create.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="128" column="21" selection-start-line="128" selection-start-column="21" selection-end-line="128" selection-end-column="21" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="e#151#157#0" expanded="true" />
+            <element signature="e#157#163#0" expanded="true" />
+            <element signature="e#320#326#0" expanded="true" />
+            <element signature="e#326#332#0" expanded="true" />
+            <element signature="e#484#490#0" expanded="true" />
+            <element signature="e#490#496#0" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="e#161#167#0" expanded="true" />
+            <element signature="e#167#173#0" expanded="true" />
+            <element signature="e#145#151#0" expanded="true" />
+            <element signature="e#151#157#0" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectManage/DeviceManageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="71" column="19" lean-forward="true" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/faultManager/faultReport.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="108" column="40" lean-forward="true" selection-start-line="108" selection-start-column="23" selection-end-line="108" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/detectProduce/partsUnstall.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="86" column="19" selection-start-line="86" selection-start-column="19" selection-end-line="86" selection-end-column="19" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="e#151#157#0" expanded="true" />
+            <element signature="e#157#163#0" expanded="true" />
+            <element signature="e#320#326#0" expanded="true" />
+            <element signature="e#326#332#0" expanded="true" />
+            <element signature="e#484#490#0" expanded="true" />
+            <element signature="e#490#496#0" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/detectProduce/partsUse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="112" column="90" selection-start-line="112" selection-start-column="71" selection-end-line="112" selection-end-column="90" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="e#151#157#0" expanded="true" />
+            <element signature="e#157#163#0" expanded="true" />
+            <element signature="e#320#326#0" expanded="true" />
+            <element signature="e#326#332#0" expanded="true" />
+            <element signature="e#484#490#0" expanded="true" />
+            <element signature="e#490#496#0" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#font#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectProduce/PartsUseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="500" column="34" selection-start-line="500" selection-start-column="34" selection-end-line="500" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kthw/pmis/controller/detectProduce/PartsUnstallController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="486" selection-start-line="486" selection-end-line="486" />
+          <folding>
+            <element signature="e#25708#25722#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

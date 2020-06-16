@@ -1,6 +1,7 @@
 package com.kthw.pmis.mapper.common;
 
 import com.kthw.pmis.entiy.DetectDevice;
+import com.kthw.pmis.entiy.DetectDeviceWithDepot;
 import com.kthw.pmis.entiy.dto.DetectDeviceDTO;
 
 import java.util.List;
@@ -28,4 +29,11 @@ public interface DetectDeviceMapper {
     List<DetectDeviceDTO> listDetectDevice(Map<String, Object> params);
 
     List<DetectDevice> listDetectDeviceByWorkShop(Map<String, Object> params);
+
+    /**
+     * 获取检修劳效系数
+     * @param params
+     * @return
+     */
+    List<DetectDeviceWithDepot> listDetectDeviceWithDepot(Map<String, Object> params);
 }

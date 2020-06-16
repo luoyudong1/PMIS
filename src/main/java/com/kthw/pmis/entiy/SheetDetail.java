@@ -706,7 +706,7 @@ public class SheetDetail extends SheetDetailKey {
         sb.append(", unitPrice=").append(unitPrice);
         sb.append(", remark=").append(remark);
         sb.append(", location=").append(location);
-        sb.append(", partCode=").append(partId);
+        sb.append(", partId=").append(partId);
         sb.append(", assetAttributesId=").append(assetAttributesId);
         sb.append(", faultInfo=").append(faultInfo);
         sb.append(", faultDate=").append(faultDate);

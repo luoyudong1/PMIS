@@ -63,7 +63,7 @@
 		<!--t_commission_detail -->
 
 
-  		<!--<table tableName="tbl_fault_info" domainObjectName="FaultInfo"-->
+  		<!--<table tableName="tbl_detect_score" domainObjectName="DetectScore"-->
  			<!--enableSelectByExample="false" enableDeleteByExample="false"-->
  			<!--enableCountByExample="false" enableUpdateByExample="false"-->
  			<!--selectByExampleQueryId="false">-->

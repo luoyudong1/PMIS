@@ -10,4 +10,9 @@ import java.util.Map;
 public interface DetectManageService {
     List<DetectDeviceDTO> listDetect(Long depotId,Integer faultEnable);
     List<DetectDevice> selectByMap(Map<String,Object> params);
+
+//    /*
+//    获取非AEI探测站
+//     */
+//    List<DetectDevice> selectWithTHDS(Map<String,Object> params);
 }

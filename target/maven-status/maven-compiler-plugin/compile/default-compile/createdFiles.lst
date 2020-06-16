@@ -56,6 +56,7 @@ com\kthw\common\ImageUtil.class
 com\kthw\pmis\service\entryAndOut\ProduceEntryService.class
 com\kthw\common\shiro\SecurityConstants.class
 com\kthw\pmis\entiy\PlanCheckSheet.class
+com\kthw\pmis\entiy\DetectScore.class
 com\kthw\pmis\service\entryAndOut\RepairOutService.class
 com\kthw\common\shiro\FramePermissionsAuthorizationFilter.class
 com\kthw\pmis\service\repairManage\RepairService.class
@@ -76,6 +77,7 @@ com\kthw\pmis\serviceimpl\system\PartsServiceImpl.class
 com\kthw\common\PeriodConstants.class
 com\kthw\common\Role.class
 com\kthw\pmis\entiy\bo\PlanCheckExportBO.class
+com\kthw\pmis\service\analysis\DetectScoreService.class
 com\kthw\pmis\controller\report\AccumulativeStatisticsController.class
 com\kthw\pmis\entiy\Depot.class
 com\kthw\pmis\mapper\common\SheetInfoMapper.class
@@ -127,6 +129,7 @@ com\kthw\pmis\serviceimpl\checkPlan\CheckPlanServiceImpl.class
 com\kthw\pmis\controller\stock\RepairAndSparesController.class
 com\kthw\pmis\mapper\entryAndOut\RepairEntryMapper.class
 com\kthw\pmis\model\repairManage\RepairAllocateDetail.class
+com\kthw\pmis\serviceimpl\analysis\DetectScoreServiceImpl.class
 com\kthw\pmis\mapper\common\ResponsibleUserMapper.class
 com\kthw\common\Exceptions.class
 com\kthw\pmis\controller\partsEntryAndOut\FactoryReturnController.class
@@ -147,6 +150,7 @@ com\kthw\pmis\service\entryAndOut\PurchasePartsService.class
 com\kthw\pmis\task\CheckPlanTask.class
 com\kthw\pmis\entiy\ext\ViewParts.class
 com\kthw\pmis\entiy\dto\StockInfoDTO.class
+com\kthw\pmis\mapper\common\DetectScoreMapper.class
 com\kthw\pmis\model\system\LuJu.class
 com\kthw\pmis\serviceimpl\entryAndOut\PurchasePartsServiceImpl.class
 com\kthw\pmis\controller\entryAndOut\PurchaseToDeliveryController.class

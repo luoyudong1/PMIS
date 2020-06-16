@@ -248,7 +248,6 @@
         <result column="depot_name" jdbcType="VARCHAR" property="depotName"/>
         <result column="device_model_name" jdbcType="VARCHAR" property="deviceModelName"/>
         <result column="device_type_name" jdbcType="VARCHAR" property="deviceTypeName"/>
-        <result column="device_type_name" jdbcType="VARCHAR" property="deviceTypeName"/>
     </resultMap>
     <select id="listDetectDevice" parameterType="java.util.Map" resultMap="DetectDeviceResultMap">
         select ddd.*,sd.supplier_name,dd.depot_name,dmd.device_model_name,dtd.device_type_name from tbl_detect_device_dict ddd
@@ -264,6 +263,37 @@
                 </foreach>
 
             </if>
+            <if test="eqFaultEnable !=null">
+
+                and fault_enable= #{eqFaultEnable,jdbcType=NUMERIC}
+            </if>
+        </where>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+
+    </select>
+    <!--获取探测站信息-->
+    <resultMap id="DetectDeviceWithDepotResultMap" type="com.kthw.pmis.entiy.DetectDeviceWithDepot">
+        <result column="detect_device_id" jdbcType="NUMERIC" property="detectDeviceId"/>
+        <result column="detect_device_name" jdbcType="VARCHAR" property="detectDeviceName"/>
+        <result column="depot_name" jdbcType="VARCHAR" property="depotName"/>
+        <result column="work_shop_name" jdbcType="VARCHAR" property="workShopName"/>
+        <result column="segment_name" jdbcType="VARCHAR" property="segmentName"/>
+        <result column="manage_per_capita" jdbcType="NUMERIC" property="managePerCapita"/>
+        <result column="device_type_name" jdbcType="VARCHAR" property="deviceTypeName"/>
+        <result column="device_model_name" jdbcType="VARCHAR" property="deviceModelName"/>
+    </resultMap>
+    <select id="listDetectDeviceWithDepot" parameterType="java.util.Map" resultMap="DetectDeviceWithDepotResultMap">
+        select ddd.detect_device_id,ddd.detect_device_name,
+        ddd.work_shop_name,ddd.segment_name,dmd.device_model_name,
+        dd.depot_name,dd.manage_per_capita,
+        dtd.device_type_name from tbl_detect_device_dict ddd
+        LEFT JOIN tbl_suppliers_dict sd on ddd.supplier_id=sd.supplier_id
+        LEFT JOIN tbl_depot_dict dd on dd.depot_id=ddd.depot_id
+        LEFT join tbl_5t_device_type_dict dtd on dtd.device_type_id=ddd.device_type_id
+        LEFT join tbl_5t_device_model_dict dmd on dmd.device_model_id=ddd.device_model_id
+        <where>
             <if test="eqFaultEnable !=null">
 
                 and fault_enable= #{eqFaultEnable,jdbcType=NUMERIC}
